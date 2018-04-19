@@ -1,0 +1,10 @@
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.exe.config
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.exe
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.pdb
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Properties.Resources.resources
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csproj.GenerateResource.Cache
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.exe
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.pdb
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Accueil.resources
+c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Suivi.resources
