@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MFTRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Adresse">
+    <Key>
+      <PropertyRef Name="Adresse_ID" />
+    </Key>
+    <Property Name="Adresse_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adulte_ID" Type="Int32" />
+    <Property Name="Civic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Unite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ville" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CodePostal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Pays" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Adultes" Relationship="Self.Adresse_AdultesAdresse" FromRole="Adresse" ToRole="Adultes" />
+  </EntityType>
+  <EntityType Name="Adultes">
+    <Key>
+      <PropertyRef Name="Adulte_ID" />
+    </Key>
+    <Property Name="Adulte_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Courriel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Adresse" Relationship="Self.Adresse_AdultesAdresse" FromRole="Adultes" ToRole="Adresse" />
+    <NavigationProperty Name="Dossier" Relationship="Self.Adultes_Dossier2Adultes" FromRole="Adultes" ToRole="Dossier" />
+    <NavigationProperty Name="Parent" Relationship="Self.Parent_AdultesParent" FromRole="Adultes" ToRole="Parent" />
+    <NavigationProperty Name="Referent" Relationship="Self.Referent_AdultesReferent" FromRole="Adultes" ToRole="Referent" />
+    <NavigationProperty Name="Telephone" Relationship="Self.Telephone_AdultesTelephone" FromRole="Adultes" ToRole="Telephone" />
+  </EntityType>
+  <EntityType Name="Communication">
+    <Key>
+      <PropertyRef Name="Communication_ID" />
+    </Key>
+    <Property Name="Communication_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Adulte_ID" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Referent_ID" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="DateEven" Type="DateTime" Precision="0" />
+    <Property Name="DateComm" Type="DateTime" Precision="0" />
+    <Property Name="Heure" Type="Time" Precision="0" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Motif" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Interlocuteur" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Intervenant" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+    <Property Name="Temp_interlocuteur" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Dossier" Relationship="Self.FK_Communication_Dossier" FromRole="Communication" ToRole="Dossier" />
+  </EntityType>
+  <EntityType Name="Dossier">
+    <Key>
+      <PropertyRef Name="Dossier_ID" />
+    </Key>
+    <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ouverture" Type="DateTime" Precision="0" />
+    <Property Name="Actif" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Referent_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Remarque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Adultes" Relationship="Self.Adultes_Dossier2Adultes" FromRole="Dossier" ToRole="Adultes" />
+    <NavigationProperty Name="Communication" Relationship="Self.FK_Communication_Dossier" FromRole="Dossier" ToRole="Communication" />
+    <NavigationProperty Name="Enfants" Relationship="Self.Enfants_Dossier2Enfants" FromRole="Dossier" ToRole="Enfants" />
+    <NavigationProperty Name="Services" Relationship="Self.Services_Dossier2Services" FromRole="Dossier" ToRole="Services" />
+  </EntityType>
+  <EntityType Name="Enfants">
+    <Key>
+      <PropertyRef Name="Enfant_ID" />
+    </Key>
+    <Property Name="Enfant_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Sexe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Naissance" Type="DateTime" Precision="0" />
+    <Property Name="Accueil" Type="Boolean" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Dossier" Relationship="Self.Enfants_Dossier2Enfants" FromRole="Enfants" ToRole="Dossier" />
+  </EntityType>
+  <EntityType Name="LienReferrent">
+    <Key>
+      <PropertyRef Name="Lien_ID" />
+    </Key>
+    <Property Name="Lien_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Parent_ID" Type="Int32" />
+    <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Parent" Relationship="Self.LienReferrent_ParentLienReferrent" FromRole="LienReferrent" ToRole="Parent" />
+    <NavigationProperty Name="Referent" Relationship="Self.LienReferrent_ReferentLienReferrent" FromRole="LienReferrent" ToRole="Referent" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="Parent_ID" />
+    </Key>
+    <Property Name="Parent_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adulte_ID" Type="Int32" />
+    <Property Name="Statut" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Sexe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Naissance" Type="DateTime" Precision="0" />
+    <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Adultes" Relationship="Self.Parent_AdultesParent" FromRole="Parent" ToRole="Adultes" />
+    <NavigationProperty Name="LienReferrent" Relationship="Self.LienReferrent_ParentLienReferrent" FromRole="Parent" ToRole="LienReferrent" />
+    <NavigationProperty Name="Transporteur" Relationship="Self.FK_Transporteur_Parent" FromRole="Parent" ToRole="Transporteur" />
+  </EntityType>
+  <EntityType Name="Referent">
+    <Key>
+      <PropertyRef Name="Referent_ID" />
+    </Key>
+    <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Adulte_ID" Type="Int32" />
+    <Property Name="Organisation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Adultes" Relationship="Self.Referent_AdultesReferent" FromRole="Referent" ToRole="Adultes" />
+    <NavigationProperty Name="LienReferrent" Relationship="Self.LienReferrent_ReferentLienReferrent" FromRole="Referent" ToRole="LienReferrent" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Service_ID" />
+    </Key>
+    <Property Name="Service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Frequence" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Journee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Duree" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Dossier" Relationship="Self.Services_Dossier2Services" FromRole="Services" ToRole="Dossier" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Telephone">
+    <Key>
+      <PropertyRef Name="Tel_ID" />
+    </Key>
+    <Property Name="Tel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adulte_ID" Type="Int32" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Telephone1" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Poste" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Precision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Adultes" Relationship="Self.Telephone_AdultesTelephone" FromRole="Telephone" ToRole="Adultes" />
+  </EntityType>
+  <EntityType Name="Transporteur">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Parent_ID" Type="Int32" />
+    <Property Name="Nom" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Parent" Relationship="Self.FK_Transporteur_Parent" FromRole="Transporteur" ToRole="Parent" />
+  </EntityType>
+  <EntityType Name="new_table">
+    <Key>
+      <PropertyRef Name="Referent_ID" />
+    </Key>
+    <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="temp_avocat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="Adresse_AdultesAdresse">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Adresse">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Adultes_Dossier2Adultes">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Adultes">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Parent_AdultesParent">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Referent_AdultesReferent">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Referent" Type="Self.Referent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Referent">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Telephone_AdultesTelephone">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Telephone">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Communication_Dossier">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Communication" Type="Self.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Enfants_Dossier2Enfants">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Enfants" Type="Self.Enfants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Enfants">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Services_Dossier2Services">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Services" Type="Self.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LienReferrent_ParentLienReferrent">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LienReferrent" Type="Self.LienReferrent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="LienReferrent">
+        <PropertyRef Name="Parent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LienReferrent_ReferentLienReferrent">
+    <End Role="Referent" Type="Self.Referent" Multiplicity="0..1" />
+    <End Role="LienReferrent" Type="Self.LienReferrent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Referent">
+        <PropertyRef Name="Referent_ID" />
+      </Principal>
+      <Dependent Role="LienReferrent">
+        <PropertyRef Name="Referent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transporteur_Parent">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transporteur" Type="Self.Transporteur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="Transporteur">
+        <PropertyRef Name="Parent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MFTREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Adresse" EntityType="Self.Adresse" />
+    <EntitySet Name="Adultes" EntityType="Self.Adultes" />
+    <EntitySet Name="Communication" EntityType="Self.Communication" />
+    <EntitySet Name="Dossier" EntityType="Self.Dossier" />
+    <EntitySet Name="Enfants" EntityType="Self.Enfants" />
+    <EntitySet Name="LienReferrent" EntityType="Self.LienReferrent" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" />
+    <EntitySet Name="Referent" EntityType="Self.Referent" />
+    <EntitySet Name="Services" EntityType="Self.Services" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Telephone" EntityType="Self.Telephone" />
+    <EntitySet Name="Transporteur" EntityType="Self.Transporteur" />
+    <EntitySet Name="new_table" EntityType="Self.new_table" />
+    <AssociationSet Name="Adresse_AdultesAdresse" Association="Self.Adresse_AdultesAdresse">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Adresse" EntitySet="Adresse" />
+    </AssociationSet>
+    <AssociationSet Name="Adultes_Dossier2Adultes" Association="Self.Adultes_Dossier2Adultes">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Adultes" EntitySet="Adultes" />
+    </AssociationSet>
+    <AssociationSet Name="Parent_AdultesParent" Association="Self.Parent_AdultesParent">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Parent" EntitySet="Parent" />
+    </AssociationSet>
+    <AssociationSet Name="Referent_AdultesReferent" Association="Self.Referent_AdultesReferent">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Referent" EntitySet="Referent" />
+    </AssociationSet>
+    <AssociationSet Name="Telephone_AdultesTelephone" Association="Self.Telephone_AdultesTelephone">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Telephone" EntitySet="Telephone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Communication_Dossier" Association="Self.FK_Communication_Dossier">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="Enfants_Dossier2Enfants" Association="Self.Enfants_Dossier2Enfants">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Enfants" EntitySet="Enfants" />
+    </AssociationSet>
+    <AssociationSet Name="Services_Dossier2Services" Association="Self.Services_Dossier2Services">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="LienReferrent_ParentLienReferrent" Association="Self.LienReferrent_ParentLienReferrent">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="LienReferrent" EntitySet="LienReferrent" />
+    </AssociationSet>
+    <AssociationSet Name="LienReferrent_ReferentLienReferrent" Association="Self.LienReferrent_ReferentLienReferrent">
+      <End Role="Referent" EntitySet="Referent" />
+      <End Role="LienReferrent" EntitySet="LienReferrent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transporteur_Parent" Association="Self.FK_Transporteur_Parent">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="Transporteur" EntitySet="Transporteur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

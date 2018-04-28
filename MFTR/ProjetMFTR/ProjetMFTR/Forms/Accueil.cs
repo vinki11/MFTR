@@ -1,39 +1,35 @@
-﻿using ProjetMFTR.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using ProjetMFTR.DataAccess;
+using ProjetMFTR.Resources;
 
 namespace ProjetMFTR
 {
 	public partial class Accueil : Form
 	{
 
-#region Constants
-		private const string STR_Concatened = "concatened";
-		private const string STR_Id = "id";
-		#endregion
-
-#region Constructors
+		#region Constructors
 
 		/// <summary>
 		/// Constructeur de la classe
 		/// </summary>
 		public Accueil()
 		{
+			Thread thread = new Thread(new ThreadStart(Spash));
+			thread.Start();
+			//Thread.Sleep(6000);
 			InitializeComponent();
 			//Initialisation des combosbox
 			InitialiseCombos();
+			thread.Abort();
 		}
 
-#endregion
+		#endregion
 
-#region Events
+		#region Events
 
 		/// <summary>
 		/// Ajout d'un nouveau suivi
@@ -60,18 +56,32 @@ namespace ProjetMFTR
 		}
 		#endregion
 
-#region Methods
+		#region Methods
 
 		/// <summary>
 		/// Initialisation du combobox des enfants
 		/// </summary>
 		private void InitialiseCombos()
 		{
-			List<Kids> kids = new KidsDataAccess().GetKids();
-			cboKid.DataSource = kids;
-			cboKid.DisplayMember = STR_Concatened;
-			cboKid.ValueMember = STR_Id;
+			cboKid.DataSource = Connexion.Instance().Enfants.ToList();
+			cboKid.DisplayMember = ResourcesString.STR_Name;
+			cboKid.ValueMember = ResourcesString.STR_Id;
+			//Connexion.Instance().Database.BeginTransaction();
+
 		}
-#endregion
-    }
+
+
+		void Spash()
+		{
+			SplashScreen.SplashForm frm = new SplashScreen.SplashForm();
+			frm.AppName = "Maison de la famille";
+			frm.Icon = Properties.Resources.icone_MFTR;
+			frm.ShowIcon = true;
+			frm.ShowInTaskbar = true;
+			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Width = 300;
+			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Text = "Chargement...";
+			Application.Run(frm);
+		}
+		#endregion
+	}
 }

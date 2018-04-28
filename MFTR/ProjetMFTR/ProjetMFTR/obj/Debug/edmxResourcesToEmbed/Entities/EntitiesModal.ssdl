@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MFTRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adresse">
+    <Key>
+      <PropertyRef Name="Adresse_ID" />
+    </Key>
+    <Property Name="Adresse_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adulte_ID" Type="int" />
+    <Property Name="Civic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rue" Type="nvarchar" MaxLength="255" />
+    <Property Name="Unite" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ville" Type="nvarchar" MaxLength="255" />
+    <Property Name="Province" Type="nvarchar" MaxLength="100" />
+    <Property Name="CodePostal" Type="nchar" MaxLength="10" />
+    <Property Name="Pays" Type="nchar" MaxLength="25" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Adultes">
+    <Key>
+      <PropertyRef Name="Adulte_ID" />
+    </Key>
+    <Property Name="Adulte_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Courriel" Type="nvarchar" MaxLength="255" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Communication">
+    <Key>
+      <PropertyRef Name="Communication_ID" />
+    </Key>
+    <Property Name="Communication_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" />
+    <Property Name="Adulte_ID" Type="nchar" MaxLength="15" />
+    <Property Name="Referent_ID" Type="nchar" MaxLength="15" />
+    <Property Name="DateEven" Type="date" />
+    <Property Name="DateComm" Type="date" />
+    <Property Name="Heure" Type="time" Precision="0" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="Motif" Type="nvarchar" MaxLength="100" />
+    <Property Name="Interlocuteur" Type="nchar" MaxLength="100" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="Intervenant" Type="nchar" MaxLength="150" />
+    <Property Name="Temp_interlocuteur" Type="nvarchar" MaxLength="100" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dossier">
+    <Key>
+      <PropertyRef Name="Dossier_ID" />
+    </Key>
+    <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Ouverture" Type="date" />
+    <Property Name="Actif" Type="nchar" MaxLength="10" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="Referent_ID" Type="nvarchar" MaxLength="15" />
+    <Property Name="Remarque" Type="nvarchar(max)" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Enfants">
+    <Key>
+      <PropertyRef Name="Enfant_ID" />
+    </Key>
+    <Property Name="Enfant_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Sexe" Type="nvarchar" MaxLength="255" />
+    <Property Name="Naissance" Type="date" />
+    <Property Name="Accueil" Type="bit" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Referent_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LienReferrent">
+    <Key>
+      <PropertyRef Name="Lien_ID" />
+    </Key>
+    <Property Name="Lien_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parent_ID" Type="int" />
+    <Property Name="Referent_ID" Type="nchar" MaxLength="20" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="50" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="new_table">
+    <Key>
+      <PropertyRef Name="Referent_ID" />
+    </Key>
+    <Property Name="Referent_ID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+    <Property Name="temp_avocat" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="Parent_ID" />
+    </Key>
+    <Property Name="Parent_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adulte_ID" Type="int" />
+    <Property Name="Statut" Type="nchar" MaxLength="50" />
+    <Property Name="Sexe" Type="nchar" MaxLength="10" />
+    <Property Name="Naissance" Type="date" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="250" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Referent">
+    <Key>
+      <PropertyRef Name="Referent_ID" />
+    </Key>
+    <Property Name="Referent_ID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Adulte_ID" Type="int" />
+    <Property Name="Organisation" Type="nvarchar" MaxLength="150" />
+    <Property Name="Type" Type="nchar" MaxLength="50" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Service_ID" />
+    </Key>
+    <Property Name="Service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" />
+    <Property Name="Nom" Type="nchar" MaxLength="50" />
+    <Property Name="Frequence" Type="nchar" MaxLength="50" />
+    <Property Name="Journee" Type="nchar" MaxLength="50" />
+    <Property Name="Duree" Type="nchar" MaxLength="50" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Telephone">
+    <Key>
+      <PropertyRef Name="Tel_ID" />
+    </Key>
+    <Property Name="Tel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adulte_ID" Type="int" />
+    <Property Name="Type" Type="nchar" MaxLength="20" />
+    <Property Name="Telephone" Type="nchar" MaxLength="15" />
+    <Property Name="Poste" Type="nchar" MaxLength="15" />
+    <Property Name="Precision" Type="nvarchar" MaxLength="100" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transporteur">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parent_ID" Type="int" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="120" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="250" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <Association Name="Adresse$AdultesAdresse">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Adresse">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Adultes$Dossier2Adultes">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Adultes">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Enfants$Dossier2Enfants">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Enfants" Type="Self.Enfants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Enfants">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Communication_Dossier">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Communication" Type="Self.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transporteur_Parent">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transporteur" Type="Self.Transporteur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="Transporteur">
+        <PropertyRef Name="Parent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LienReferrent$ParentLienReferrent">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LienReferrent" Type="Self.LienReferrent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="LienReferrent">
+        <PropertyRef Name="Parent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LienReferrent$ReferentLienReferrent">
+    <End Role="Referent" Type="Self.Referent" Multiplicity="0..1" />
+    <End Role="LienReferrent" Type="Self.LienReferrent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Referent">
+        <PropertyRef Name="Referent_ID" />
+      </Principal>
+      <Dependent Role="LienReferrent">
+        <PropertyRef Name="Referent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Parent$AdultesParent">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Referent$AdultesReferent">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Referent" Type="Self.Referent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Referent">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Services$Dossier2Services">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Services" Type="Self.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Services">
+        <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Telephone$AdultesTelephone">
+    <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Telephone" Type="Self.Telephone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adultes">
+        <PropertyRef Name="Adulte_ID" />
+      </Principal>
+      <Dependent Role="Telephone">
+        <PropertyRef Name="Adulte_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MFTRModelStoreContainer">
+    <EntitySet Name="Adresse" EntityType="Self.Adresse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Adultes" EntityType="Self.Adultes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Communication" EntityType="Self.Communication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dossier" EntityType="Self.Dossier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enfants" EntityType="Self.Enfants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LienReferrent" EntityType="Self.LienReferrent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Referent" EntityType="Self.Referent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Telephone" EntityType="Self.Telephone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transporteur" EntityType="Self.Transporteur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="new_table" EntityType="Self.new_table" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [new_table].[Referent_ID] AS [Referent_ID], 
+    [new_table].[Nom] AS [Nom], 
+    [new_table].[temp_avocat] AS [temp_avocat]
+    FROM [dbo].[new_table] AS [new_table]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="Adresse$AdultesAdresse" Association="Self.Adresse$AdultesAdresse">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Adresse" EntitySet="Adresse" />
+    </AssociationSet>
+    <AssociationSet Name="Adultes$Dossier2Adultes" Association="Self.Adultes$Dossier2Adultes">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Adultes" EntitySet="Adultes" />
+    </AssociationSet>
+    <AssociationSet Name="Enfants$Dossier2Enfants" Association="Self.Enfants$Dossier2Enfants">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Enfants" EntitySet="Enfants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Communication_Dossier" Association="Self.FK_Communication_Dossier">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transporteur_Parent" Association="Self.FK_Transporteur_Parent">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="Transporteur" EntitySet="Transporteur" />
+    </AssociationSet>
+    <AssociationSet Name="LienReferrent$ParentLienReferrent" Association="Self.LienReferrent$ParentLienReferrent">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="LienReferrent" EntitySet="LienReferrent" />
+    </AssociationSet>
+    <AssociationSet Name="LienReferrent$ReferentLienReferrent" Association="Self.LienReferrent$ReferentLienReferrent">
+      <End Role="Referent" EntitySet="Referent" />
+      <End Role="LienReferrent" EntitySet="LienReferrent" />
+    </AssociationSet>
+    <AssociationSet Name="Parent$AdultesParent" Association="Self.Parent$AdultesParent">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Parent" EntitySet="Parent" />
+    </AssociationSet>
+    <AssociationSet Name="Referent$AdultesReferent" Association="Self.Referent$AdultesReferent">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Referent" EntitySet="Referent" />
+    </AssociationSet>
+    <AssociationSet Name="Services$Dossier2Services" Association="Self.Services$Dossier2Services">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Services" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="Telephone$AdultesTelephone" Association="Self.Telephone$AdultesTelephone">
+      <End Role="Adultes" EntitySet="Adultes" />
+      <End Role="Telephone" EntitySet="Telephone" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

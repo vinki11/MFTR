@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MFTRModelStoreContainer" CdmEntityContainer="MFTREntities">
+    <EntitySetMapping Name="Adresse">
+      <EntityTypeMapping TypeName="MFTRModel.Adresse">
+        <MappingFragment StoreEntitySet="Adresse">
+          <ScalarProperty Name="Adresse_ID" ColumnName="Adresse_ID" />
+          <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
+          <ScalarProperty Name="Civic" ColumnName="Civic" />
+          <ScalarProperty Name="Rue" ColumnName="Rue" />
+          <ScalarProperty Name="Unite" ColumnName="Unite" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adultes">
+      <EntityTypeMapping TypeName="MFTRModel.Adultes">
+        <MappingFragment StoreEntitySet="Adultes">
+          <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
+          <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Communication">
+      <EntityTypeMapping TypeName="MFTRModel.Communication">
+        <MappingFragment StoreEntitySet="Communication">
+          <ScalarProperty Name="Communication_ID" ColumnName="Communication_ID" />
+          <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
+          <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
+          <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
+          <ScalarProperty Name="DateEven" ColumnName="DateEven" />
+          <ScalarProperty Name="DateComm" ColumnName="DateComm" />
+          <ScalarProperty Name="Heure" ColumnName="Heure" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Motif" ColumnName="Motif" />
+          <ScalarProperty Name="Interlocuteur" ColumnName="Interlocuteur" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Intervenant" ColumnName="Intervenant" />
+          <ScalarProperty Name="Temp_interlocuteur" ColumnName="Temp_interlocuteur" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dossier">
+      <EntityTypeMapping TypeName="MFTRModel.Dossier">
+        <MappingFragment StoreEntitySet="Dossier">
+          <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
+          <ScalarProperty Name="Ouverture" ColumnName="Ouverture" />
+          <ScalarProperty Name="Actif" ColumnName="Actif" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
+          <ScalarProperty Name="Remarque" ColumnName="Remarque" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enfants">
+      <EntityTypeMapping TypeName="MFTRModel.Enfants">
+        <MappingFragment StoreEntitySet="Enfants">
+          <ScalarProperty Name="Enfant_ID" ColumnName="Enfant_ID" />
+          <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+          <ScalarProperty Name="Naissance" ColumnName="Naissance" />
+          <ScalarProperty Name="Accueil" ColumnName="Accueil" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LienReferrent">
+      <EntityTypeMapping TypeName="MFTRModel.LienReferrent">
+        <MappingFragment StoreEntitySet="LienReferrent">
+          <ScalarProperty Name="Lien_ID" ColumnName="Lien_ID" />
+          <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+          <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parent">
+      <EntityTypeMapping TypeName="MFTRModel.Parent">
+        <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+          <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
+          <ScalarProperty Name="Statut" ColumnName="Statut" />
+          <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+          <ScalarProperty Name="Naissance" ColumnName="Naissance" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Referent">
+      <EntityTypeMapping TypeName="MFTRModel.Referent">
+        <MappingFragment StoreEntitySet="Referent">
+          <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
+          <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
+          <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="MFTRModel.Services">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+          <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Frequence" ColumnName="Frequence" />
+          <ScalarProperty Name="Journee" ColumnName="Journee" />
+          <ScalarProperty Name="Duree" ColumnName="Duree" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MFTRModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telephone">
+      <EntityTypeMapping TypeName="MFTRModel.Telephone">
+        <MappingFragment StoreEntitySet="Telephone">
+          <ScalarProperty Name="Tel_ID" ColumnName="Tel_ID" />
+          <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Telephone1" ColumnName="Telephone" />
+          <ScalarProperty Name="Poste" ColumnName="Poste" />
+          <ScalarProperty Name="Precision" ColumnName="Precision" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transporteur">
+      <EntityTypeMapping TypeName="MFTRModel.Transporteur">
+        <MappingFragment StoreEntitySet="Transporteur">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="new_table">
+      <EntityTypeMapping TypeName="MFTRModel.new_table">
+        <MappingFragment StoreEntitySet="new_table">
+          <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="temp_avocat" ColumnName="temp_avocat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
