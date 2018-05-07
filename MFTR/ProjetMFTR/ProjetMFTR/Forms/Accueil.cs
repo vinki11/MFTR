@@ -18,7 +18,7 @@ namespace ProjetMFTR
 		/// </summary>
 		public Accueil()
 		{
-			Thread thread = new Thread(new ThreadStart(Spash));
+			Thread thread = new Thread(new ThreadStart(Splash));
 			thread.Start();
 			InitializeComponent();
 			//Initialisation des combosbox
@@ -53,7 +53,7 @@ namespace ProjetMFTR
 
 			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer ces {0} suivi(s) ?", gvList.SelectedRows.Count),
 			"Confirmation de suppression",
-		MessageBoxButtons.YesNo);
+			MessageBoxButtons.YesNo);
 
 			if (result.Equals(DialogResult.No)) { return; }
 
@@ -62,11 +62,17 @@ namespace ProjetMFTR
 			//gvList.DataSource = Connexion.Instance().Suivis.ToList();	
 		}
 
+		/// <summary>
+		/// Accède à la form de gestion des intervenants
+		/// </summary>
 		private void btnGestion_Click(object sender, EventArgs e)
 		{
 
 		}
 
+		/// <summary>
+		/// Impression
+		/// </summary>
 		private void btnPrint_Click(object sender, EventArgs e)
 		{
 
@@ -86,7 +92,7 @@ namespace ProjetMFTR
 		}
 
 
-		void Spash()
+		void Splash()
 		{
 			SplashScreen.SplashForm frm = new SplashScreen.SplashForm();
 			frm.AppName = "Maison de la famille";
