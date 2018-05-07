@@ -29,3 +29,10 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\SplashScreen.
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\EntityFramework.xml
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csproj.CopyComplete
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Accueil.resources
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Properties.Resources.resources
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Suivi.resources
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csproj.GenerateResource.Cache
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.exe
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.pdb
