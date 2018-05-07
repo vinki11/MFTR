@@ -114,6 +114,7 @@
 			this.cboFolders.Name = "cboFolders";
 			this.cboFolders.Size = new System.Drawing.Size(209, 21);
 			this.cboFolders.TabIndex = 8;
+			this.cboFolders.SelectedIndexChanged += new System.EventHandler(this.cboFolders_SelectedIndexChanged);
 			// 
 			// richTextBox1
 			// 

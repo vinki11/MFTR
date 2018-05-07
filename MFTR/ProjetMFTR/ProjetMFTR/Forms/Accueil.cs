@@ -20,7 +20,6 @@ namespace ProjetMFTR
 		{
 			Thread thread = new Thread(new ThreadStart(Spash));
 			thread.Start();
-			//Thread.Sleep(6000);
 			InitializeComponent();
 			//Initialisation des combosbox
 			InitialiseCombos();
@@ -45,12 +44,30 @@ namespace ProjetMFTR
 
 		}
 
+		/// <summary>
+		/// Supression de suivis
+		/// </summary>
 		private void btnDelete_Click(object sender, EventArgs e)
+		{
+			if (gvList.SelectedRows.Count == 0){ return; }
+
+			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer ces {0} suivi(s) ?", gvList.SelectedRows.Count),
+			"Confirmation de suppression",
+		MessageBoxButtons.YesNo);
+
+			if (result.Equals(DialogResult.No)) { return; }
+
+			//Connexion.Instance().Suivis.RemoveRange((Entities.Suivis)gvList.SelectedRows);
+			//Connexion.Instance().SaveChanges();
+			//gvList.DataSource = Connexion.Instance().Suivis.ToList();	
+		}
+
+		private void btnGestion_Click(object sender, EventArgs e)
 		{
 
 		}
 
-		private void btnGestion_Click(object sender, EventArgs e)
+		private void btnPrint_Click(object sender, EventArgs e)
 		{
 
 		}
@@ -66,8 +83,6 @@ namespace ProjetMFTR
 			cboKid.DataSource = Connexion.Instance().Enfants.ToList();
 			cboKid.DisplayMember = ResourcesString.STR_Name;
 			cboKid.ValueMember = ResourcesString.STR_Id;
-			//Connexion.Instance().Database.BeginTransaction();
-
 		}
 
 
@@ -83,5 +98,7 @@ namespace ProjetMFTR
 			Application.Run(frm);
 		}
 		#endregion
+
+
 	}
 }

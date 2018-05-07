@@ -36,18 +36,19 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.cboKid = new System.Windows.Forms.ComboBox();
 			this.dtpDate = new System.Windows.Forms.DateTimePicker();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.btnDelete = new System.Windows.Forms.Button();
-			this.btnAdd = new System.Windows.Forms.Button();
-			this.btnGestion = new System.Windows.Forms.Button();
+			this.gvList = new System.Windows.Forms.DataGridView();
 			this.IdSuivi = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Moment = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.NoDossier = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btnDelete = new System.Windows.Forms.Button();
+			this.btnAdd = new System.Windows.Forms.Button();
+			this.btnGestion = new System.Windows.Forms.Button();
+			this.btnPrint = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -129,22 +130,70 @@
 			this.dtpDate.Size = new System.Drawing.Size(144, 20);
 			this.dtpDate.TabIndex = 0;
 			// 
-			// dataGridView1
+			// gvList
 			// 
-			this.dataGridView1.AllowUserToOrderColumns = true;
-			this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.gvList.AllowUserToOrderColumns = true;
+			this.gvList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.gvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdSuivi,
             this.Date,
             this.Enfant,
             this.Moment,
             this.NoDossier,
             this.Intervenant});
-			this.dataGridView1.Location = new System.Drawing.Point(12, 167);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(794, 286);
-			this.dataGridView1.TabIndex = 1;
+			this.gvList.Location = new System.Drawing.Point(12, 167);
+			this.gvList.Name = "gvList";
+			this.gvList.Size = new System.Drawing.Size(794, 286);
+			this.gvList.TabIndex = 1;
+			// 
+			// IdSuivi
+			// 
+			this.IdSuivi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.IdSuivi.HeaderText = "Numéro suivi";
+			this.IdSuivi.Name = "IdSuivi";
+			this.IdSuivi.ReadOnly = true;
+			this.IdSuivi.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.IdSuivi.Visible = false;
+			// 
+			// Date
+			// 
+			this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Date.HeaderText = "Date";
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Enfant
+			// 
+			this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Enfant.HeaderText = "Enfant";
+			this.Enfant.Name = "Enfant";
+			this.Enfant.ReadOnly = true;
+			this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Moment
+			// 
+			this.Moment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Moment.HeaderText = "Moment";
+			this.Moment.Name = "Moment";
+			this.Moment.ReadOnly = true;
+			// 
+			// NoDossier
+			// 
+			this.NoDossier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.NoDossier.HeaderText = "Numéro dossier";
+			this.NoDossier.Name = "NoDossier";
+			this.NoDossier.ReadOnly = true;
+			this.NoDossier.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Intervenant
+			// 
+			this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Intervenant.HeaderText = "Intervenant";
+			this.Intervenant.Name = "Intervenant";
+			this.Intervenant.ReadOnly = true;
+			this.Intervenant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
 			// btnDelete
 			// 
@@ -179,48 +228,16 @@
 			this.btnGestion.UseVisualStyleBackColor = true;
 			this.btnGestion.Click += new System.EventHandler(this.btnGestion_Click);
 			// 
-			// IdSuivi
+			// btnPrint
 			// 
-			this.IdSuivi.HeaderText = "Numéro suivi";
-			this.IdSuivi.Name = "IdSuivi";
-			this.IdSuivi.ReadOnly = true;
-			this.IdSuivi.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Date
-			// 
-			this.Date.HeaderText = "Date";
-			this.Date.Name = "Date";
-			this.Date.ReadOnly = true;
-			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Enfant
-			// 
-			this.Enfant.HeaderText = "Enfant";
-			this.Enfant.Name = "Enfant";
-			this.Enfant.ReadOnly = true;
-			this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Moment
-			// 
-			this.Moment.HeaderText = "Moment";
-			this.Moment.Name = "Moment";
-			this.Moment.ReadOnly = true;
-			this.Moment.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// NoDossier
-			// 
-			this.NoDossier.HeaderText = "Numéro dossier";
-			this.NoDossier.Name = "NoDossier";
-			this.NoDossier.ReadOnly = true;
-			this.NoDossier.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.NoDossier.Width = 250;
-			// 
-			// Intervenant
-			// 
-			this.Intervenant.HeaderText = "Intervenant";
-			this.Intervenant.Name = "Intervenant";
-			this.Intervenant.ReadOnly = true;
-			this.Intervenant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnPrint.Location = new System.Drawing.Point(158, 465);
+			this.btnPrint.Name = "btnPrint";
+			this.btnPrint.Size = new System.Drawing.Size(127, 23);
+			this.btnPrint.TabIndex = 6;
+			this.btnPrint.Text = "Imprimer";
+			this.btnPrint.UseVisualStyleBackColor = true;
+			this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
 			// 
 			// Accueil
 			// 
@@ -229,18 +246,19 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ClientSize = new System.Drawing.Size(821, 507);
+			this.Controls.Add(this.btnPrint);
 			this.Controls.Add(this.btnGestion);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.btnDelete);
-			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.gvList);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.Name = "Accueil";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Accueil";
+			this.Text = "Suivis";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -253,7 +271,7 @@
         private System.Windows.Forms.ComboBox cboKid;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvList;
         private System.Windows.Forms.Button btnRecherche;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
@@ -266,6 +284,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Moment;
 		private System.Windows.Forms.DataGridViewTextBoxColumn NoDossier;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Intervenant;
+		private System.Windows.Forms.Button btnPrint;
 	}
 }
 
