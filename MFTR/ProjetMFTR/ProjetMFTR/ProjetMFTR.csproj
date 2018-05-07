@@ -91,58 +91,64 @@
   <ItemGroup>
     <Compile Include="DbConnexion\Connexion.cs" />
     <Compile Include="Entities\Adresse.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Adultes.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Communication.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Dossier.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Enfants.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Intervenant.cs">
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\LienReferrent.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Model1.Context.cs">
+    <Compile Include="Entities\MFTR.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>MFTR.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Model1.cs">
+    <Compile Include="Entities\MFTR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\EntitiesModal.Designer.cs">
+    <Compile Include="Entities\MFTR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntitiesModal.edmx</DependentUpon>
+      <DependentUpon>MFTR.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\new_table.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Parent.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Referent.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Services.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Suivi.cs">
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Telephone.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Transporteur.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Accueil.cs">
       <SubType>Form</SubType>
@@ -175,12 +181,12 @@
     <EmbeddedResource Include="Forms\Suivi.resx">
       <DependentUpon>Suivi.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities\EntitiesModal.edmx">
+    <EntityDeploy Include="Entities\MFTR.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntitiesModal.Designer.cs</LastGenOutput>
+      <LastGenOutput>MFTR.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\EntitiesModal.edmx.diagram">
-      <DependentUpon>EntitiesModal.edmx</DependentUpon>
+    <None Include="Entities\MFTR.edmx.diagram">
+      <DependentUpon>MFTR.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -208,20 +214,19 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\icone_MFTR.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\Model1.Context.tt">
+    <Content Include="Entities\MFTR.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>EntitiesModal.edmx</DependentUpon>
+      <LastGenOutput>MFTR.Context.cs</LastGenOutput>
+      <DependentUpon>MFTR.edmx</DependentUpon>
     </Content>
-    <Content Include="Entities\Model1.tt">
+    <Content Include="Entities\MFTR.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntitiesModal.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>MFTR.edmx</DependentUpon>
+      <LastGenOutput>MFTR.cs</LastGenOutput>
     </Content>
     <Content Include="Sql\DbInit.sql" />
   </ItemGroup>

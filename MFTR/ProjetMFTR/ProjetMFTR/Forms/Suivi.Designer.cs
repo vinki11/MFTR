@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
 			this.label1 = new System.Windows.Forms.Label();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.dtpDateSuivi = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cboKids = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.cboMoment = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.cboFolders = new System.Windows.Forms.ComboBox();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.rtxtRemarque = new System.Windows.Forms.RichTextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.cboEmployes = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -53,12 +53,12 @@
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Date";
 			// 
-			// dateTimePicker1
+			// dtpDateSuivi
 			// 
-			this.dateTimePicker1.Location = new System.Drawing.Point(98, 28);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(126, 20);
-			this.dateTimePicker1.TabIndex = 2;
+			this.dtpDateSuivi.Location = new System.Drawing.Point(98, 28);
+			this.dtpDateSuivi.Name = "dtpDateSuivi";
+			this.dtpDateSuivi.Size = new System.Drawing.Size(126, 20);
+			this.dtpDateSuivi.TabIndex = 2;
 			// 
 			// label2
 			// 
@@ -88,13 +88,13 @@
 			this.label3.TabIndex = 7;
 			this.label3.Text = "Moment";
 			// 
-			// comboBox2
+			// cboMoment
 			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(491, 123);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(180, 21);
-			this.comboBox2.TabIndex = 6;
+			this.cboMoment.FormattingEnabled = true;
+			this.cboMoment.Location = new System.Drawing.Point(491, 123);
+			this.cboMoment.Name = "cboMoment";
+			this.cboMoment.Size = new System.Drawing.Size(180, 21);
+			this.cboMoment.TabIndex = 6;
 			// 
 			// label4
 			// 
@@ -116,13 +116,13 @@
 			this.cboFolders.TabIndex = 8;
 			this.cboFolders.SelectedIndexChanged += new System.EventHandler(this.cboFolders_SelectedIndexChanged);
 			// 
-			// richTextBox1
+			// rtxtRemarque
 			// 
-			this.richTextBox1.Location = new System.Drawing.Point(15, 201);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(656, 258);
-			this.richTextBox1.TabIndex = 10;
-			this.richTextBox1.Text = "";
+			this.rtxtRemarque.Location = new System.Drawing.Point(15, 201);
+			this.rtxtRemarque.Name = "rtxtRemarque";
+			this.rtxtRemarque.Size = new System.Drawing.Size(656, 258);
+			this.rtxtRemarque.TabIndex = 10;
+			this.rtxtRemarque.Text = "";
 			// 
 			// label5
 			// 
@@ -182,15 +182,15 @@
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.cboEmployes);
-			this.Controls.Add(this.richTextBox1);
+			this.Controls.Add(this.rtxtRemarque);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.cboFolders);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.comboBox2);
+			this.Controls.Add(this.cboMoment);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.cboKids);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.dateTimePicker1);
+			this.Controls.Add(this.dtpDateSuivi);
 			this.Name = "Suivi";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Fiche de déroulement des échanges";
@@ -202,14 +202,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpDateSuivi;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboKids;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboMoment;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboFolders;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxtRemarque;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboEmployes;
         private System.Windows.Forms.Label label6;

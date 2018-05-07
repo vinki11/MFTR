@@ -20,6 +20,7 @@ namespace ProjetMFTR.Entities
             this.Adultes = new HashSet<Adultes>();
             this.Communication = new HashSet<Communication>();
             this.Enfants = new HashSet<Enfants>();
+            this.Suivi = new HashSet<Suivi>();
             this.Services = new HashSet<Services>();
         }
     
@@ -37,6 +38,8 @@ namespace ProjetMFTR.Entities
         public virtual ICollection<Communication> Communication { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enfants> Enfants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Suivi> Suivi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Services> Services { get; set; }
     }

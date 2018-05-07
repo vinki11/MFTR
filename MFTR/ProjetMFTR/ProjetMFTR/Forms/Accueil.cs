@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -22,6 +24,7 @@ namespace ProjetMFTR
 			thread.Start();
 			InitializeComponent();
 			//Initialisation des combosbox
+			Init();
 			InitialiseCombos();
 			thread.Abort();
 		}
@@ -49,17 +52,18 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			if (gvList.SelectedRows.Count == 0){ return; }
+			if (gvList.SelectedRows.Count == 0) { return; }
 
-			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer ces {0} suivi(s) ?", gvList.SelectedRows.Count),
+			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer {0} suivi(s) ?", gvList.SelectedRows.Count),
 			"Confirmation de suppression",
 			MessageBoxButtons.YesNo);
 
 			if (result.Equals(DialogResult.No)) { return; }
 
-			//Connexion.Instance().Suivis.RemoveRange((Entities.Suivis)gvList.SelectedRows);
-			//Connexion.Instance().SaveChanges();
-			//gvList.DataSource = Connexion.Instance().Suivis.ToList();	
+			
+		//Connexion.Instance().Suivi.RemoveRange(gvList.SelectedRows.Cast<Entities.Suivi>());
+			Connexion.Instance().SaveChanges();
+			gvList.DataSource = Connexion.Instance().Suivi.ToList();	
 		}
 
 		/// <summary>
@@ -82,13 +86,21 @@ namespace ProjetMFTR
 		#region Methods
 
 		/// <summary>
+		/// Initialisation de la grille des suivis
+		/// </summary>
+		private void Init()
+		{
+			gvList.DataSource = Connexion.Instance().Suivi.ToList();
+		}
+
+		/// <summary>
 		/// Initialisation du combobox des enfants
 		/// </summary>
 		private void InitialiseCombos()
 		{
 			cboKid.DataSource = Connexion.Instance().Enfants.ToList();
 			cboKid.DisplayMember = ResourcesString.STR_Name;
-			cboKid.ValueMember = ResourcesString.STR_Id;
+			cboKid.ValueMember = ResourcesString.STR_EnfantId;
 		}
 
 

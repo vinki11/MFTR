@@ -12,28 +12,19 @@ namespace ProjetMFTR.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Enfants
+    public partial class Intervenant
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Enfants()
+        public Intervenant()
         {
             this.Suivi = new HashSet<Suivi>();
         }
     
-        public int Enfant_ID { get; set; }
-        public string Dossier_ID { get; set; }
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Sexe { get; set; }
-        public Nullable<System.DateTime> Naissance { get; set; }
-        public Nullable<bool> Accueil { get; set; }
-        public string Notes { get; set; }
-        public string Referent_ID { get; set; }
-        public string Photo { get; set; }
-        public byte[] SSMA_TimeStamp { get; set; }
-				public string Name { get { return Nom + ", " + Prenom; } }
+        public int intervenant_id { get; set; }
+        public string nom { get; set; }
+        public string prenom { get; set; }
+        public Nullable<int> actif { get; set; }
     
-        public virtual Dossier Dossier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suivi> Suivi { get; set; }
     }

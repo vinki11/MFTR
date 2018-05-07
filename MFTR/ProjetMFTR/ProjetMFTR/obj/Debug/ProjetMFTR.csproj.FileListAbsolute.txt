@@ -11,7 +11,6 @@ c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.exe.config
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.exe
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.pdb
-C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Accueil.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Properties.Resources.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Suivi.resources
@@ -39,3 +38,4 @@ C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\fr\EntityFramework.resources.dll
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\fr\EntityFramework.SqlServer.resources.dll
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\ProjetMFTR.exe.config
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache

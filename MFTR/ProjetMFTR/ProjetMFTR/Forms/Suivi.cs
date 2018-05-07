@@ -26,7 +26,11 @@ namespace ProjetMFTR
 
 			cboKids.DataSource = Connexion.Instance().Enfants.ToList();
 			cboKids.DisplayMember = ResourcesString.STR_Name;
-			cboKids.ValueMember = ResourcesString.STR_Id;
+			cboKids.ValueMember = ResourcesString.STR_EnfantId;
+
+			cboEmployes.DataSource = Connexion.Instance().Intervenant.Where((x) => x.actif == 1).ToList();
+			cboEmployes.DisplayMember = ResourcesString.STR_Prenom;
+			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 		}
 
 		/// <summary>
@@ -44,15 +48,45 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnSave_Click(object sender, EventArgs e)
 		{
+			if (((Entities.Dossier)cboFolders.SelectedItem) == null)
+			{
+				MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder le suivi",
+				"Attention",
+				MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			if (((Entities.Enfants)cboKids.SelectedItem) == null)
+			{
+				MessageBox.Show("Vous devez sélectionner un enfant pour pouvoir sauvegarder le suivi",
+				"Attention",
+				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			if (((Entities.Intervenant)cboEmployes.SelectedItem) == null)
+			{
+				MessageBox.Show("Vous devez sélectionner un intervenant pour pouvoir sauvegarder le suivi",
+				"Attention",
+				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+
 			//Save
 			//Exemple d'ajout à la DB
 
-			//Entities.Enfants enfants = new Entities.Enfants()
-			//{
-			//	Nom = "Test_enfant"
-			//};
-			//Connexion.Instance().Enfants.Add(enfants);
-			//Connexion.Instance().SaveChanges();
+			Entities.Suivi suivi = new Entities.Suivi()
+			{
+				enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID,
+				dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID,
+				dateSuivi = dtpDateSuivi.Value,
+				intervenant_id = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id,
+				remarque = rtxtRemarque.Text,
+				moment = cboMoment.Text
+			};
+			Connexion.Instance().Suivi.Add(suivi);
+			Connexion.Instance().SaveChanges();
 		}
 
 		/// <summary>

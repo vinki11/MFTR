@@ -13,10 +13,10 @@ namespace ProjetMFTR.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MFTREntities : DbContext
+    public partial class Entities : DbContext
     {
-        public MFTREntities()
-            : base("name=MFTREntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -30,10 +30,12 @@ namespace ProjetMFTR.Entities
         public virtual DbSet<Communication> Communication { get; set; }
         public virtual DbSet<Dossier> Dossier { get; set; }
         public virtual DbSet<Enfants> Enfants { get; set; }
+        public virtual DbSet<Intervenant> Intervenant { get; set; }
         public virtual DbSet<LienReferrent> LienReferrent { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
         public virtual DbSet<Referent> Referent { get; set; }
         public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<Suivi> Suivi { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Telephone> Telephone { get; set; }
         public virtual DbSet<Transporteur> Transporteur { get; set; }
