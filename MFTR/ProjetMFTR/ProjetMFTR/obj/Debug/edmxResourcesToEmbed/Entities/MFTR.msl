@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MFTRModelsStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="MFTRModelStoreContainer" CdmEntityContainer="MFTR">
     <EntitySetMapping Name="Adresse">
-      <EntityTypeMapping TypeName="MFTRModels.Adresse">
+      <EntityTypeMapping TypeName="MFTRModel.Adresse">
         <MappingFragment StoreEntitySet="Adresse">
           <ScalarProperty Name="Adresse_ID" ColumnName="Adresse_ID" />
           <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
@@ -18,7 +18,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Adultes">
-      <EntityTypeMapping TypeName="MFTRModels.Adultes">
+      <EntityTypeMapping TypeName="MFTRModel.Adultes">
         <MappingFragment StoreEntitySet="Adultes">
           <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
           <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Communication">
-      <EntityTypeMapping TypeName="MFTRModels.Communication">
+      <EntityTypeMapping TypeName="MFTRModel.Communication">
         <MappingFragment StoreEntitySet="Communication">
           <ScalarProperty Name="Communication_ID" ColumnName="Communication_ID" />
           <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
@@ -51,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Dossier">
-      <EntityTypeMapping TypeName="MFTRModels.Dossier">
+      <EntityTypeMapping TypeName="MFTRModel.Dossier">
         <MappingFragment StoreEntitySet="Dossier">
           <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
           <ScalarProperty Name="Ouverture" ColumnName="Ouverture" />
@@ -64,7 +64,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Enfants">
-      <EntityTypeMapping TypeName="MFTRModels.Enfants">
+      <EntityTypeMapping TypeName="MFTRModel.Enfants">
         <MappingFragment StoreEntitySet="Enfants">
           <ScalarProperty Name="Enfant_ID" ColumnName="Enfant_ID" />
           <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
@@ -81,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Intervenant">
-      <EntityTypeMapping TypeName="MFTRModels.Intervenant">
+      <EntityTypeMapping TypeName="MFTRModel.Intervenant">
         <MappingFragment StoreEntitySet="Intervenant">
           <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
           <ScalarProperty Name="nom" ColumnName="nom" />
@@ -91,7 +91,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LienReferrent">
-      <EntityTypeMapping TypeName="MFTRModels.LienReferrent">
+      <EntityTypeMapping TypeName="MFTRModel.LienReferrent">
         <MappingFragment StoreEntitySet="LienReferrent">
           <ScalarProperty Name="Lien_ID" ColumnName="Lien_ID" />
           <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
@@ -102,7 +102,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Parent">
-      <EntityTypeMapping TypeName="MFTRModels.Parent">
+      <EntityTypeMapping TypeName="MFTRModel.Parent">
         <MappingFragment StoreEntitySet="Parent">
           <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
           <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
@@ -115,7 +115,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Referent">
-      <EntityTypeMapping TypeName="MFTRModels.Referent">
+      <EntityTypeMapping TypeName="MFTRModel.Referent">
         <MappingFragment StoreEntitySet="Referent">
           <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
           <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
@@ -127,7 +127,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Services">
-      <EntityTypeMapping TypeName="MFTRModels.Services">
+      <EntityTypeMapping TypeName="MFTRModel.Services">
         <MappingFragment StoreEntitySet="Services">
           <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
           <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
@@ -140,7 +140,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Suivi">
-      <EntityTypeMapping TypeName="MFTRModels.Suivi">
+      <EntityTypeMapping TypeName="MFTRModel.Suivi">
         <MappingFragment StoreEntitySet="Suivi">
           <ScalarProperty Name="suivi_id" ColumnName="suivi_id" />
           <ScalarProperty Name="dateSuivi" ColumnName="dateSuivi" />
@@ -153,7 +153,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="MFTRModels.sysdiagrams">
+      <EntityTypeMapping TypeName="MFTRModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -164,7 +164,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Telephone">
-      <EntityTypeMapping TypeName="MFTRModels.Telephone">
+      <EntityTypeMapping TypeName="MFTRModel.Telephone">
         <MappingFragment StoreEntitySet="Telephone">
           <ScalarProperty Name="Tel_ID" ColumnName="Tel_ID" />
           <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
@@ -177,7 +177,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Transporteur">
-      <EntityTypeMapping TypeName="MFTRModels.Transporteur">
+      <EntityTypeMapping TypeName="MFTRModel.Transporteur">
         <MappingFragment StoreEntitySet="Transporteur">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
@@ -191,7 +191,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="new_table">
-      <EntityTypeMapping TypeName="MFTRModels.new_table">
+      <EntityTypeMapping TypeName="MFTRModel.new_table">
         <MappingFragment StoreEntitySet="new_table">
           <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />

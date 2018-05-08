@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MFTRModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="MFTRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Adresse">
     <Key>
       <PropertyRef Name="Adresse_ID" />
@@ -373,7 +373,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="MFTRModelsStoreContainer">
+  <EntityContainer Name="MFTRModelStoreContainer">
     <EntitySet Name="Adresse" EntityType="Self.Adresse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adultes" EntityType="Self.Adultes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Communication" EntityType="Self.Communication" Schema="dbo" store:Type="Tables" />

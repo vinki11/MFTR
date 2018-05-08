@@ -31,7 +31,7 @@ namespace ProjetMFTR.Entities
         public string Referent_ID { get; set; }
         public string Photo { get; set; }
         public byte[] SSMA_TimeStamp { get; set; }
-				public string Name { get { return Nom + ", " + Prenom; } }
+				public string Name { get { return Nom + "," + Prenom; } }
     
         public virtual Dossier Dossier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

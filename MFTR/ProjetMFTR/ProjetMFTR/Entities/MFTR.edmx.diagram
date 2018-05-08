@@ -4,36 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ce3250f7741b4f9887f1dccd1259bcf9" Name="Diagram1">
-        <EntityTypeShape EntityType="MFTRModels.Adresse" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Adultes" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Communication" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Dossier" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Enfants" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Intervenant" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.LienReferrent" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Parent" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Referent" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Services" Width="1.5" PointX="3" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Suivi" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Telephone" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.Transporteur" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModels.new_table" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="MFTRModels.Adresse_AdultesAdresse" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.Adultes_Dossier2Adultes" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.Parent_AdultesParent" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.Referent_AdultesReferent" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.Telephone_AdultesTelephone" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.FK_Communication_Dossier" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.Enfants_Dossier2Enfants" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.FK__Suivi__dossier_i__25DB9BFC" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.Services_Dossier2Services" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.FK__Suivi__enfant_id__24E777C3" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.FK__Suivi__intervena__23F3538A" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.LienReferrent_ParentLienReferrent" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.LienReferrent_ReferentLienReferrent" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModels.FK_Transporteur_Parent" ManuallyRouted="false" />
+      <Diagram DiagramId="0804445b71824bd1ab33b1ead0689d9a" Name="Diagram1">
+        <EntityTypeShape EntityType="MFTRModel.Adresse" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Adultes" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Communication" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Dossier" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Enfants" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Intervenant" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.LienReferrent" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Parent" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Referent" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Services" Width="1.5" PointX="3" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Suivi" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Telephone" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.Transporteur" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MFTRModel.new_table" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MFTRModel.Adresse_AdultesAdresse" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.Adultes_Dossier2Adultes" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.Parent_AdultesParent" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.Referent_AdultesReferent" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.Telephone_AdultesTelephone" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.FK_Communication_Dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.Enfants_Dossier2Enfants" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.FK__Suivi__dossier_i__25DB9BFC" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.Services_Dossier2Services" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.FK__Suivi__enfant_id__24E777C3" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.FK__Suivi__intervena__23F3538A" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.LienReferrent_ParentLienReferrent" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.LienReferrent_ReferentLienReferrent" ManuallyRouted="false" />
+        <AssociationConnector Association="MFTRModel.FK_Transporteur_Parent" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

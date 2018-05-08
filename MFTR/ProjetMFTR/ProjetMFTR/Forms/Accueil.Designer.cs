@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtFolderNumber = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -37,18 +38,21 @@
 			this.cboKid = new System.Windows.Forms.ComboBox();
 			this.dtpDate = new System.Windows.Forms.DateTimePicker();
 			this.gvList = new System.Windows.Forms.DataGridView();
-			this.IdSuivi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Moment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.NoDossier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnGestion = new System.Windows.Forms.Button();
 			this.btnPrint = new System.Windows.Forms.Button();
+			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Dossier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -133,67 +137,21 @@
 			// gvList
 			// 
 			this.gvList.AllowUserToOrderColumns = true;
+			this.gvList.AutoGenerateColumns = false;
 			this.gvList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.gvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdSuivi,
             this.Date,
             this.Enfant,
-            this.Moment,
-            this.NoDossier,
+            this.Dossier,
             this.Intervenant});
-			this.gvList.Location = new System.Drawing.Point(12, 167);
+			this.gvList.DataSource = this.bsData;
+			this.gvList.Location = new System.Drawing.Point(12, 173);
 			this.gvList.Name = "gvList";
+			this.gvList.ReadOnly = true;
 			this.gvList.Size = new System.Drawing.Size(794, 286);
 			this.gvList.TabIndex = 1;
-			// 
-			// IdSuivi
-			// 
-			this.IdSuivi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.IdSuivi.HeaderText = "Numéro suivi";
-			this.IdSuivi.Name = "IdSuivi";
-			this.IdSuivi.ReadOnly = true;
-			this.IdSuivi.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.IdSuivi.Visible = false;
-			// 
-			// Date
-			// 
-			this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Date.HeaderText = "Date";
-			this.Date.Name = "Date";
-			this.Date.ReadOnly = true;
-			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Enfant
-			// 
-			this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Enfant.HeaderText = "Enfant";
-			this.Enfant.Name = "Enfant";
-			this.Enfant.ReadOnly = true;
-			this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Moment
-			// 
-			this.Moment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Moment.HeaderText = "Moment";
-			this.Moment.Name = "Moment";
-			this.Moment.ReadOnly = true;
-			// 
-			// NoDossier
-			// 
-			this.NoDossier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.NoDossier.HeaderText = "Numéro dossier";
-			this.NoDossier.Name = "NoDossier";
-			this.NoDossier.ReadOnly = true;
-			this.NoDossier.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// Intervenant
-			// 
-			this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Intervenant.HeaderText = "Intervenant";
-			this.Intervenant.Name = "Intervenant";
-			this.Intervenant.ReadOnly = true;
-			this.Intervenant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.gvList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvList_CellFormatting);
 			// 
 			// btnDelete
 			// 
@@ -239,6 +197,71 @@
 			this.btnPrint.UseVisualStyleBackColor = true;
 			this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
 			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn1.DataPropertyName = "Enfants";
+			this.dataGridViewTextBoxColumn1.HeaderText = "Enfant";
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			this.dataGridViewTextBoxColumn1.ReadOnly = true;
+			this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn2.DataPropertyName = "Enfants";
+			this.dataGridViewTextBoxColumn2.HeaderText = "Enfant";
+			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+			this.dataGridViewTextBoxColumn2.ReadOnly = true;
+			this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn3.DataPropertyName = "Enfants";
+			this.dataGridViewTextBoxColumn3.HeaderText = "Enfant";
+			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
+			this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// bsData
+			// 
+			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Suivi);
+			// 
+			// Date
+			// 
+			this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Date.DataPropertyName = "dateSuivi";
+			this.Date.FillWeight = 85F;
+			this.Date.HeaderText = "Date";
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Enfant
+			// 
+			this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Enfant.DataPropertyName = "Enfants";
+			this.Enfant.HeaderText = "Enfant";
+			this.Enfant.Name = "Enfant";
+			this.Enfant.ReadOnly = true;
+			this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Dossier
+			// 
+			this.Dossier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Dossier.HeaderText = "Dossier";
+			this.Dossier.Name = "Dossier";
+			this.Dossier.ReadOnly = true;
+			// 
+			// Intervenant
+			// 
+			this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Intervenant.DataPropertyName = "intervenant_id";
+			this.Intervenant.HeaderText = "Intervenant";
+			this.Intervenant.Name = "Intervenant";
+			this.Intervenant.ReadOnly = true;
+			// 
 			// Accueil
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +282,7 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -278,13 +302,15 @@
         private System.Windows.Forms.Button btnGestion;
         private System.Windows.Forms.TextBox txtFolderNumber;
         private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn IdSuivi;
+		private System.Windows.Forms.Button btnPrint;
+		private System.Windows.Forms.BindingSource bsData;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Enfant;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Moment;
-		private System.Windows.Forms.DataGridViewTextBoxColumn NoDossier;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Dossier;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Intervenant;
-		private System.Windows.Forms.Button btnPrint;
 	}
 }
 

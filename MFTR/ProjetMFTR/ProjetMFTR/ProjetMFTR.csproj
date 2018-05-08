@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConnexion\Connexion.cs" />
+    <Compile Include="DbConnexion\Helper\Helper.cs" />
     <Compile Include="Entities\Adresse.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
@@ -189,6 +190,7 @@
       <DependentUpon>MFTR.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Suivi.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -220,8 +222,8 @@
   <ItemGroup>
     <Content Include="Entities\MFTR.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MFTR.Context.cs</LastGenOutput>
       <DependentUpon>MFTR.edmx</DependentUpon>
+      <LastGenOutput>MFTR.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Entities\MFTR.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

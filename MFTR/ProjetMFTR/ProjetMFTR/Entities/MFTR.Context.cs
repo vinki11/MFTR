@@ -13,10 +13,10 @@ namespace ProjetMFTR.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class MFTR : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public MFTR()
+            : base("name=MFTR")
         {
         }
     

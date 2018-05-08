@@ -6,13 +6,17 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
 
 namespace ProjetMFTR
 {
 	public partial class Accueil : Form
 	{
+		#region Members
 
+		private  Suivi m_Suivi;
+		#endregion
 		#region Constructors
 
 		/// <summary>
@@ -38,8 +42,14 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			Suivi suivi = new Suivi();
-			suivi.Show();
+			m_Suivi = new Suivi();
+			m_Suivi.FormClosing += new FormClosingEventHandler(m_Suivi_Closing);
+			m_Suivi.Show();
+		}
+
+		private void m_Suivi_Closing(object sender, EventArgs e) 
+		{
+			Init();
 		}
 
 		private void btnRecherche_Click(object sender, EventArgs e)
@@ -60,10 +70,12 @@ namespace ProjetMFTR
 
 			if (result.Equals(DialogResult.No)) { return; }
 
-			
-		//Connexion.Instance().Suivi.RemoveRange(gvList.SelectedRows.Cast<Entities.Suivi>());
+			DataGridViewSelectedRowCollection rows = gvList.SelectedRows;
+			foreach (DataGridViewRow row in rows) { Connexion.Instance().Suivi.Remove((Entities.Suivi)row.DataBoundItem); }
+
 			Connexion.Instance().SaveChanges();
-			gvList.DataSource = Connexion.Instance().Suivi.ToList();	
+			bsData.DataSource = null;
+			bsData.DataSource = Connexion.Instance().Suivi.ToList();
 		}
 
 		/// <summary>
@@ -81,6 +93,23 @@ namespace ProjetMFTR
 		{
 
 		}
+
+
+		/// <summary>
+		/// Survient au formatage des cellules
+		/// </summary>
+		private void gvList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			if ((gvList.Rows[e.RowIndex].DataBoundItem != null) &&
+		 (gvList.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
+			{
+				e.Value = Helper.BindProperty(
+											gvList.Rows[e.RowIndex].DataBoundItem,
+											gvList.Columns[e.ColumnIndex].DataPropertyName
+										);
+			}
+		}
+
 		#endregion
 
 		#region Methods
@@ -90,7 +119,10 @@ namespace ProjetMFTR
 		/// </summary>
 		private void Init()
 		{
-			gvList.DataSource = Connexion.Instance().Suivi.ToList();
+			bsData.DataSource = Connexion.Instance().Suivi.ToList();
+			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
+			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";
+			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.prenom";
 		}
 
 		/// <summary>
@@ -115,8 +147,8 @@ namespace ProjetMFTR
 			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Text = "Chargement...";
 			Application.Run(frm);
 		}
-		#endregion
 
+		#endregion
 
 	}
 }
