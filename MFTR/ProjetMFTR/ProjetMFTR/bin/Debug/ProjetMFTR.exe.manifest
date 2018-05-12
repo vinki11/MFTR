@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="121856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="125440">
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sTqS0vb54I+K83fiNgvULKjLdzQoFLQYMwnf9zC8d5c=</dsig:DigestValue>
+        <dsig:DigestValue>3uU8NZWwNGHgKkxmkd/e7JhSaehiavY/JUywbSvO2q0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

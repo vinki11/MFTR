@@ -1,4 +1,7 @@
-﻿namespace ProjetMFTR.DataAccess
+﻿using System;
+using ProjetMFTR.DbConnexion.Helper;
+
+namespace ProjetMFTR.DataAccess
 {
 	//Classe ayant la connexion Entity Framework
 	class Connexion
@@ -19,7 +22,44 @@
 				m_Instance = new Entities.MFTR();
 				m_Instance.Database.Connection.ConnectionString = m_ConnexionString;
 			}
-			return m_Instance;
+				return m_Instance;
+		}
+
+		/// <summary>
+		/// Classe partial pour update
+		/// </summary>
+		public partial class ConnexionUpdater<TEntity> : IActions<TEntity>  where TEntity : class
+		{
+			public bool Add(TEntity entity)
+			{
+				try
+				{
+						m_Instance.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+						m_Instance.Set<TEntity>().Add(entity);
+						m_Instance.SaveChanges();
+						return true;
+				}
+				catch (Exception e)
+				{
+					return false;
+				}
+			}
+
+			public bool Update(TEntity entity)
+		{
+			try
+			{
+					m_Instance.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+					m_Instance.Entry(entity).OriginalValues.SetValues(entity);
+					m_Instance.SaveChanges();
+					return true;
+			}
+			catch (Exception e)
+			{ 
+					return false;
+			}
+		}
+
 		}
 	}
 }

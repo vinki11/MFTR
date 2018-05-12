@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConnexion\Connexion.cs" />
+    <Compile Include="DbConnexion\Helper\Actions.cs" />
     <Compile Include="DbConnexion\Helper\Helper.cs" />
     <Compile Include="Entities\Adresse.cs">
       <DependentUpon>MFTR.tt</DependentUpon>

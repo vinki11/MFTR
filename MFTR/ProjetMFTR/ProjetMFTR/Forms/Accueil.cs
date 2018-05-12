@@ -15,7 +15,7 @@ namespace ProjetMFTR
 	{
 		#region Members
 
-		private  Suivi m_Suivi;
+		private Suivi m_Suivi;
 		#endregion
 		#region Constructors
 
@@ -54,7 +54,30 @@ namespace ProjetMFTR
 
 		private void btnRecherche_Click(object sender, EventArgs e)
 		{
+			string dossier = null;
+			int? enfant = null;
+			List<Entities.Suivi> suivis = Connexion.Instance().Suivi.ToList();
 
+			if (chkDate.Checked)
+			{
+				suivis = suivis.Where((x) => x.dateSuivi.Equals(dtpDate.Value.Date)).ToList();
+			}
+
+			if (cboFolders.SelectedValue != null)
+			{
+				dossier = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
+				suivis = suivis.Where((x) => x.dossier_id.Equals(dossier)).ToList();
+			}
+
+			if (cboKid.SelectedValue != null)
+			{
+				enfant = ((Entities.Enfants)cboKid.SelectedItem).Enfant_ID;
+				suivis = suivis.Where((x) => x.enfant_id.Equals(enfant)).ToList();
+
+			}
+
+			bsData.DataSource = null;
+			bsData.DataSource = suivis;
 		}
 
 		/// <summary>
@@ -62,17 +85,24 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			if (gvList.SelectedRows.Count == 0) { return; }
+			if (gvList.SelectedRows.Count == 0 && gvList.CurrentRow is null) { return; }
 
-			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer {0} suivi(s) ?", gvList.SelectedRows.Count),
+			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer {0} suivi(s) ?", gvList.SelectedRows.Count == 0 ? 1 : gvList.SelectedRows.Count),
 			"Confirmation de suppression",
 			MessageBoxButtons.YesNo);
 
 			if (result.Equals(DialogResult.No)) { return; }
 
 			DataGridViewSelectedRowCollection rows = gvList.SelectedRows;
+			try
+			{
 			foreach (DataGridViewRow row in rows) { Connexion.Instance().Suivi.Remove((Entities.Suivi)row.DataBoundItem); }
-
+			}
+			catch(Exception ee)
+			{
+				Connexion.Instance().Dispose();
+				return;
+			}
 			Connexion.Instance().SaveChanges();
 			bsData.DataSource = null;
 			bsData.DataSource = Connexion.Instance().Suivi.ToList();
@@ -110,6 +140,22 @@ namespace ProjetMFTR
 			}
 		}
 
+
+		/// <summary>
+		/// Sur le double click sur une row
+		/// </summary>
+		private void gvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvList.CurrentRow;
+
+			Suivi s = new Suivi((Entities.Suivi)row.DataBoundItem);
+			s.Show();
+		}
+
+		private void chkDate_CheckedChanged(object sender, EventArgs e)
+		{
+			dtpDate.Enabled = chkDate.Checked;
+		}
 		#endregion
 
 		#region Methods
@@ -123,6 +169,7 @@ namespace ProjetMFTR
 			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
 			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";
 			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.prenom";
+
 		}
 
 		/// <summary>
@@ -133,6 +180,12 @@ namespace ProjetMFTR
 			cboKid.DataSource = Connexion.Instance().Enfants.ToList();
 			cboKid.DisplayMember = ResourcesString.STR_Name;
 			cboKid.ValueMember = ResourcesString.STR_EnfantId;
+			cboKid.SelectedValue = -1;
+
+			cboFolders.DataSource = Connexion.Instance().Dossier.ToList();
+			cboFolders.DisplayMember = ResourcesString.STR_Dossier_ID;
+			cboFolders.ValueMember = ResourcesString.STR_Dossier_ID;
+			cboFolders.SelectedValue = -1;
 		}
 
 
@@ -145,7 +198,14 @@ namespace ProjetMFTR
 			frm.ShowInTaskbar = true;
 			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Width = 300;
 			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Text = "Chargement...";
+			try
+			{
 			Application.Run(frm);
+			}
+			catch(Exception e)
+			{
+				frm.Close();
+			}
 		}
 
 		#endregion
