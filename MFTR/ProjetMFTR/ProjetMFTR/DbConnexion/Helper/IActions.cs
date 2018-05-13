@@ -12,6 +12,7 @@ namespace ProjetMFTR.DbConnexion.Helper
 			//TEntity GetSinglEntity(Func<TEntity, bool> predicate);
 			//bool Delete(TEntity entity);
 			bool Add(TEntity entity);
+
 			bool Update(TEntity entity);
 	}
 }
