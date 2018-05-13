@@ -73,7 +73,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fhzjXU4yeOdIXdIBdfJgqo4od68q79W7f28MbnmysO0=</dsig:DigestValue>
+        <dsig:DigestValue>VNqKV5tzLNGQuZhwpKye4/FmcFqcLEqezN3SV3T4l1w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -116,13 +116,13 @@
       <dsig:DigestValue>CfiahLUeXqvyX5/onmNdeI37pbmgnAV8QnS2XsUa8Ws=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sql\DbInit.sql" size="626">
+  <file name="Sql\DbInit.sql" size="595">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>7ECxqFmMkwCgY07JDXd9nEqQPl79SBa1qL0cZsdh2sA=</dsig:DigestValue>
+      <dsig:DigestValue>CU1+2LhULjncjX84jExRxCV9CaHU2OdcZozWxBWZ9KY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

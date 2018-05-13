@@ -30,10 +30,8 @@
         {
             this.cboIntervenant = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnEnregistrer = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
@@ -62,37 +60,21 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Intervenant";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Prénom";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(220, 31);
+            this.label3.Location = new System.Drawing.Point(6, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 12;
             this.label3.Text = "Nom";
             // 
-            // textBox1
+            // txtNom
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 20);
-            this.textBox1.TabIndex = 13;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(255, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 20);
-            this.textBox2.TabIndex = 14;
+            this.txtNom.Location = new System.Drawing.Point(41, 24);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(295, 20);
+            this.txtNom.TabIndex = 14;
             // 
             // btnAjouter
             // 
@@ -123,10 +105,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtNom);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(15, 65);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(451, 81);
@@ -139,10 +119,11 @@
             this.chkInactifs.AutoSize = true;
             this.chkInactifs.Location = new System.Drawing.Point(368, 28);
             this.chkInactifs.Name = "chkInactifs";
-            this.chkInactifs.Size = new System.Drawing.Size(98, 17);
+            this.chkInactifs.Size = new System.Drawing.Size(60, 17);
             this.chkInactifs.TabIndex = 19;
-            this.chkInactifs.Text = "Afficher inactifs";
+            this.chkInactifs.Text = "Inactifs";
             this.chkInactifs.UseVisualStyleBackColor = true;
+            this.chkInactifs.CheckedChanged += new System.EventHandler(this.chkInactifs_CheckedChanged);
             // 
             // Intervenant
             // 
@@ -170,10 +151,8 @@
 
         private System.Windows.Forms.ComboBox cboIntervenant;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Button btnAjouter;
         private System.Windows.Forms.Button btnEnregistrer;
         private System.Windows.Forms.Button btnSupprimer;

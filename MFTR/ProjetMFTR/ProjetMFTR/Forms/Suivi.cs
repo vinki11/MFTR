@@ -49,7 +49,7 @@ namespace ProjetMFTR
 			cboKids.SelectedValue = -1;
 
 			cboEmployes.DataSource = Connexion.Instance().Intervenant.Where((x) => x.actif == 1).ToList();
-			cboEmployes.DisplayMember = ResourcesString.STR_Prenom;
+			cboEmployes.DisplayMember = ResourcesString.STR_Nom;
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 		}
 
