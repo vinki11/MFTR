@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
 using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
+using ProjetMFTR.Forms;
 
 namespace ProjetMFTR
 {
@@ -113,8 +114,9 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnGestion_Click(object sender, EventArgs e)
 		{
-
-		}
+            Intervenant intervenantForm = new Intervenant();
+            intervenantForm.Show();
+        }
 
 		/// <summary>
 		/// Impression
