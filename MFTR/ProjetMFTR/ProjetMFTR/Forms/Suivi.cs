@@ -120,7 +120,7 @@ namespace ProjetMFTR
 		/// </summary>
 		private void cboFolders_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if(cboFolders.SelectedItem is null) { return; }
+			if(cboFolders.SelectedItem == null) { return; }
 
 			cboKids.DataSource = Connexion.Instance().Enfants.Where((x) => x.Dossier_ID.Equals(((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID)).ToList();
 		}

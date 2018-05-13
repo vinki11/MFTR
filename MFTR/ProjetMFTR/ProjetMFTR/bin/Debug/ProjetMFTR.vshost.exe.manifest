@@ -14,15 +14,15 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Options du manifeste de contrôle de compte d’utilisateur (UAC)
-          Si vous voulez changer le niveau de contrôle de compte d’utilisateur Windows, remplacez le 
-          nœud requestedExecutionLevel par l’un des nœuds suivants.
+          Options du manifeste de contrôle de compte d'utilisateur
+          Si vous souhaitez modifier le niveau du contrôle de compte d'utilisateur Windows, remplacez le 
+          nœud requestedExecutionLevel par l'une des propositions suivantes :
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Si vous voulez utiliser la virtualisation de fichiers système et du Registre pour la 
+         Si vous souhaitez utiliser la virtualisation de fichiers et du Registre pour la 
          compatibilité descendante, supprimez le nœud requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
@@ -54,18 +54,6 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\EntityFramework.resources.dll" size="387280">
-      <assemblyIdentity name="EntityFramework.resources" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="fr" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jwjox7pT1SP5zDoxNvRqHIRjdi6C5aIWGqmcxeWidd8=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.SqlServer.dll" size="622288">
       <assemblyIdentity name="EntityFramework.SqlServer" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -78,26 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\EntityFramework.SqlServer.resources.dll" size="21200">
-      <assemblyIdentity name="EntityFramework.SqlServer.resources" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="fr" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mLOZt/wSUrp+tgzYzK9O1lOhL2WiED2tnhlFwb/fxWk=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="106496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="124928">
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>y5MoA2/7hZw//hvUpyeF4Sr97Cz4wEKS/7uj6osk3N8=</dsig:DigestValue>
+        <dsig:DigestValue>gtFc1uY3145Z1qCaxV3k6+nOdNUCiGUjqjKZVUsAZy8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -113,31 +89,31 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Entities\Model1.Context.tt" size="22930">
+  <file name="Entities\MFTR.Context.tt" size="22928">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>iH6jRm/ArXOO/wVogKb8ZOaRJ6DvCC6vOswudwQkDnQ=</dsig:DigestValue>
+      <dsig:DigestValue>C4TZr0i2/ZbQqzjr7QRFAwc3/CzV5SXtC7ZCbGMxK98=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Entities\Model1.tt" size="25275">
+  <file name="Entities\MFTR.tt" size="25273">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>CabSpKm6yYNT6twBZzKHKM3v3aBYMgNzK0uSDYpHoWw=</dsig:DigestValue>
+      <dsig:DigestValue>ue3EQvA8+GZNtvDkCB+pavicmHf5zwmlMQrI/wI7Gew=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ProjetMFTR.exe.config" size="1458">
+  <file name="ProjetMFTR.exe.config" size="2214">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>uYWSOMjcyO6bQFbbR1loLfliz9Bp7N8eRG97JOMyb+0=</dsig:DigestValue>
+      <dsig:DigestValue>CfiahLUeXqvyX5/onmNdeI37pbmgnAV8QnS2XsUa8Ws=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Sql\DbInit.sql" size="626">

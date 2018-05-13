@@ -85,7 +85,7 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			if (gvList.SelectedRows.Count == 0 && gvList.CurrentRow is null) { return; }
+			if (gvList.SelectedRows.Count == 0 && gvList.CurrentRow == null) { return; }
 
 			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer {0} suivi(s) ?", gvList.SelectedRows.Count == 0 ? 1 : gvList.SelectedRows.Count),
 			"Confirmation de suppression",
