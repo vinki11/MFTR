@@ -1,7 +1,6 @@
 ﻿CREATE TABLE Intervenant (
     intervenant_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    nom nvarchar(50) NOT NULL,
-	prenom nvarchar(50) NOT NULL,
+    nom nvarchar(100) NOT NULL,
 	actif int Default 0
 );
 

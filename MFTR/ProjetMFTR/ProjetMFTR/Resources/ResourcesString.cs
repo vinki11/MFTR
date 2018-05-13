@@ -7,5 +7,7 @@
 		public const string STR_IntervenantId = "intervenant_id";
 		public const string STR_Name = "Name";
 		public const string STR_Prenom = "Prenom";
-	}
+        public const string STR_Nom= "Nom";
+
+    }
 }

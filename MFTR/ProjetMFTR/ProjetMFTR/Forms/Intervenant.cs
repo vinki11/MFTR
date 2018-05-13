@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjetMFTR.DataAccess;
+using ProjetMFTR.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,7 @@ namespace ProjetMFTR.Forms
         public Intervenant()
         {
             InitializeComponent();
+            loadIntervenant();
         }
         
         private void cboFolders_SelectedIndexChanged(object sender, EventArgs e)
@@ -25,6 +28,27 @@ namespace ProjetMFTR.Forms
         private void Intervenant_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void loadIntervenant()
+        {
+            List<Entities.Intervenant> intervenants = Connexion.Instance().Intervenant.ToList();
+
+            if (!chkInactifs.Checked)
+            {
+                //On affiche seulement les intervenants actifs
+                intervenants = intervenants.Where((x) => x.actif.Equals(1)).ToList();
+            }
+            else
+            {
+                //On affiche seulement les inactifs
+                intervenants = intervenants.Where((x) => x.actif.Equals(0)).ToList();
+            }
+
+            cboIntervenant.DataSource = intervenants;
+            cboIntervenant.DisplayMember = ResourcesString.STR_Nom;
+            cboIntervenant.ValueMember = ResourcesString.STR_IntervenantId;
+            cboIntervenant.SelectedValue = -1;
         }
     }
 }

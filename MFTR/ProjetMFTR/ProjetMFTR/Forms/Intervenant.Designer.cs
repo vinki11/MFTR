@@ -38,7 +38,7 @@
             this.btnEnregistrer = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkInactifs = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,22 +134,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations de l\'intervenant";
             // 
-            // checkBox1
+            // chkInactifs
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(368, 28);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 17);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Afficher inactifs";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkInactifs.AutoSize = true;
+            this.chkInactifs.Location = new System.Drawing.Point(368, 28);
+            this.chkInactifs.Name = "chkInactifs";
+            this.chkInactifs.Size = new System.Drawing.Size(98, 17);
+            this.chkInactifs.TabIndex = 19;
+            this.chkInactifs.Text = "Afficher inactifs";
+            this.chkInactifs.UseVisualStyleBackColor = true;
             // 
             // Intervenant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 258);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkInactifs);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnEnregistrer);
@@ -178,6 +178,6 @@
         private System.Windows.Forms.Button btnEnregistrer;
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkInactifs;
     }
 }
