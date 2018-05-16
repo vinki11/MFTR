@@ -10,6 +10,10 @@
         public const string STR_Nom= "Nom";
         public const string STR_Oui= "Oui";
         public const string STR_Non = "Non";
+        public const string STR_Ok = "Ok";
+        public const string STR_MessageUpdateConfirmation1 = "La mise à jour ";
+        public const string STR_MessageUpdateConfirmation2 = " a été faite avec succès.";
+        public const string STR_TitleUpdateConfirmation = "Mise à jour a faite avec succès";
 
     }
 }

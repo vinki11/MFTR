@@ -34,21 +34,19 @@ namespace ProjetMFTR.Forms
         {
            if (currentIntervenant != null)
             {
-                this.txtNom.ReadOnly = false;
+                toggleChamps(false);
                 this.txtNom.Text = currentIntervenant.nom;
             }
            else
             {
-                this.txtNom.Text = "";
-                this.txtNom.ReadOnly = true;
+                toggleChamps(true);
             }
         }
 
         private void loadCbIntervenant()
         {
             currentIntervenant = null;
-            this.txtNom.Text = "";
-            this.txtNom.ReadOnly = true;
+            toggleChamps(true);
             List<Entities.Intervenant> intervenants = Connexion.Instance().Intervenant.ToList();
 
             if (!chkInactifs.Checked)
@@ -92,6 +90,21 @@ namespace ProjetMFTR.Forms
             if (editMode == EditMode.Edit)
             {
                 connexionUpdater.Update(currentIntervenant);
+                DialogResult result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'intervenant" + ResourcesString.STR_MessageUpdateConfirmation2,
+                ResourcesString.STR_TitleUpdateConfirmation,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            loadCbIntervenant();
+            editMode = EditMode.Edit;
+        }
+
+        private void toggleChamps (bool readOnly)
+        {
+            this.txtNom.ReadOnly = readOnly;
+            if (readOnly)
+            {
+                this.txtNom.Text = "";
             }
         }
     }

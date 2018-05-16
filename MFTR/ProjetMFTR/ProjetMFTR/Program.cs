@@ -17,6 +17,7 @@ namespace ProjetMFTR
             //On set nos textes de bouton pour nos boutons de messages box
             MessageBoxManager.Yes = Resources.ResourcesString.STR_Oui;
             MessageBoxManager.No = Resources.ResourcesString.STR_Non;
+            MessageBoxManager.OK = Resources.ResourcesString.STR_Ok;
 
             //On register le message  box manager pour pouvoir customizer nos message box
             MessageBoxManager.Register();
