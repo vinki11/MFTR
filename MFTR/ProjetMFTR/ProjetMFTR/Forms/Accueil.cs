@@ -170,7 +170,7 @@ namespace ProjetMFTR
 			bsData.DataSource = Connexion.Instance().Suivi.ToList();
 			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
 			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";
-			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.prenom";
+			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.nom";
 
 		}
 

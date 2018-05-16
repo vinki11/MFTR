@@ -34,8 +34,8 @@
             this.txtNom = new System.Windows.Forms.TextBox();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnEnregistrer = new System.Windows.Forms.Button();
-            this.btnSupprimer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbActif = new System.Windows.Forms.CheckBox();
             this.chkInactifs = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 27);
+            this.label3.Location = new System.Drawing.Point(6, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 12;
@@ -71,14 +71,14 @@
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(41, 24);
+            this.txtNom.Location = new System.Drawing.Point(41, 31);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(295, 20);
             this.txtNom.TabIndex = 14;
             // 
             // btnAjouter
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(229, 223);
+            this.btnAjouter.Location = new System.Drawing.Point(339, 223);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(75, 23);
             this.btnAjouter.TabIndex = 15;
@@ -88,7 +88,7 @@
             // 
             // btnEnregistrer
             // 
-            this.btnEnregistrer.Location = new System.Drawing.Point(310, 223);
+            this.btnEnregistrer.Location = new System.Drawing.Point(420, 223);
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(75, 23);
             this.btnEnregistrer.TabIndex = 16;
@@ -96,35 +96,37 @@
             this.btnEnregistrer.UseVisualStyleBackColor = true;
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
-            // btnSupprimer
-            // 
-            this.btnSupprimer.Location = new System.Drawing.Point(391, 223);
-            this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(75, 23);
-            this.btnSupprimer.TabIndex = 17;
-            this.btnSupprimer.Text = "Supprimer";
-            this.btnSupprimer.UseVisualStyleBackColor = true;
-            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chbActif);
             this.groupBox1.Controls.Add(this.txtNom);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(15, 65);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(451, 81);
+            this.groupBox1.Size = new System.Drawing.Size(451, 97);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations de l\'intervenant";
+            // 
+            // chbActif
+            // 
+            this.chbActif.AutoSize = true;
+            this.chbActif.Location = new System.Drawing.Point(9, 67);
+            this.chbActif.Name = "chbActif";
+            this.chbActif.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chbActif.Size = new System.Drawing.Size(47, 17);
+            this.chbActif.TabIndex = 15;
+            this.chbActif.Text = "Actif";
+            this.chbActif.UseVisualStyleBackColor = true;
             // 
             // chkInactifs
             // 
             this.chkInactifs.AutoSize = true;
             this.chkInactifs.Location = new System.Drawing.Point(368, 28);
             this.chkInactifs.Name = "chkInactifs";
-            this.chkInactifs.Size = new System.Drawing.Size(60, 17);
+            this.chkInactifs.Size = new System.Drawing.Size(98, 17);
             this.chkInactifs.TabIndex = 19;
-            this.chkInactifs.Text = "Inactifs";
+            this.chkInactifs.Text = "Afficher inactifs";
             this.chkInactifs.UseVisualStyleBackColor = true;
             this.chkInactifs.CheckedChanged += new System.EventHandler(this.chkInactifs_CheckedChanged);
             // 
@@ -135,7 +137,6 @@
             this.ClientSize = new System.Drawing.Size(507, 258);
             this.Controls.Add(this.chkInactifs);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnEnregistrer);
             this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.cboIntervenant);
@@ -158,8 +159,8 @@
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Button btnAjouter;
         private System.Windows.Forms.Button btnEnregistrer;
-        private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkInactifs;
+        private System.Windows.Forms.CheckBox chbActif;
     }
 }
