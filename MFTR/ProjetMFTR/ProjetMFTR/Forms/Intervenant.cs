@@ -90,6 +90,38 @@ namespace ProjetMFTR.Forms
         private void toggleChamps(bool readOnly)
         {
             this.txtNom.ReadOnly = readOnly;
+            this.chbActif.Enabled = !readOnly;
+        }
+
+        private void nouveau()
+        {
+            if (editMode == EditMode.Edit)
+            {
+                //On créer l'objet currentIntervenant
+                currentIntervenant = new Entities.Intervenant();
+
+                cboIntervenant.Text = "";
+                toggleChamps(false);
+                clearNom();
+                this.chkInactifs.Enabled = false;
+                this.cboIntervenant.Enabled = false;
+                this.chbActif.CheckState = CheckState.Checked;
+                editMode = EditMode.New;
+
+                this.btnAjouter.Text = "Annuler";
+            }
+            else
+            {
+                currentIntervenant = null;
+
+                toggleChamps(true);
+                clearNom();
+                this.chkInactifs.Enabled = true;
+                this.cboIntervenant.Enabled = true;
+                editMode = EditMode.Edit;
+
+                this.btnAjouter.Text = "Ajouter";
+            }
         }
 
         private void clearNom()
@@ -100,12 +132,7 @@ namespace ProjetMFTR.Forms
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            toggleChamps(false);
-            clearNom();
-            this.chbActif.CheckState = CheckState.Checked;
-            editMode = EditMode.New;
-
-           // this.btnSupprimer.Text = "Annuler";
+            nouveau();
         }
 
         private void btnEnregistrer_Click(object sender, EventArgs e)
@@ -114,48 +141,34 @@ namespace ProjetMFTR.Forms
             {
                 DialogResult result = MessageBox.Show(ResourcesString.STR_MessageWarningNomIntervenant,
                 ResourcesString.STR_TitleWarningNomIntervenant,
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 currentIntervenant.nom = this.txtNom.Text;
                 currentIntervenant.actif = (int)this.chbActif.CheckState;
+                currentIntervenant.prenom = ""; //temporaire, va etre flushé quand on va réupdater les modeles
 
                 if (editMode == EditMode.Edit)
                 {
                     connexionUpdater.Update(currentIntervenant);
                     DialogResult result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'intervenant" + ResourcesString.STR_MessageUpdateConfirmation2,
                     ResourcesString.STR_TitleUpdateConfirmation,
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } 
+                else if (editMode == EditMode.New)
+                {
+                    connexionUpdater.Add(currentIntervenant);
+                    DialogResult result = MessageBox.Show("L'intervenant " + currentIntervenant.nom + ResourcesString.STR_MessageAddConfirmation,
+                    ResourcesString.STR_TitleAddConfirmation,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    nouveau();
                 }
 
                 loadCbIntervenant();
-                editMode = EditMode.Edit;
+                
             }
             
         }
-
-        //private void btnSupprimer_Click(object sender, EventArgs e)
-        //{
-        //    //On désactive l'intervenant sélectionner dans le menu déroulant
-        //    if (editMode == EditMode.Edit)
-        //    {
-        //        DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer {0} ?", currentIntervenant.nom),
-        //        "Confirmation de suppression",
-        //        MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-        //        if (result.Equals(DialogResult.No)) { return; }
-
-        //        currentIntervenant.actif = 0;
-        //        connexionUpdater.Update(currentIntervenant);
-        //        loadCbIntervenant();
-        //        editMode = EditMode.Edit;
-        //    }
-        //    //On annule ce que l'utilisateur à saisit pour le moment
-        //    else if (editMode == EditMode.New)
-        //    {
-        //        clearNom();
-        //    }
-        //}
     }
 }
