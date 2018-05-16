@@ -84,6 +84,7 @@
             this.btnAjouter.TabIndex = 15;
             this.btnAjouter.Text = "Nouveau";
             this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // btnEnregistrer
             // 
@@ -103,6 +104,7 @@
             this.btnSupprimer.TabIndex = 17;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // groupBox1
             // 

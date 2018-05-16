@@ -32,13 +32,14 @@ namespace ProjetMFTR.Forms
 
         private void selectIntervenant()
         {
-           if (currentIntervenant != null)
+            if (currentIntervenant != null)
             {
                 toggleChamps(false);
                 this.txtNom.Text = currentIntervenant.nom;
             }
-           else
+            else
             {
+                clearNom();
                 toggleChamps(true);
             }
         }
@@ -46,6 +47,7 @@ namespace ProjetMFTR.Forms
         private void loadCbIntervenant()
         {
             currentIntervenant = null;
+            clearNom();
             toggleChamps(true);
             List<Entities.Intervenant> intervenants = Connexion.Instance().Intervenant.ToList();
 
@@ -83,28 +85,60 @@ namespace ProjetMFTR.Forms
             Edit = 2
         };
 
-        private void btnEnregistrer_Click(object sender, EventArgs e)
-        {
-            currentIntervenant.nom = this.txtNom.Text;
-
-            if (editMode == EditMode.Edit)
-            {
-                connexionUpdater.Update(currentIntervenant);
-                DialogResult result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'intervenant" + ResourcesString.STR_MessageUpdateConfirmation2,
-                ResourcesString.STR_TitleUpdateConfirmation,
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            loadCbIntervenant();
-            editMode = EditMode.Edit;
-        }
-
-        private void toggleChamps (bool readOnly)
+        private void toggleChamps(bool readOnly)
         {
             this.txtNom.ReadOnly = readOnly;
-            if (readOnly)
+        }
+
+        private void clearNom()
+        {
+            this.txtNom.Text = "";
+        }
+
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+            toggleChamps(false);
+            clearNom();
+            editMode = EditMode.New;
+
+            this.btnSupprimer.Text = "Annuler";
+        }
+
+        private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            if (this.txtNom.Text == "")
             {
-                this.txtNom.Text = "";
+                DialogResult result = MessageBox.Show(ResourcesString.STR_MessageWarningNomIntervenant,
+                ResourcesString.STR_TitleWarningNomIntervenant,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                currentIntervenant.nom = this.txtNom.Text;
+
+                if (editMode == EditMode.Edit)
+                {
+                    connexionUpdater.Update(currentIntervenant);
+                    DialogResult result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'intervenant" + ResourcesString.STR_MessageUpdateConfirmation2,
+                    ResourcesString.STR_TitleUpdateConfirmation,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                loadCbIntervenant();
+                editMode = EditMode.Edit;
+            }
+            
+        }
+
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            if (editMode == EditMode.Edit)
+            {
+
+            }
+            else if (editMode == EditMode.New)
+            {
+
             }
         }
     }

@@ -14,6 +14,8 @@
         public const string STR_MessageUpdateConfirmation1 = "La mise à jour ";
         public const string STR_MessageUpdateConfirmation2 = " a été faite avec succès.";
         public const string STR_TitleUpdateConfirmation = "Mise à jour a faite avec succès";
+        public const string STR_MessageWarningNomIntervenant = "Attention. Le nom de l'intervenant est requis";
+        public const string STR_TitleWarningNomIntervenant = "Nom de l'intervenant requis";
 
     }
 }
