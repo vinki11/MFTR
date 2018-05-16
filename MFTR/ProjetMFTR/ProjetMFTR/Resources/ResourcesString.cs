@@ -8,6 +8,8 @@
 		public const string STR_Name = "Name";
 		public const string STR_Prenom = "Prenom";
         public const string STR_Nom= "Nom";
+        public const string STR_Oui= "Oui";
+        public const string STR_Non = "Non";
 
     }
 }

@@ -90,7 +90,7 @@ namespace ProjetMFTR
 
 			DialogResult result = MessageBox.Show(string.Format("Êtes-vous sur de vouloir supprimer {0} suivi(s) ?", gvList.SelectedRows.Count == 0 ? 1 : gvList.SelectedRows.Count),
 			"Confirmation de suppression",
-			MessageBoxButtons.YesNo);
+			MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
 			if (result.Equals(DialogResult.No)) { return; }
 

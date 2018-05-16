@@ -172,6 +172,7 @@
     <Compile Include="Forms\Suivi.Designer.cs">
       <DependentUpon>Suivi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\MessageBoxManager.cs" />
     <Compile Include="Resources\ResourcesString.cs" />
     <EmbeddedResource Include="Forms\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
