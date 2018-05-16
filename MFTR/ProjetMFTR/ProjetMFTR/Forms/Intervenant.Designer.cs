@@ -49,7 +49,7 @@
             this.cboIntervenant.Name = "cboIntervenant";
             this.cboIntervenant.Size = new System.Drawing.Size(272, 21);
             this.cboIntervenant.TabIndex = 8;
-            this.cboIntervenant.SelectedIndexChanged += new System.EventHandler(this.cboFolders_SelectedIndexChanged);
+            this.cboIntervenant.SelectionChangeCommitted += new System.EventHandler(this.cboIntervenant_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -93,6 +93,7 @@
             this.btnEnregistrer.TabIndex = 16;
             this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.UseVisualStyleBackColor = true;
+            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // btnSupprimer
             // 

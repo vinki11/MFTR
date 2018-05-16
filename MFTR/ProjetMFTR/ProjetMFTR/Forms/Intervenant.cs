@@ -14,18 +14,15 @@ namespace ProjetMFTR.Forms
 {
     public partial class Intervenant : Form
     {
-        Entities.Intervenant CurrentIntervenant;
+        Entities.Intervenant currentIntervenant;
+        Connexion.ConnexionUpdater<Entities.Intervenant> connexionUpdater = new Connexion.ConnexionUpdater<Entities.Intervenant>();
+        EditMode editMode;
 
         public Intervenant()
         {
             InitializeComponent();
             loadCbIntervenant();
-        }
-        
-        private void cboFolders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CurrentIntervenant = (Entities.Intervenant)cboIntervenant.SelectedItem;
-            selectIntervenant();
+            editMode = EditMode.Edit;
         }
 
         private void Intervenant_Load(object sender, EventArgs e)
@@ -35,15 +32,23 @@ namespace ProjetMFTR.Forms
 
         private void selectIntervenant()
         {
-           if (CurrentIntervenant != null)
+           if (currentIntervenant != null)
             {
-                this.txtNom.Text = CurrentIntervenant.nom;
+                this.txtNom.ReadOnly = false;
+                this.txtNom.Text = currentIntervenant.nom;
+            }
+           else
+            {
+                this.txtNom.Text = "";
+                this.txtNom.ReadOnly = true;
             }
         }
 
         private void loadCbIntervenant()
         {
-            CurrentIntervenant = null;
+            currentIntervenant = null;
+            this.txtNom.Text = "";
+            this.txtNom.ReadOnly = true;
             List<Entities.Intervenant> intervenants = Connexion.Instance().Intervenant.ToList();
 
             if (!chkInactifs.Checked)
@@ -66,6 +71,28 @@ namespace ProjetMFTR.Forms
         private void chkInactifs_CheckedChanged(object sender, EventArgs e)
         {
             loadCbIntervenant();
+        }
+
+        private void cboIntervenant_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            currentIntervenant = (Entities.Intervenant)cboIntervenant.SelectedItem;
+            selectIntervenant();
+        }
+
+        private enum EditMode
+        {
+            New = 1,
+            Edit = 2
+        };
+
+        private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            currentIntervenant.nom = this.txtNom.Text;
+
+            if (editMode == EditMode.Edit)
+            {
+                connexionUpdater.Update(currentIntervenant);
+            }
         }
     }
 }
