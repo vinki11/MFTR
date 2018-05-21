@@ -12,7 +12,7 @@ using ProjetMFTR.Forms;
 
 namespace ProjetMFTR
 {
-	public partial class Accueil : Form
+	public partial class SuivisList : Form
 	{
 		#region Members
 
@@ -24,7 +24,7 @@ namespace ProjetMFTR
 		/// <summary>
 		/// Constructeur de la classe
 		/// </summary>
-		public Accueil()
+		public SuivisList()
 		{
 			Thread thread = new Thread(new ThreadStart(Splash));
 			thread.Start();

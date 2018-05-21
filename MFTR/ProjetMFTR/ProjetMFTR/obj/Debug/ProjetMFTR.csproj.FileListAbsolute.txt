@@ -8,8 +8,6 @@ c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj
 c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.pdb
 c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Accueil.resources
 c:\users\vincent\documents\visual studio 2015\Projects\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Suivi.resources
-C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
-C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Accueil.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Properties.Resources.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Suivi.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csproj.GenerateResource.Cache
@@ -52,3 +50,4 @@ C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.application
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Intervenant.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Intervenant.resources
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.SuivisList.resources

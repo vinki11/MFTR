@@ -1,6 +1,6 @@
 ﻿namespace ProjetMFTR
 {
-    partial class Accueil
+    partial class SuivisList
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -281,7 +281,7 @@
 			this.dataGridViewTextBoxColumn3.ReadOnly = true;
 			this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
-			// Accueil
+			// Liste des suivis
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -295,7 +295,7 @@
 			this.Controls.Add(this.gvList);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-			this.Name = "Accueil";
+			this.Name = "Liste des suivis";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Liste des fiches de déroulement des échanges";
 			this.groupBox1.ResumeLayout(false);
