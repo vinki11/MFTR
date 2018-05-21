@@ -44,6 +44,7 @@
             // 
             this.cboIntervenant.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboIntervenant.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboIntervenant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIntervenant.FormattingEnabled = true;
             this.cboIntervenant.Location = new System.Drawing.Point(79, 26);
             this.cboIntervenant.Name = "cboIntervenant";
