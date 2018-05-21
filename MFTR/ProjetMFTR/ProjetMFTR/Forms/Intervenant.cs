@@ -1,18 +1,14 @@
-﻿using ProjetMFTR.DataAccess;
-using ProjetMFTR.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetMFTR.DataAccess;
+using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
 {
-    public partial class Intervenant : Form
+	public partial class Intervenant : Form
     {
         Entities.Intervenant currentIntervenant;
         Connexion.ConnexionUpdater<Entities.Intervenant> connexionUpdater = new Connexion.ConnexionUpdater<Entities.Intervenant>();

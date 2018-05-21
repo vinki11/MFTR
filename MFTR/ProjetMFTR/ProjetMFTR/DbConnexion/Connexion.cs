@@ -8,8 +8,8 @@ namespace ProjetMFTR.DataAccess
 	{
 		//Membres privés
 		//Sera remplacé par un moyen externe de pouvoir l'attribuer
-    //private static string m_ConnexionString = "Server=.\\Dlafrance;Database=MFTR;user=sa;password=energie1234;";
-    private static string m_ConnexionString = "Server=PC-VINCENT;Database=MFTR_PROTOTYPE;user=sa;password=soleil123;";
+    private static string m_ConnexionString = "Server=.\\Dlafrance;Database=MFTR;user=sa;password=energie1234;";
+    //private static string m_ConnexionString = "Server=PC-VINCENT;Database=MFTR_PROTOTYPE;user=sa;password=soleil123;";
     private static Entities.MFTR m_Instance;
 
 		//Voir si on garde en singleton ou non (ne permet pas de refresh les instances et d'avoir du data à jour

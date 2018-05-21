@@ -18,6 +18,7 @@ namespace ProjetMFTR
 
 		private Suivi m_Suivi;
 		#endregion
+
 		#region Constructors
 
 		/// <summary>
@@ -114,18 +115,17 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnGestion_Click(object sender, EventArgs e)
 		{
-            Intervenant intervenantForm = new Intervenant();
-            intervenantForm.Show();
-        }
+      Intervenant intervenantForm = new Intervenant();
+      intervenantForm.Show();
+    }
 
 		/// <summary>
-		/// Impression
+		/// Impression des suivis
 		/// </summary>
 		private void btnPrint_Click(object sender, EventArgs e)
 		{
 
 		}
-
 
 		/// <summary>
 		/// Survient au formatage des cellules
@@ -167,7 +167,7 @@ namespace ProjetMFTR
 		/// </summary>
 		private void Init()
 		{
-			bsData.DataSource = Connexion.Instance().Suivi.ToList();
+			bsData.DataSource = Connexion.Instance().Suivi.OrderBy((x) => x.dateSuivi).ToList();
 			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
 			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";
 			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.nom";
