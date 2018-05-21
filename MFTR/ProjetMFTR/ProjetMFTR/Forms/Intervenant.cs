@@ -133,6 +133,18 @@ namespace ProjetMFTR.Forms
 
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
+            enregistrer();
+            
+        }
+
+        private void btnEnregistrerQuit_Click(object sender, EventArgs e)
+        {
+            enregistrer();
+            Close();
+        }
+
+        private void enregistrer()
+        {
             if (this.txtNom.Text == "")
             {
                 DialogResult result = MessageBox.Show(ResourcesString.STR_MessageWarningNomIntervenant,
@@ -151,7 +163,7 @@ namespace ProjetMFTR.Forms
                     DialogResult result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'intervenant" + ResourcesString.STR_MessageUpdateConfirmation2,
                     ResourcesString.STR_TitleUpdateConfirmation,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } 
+                }
                 else if (editMode == EditMode.New)
                 {
                     connexionUpdater.Add(currentIntervenant);
@@ -162,9 +174,9 @@ namespace ProjetMFTR.Forms
                 }
 
                 loadCbIntervenant();
-                
+
             }
-            
         }
+       
     }
 }

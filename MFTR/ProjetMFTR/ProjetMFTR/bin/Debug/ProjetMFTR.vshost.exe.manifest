@@ -14,15 +14,15 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Options du manifeste de contrôle de compte d'utilisateur
-          Si vous souhaitez modifier le niveau du contrôle de compte d'utilisateur Windows, remplacez le 
-          nœud requestedExecutionLevel par l'une des propositions suivantes :
+          Options du manifeste de contrôle de compte d’utilisateur (UAC)
+          Si vous voulez changer le niveau de contrôle de compte d’utilisateur Windows, remplacez le 
+          nœud requestedExecutionLevel par l’un des nœuds suivants.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Si vous souhaitez utiliser la virtualisation de fichiers et du Registre pour la 
+         Si vous voulez utiliser la virtualisation de fichiers système et du Registre pour la 
          compatibilité descendante, supprimez le nœud requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
@@ -54,6 +54,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\EntityFramework.resources.dll" size="387280">
+      <assemblyIdentity name="EntityFramework.resources" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="fr" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>jwjox7pT1SP5zDoxNvRqHIRjdi6C5aIWGqmcxeWidd8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.SqlServer.dll" size="622288">
       <assemblyIdentity name="EntityFramework.SqlServer" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -66,14 +78,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+<<<<<<< Updated upstream
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\EntityFramework.SqlServer.resources.dll" size="21200">
+      <assemblyIdentity name="EntityFramework.SqlServer.resources" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="fr" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>mLOZt/wSUrp+tgzYzK9O1lOhL2WiED2tnhlFwb/fxWk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="135680">
+||||||| merged common ancestors
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="134656">
+=======
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="135168">
+>>>>>>> Stashed changes
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nXG88bV48cSEIuxLRXqpuZ7jOtkl94CYN4g5lFo1LII=</dsig:DigestValue>
+<<<<<<< Updated upstream
+        <dsig:DigestValue>W1XiGm/cT7L19ETGMoNBmx+M8XXc6awxpvBN1VVZiYY=</dsig:DigestValue>
+||||||| merged common ancestors
+        <dsig:DigestValue>qjHX/ceccpC61C44FAEj5mT2Myr+ivkdzqOqnOlwSVc=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>vcchFnCCk2gnjnsQmh0gybh5nu4lR7VTfeox2xtAddk=</dsig:DigestValue>
+>>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
   </dependency>

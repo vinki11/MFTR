@@ -78,6 +78,7 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+<<<<<<< Updated upstream
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\EntityFramework.SqlServer.resources.dll" size="21200">
       <assemblyIdentity name="EntityFramework.SqlServer.resources" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="fr" processorArchitecture="msil" />
       <hash>
@@ -91,13 +92,24 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="135680">
+||||||| merged common ancestors
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="134656">
+=======
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="135168">
+>>>>>>> Stashed changes
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
         <dsig:DigestValue>W1XiGm/cT7L19ETGMoNBmx+M8XXc6awxpvBN1VVZiYY=</dsig:DigestValue>
+||||||| merged common ancestors
+        <dsig:DigestValue>qjHX/ceccpC61C44FAEj5mT2Myr+ivkdzqOqnOlwSVc=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>vcchFnCCk2gnjnsQmh0gybh5nu4lR7VTfeox2xtAddk=</dsig:DigestValue>
+>>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
   </dependency>
