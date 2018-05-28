@@ -11,7 +11,7 @@ namespace ProjetMFTR.Forms
 	public partial class Intervenant : Form
     {
         Entities.Intervenant currentIntervenant;
-        Connexion.ConnexionUpdater<Entities.Intervenant> connexionUpdater = new Connexion.ConnexionUpdater<Entities.Intervenant>();
+        Connexion.ConnexionActions<Entities.Intervenant> connexionUpdater = new Connexion.ConnexionActions<Entities.Intervenant>();
         EditMode editMode;
 
         public Intervenant()

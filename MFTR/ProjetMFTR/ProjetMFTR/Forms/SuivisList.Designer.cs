@@ -40,10 +40,7 @@
 			this.dtpDate = new System.Windows.Forms.DateTimePicker();
 			this.gvList = new System.Windows.Forms.DataGridView();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Dossier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnGestion = new System.Windows.Forms.Button();
@@ -51,6 +48,12 @@
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cboEmployes = new System.Windows.Forms.ComboBox();
+			this.lblIntervenant = new System.Windows.Forms.Label();
+			this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
+			this.btnClearFilters = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
@@ -59,6 +62,9 @@
 			// groupBox1
 			// 
 			this.groupBox1.AutoSize = true;
+			this.groupBox1.Controls.Add(this.btnClearFilters);
+			this.groupBox1.Controls.Add(this.cboEmployes);
+			this.groupBox1.Controls.Add(this.lblIntervenant);
 			this.groupBox1.Controls.Add(this.chkDate);
 			this.groupBox1.Controls.Add(this.cboFolders);
 			this.groupBox1.Controls.Add(this.label3);
@@ -69,7 +75,7 @@
 			this.groupBox1.Controls.Add(this.dtpDate);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(794, 153);
+			this.groupBox1.Size = new System.Drawing.Size(794, 166);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Critères de recherche";
@@ -91,15 +97,15 @@
 			this.cboFolders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cboFolders.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboFolders.FormattingEnabled = true;
-			this.cboFolders.Location = new System.Drawing.Point(501, 31);
+			this.cboFolders.Location = new System.Drawing.Point(334, 31);
 			this.cboFolders.Name = "cboFolders";
-			this.cboFolders.Size = new System.Drawing.Size(272, 21);
+			this.cboFolders.Size = new System.Drawing.Size(141, 21);
 			this.cboFolders.TabIndex = 6;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(457, 71);
+			this.label3.Location = new System.Drawing.Point(508, 34);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(38, 13);
 			this.label3.TabIndex = 4;
@@ -108,7 +114,7 @@
 			// btnRecherche
 			// 
 			this.btnRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnRecherche.Location = new System.Drawing.Point(646, 111);
+			this.btnRecherche.Location = new System.Drawing.Point(661, 124);
 			this.btnRecherche.Name = "btnRecherche";
 			this.btnRecherche.Size = new System.Drawing.Size(127, 23);
 			this.btnRecherche.TabIndex = 3;
@@ -119,7 +125,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(415, 34);
+			this.label2.Location = new System.Drawing.Point(248, 34);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(80, 13);
 			this.label2.TabIndex = 2;
@@ -139,9 +145,9 @@
 			this.cboKid.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cboKid.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboKid.FormattingEnabled = true;
-			this.cboKid.Location = new System.Drawing.Point(501, 68);
+			this.cboKid.Location = new System.Drawing.Point(552, 31);
 			this.cboKid.Name = "cboKid";
-			this.cboKid.Size = new System.Drawing.Size(272, 21);
+			this.cboKid.Size = new System.Drawing.Size(141, 21);
 			this.cboKid.TabIndex = 1;
 			// 
 			// dtpDate
@@ -182,33 +188,12 @@
 			this.Date.ReadOnly = true;
 			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
-			// Enfant
-			// 
-			this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Enfant.DataPropertyName = "Enfants";
-			this.Enfant.HeaderText = "Enfant";
-			this.Enfant.Name = "Enfant";
-			this.Enfant.ReadOnly = true;
-			this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
 			// Dossier
 			// 
 			this.Dossier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.Dossier.HeaderText = "Dossier";
 			this.Dossier.Name = "Dossier";
 			this.Dossier.ReadOnly = true;
-			// 
-			// Intervenant
-			// 
-			this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Intervenant.DataPropertyName = "intervenant_id";
-			this.Intervenant.HeaderText = "Intervenant";
-			this.Intervenant.Name = "Intervenant";
-			this.Intervenant.ReadOnly = true;
-			// 
-			// bsData
-			// 
-			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Suivi);
 			// 
 			// btnDelete
 			// 
@@ -281,7 +266,58 @@
 			this.dataGridViewTextBoxColumn3.ReadOnly = true;
 			this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
-			// Liste des suivis
+			// cboEmployes
+			// 
+			this.cboEmployes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cboEmployes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cboEmployes.FormattingEnabled = true;
+			this.cboEmployes.Location = new System.Drawing.Point(334, 81);
+			this.cboEmployes.Name = "cboEmployes";
+			this.cboEmployes.Size = new System.Drawing.Size(141, 21);
+			this.cboEmployes.TabIndex = 9;
+			// 
+			// lblIntervenant
+			// 
+			this.lblIntervenant.AutoSize = true;
+			this.lblIntervenant.Location = new System.Drawing.Point(267, 84);
+			this.lblIntervenant.Name = "lblIntervenant";
+			this.lblIntervenant.Size = new System.Drawing.Size(61, 13);
+			this.lblIntervenant.TabIndex = 8;
+			this.lblIntervenant.Text = "Intervenant";
+			// 
+			// Enfant
+			// 
+			this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Enfant.DataPropertyName = "Enfants";
+			this.Enfant.HeaderText = "Enfant";
+			this.Enfant.Name = "Enfant";
+			this.Enfant.ReadOnly = true;
+			this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
+			// Intervenant
+			// 
+			this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Intervenant.DataPropertyName = "intervenant_id";
+			this.Intervenant.HeaderText = "Intervenant";
+			this.Intervenant.Name = "Intervenant";
+			this.Intervenant.ReadOnly = true;
+			// 
+			// bsData
+			// 
+			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Suivi);
+			// 
+			// btnClearFilters
+			// 
+			this.btnClearFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnClearFilters.Location = new System.Drawing.Point(6, 124);
+			this.btnClearFilters.Name = "btnClearFilters";
+			this.btnClearFilters.Size = new System.Drawing.Size(127, 23);
+			this.btnClearFilters.TabIndex = 10;
+			this.btnClearFilters.Text = "Supprimer les critères";
+			this.btnClearFilters.UseVisualStyleBackColor = true;
+			this.btnClearFilters.Click += new System.EventHandler(this.btnClearFilters_Click);
+			// 
+			// SuivisList
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -295,7 +331,7 @@
 			this.Controls.Add(this.gvList);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-			this.Name = "Liste des suivis";
+			this.Name = "SuivisList";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Liste des fiches de déroulement des échanges";
 			this.groupBox1.ResumeLayout(false);
@@ -331,6 +367,9 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Intervenant;
 		private System.Windows.Forms.CheckBox chkDate;
 		private System.Windows.Forms.ComboBox cboFolders;
+		private System.Windows.Forms.ComboBox cboEmployes;
+		private System.Windows.Forms.Label lblIntervenant;
+		private System.Windows.Forms.Button btnClearFilters;
 	}
 }
 
