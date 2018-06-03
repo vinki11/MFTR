@@ -34,7 +34,6 @@
             this.cboEmployes = new System.Windows.Forms.ComboBox();
             this.lblIntervenant = new System.Windows.Forms.Label();
             this.chkDate = new System.Windows.Forms.CheckBox();
-            this.cboFolders = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRecherche = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,16 +42,17 @@
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.gvList = new System.Windows.Forms.DataGridView();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dossier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsData = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboFolders = new System.Windows.Forms.ComboBox();
+            this.Enfant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Intervenant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsData = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
@@ -81,13 +81,15 @@
             // 
             // btnClearFilters
             // 
+            this.btnClearFilters.BackColor = System.Drawing.Color.LightCoral;
             this.btnClearFilters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearFilters.Location = new System.Drawing.Point(6, 124);
             this.btnClearFilters.Name = "btnClearFilters";
-            this.btnClearFilters.Size = new System.Drawing.Size(127, 23);
+            this.btnClearFilters.Size = new System.Drawing.Size(144, 23);
             this.btnClearFilters.TabIndex = 10;
             this.btnClearFilters.Text = "Supprimer les critères";
-            this.btnClearFilters.UseVisualStyleBackColor = true;
+            this.btnClearFilters.UseVisualStyleBackColor = false;
             this.btnClearFilters.Click += new System.EventHandler(this.btnClearFilters_Click);
             // 
             // cboEmployes
@@ -97,7 +99,7 @@
             this.cboEmployes.FormattingEnabled = true;
             this.cboEmployes.Location = new System.Drawing.Point(334, 81);
             this.cboEmployes.Name = "cboEmployes";
-            this.cboEmployes.Size = new System.Drawing.Size(141, 21);
+            this.cboEmployes.Size = new System.Drawing.Size(170, 21);
             this.cboEmployes.TabIndex = 9;
             // 
             // lblIntervenant
@@ -121,20 +123,10 @@
             this.chkDate.UseVisualStyleBackColor = true;
             this.chkDate.CheckedChanged += new System.EventHandler(this.chkDate_CheckedChanged);
             // 
-            // cboFolders
-            // 
-            this.cboFolders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboFolders.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboFolders.FormattingEnabled = true;
-            this.cboFolders.Location = new System.Drawing.Point(334, 31);
-            this.cboFolders.Name = "cboFolders";
-            this.cboFolders.Size = new System.Drawing.Size(141, 21);
-            this.cboFolders.TabIndex = 6;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(508, 34);
+            this.label3.Location = new System.Drawing.Point(520, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 4;
@@ -142,13 +134,15 @@
             // 
             // btnRecherche
             // 
+            this.btnRecherche.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecherche.Location = new System.Drawing.Point(661, 124);
             this.btnRecherche.Name = "btnRecherche";
             this.btnRecherche.Size = new System.Drawing.Size(127, 23);
             this.btnRecherche.TabIndex = 3;
             this.btnRecherche.Text = "Rechercher";
-            this.btnRecherche.UseVisualStyleBackColor = true;
+            this.btnRecherche.UseVisualStyleBackColor = false;
             this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
             // 
             // label2
@@ -174,9 +168,9 @@
             this.cboKid.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboKid.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKid.FormattingEnabled = true;
-            this.cboKid.Location = new System.Drawing.Point(552, 31);
+            this.cboKid.Location = new System.Drawing.Point(564, 31);
             this.cboKid.Name = "cboKid";
-            this.cboKid.Size = new System.Drawing.Size(141, 21);
+            this.cboKid.Size = new System.Drawing.Size(170, 21);
             this.cboKid.TabIndex = 1;
             // 
             // dtpDate
@@ -217,15 +211,6 @@
             this.Date.ReadOnly = true;
             this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // Enfant
-            // 
-            this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Enfant.DataPropertyName = "Enfants";
-            this.Enfant.HeaderText = "Enfant";
-            this.Enfant.Name = "Enfant";
-            this.Enfant.ReadOnly = true;
-            this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // Dossier
             // 
             this.Dossier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -233,49 +218,43 @@
             this.Dossier.Name = "Dossier";
             this.Dossier.ReadOnly = true;
             // 
-            // Intervenant
-            // 
-            this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Intervenant.DataPropertyName = "intervenant_id";
-            this.Intervenant.HeaderText = "Intervenant";
-            this.Intervenant.Name = "Intervenant";
-            this.Intervenant.ReadOnly = true;
-            // 
-            // bsData
-            // 
-            this.bsData.DataSource = typeof(ProjetMFTR.Entities.Suivi);
-            // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.LightCoral;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(591, 465);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(72, 23);
+            this.btnDelete.Size = new System.Drawing.Size(82, 23);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Supprimer";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.BackColor = System.Drawing.Color.PaleGreen;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(679, 465);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(127, 23);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Ajouter";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnPrint
             // 
+            this.btnPrint.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Location = new System.Drawing.Point(12, 465);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(127, 23);
             this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "Imprimer";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // dataGridViewTextBoxColumn1
@@ -304,6 +283,37 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // cboFolders
+            // 
+            this.cboFolders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboFolders.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboFolders.FormattingEnabled = true;
+            this.cboFolders.Location = new System.Drawing.Point(334, 31);
+            this.cboFolders.Name = "cboFolders";
+            this.cboFolders.Size = new System.Drawing.Size(170, 21);
+            this.cboFolders.TabIndex = 6;
+            // 
+            // Enfant
+            // 
+            this.Enfant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Enfant.DataPropertyName = "Enfants";
+            this.Enfant.HeaderText = "Enfant";
+            this.Enfant.Name = "Enfant";
+            this.Enfant.ReadOnly = true;
+            this.Enfant.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Intervenant
+            // 
+            this.Intervenant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Intervenant.DataPropertyName = "intervenant_id";
+            this.Intervenant.HeaderText = "Intervenant";
+            this.Intervenant.Name = "Intervenant";
+            this.Intervenant.ReadOnly = true;
+            // 
+            // bsData
+            // 
+            this.bsData.DataSource = typeof(ProjetMFTR.Entities.Suivi);
             // 
             // SuivisList
             // 
@@ -352,10 +362,10 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Dossier;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Intervenant;
 		private System.Windows.Forms.CheckBox chkDate;
-		private System.Windows.Forms.ComboBox cboFolders;
 		private System.Windows.Forms.ComboBox cboEmployes;
 		private System.Windows.Forms.Label lblIntervenant;
 		private System.Windows.Forms.Button btnClearFilters;
-	}
+        private System.Windows.Forms.ComboBox cboFolders;
+    }
 }
 

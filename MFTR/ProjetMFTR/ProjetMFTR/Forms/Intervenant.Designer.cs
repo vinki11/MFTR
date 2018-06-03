@@ -80,22 +80,28 @@
             // 
             // btnAjouter
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(226, 223);
+            this.btnAjouter.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAjouter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouter.Location = new System.Drawing.Point(186, 223);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(75, 23);
             this.btnAjouter.TabIndex = 15;
             this.btnAjouter.Text = "Ajouter";
-            this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouter.UseVisualStyleBackColor = false;
             this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // btnEnregistrer
             // 
-            this.btnEnregistrer.Location = new System.Drawing.Point(307, 223);
+            this.btnEnregistrer.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnregistrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnregistrer.Location = new System.Drawing.Point(267, 223);
             this.btnEnregistrer.Name = "btnEnregistrer";
-            this.btnEnregistrer.Size = new System.Drawing.Size(75, 23);
+            this.btnEnregistrer.Size = new System.Drawing.Size(86, 23);
             this.btnEnregistrer.TabIndex = 16;
             this.btnEnregistrer.Text = "Enregistrer";
-            this.btnEnregistrer.UseVisualStyleBackColor = true;
+            this.btnEnregistrer.UseVisualStyleBackColor = false;
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // groupBox1
@@ -134,12 +140,15 @@
             // 
             // btnEnregistrerQuit
             // 
-            this.btnEnregistrerQuit.Location = new System.Drawing.Point(388, 223);
+            this.btnEnregistrerQuit.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnEnregistrerQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnregistrerQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnregistrerQuit.Location = new System.Drawing.Point(359, 223);
             this.btnEnregistrerQuit.Name = "btnEnregistrerQuit";
-            this.btnEnregistrerQuit.Size = new System.Drawing.Size(118, 23);
+            this.btnEnregistrerQuit.Size = new System.Drawing.Size(136, 23);
             this.btnEnregistrerQuit.TabIndex = 20;
             this.btnEnregistrerQuit.Text = "Enregistrer et Fermer";
-            this.btnEnregistrerQuit.UseVisualStyleBackColor = true;
+            this.btnEnregistrerQuit.UseVisualStyleBackColor = false;
             this.btnEnregistrerQuit.Click += new System.EventHandler(this.btnEnregistrerQuit_Click);
             // 
             // Intervenant
