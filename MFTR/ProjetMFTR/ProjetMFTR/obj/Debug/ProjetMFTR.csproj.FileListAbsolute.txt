@@ -26,7 +26,6 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\EntityFramewo
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\fr\EntityFramework.resources.dll
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\fr\EntityFramework.SqlServer.resources.dll
-C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Accueil.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Properties.Resources.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Suivi.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csproj.GenerateResource.cache
@@ -51,3 +50,10 @@ C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Intervenant.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Intervenant.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.SuivisList.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.SuivisList.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\PdfSharp.Charting.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\PdfSharp.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\PdfSharp.xml
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\PdfSharp.Charting.xml
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\bin\Debug\de\PdfSharp.Charting.resources.dll

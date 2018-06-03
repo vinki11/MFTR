@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Suivi));
 			this.label1 = new System.Windows.Forms.Label();
 			this.dtpDateSuivi = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
@@ -42,6 +44,18 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.btnSaveAndNew = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
+			this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
+			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+			this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+			this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
+			this.bindingNavigator1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -63,7 +77,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(401, 81);
+			this.label2.Location = new System.Drawing.Point(371, 81);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(81, 13);
 			this.label2.TabIndex = 5;
@@ -74,32 +88,34 @@
 			this.cboKids.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cboKids.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboKids.FormattingEnabled = true;
-			this.cboKids.Location = new System.Drawing.Point(491, 78);
+			this.cboKids.Location = new System.Drawing.Point(462, 78);
 			this.cboKids.Name = "cboKids";
-			this.cboKids.Size = new System.Drawing.Size(180, 21);
+			this.cboKids.Size = new System.Drawing.Size(209, 21);
 			this.cboKids.TabIndex = 3;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(437, 126);
+			this.label3.Location = new System.Drawing.Point(12, 126);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(45, 13);
+			this.label3.Size = new System.Drawing.Size(86, 13);
 			this.label3.TabIndex = 7;
-			this.label3.Text = "Moment";
+			this.label3.Text = "Moment/Service";
 			// 
 			// cboMoment
 			// 
+			this.cboMoment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cboMoment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboMoment.FormattingEnabled = true;
 			this.cboMoment.Items.AddRange(new object[] {
-            "Avant(VS)",
-            "Après(VS)",
-            "Départ(ÉG)",
-            "Retour(ÉG)"});
-			this.cboMoment.Location = new System.Drawing.Point(491, 123);
+            "Avant la visite supervisée",
+            "Après la visite supervisée",
+            "Au départ de l’échange de garde",
+            "Au retour de l’échange de garde"});
+			this.cboMoment.Location = new System.Drawing.Point(104, 123);
 			this.cboMoment.Name = "cboMoment";
-			this.cboMoment.Size = new System.Drawing.Size(180, 21);
-			this.cboMoment.TabIndex = 5;
+			this.cboMoment.Size = new System.Drawing.Size(209, 21);
+			this.cboMoment.TabIndex = 4;
 			// 
 			// label4
 			// 
@@ -115,7 +131,7 @@
 			this.cboFolders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cboFolders.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboFolders.FormattingEnabled = true;
-			this.cboFolders.Location = new System.Drawing.Point(98, 78);
+			this.cboFolders.Location = new System.Drawing.Point(104, 78);
 			this.cboFolders.Name = "cboFolders";
 			this.cboFolders.Size = new System.Drawing.Size(209, 21);
 			this.cboFolders.TabIndex = 2;
@@ -132,7 +148,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(12, 126);
+			this.label5.Location = new System.Drawing.Point(371, 126);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(61, 13);
 			this.label5.TabIndex = 12;
@@ -141,10 +157,10 @@
 			// cboEmployes
 			// 
 			this.cboEmployes.FormattingEnabled = true;
-			this.cboEmployes.Location = new System.Drawing.Point(98, 123);
+			this.cboEmployes.Location = new System.Drawing.Point(462, 123);
 			this.cboEmployes.Name = "cboEmployes";
 			this.cboEmployes.Size = new System.Drawing.Size(209, 21);
-			this.cboEmployes.TabIndex = 4;
+			this.cboEmployes.TabIndex = 5;
 			// 
 			// label6
 			// 
@@ -177,11 +193,93 @@
 			this.btnSave.UseVisualStyleBackColor = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
+			// bindingNavigator1
+			// 
+			this.bindingNavigator1.AddNewItem = null;
+			this.bindingNavigator1.BindingSource = this.bsData;
+			this.bindingNavigator1.CountItem = null;
+			this.bindingNavigator1.DeleteItem = null;
+			this.bindingNavigator1.Enabled = false;
+			this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2});
+			this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
+			this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+			this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
+			this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
+			this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+			this.bindingNavigator1.Name = "bindingNavigator1";
+			this.bindingNavigator1.PositionItem = null;
+			this.bindingNavigator1.Size = new System.Drawing.Size(683, 25);
+			this.bindingNavigator1.TabIndex = 14;
+			this.bindingNavigator1.Text = "bindingNavigator1";
+			// 
+			// bindingNavigatorMoveFirstItem
+			// 
+			this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+			this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+			this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMoveFirstItem.Text = "Placer en premier";
+			this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
+			// 
+			// bindingNavigatorMovePreviousItem
+			// 
+			this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+			this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+			this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMovePreviousItem.Text = "Déplacer vers le haut";
+			this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
+			// 
+			// bindingNavigatorSeparator
+			// 
+			this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+			this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+			// 
+			// bindingNavigatorSeparator1
+			// 
+			this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+			this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// bindingNavigatorMoveNextItem
+			// 
+			this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+			this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+			this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMoveNextItem.Text = "Déplacer vers le bas";
+			this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
+			// 
+			// bindingNavigatorMoveLastItem
+			// 
+			this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+			this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+			this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorMoveLastItem.Text = "Placer en dernier";
+			this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
+			// 
+			// bindingNavigatorSeparator2
+			// 
+			this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+			this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
 			// Suivi
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(683, 516);
+			this.Controls.Add(this.bindingNavigator1);
 			this.Controls.Add(this.btnSaveAndNew);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.label6);
@@ -199,6 +297,10 @@
 			this.Name = "Suivi";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Déroulement de la période d’attente dans la salle (30 minutes)";
+			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
+			this.bindingNavigator1.ResumeLayout(false);
+			this.bindingNavigator1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -220,5 +322,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSaveAndNew;
         private System.Windows.Forms.Button btnSave;
-    }
+		private System.Windows.Forms.BindingNavigator bindingNavigator1;
+		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
+		private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
+		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
+		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+		private System.Windows.Forms.BindingSource bsData;
+	}
 }
