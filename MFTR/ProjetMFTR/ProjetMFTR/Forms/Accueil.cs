@@ -40,5 +40,30 @@ namespace ProjetMFTR.Forms
 
             }
         }
+        /// <summary>
+        /// Accède à la form de gestion des intervenants
+        /// </summary>
+        private void btnGestionIntervenant_Click(object sender, EventArgs e)
+        {
+            Intervenant intervenantForm = new Intervenant();
+            intervenantForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Accède à la form de gestion des suivis
+        /// </summary>
+        private void btnGestionSuivi_Click(object sender, EventArgs e)
+        {
+            SuivisList suiviListtForm = new SuivisList();
+            suiviListtForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Accède à la form de gestion des dossiers
+        /// </summary>
+        private void btnGestionDossier_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

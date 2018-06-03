@@ -60,6 +60,7 @@
             this.btnGestionIntervenant.Text = "Gestion des intervenants";
             this.btnGestionIntervenant.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionIntervenant.UseVisualStyleBackColor = false;
+            this.btnGestionIntervenant.Click += new System.EventHandler(this.btnGestionIntervenant_Click);
             // 
             // btnGestionDossier
             // 
@@ -75,6 +76,7 @@
             this.btnGestionDossier.Text = "Gestion des dossiers";
             this.btnGestionDossier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionDossier.UseVisualStyleBackColor = false;
+            this.btnGestionDossier.Click += new System.EventHandler(this.btnGestionDossier_Click);
             // 
             // btnGestionSuivi
             // 
@@ -91,6 +93,7 @@
             this.btnGestionSuivi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGestionSuivi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGestionSuivi.UseVisualStyleBackColor = false;
+            this.btnGestionSuivi.Click += new System.EventHandler(this.btnGestionSuivi_Click);
             // 
             // pictureBox1
             // 

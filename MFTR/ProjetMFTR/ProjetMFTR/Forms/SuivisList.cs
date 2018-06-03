@@ -118,15 +118,6 @@ namespace ProjetMFTR
 		}
 
 		/// <summary>
-		/// Accède à la form de gestion des intervenants
-		/// </summary>
-		private void btnGestion_Click(object sender, EventArgs e)
-		{
-      Intervenant intervenantForm = new Intervenant();
-      intervenantForm.Show();
-    }
-
-		/// <summary>
 		/// Impression des suivis
 		/// </summary>
 		private void btnPrint_Click(object sender, EventArgs e)
