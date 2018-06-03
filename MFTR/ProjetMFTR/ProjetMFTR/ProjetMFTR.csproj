@@ -158,6 +158,12 @@
     <Compile Include="Entities\Transporteur.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Accueil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Accueil.Designer.cs">
+      <DependentUpon>Accueil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SuivisList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </Compile>
     <Compile Include="Resources\MessageBoxManager.cs" />
     <Compile Include="Resources\ResourcesString.cs" />
+    <EmbeddedResource Include="Forms\Accueil.resx">
+      <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SuivisList.resx">
       <DependentUpon>SuivisList.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +256,12 @@
       <DependentUpon>MFTR.edmx</DependentUpon>
       <LastGenOutput>MFTR.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\icone_folder_58.png" />
+    <Content Include="Resources\icone_folder_64.png" />
+    <None Include="Resources\icone_MFTR_ACCUEIL.jpg" />
+    <Content Include="Resources\icone_MFTR_SMALL.jpg" />
+    <Content Include="Resources\icone_person_64.png" />
+    <Content Include="Resources\icone_suivi_64.png" />
     <Content Include="Sql\DbInit.sql" />
   </ItemGroup>
   <ItemGroup>

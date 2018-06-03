@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing.Printing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using PdfSharp.Drawing;
 using ProjetMFTR.DataAccess;
 using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Forms;
@@ -13,7 +11,7 @@ using ProjetMFTR.Resources;
 
 namespace ProjetMFTR
 {
-	public partial class SuivisList : Form
+    public partial class SuivisList : Form
 	{
 		#region Members
 
@@ -29,14 +27,14 @@ namespace ProjetMFTR
 		/// </summary>
 		public SuivisList()
 		{
-			Thread thread = new Thread(new ThreadStart(Splash));
-			thread.Start();
+			//Thread thread = new Thread(new ThreadStart(Splash));
+			//thread.Start();
 			InitializeComponent();
 			//Initialisation des combosbox
 			Init();
 			InitialiseCombos();
-			thread.Abort();
-			this.Focus();
+			//thread.Abort();
+			//this.Focus();
 		}
 
 		#endregion
@@ -280,27 +278,6 @@ namespace ProjetMFTR
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
 		}
-
-
-		void Splash()
-		{
-			SplashScreen.SplashForm frm = new SplashScreen.SplashForm();
-			frm.AppName = "Maison de la famille";
-			frm.Icon = Properties.Resources.icone_MFTR;
-			frm.ShowIcon = true;
-			frm.ShowInTaskbar = true;
-			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Width = 300;
-			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Text = "Chargement...";
-			try
-			{
-			Application.Run(frm);
-			}
-			catch(Exception e)
-			{
-
-			}
-		}
-
 		#endregion
 
 	}

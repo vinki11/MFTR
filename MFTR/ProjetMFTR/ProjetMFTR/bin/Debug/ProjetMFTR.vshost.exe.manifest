@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="136192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="183808">
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rcAFIOvBtcGbhI4PmrUDcHbHszXnenHGEHuGckqCB+E=</dsig:DigestValue>
+        <dsig:DigestValue>z12NUmGBXgYvZy/qk6/AA+CqGRSBntY9RN3EfJsuYic=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -114,6 +114,42 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>CfiahLUeXqvyX5/onmNdeI37pbmgnAV8QnS2XsUa8Ws=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\icone_folder_64.png" size="1013">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>dVtIvFPtle8CZ2paWpD8YA99jumDy59N7DoJcJ9b5Mk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\icone_MFTR_SMALL.jpg" size="12052">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qvXU4mWlYvhdTSmQzqQnZUEuV/R9B69Eb0bQj0PlOs8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\icone_person_64.png" size="2019">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>LUP5T1Eb6QrJtBok2M+ayK11C8SoIrCFYjGNzyDFyDE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\icone_suivi_64.png" size="1227">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>UAx3QoGdfYlYyxH7IvXqKhvANbbDDkEBKSZqZi+nuIQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Sql\DbInit.sql" size="595">

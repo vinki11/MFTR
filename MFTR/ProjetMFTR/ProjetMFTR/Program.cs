@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetMFTR.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace ProjetMFTR
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SuivisList());
+            Application.Run(new Accueil());
         }
     }
 }

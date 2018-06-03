@@ -24,7 +24,7 @@ namespace ProjetMFTR.DataAccess
 			if (m_Instance == null)
 			{
 				m_Instance = new Entities.MFTR();
-				string destinationFile = "C:\\MFTR";
+				string destinationFile = @"C:\MFTR";
 				destinationFile = Path.Combine(destinationFile, "connexion.txt");
 
 				if (File.Exists(destinationFile))
