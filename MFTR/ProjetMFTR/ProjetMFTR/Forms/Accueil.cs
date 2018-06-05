@@ -18,6 +18,7 @@ namespace ProjetMFTR.Forms
             Thread thread = new Thread(new ThreadStart(Splash));
             thread.Start();
             InitializeComponent();
+						Thread.Sleep(2000);
             thread.Abort();
             this.Focus();
         }

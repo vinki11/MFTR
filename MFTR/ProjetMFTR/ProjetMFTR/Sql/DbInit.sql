@@ -1,7 +1,7 @@
 ﻿CREATE TABLE Intervenant (
     intervenant_id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
     nom nvarchar(100) NOT NULL,
-	actif int Default 0
+	actif bit Default 0
 );
 
 CREATE TABLE Suivi (
