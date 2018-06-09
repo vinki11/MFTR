@@ -8,9 +8,22 @@ namespace ProjetMFTR
 {
 	public partial class Suivi : Form
 	{
+		#region Members
 
 		Entities.Suivi CurrentSuivi;
 		Connexion.ConnexionActions<Entities.Suivi> connexionActions = new Connexion.ConnexionActions<Entities.Suivi>();
+
+		#endregion
+
+
+		#region Events
+		public event EventHandler SuiviAdded;
+		#endregion
+
+		protected virtual void OnSuiviAdded(EventArgs e)
+		{
+			SuiviAdded?.Invoke(this, e);
+		}
 
 		public Suivi()
 		{
@@ -120,11 +133,13 @@ namespace ProjetMFTR
 			CurrentSuivi = new Entities.Suivi();
 			AssignValues();
 			connexionActions.Add(CurrentSuivi);
-		  result = MessageBox.Show("La fiche de déroulement des échanges" + ResourcesString.STR_MessageAddConfirmation,
+			result = MessageBox.Show("La fiche de déroulement des échanges" + ResourcesString.STR_MessageAddConfirmation,
 			ResourcesString.STR_TitleAddConfirmation,
 			MessageBoxButtons.OK, MessageBoxIcon.Information);
 			bindingNavigator1.Enabled = true;
-			return true;	
+			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
+			OnSuiviAdded(new EventArgs());
+			return true;
 		}
 
 		/// <summary>
@@ -148,19 +163,19 @@ namespace ProjetMFTR
 		/// </summary>
 		private void AssignValues()
 		{
-			  CurrentSuivi.enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID;
-				CurrentSuivi.dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
-				CurrentSuivi.dateSuivi = dtpDateSuivi.Value.Date;
-				CurrentSuivi.intervenant_id = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id;
-				CurrentSuivi.remarque = rtxtRemarque.Text;
-				CurrentSuivi.moment = cboMoment.Text;
+			CurrentSuivi.enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID;
+			CurrentSuivi.dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
+			CurrentSuivi.dateSuivi = dtpDateSuivi.Value.Date;
+			CurrentSuivi.intervenant_id = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id;
+			CurrentSuivi.remarque = rtxtRemarque.Text;
+			CurrentSuivi.moment = cboMoment.Text;
 		}
 		/// <summary>
 		/// Affecter les enfants selon le dossier sélectionné
 		/// </summary>
 		private void cboFolders_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if(cboFolders.SelectedItem == null) { return; }
+			if (cboFolders.SelectedItem == null) { return; }
 
 			cboKids.DataSource = Connexion.Instance().Enfants.Where((x) => x.Dossier_ID.Equals(((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID)).ToList();
 		}
@@ -173,12 +188,12 @@ namespace ProjetMFTR
 			}
 		}
 
-#region Binding
+		#region Binding
 		private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
 		{
 			var obj = bsData.List.OfType<Entities.Suivi>().ToList().Find(f => f == CurrentSuivi);
 			var index = bsData.IndexOf(obj);
-			if (index.Equals((Connexion.Instance().Suivi.AsEnumerable().Count() -1))){ return; }
+			if (index.Equals((Connexion.Instance().Suivi.AsEnumerable().Count() - 1))) { return; }
 
 			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderBy(f => f.dateSuivi).ElementAtOrDefault(index + 1));
 		}
@@ -199,9 +214,9 @@ namespace ProjetMFTR
 			var index = bsData.IndexOf(obj);
 			if (index.Equals(bsData.IndexOf(Connexion.Instance().Suivi.AsEnumerable().OrderBy((x) => x.dateSuivi).FirstOrDefault()))) { return; }
 
-			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderBy(f => f.dateSuivi).ElementAtOrDefault(index -1));
+			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderBy(f => f.dateSuivi).ElementAtOrDefault(index - 1));
 		}
-#endregion
+		#endregion
 
 	}
 }

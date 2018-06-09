@@ -52,7 +52,7 @@
     </Key>
     <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Ouverture" Type="date" />
-    <Property Name="Actif" Type="nchar" MaxLength="10" />
+    <Property Name="Actif" Type="varchar" MaxLength="10" />
     <Property Name="Type" Type="nvarchar" MaxLength="100" />
     <Property Name="Referent_ID" Type="nvarchar" MaxLength="15" />
     <Property Name="Remarque" Type="nvarchar(max)" />
@@ -167,7 +167,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
     <Property Name="Tel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Adulte_ID" Type="int" />
     <Property Name="Type" Type="nchar" MaxLength="20" />
-    <Property Name="Telephone" Type="nchar" MaxLength="15" />
+    <Property Name="Telephone" Type="varchar" MaxLength="15" />
     <Property Name="Poste" Type="nchar" MaxLength="15" />
     <Property Name="Precision" Type="nvarchar" MaxLength="100" />
     <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />

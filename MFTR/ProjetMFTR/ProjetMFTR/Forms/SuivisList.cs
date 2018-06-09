@@ -47,11 +47,11 @@ namespace ProjetMFTR
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			m_Suivi = new Suivi();
-			m_Suivi.FormClosing += new FormClosingEventHandler(m_Suivi_Closing);
+			m_Suivi.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_Suivi.Show();
 		}
 
-		private void m_Suivi_Closing(object sender, EventArgs e) 
+		private void UpdateDataSource(object sender, EventArgs e)
 		{
 			Init();
 		}
@@ -86,7 +86,7 @@ namespace ProjetMFTR
 			}
 
 			bsData.DataSource = null;
-			bsData.DataSource = suivis;
+			bsData.DataSource = suivis.OrderBy( x => x.dateSuivi).ToList();
 		}
 
 		/// <summary>
@@ -113,8 +113,7 @@ namespace ProjetMFTR
 				return;
 			}
 			Connexion.Instance().SaveChanges();
-			bsData.DataSource = null;
-			bsData.DataSource = Connexion.Instance().Suivi.ToList();
+			Init();
 		}
 
 		/// <summary>
@@ -214,9 +213,9 @@ namespace ProjetMFTR
 		private void gvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			DataGridViewRow row = gvList.CurrentRow;
-
-			Suivi s = new Suivi((Entities.Suivi)row.DataBoundItem);
-			s.Show();
+			m_Suivi = new Suivi((Entities.Suivi)row.DataBoundItem);
+			m_Suivi.SuiviAdded += new EventHandler(UpdateDataSource);
+			m_Suivi.Show();
 		}
 
 		private void chkDate_CheckedChanged(object sender, EventArgs e)

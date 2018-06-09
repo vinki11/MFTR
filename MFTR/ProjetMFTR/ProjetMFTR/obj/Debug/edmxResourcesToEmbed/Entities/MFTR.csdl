@@ -59,7 +59,7 @@
     </Key>
     <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Ouverture" Type="DateTime" Precision="0" />
-    <Property Name="Actif" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Actif" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Referent_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Remarque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -183,7 +183,7 @@
     <Property Name="Tel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Adulte_ID" Type="Int32" />
     <Property Name="Type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="Telephone1" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Telephone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="Poste" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
     <Property Name="Precision" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />

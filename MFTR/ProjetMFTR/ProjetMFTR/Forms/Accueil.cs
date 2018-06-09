@@ -20,7 +20,8 @@ namespace ProjetMFTR.Forms
             InitializeComponent();
 						Thread.Sleep(2000);
             thread.Abort();
-            this.Focus();
+            Focus();
+			TopMost = true;
         }
 
         void Splash()
@@ -46,8 +47,9 @@ namespace ProjetMFTR.Forms
         /// </summary>
         private void btnGestionIntervenant_Click(object sender, EventArgs e)
         {
-            Intervenant intervenantForm = new Intervenant();
-            intervenantForm.ShowDialog();
+					TopMost = false;
+					Intervenant intervenantForm = new Intervenant();
+          intervenantForm.ShowDialog();
         }
 
         /// <summary>
@@ -55,8 +57,9 @@ namespace ProjetMFTR.Forms
         /// </summary>
         private void btnGestionSuivi_Click(object sender, EventArgs e)
         {
-            SuivisList suiviListtForm = new SuivisList();
-            suiviListtForm.ShowDialog();
+					TopMost = false;
+					SuivisList suiviListtForm = new SuivisList();
+          suiviListtForm.ShowDialog();
         }
 
         /// <summary>
@@ -64,7 +67,10 @@ namespace ProjetMFTR.Forms
         /// </summary>
         private void btnGestionDossier_Click(object sender, EventArgs e)
         {
-           
-        }
-    }
+					TopMost = false;
+					Dossier dossier = new Dossier();
+					dossier.ShowDialog();
+		}
+
+	}
 }

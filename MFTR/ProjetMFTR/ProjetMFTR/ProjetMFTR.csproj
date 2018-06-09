@@ -164,6 +164,12 @@
     <Compile Include="Forms\Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dossier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dossier.Designer.cs">
+      <DependentUpon>Dossier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SuivisList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     <Compile Include="Resources\ResourcesString.cs" />
     <EmbeddedResource Include="Forms\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dossier.resx">
+      <DependentUpon>Dossier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SuivisList.resx">
       <DependentUpon>SuivisList.cs</DependentUpon>
@@ -216,7 +225,22 @@
       <DependentUpon>MFTR.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Adresse.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Adultes.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Communication.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Dossier.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Enfants.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Intervenant.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.LienReferrent.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.MFTR.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.new_table.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Parent.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Referent.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Services.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Suivi.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.sysdiagrams.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Telephone.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Transporteur.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -257,11 +281,18 @@
       <LastGenOutput>MFTR.cs</LastGenOutput>
     </Content>
     <None Include="Resources\icone_folder_58.png" />
+    <None Include="Resources\COMMUNICATION.jpg" />
+    <None Include="Resources\COMMUNICATION_64.jpg" />
+    <Content Include="Resources\icone_dossier.png" />
+    <Content Include="Resources\icone_folder.png" />
     <Content Include="Resources\icone_folder_64.png" />
     <None Include="Resources\icone_MFTR_ACCUEIL.jpg" />
     <Content Include="Resources\icone_MFTR_SMALL.jpg" />
     <Content Include="Resources\icone_person_64.png" />
+    <Content Include="Resources\icone_suivi.png" />
     <Content Include="Resources\icone_suivi_64.png" />
+    <Content Include="Resources\Icône Communication.png" />
+    <Content Include="Resources\sda_icone.ico" />
     <Content Include="Sql\DbInit.sql" />
   </ItemGroup>
   <ItemGroup>

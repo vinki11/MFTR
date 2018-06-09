@@ -16,3 +16,9 @@ CREATE TABLE Suivi (
 	Foreign Key (enfant_id) References enfants(enfant_id),
 	Foreign Key (dossier_id) References dossier(dossier_id)
 );
+
+ALTER TABLE dossier DROP CONSTRAINT [DF__Dossier__Actif__06CD04F7];
+
+alter table dossier
+alter column actif varchar(10) null
+
