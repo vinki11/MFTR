@@ -63,12 +63,13 @@
 			this.Motif = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Interlocuteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.EventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsDataCommunication = new System.Windows.Forms.BindingSource(this.components);
 			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tabReferent = new System.Windows.Forms.TabPage();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -125,6 +126,7 @@
 			this.btnClearFilters.TabIndex = 10;
 			this.btnClearFilters.Text = "Supprimer les critères";
 			this.btnClearFilters.UseVisualStyleBackColor = false;
+			this.btnClearFilters.Click += new System.EventHandler(this.btnClearFilters_Click);
 			// 
 			// chkDate
 			// 
@@ -137,7 +139,7 @@
 			// 
 			// cboFolders
 			// 
-			this.cboFolders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cboFolders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
 			this.cboFolders.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboFolders.FormattingEnabled = true;
 			this.cboFolders.Location = new System.Drawing.Point(541, 37);
@@ -232,6 +234,7 @@
 			this.btnSaveDossier.TabIndex = 13;
 			this.btnSaveDossier.Text = "Enregistrer";
 			this.btnSaveDossier.UseVisualStyleBackColor = false;
+			this.btnSaveDossier.Click += new System.EventHandler(this.btnSaveDossier_Click);
 			// 
 			// rtxtRemarque
 			// 
@@ -314,6 +317,7 @@
 			this.tabControl1.Controls.Add(this.pageParents);
 			this.tabControl1.Controls.Add(this.pageKids);
 			this.tabControl1.Controls.Add(this.pageCommunication);
+			this.tabControl1.Controls.Add(this.tabReferent);
 			this.tabControl1.Location = new System.Drawing.Point(22, 398);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -335,7 +339,7 @@
 			this.pageKids.Location = new System.Drawing.Point(4, 22);
 			this.pageKids.Name = "pageKids";
 			this.pageKids.Padding = new System.Windows.Forms.Padding(3);
-			this.pageKids.Size = new System.Drawing.Size(1198, 302);
+			this.pageKids.Size = new System.Drawing.Size(1198, 292);
 			this.pageKids.TabIndex = 1;
 			this.pageKids.Text = "Enfants";
 			this.pageKids.UseVisualStyleBackColor = true;
@@ -439,6 +443,16 @@
 			this.EventDate.Name = "EventDate";
 			this.EventDate.ReadOnly = true;
 			// 
+			// Date
+			// 
+			this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Date.DataPropertyName = "Ouverture";
+			this.Date.FillWeight = 85F;
+			this.Date.HeaderText = "Date d\'ouverture";
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			// 
 			// dataGridViewTextBoxColumn2
 			// 
 			this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -463,22 +477,21 @@
 			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
 			this.dataGridViewTextBoxColumn1.ReadOnly = true;
 			// 
-			// Date
-			// 
-			this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Date.DataPropertyName = "Ouverture";
-			this.Date.FillWeight = 85F;
-			this.Date.HeaderText = "Date d\'ouverture";
-			this.Date.Name = "Date";
-			this.Date.ReadOnly = true;
-			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
 			// typeDataGridViewTextBoxColumn
 			// 
 			this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
 			this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
 			this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
 			this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// tabReferent
+			// 
+			this.tabReferent.Location = new System.Drawing.Point(4, 22);
+			this.tabReferent.Name = "tabReferent";
+			this.tabReferent.Size = new System.Drawing.Size(1198, 292);
+			this.tabReferent.TabIndex = 3;
+			this.tabReferent.Text = "Référent";
+			this.tabReferent.UseVisualStyleBackColor = true;
 			// 
 			// Dossier
 			// 
@@ -552,5 +565,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
 		private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+		private System.Windows.Forms.TabPage tabReferent;
 	}
 }
