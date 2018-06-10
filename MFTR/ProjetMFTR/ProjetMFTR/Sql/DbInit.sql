@@ -22,3 +22,15 @@ ALTER TABLE dossier DROP CONSTRAINT [DF__Dossier__Actif__06CD04F7];
 alter table dossier
 alter column actif varchar(10) null
 
+
+
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Alexye-Eve Gélinas',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Élisabeth Royer',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Jessica Bergeron',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Joliane Tellier',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Kassandra Lavigne',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Lysiane Deshaye',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Marika Pruneau',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Mathilde Fallu',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Nathan Grenier Gauvin',1)
+INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Yanni Gélinas',1)
