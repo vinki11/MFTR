@@ -281,8 +281,7 @@
       <LastGenOutput>MFTR.cs</LastGenOutput>
     </Content>
     <None Include="Resources\icone_folder_58.png" />
-    <None Include="Resources\COMMUNICATION.jpg" />
-    <None Include="Resources\COMMUNICATION_64.jpg" />
+    <Content Include="Resources\icone_chat64.png" />
     <Content Include="Resources\icone_dossier.png" />
     <Content Include="Resources\icone_folder.png" />
     <Content Include="Resources\icone_folder_64.png" />
@@ -291,7 +290,6 @@
     <Content Include="Resources\icone_person_64.png" />
     <Content Include="Resources\icone_suivi.png" />
     <Content Include="Resources\icone_suivi_64.png" />
-    <Content Include="Resources\Icône Communication.png" />
     <Content Include="Resources\sda_icone.ico" />
     <Content Include="Sql\DbInit.sql" />
   </ItemGroup>
