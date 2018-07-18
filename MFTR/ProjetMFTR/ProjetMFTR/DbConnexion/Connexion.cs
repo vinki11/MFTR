@@ -31,6 +31,7 @@ namespace ProjetMFTR.DataAccess
 				{
 					string[] lines = System.IO.File.ReadAllLines(destinationFile);
 					m_Instance.Database.Connection.ConnectionString = lines[0];
+					m_Instance.Configuration.LazyLoadingEnabled = true;
 				}
 			}
 			return m_Instance;

@@ -133,9 +133,6 @@ namespace ProjetMFTR
 			CurrentSuivi = new Entities.Suivi();
 			AssignValues();
 			connexionActions.Add(CurrentSuivi);
-			result = MessageBox.Show("La fiche de déroulement des échanges" + ResourcesString.STR_MessageAddConfirmation,
-			ResourcesString.STR_TitleAddConfirmation,
-			MessageBoxButtons.OK, MessageBoxIcon.Information);
 			bindingNavigator1.Enabled = true;
 			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
 			OnSuiviAdded(new EventArgs());

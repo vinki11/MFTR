@@ -20,6 +20,7 @@ namespace ProjetMFTR.Forms
 		Entities.Dossier CurrentDossier;
 		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 		#endregion
+
 		public Dossier()
 		{
 			InitializeComponent();
@@ -52,6 +53,8 @@ namespace ProjetMFTR.Forms
 		private void gvList_SelectionChanged(object sender, EventArgs e)
 		{
 			DataGridViewRow row = gvList.CurrentRow;
+			if (row == null) return;
+
 			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
 			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
 			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
@@ -61,10 +64,18 @@ namespace ProjetMFTR.Forms
 		{
 			string dossier = null;
 			List<Entities.Dossier> dossiers = Connexion.Instance().Dossier.ToList();
+			List<Entities.Adultes> adultes = Connexion.Instance().Adultes.ToList();
 
-			if (chkDate.Checked)
+			if (txtFirstName.Text != "")
 			{
-				dossiers = dossiers.Where((x) => x.Ouverture.Equals(dtpDateRecherche.Value.Date)).ToList();
+			var ads=	adultes.Where(v => v.Prenom == txtFirstName.Text).ToList();
+			dossiers = 	dossiers.Where(x => ads.Any(o => o.Dossier_ID == x.Dossier_ID)).ToList();
+			}
+
+			if (txtLastName.Text != "")
+			{
+				var ads = adultes.Where(v => v.Prenom == txtLastName.Text).ToList();
+				dossiers = dossiers.Where(x => ads.Any(o => o.Dossier_ID == x.Dossier_ID)).ToList();
 			}
 
 			if (cboFolders.SelectedValue != null)
@@ -75,7 +86,7 @@ namespace ProjetMFTR.Forms
 
 			if (txtRechercheTelephone.Text != "")
 			{
-				var adultes = Connexion.Instance().Adultes.ToList();
+				adultes = Connexion.Instance().Adultes.ToList();
 				var telephones = Connexion.Instance().Telephone.Where(x => x.Telephone1.Equals(txtRechercheTelephone.Text)).ToList();
 				var adulte = adultes.Where(x => telephones.Any(v => v.Adulte_ID.Value.Equals(x.Adulte_ID))).ToList();
 				dossiers = dossiers.Where(x => adulte.Any(c => c.Dossier_ID.Equals(x.Dossier_ID))).ToList();
@@ -86,9 +97,8 @@ namespace ProjetMFTR.Forms
 
 		private void btnClearFilters_Click(object sender, EventArgs e)
 		{
-			chkDate.Checked = false;
+			txtFirstName.Text = txtLastName.Text = txtRechercheTelephone.Text = "";
 			cboFolders.SelectedValue = -1;
-			txtRechercheTelephone.Text = "";
 		}
 
 		private void btnSaveDossier_Click(object sender, EventArgs e)
@@ -98,7 +108,6 @@ namespace ProjetMFTR.Forms
 			var result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du dossier" + ResourcesString.STR_MessageUpdateConfirmation2,
 			ResourcesString.STR_TitleUpdateConfirmation,
 			MessageBoxButtons.OK, MessageBoxIcon.Information);
-			//bsData.DataSource = Connexion.Instance().Dossier.OrderByDescending((x) => x.Ouverture).ToList();
 		}
 
 		/// <summary>
