@@ -24,7 +24,11 @@ namespace ProjetMFTR.Forms
 		int rownum = 0;
 		#endregion
 
-		public Dossier()
+        private DossierNouveau m_NewDossier;
+
+        #endregion
+
+        public Dossier()
 		{
 			InitializeComponent();
 			Init();
@@ -207,4 +211,17 @@ namespace ProjetMFTR.Forms
 			OnGvListSelectionChanged();
 		}
 	}
+
+        private void btnAddFolder_Click(object sender, EventArgs e)
+        {
+            m_NewDossier = new DossierNouveau();
+            m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+            m_NewDossier.ShowDialog();
+        }
+
+        private void UpdateDataSource(object sender, EventArgs e)
+        {
+            Init();
+        }
+    }
 }
