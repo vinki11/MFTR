@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="583168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="584192">
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>s6jISS2iOsBd6HD8l7Vw28Jt420hFFnwiXFaFhk6vRw=</dsig:DigestValue>
+        <dsig:DigestValue>Vl8kCz8fNGyPdZZpMp8jW3W+WGcOJZ/9fpeoG2co41Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

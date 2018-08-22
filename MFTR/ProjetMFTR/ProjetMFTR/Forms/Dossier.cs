@@ -127,8 +127,13 @@ namespace ProjetMFTR.Forms
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
             m_NewDossier = new DossierNouveau();
-            //m_Suivi.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+            m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
             m_NewDossier.ShowDialog();
+        }
+
+        private void UpdateDataSource(object sender, EventArgs e)
+        {
+            Init();
         }
     }
 }
