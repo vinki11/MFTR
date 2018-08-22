@@ -19,9 +19,12 @@ namespace ProjetMFTR.Forms
 		#region Members
 		Entities.Dossier CurrentDossier;
 		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
-		#endregion
 
-		public Dossier()
+        private DossierNouveau m_NewDossier;
+
+        #endregion
+
+        public Dossier()
 		{
 			InitializeComponent();
 			Init();
@@ -120,5 +123,12 @@ namespace ProjetMFTR.Forms
 			CurrentDossier.Type = cboType.Text;
 			CurrentDossier.Remarque = rtxtRemarque.Text;
 		}
-	}
+
+        private void btnAddFolder_Click(object sender, EventArgs e)
+        {
+            m_NewDossier = new DossierNouveau();
+            //m_Suivi.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+            m_NewDossier.ShowDialog();
+        }
+    }
 }
