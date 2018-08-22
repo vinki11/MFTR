@@ -24,11 +24,10 @@ namespace ProjetMFTR.Forms
 		int rownum = 0;
 		#endregion
 
-        private DossierNouveau m_NewDossier;
+		private DossierNouveau m_NewDossier;
 
-        #endregion
 
-        public Dossier()
+		public Dossier()
 		{
 			InitializeComponent();
 			Init();
@@ -96,15 +95,15 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = gvList.CurrentRow;
 			if (row == null) return;
 
-			CurrentDossier = (Entities.Dossier) row.DataBoundItem;
-		var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
-		bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
+			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
+			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
 			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
-		bsDataKids.DataSource = kids;
+			bsDataKids.DataSource = kids;
 
 			//var parents = Connexion.Instance().Parent.Where(x => CurrentDossier.Adultes.Any(v => v.Adulte_ID.Equals(x.Adulte_ID))).ToList();
 			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
-		bsDataParents.DataSource = parents;
+			bsDataParents.DataSource = parents;
 		}
 
 		private void btnRecherche_Click(object sender, EventArgs e)
@@ -115,8 +114,8 @@ namespace ProjetMFTR.Forms
 
 			if (txtFirstName.Text != "")
 			{
-			var ads=	adultes.Where(v => v.Prenom == txtFirstName.Text).ToList();
-			dossiers = 	dossiers.Where(x => ads.Any(o => o.Dossier_ID == x.Dossier_ID)).ToList();
+				var ads = adultes.Where(v => v.Prenom == txtFirstName.Text).ToList();
+				dossiers = dossiers.Where(x => ads.Any(o => o.Dossier_ID == x.Dossier_ID)).ToList();
 			}
 
 			if (txtLastName.Text != "")
@@ -210,18 +209,14 @@ namespace ProjetMFTR.Forms
 			Connexion.Instance().SaveChanges();
 			OnGvListSelectionChanged();
 		}
+
+		private void btnAddFolder_Click(object sender, EventArgs e)
+		{
+			m_NewDossier = new DossierNouveau();
+			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewDossier.ShowDialog();
+		}
 	}
-
-        private void btnAddFolder_Click(object sender, EventArgs e)
-        {
-            m_NewDossier = new DossierNouveau();
-            m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-            m_NewDossier.ShowDialog();
-        }
-
-        private void UpdateDataSource(object sender, EventArgs e)
-        {
-            Init();
-        }
-    }
 }
+
+

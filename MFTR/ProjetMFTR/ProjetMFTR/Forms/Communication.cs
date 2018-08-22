@@ -63,7 +63,7 @@ namespace ProjetMFTR.Forms
 			cboTypeCommunication.Text = communication.Type;
 			cboEmployes.Text = Connexion.Instance().Intervenant.FirstOrDefault((x) => x.intervenant_id == communication.IdIntervenant)?.nom;
 			CurrentEntity = communication;
-		  if (communication.DateEven.HasValue) { dtpDateEvent.Value = communication.DateEven.Value;}
+			if (communication.DateEven.HasValue) { dtpDateEvent.Value = communication.DateEven.Value; }
 			if (communication.DateComm.HasValue) { dtpDateSuivi.Value = communication.DateComm.Value; }
 			dtpHours.Value = Convert.ToDateTime(communication.Heure.Value.ToString());
 			rtxtNotes.Text = communication.Note;
@@ -74,13 +74,13 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void AssignValues()
 		{
-			if(CurrentEntity == null) { return; }
+			if (CurrentEntity == null) { return; }
 
 			CurrentEntity.Dossier_ID = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
 			CurrentEntity.DateComm = dtpDateSuivi.Value.Date;
 			CurrentEntity.DateEven = dtpDateEvent.Value.Date;
-			CurrentEntity.Heure = new TimeSpan(dtpHours.Value.Hour,dtpHours.Value.Minute,dtpHours.Value.Second);
-			CurrentEntity.Referent_ID = (cboReferent.SelectedItem != null) ? ((Entities.Referent)cboReferent.SelectedItem).Referent_ID  : null;
+			CurrentEntity.Heure = new TimeSpan(dtpHours.Value.Hour, dtpHours.Value.Minute, dtpHours.Value.Second);
+			CurrentEntity.Referent_ID = (cboReferent.SelectedItem != null) ? ((Entities.Referent)cboReferent.SelectedItem).Referent_ID : null;
 			CurrentEntity.Note = rtxtNotes.Text;
 			CurrentEntity.Interlocuteur = cboInterlocuteur.Text;
 			CurrentEntity.Type = cboTypeCommunication.Text;
@@ -96,7 +96,7 @@ namespace ProjetMFTR.Forms
 		{
 			if (cboFolders.SelectedItem == null) { return; }
 
-			//cboReferent.DataSource = Connexion.Instance().Referent.Where(x => x.Adultes.Dossier.Equals((Entities.Dossier)cboFolders.SelectedItem)).ToList();
+			cboReferent.DataSource = Connexion.Instance().Referent.Where(x => x.Referent_ID == ((Entities.Dossier)cboFolders.SelectedItem).Referent_ID).ToList();
 		}
 
 		#region Binding

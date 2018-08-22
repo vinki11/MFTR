@@ -11,7 +11,7 @@ using ProjetMFTR.Resources;
 
 namespace ProjetMFTR
 {
-    public partial class SuivisList : Form
+	public partial class SuivisList : Form
 	{
 		#region Members
 
@@ -56,7 +56,7 @@ namespace ProjetMFTR
 		private void btnRecherche_Click(object sender, EventArgs e)
 		{
 			string dossier = null;
-			int? enfant = null,intervenant = null;
+			int? enfant = null, intervenant = null;
 			List<Entities.Suivi> suivis = Connexion.Instance().Suivi.ToList();
 
 			if (chkDate.Checked)
@@ -83,7 +83,7 @@ namespace ProjetMFTR
 			}
 
 			bsData.DataSource = null;
-			bsData.DataSource = suivis.OrderBy( x => x.dateSuivi).ToList();
+			bsData.DataSource = suivis.OrderBy(x => x.dateSuivi).ToList();
 		}
 
 		/// <summary>
@@ -102,9 +102,9 @@ namespace ProjetMFTR
 			DataGridViewSelectedRowCollection rows = gvList.SelectedRows;
 			try
 			{
-			foreach (DataGridViewRow row in rows) { Connexion.Instance().Suivi.Remove((Entities.Suivi)row.DataBoundItem); }
+				foreach (DataGridViewRow row in rows) { Connexion.Instance().Suivi.Remove((Entities.Suivi)row.DataBoundItem); }
 			}
-			catch(Exception ee)
+			catch (Exception ee)
 			{
 				Connexion.Instance().Dispose();
 				return;
@@ -130,11 +130,11 @@ namespace ProjetMFTR
 
 			foreach (DataGridViewRow row in rows)
 			{
-			Entities.Suivi s = (Entities.Suivi)row.DataBoundItem;
-			suivis.Add(s);
+				Entities.Suivi s = (Entities.Suivi)row.DataBoundItem;
+				suivis.Add(s);
 			}
 
-			foreach(Entities.Suivi s in suivis.OrderBy(f => f.dateSuivi))
+			foreach (Entities.Suivi s in suivis.OrderBy(f => f.dateSuivi))
 			{
 				connexionActions.Print(s, pd);
 			}

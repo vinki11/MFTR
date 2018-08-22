@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Communication));
 			this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -60,7 +61,6 @@
 			this.cboMotif = new System.Windows.Forms.ComboBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.cboInterlocuteur = new System.Windows.Forms.ComboBox();
-			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
 			this.bindingNavigator1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
@@ -90,6 +90,10 @@
 			this.bindingNavigator1.Size = new System.Drawing.Size(856, 25);
 			this.bindingNavigator1.TabIndex = 15;
 			this.bindingNavigator1.Text = "bindingNavigator1";
+			// 
+			// bsData
+			// 
+			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
 			// 
 			// bindingNavigatorMoveFirstItem
 			// 
@@ -373,10 +377,6 @@
 			this.cboInterlocuteur.Name = "cboInterlocuteur";
 			this.cboInterlocuteur.Size = new System.Drawing.Size(262, 21);
 			this.cboInterlocuteur.TabIndex = 36;
-			// 
-			// bsData
-			// 
-			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
 			// 
 			// Communication
 			// 

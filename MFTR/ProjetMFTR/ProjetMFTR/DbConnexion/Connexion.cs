@@ -80,7 +80,7 @@ namespace ProjetMFTR.DataAccess
 			}
 
 
-			public void Print(TEntity entity,PrintDialog pd)
+			public void Print(TEntity entity, PrintDialog pd)
 			{
 				if (entity == null) { return; }
 
@@ -116,7 +116,7 @@ namespace ProjetMFTR.DataAccess
 				pdoc.PrintPage += new PrintPageEventHandler(pdoc_PrintPage);
 
 				strPrint = suivi.remarque;
-				pdoc.Print(); 
+				pdoc.Print();
 			}
 			void pdoc_PrintPage(object sender, PrintPageEventArgs e)
 			{
@@ -137,7 +137,7 @@ namespace ProjetMFTR.DataAccess
 					Offset = Offset + 20;
 					graphics.DrawString("Suivi :" + suivi.suivi_id,
 					font,
-				  brush, startX, startY + Offset);
+					brush, startX, startY + Offset);
 					Offset = Offset + 20;
 					graphics.DrawString("Date du suivi :" + suivi.dateSuivi,
 					font,
