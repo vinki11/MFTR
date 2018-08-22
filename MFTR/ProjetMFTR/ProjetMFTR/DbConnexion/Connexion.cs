@@ -33,6 +33,8 @@ namespace ProjetMFTR.DataAccess
 					m_Instance.Database.Connection.ConnectionString = lines[0];
 					m_Instance.Configuration.LazyLoadingEnabled = true;
 				}
+
+				//m_Instance.Database.Connection.Open(); 
 			}
 			return m_Instance;
 		}

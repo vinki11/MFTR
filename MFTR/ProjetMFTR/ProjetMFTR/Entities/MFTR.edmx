@@ -50,6 +50,7 @@
           <Property Name="Intervenant" Type="nchar" MaxLength="150" />
           <Property Name="Temp_interlocuteur" Type="nvarchar" MaxLength="100" />
           <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IdIntervenant" Type="int" />
         </EntityType>
         <EntityType Name="Dossier">
           <Key>
@@ -84,9 +85,8 @@
             <PropertyRef Name="intervenant_id" />
           </Key>
           <Property Name="intervenant_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="actif" Type="int" />
+          <Property Name="nom" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="actif" Type="bit" />
         </EntityType>
         <EntityType Name="LienReferrent">
           <Key>
@@ -232,7 +232,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Suivi__dossier_i__25DB9BFC">
+        <Association Name="FK__Suivi__dossier_i__38EE7070">
           <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
           <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -244,7 +244,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Suivi__enfant_id__24E777C3">
+        <Association Name="FK__Suivi__enfant_id__37FA4C37">
           <End Role="Enfants" Type="Self.Enfants" Multiplicity="1" />
           <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -256,7 +256,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Suivi__intervena__23F3538A">
+        <Association Name="FK__Suivi__intervena__370627FE">
           <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="1" />
           <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,6 +279,18 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Principal>
             <Dependent Role="Communication">
               <PropertyRef Name="Dossier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communication_IdIntervenant">
+          <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="0..1" />
+          <End Role="Communication" Type="Self.Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intervenant">
+              <PropertyRef Name="intervenant_id" />
+            </Principal>
+            <Dependent Role="Communication">
+              <PropertyRef Name="IdIntervenant" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -412,20 +424,24 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             <End Role="Dossier" EntitySet="Dossier" />
             <End Role="Enfants" EntitySet="Enfants" />
           </AssociationSet>
-          <AssociationSet Name="FK__Suivi__dossier_i__25DB9BFC" Association="Self.FK__Suivi__dossier_i__25DB9BFC">
+          <AssociationSet Name="FK__Suivi__dossier_i__38EE7070" Association="Self.FK__Suivi__dossier_i__38EE7070">
             <End Role="Dossier" EntitySet="Dossier" />
             <End Role="Suivi" EntitySet="Suivi" />
           </AssociationSet>
-          <AssociationSet Name="FK__Suivi__enfant_id__24E777C3" Association="Self.FK__Suivi__enfant_id__24E777C3">
+          <AssociationSet Name="FK__Suivi__enfant_id__37FA4C37" Association="Self.FK__Suivi__enfant_id__37FA4C37">
             <End Role="Enfants" EntitySet="Enfants" />
             <End Role="Suivi" EntitySet="Suivi" />
           </AssociationSet>
-          <AssociationSet Name="FK__Suivi__intervena__23F3538A" Association="Self.FK__Suivi__intervena__23F3538A">
+          <AssociationSet Name="FK__Suivi__intervena__370627FE" Association="Self.FK__Suivi__intervena__370627FE">
             <End Role="Intervenant" EntitySet="Intervenant" />
             <End Role="Suivi" EntitySet="Suivi" />
           </AssociationSet>
           <AssociationSet Name="FK_Communication_Dossier" Association="Self.FK_Communication_Dossier">
             <End Role="Dossier" EntitySet="Dossier" />
+            <End Role="Communication" EntitySet="Communication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communication_IdIntervenant" Association="Self.FK_Communication_IdIntervenant">
+            <End Role="Intervenant" EntitySet="Intervenant" />
             <End Role="Communication" EntitySet="Communication" />
           </AssociationSet>
           <AssociationSet Name="FK_Transporteur_Parent" Association="Self.FK_Transporteur_Parent">
@@ -513,6 +529,8 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Property Name="Temp_interlocuteur" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Dossier" Relationship="Self.FK_Communication_Dossier" FromRole="Communication" ToRole="Dossier" />
+          <Property Name="IdIntervenant" Type="Int32" />
+          <NavigationProperty Name="Intervenant1" Relationship="MFTRModel.FK_Communication_IdIntervenant" FromRole="Communication" ToRole="Intervenant" />
         </EntityType>
         <EntityType Name="Dossier">
           <Key>
@@ -548,16 +566,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Dossier" Relationship="Self.Enfants_Dossier2Enfants" FromRole="Enfants" ToRole="Dossier" />
           <NavigationProperty Name="Suivi" Relationship="Self.FK__Suivi__enfant_id__24E777C3" FromRole="Enfants" ToRole="Suivi" />
-        </EntityType>
-        <EntityType Name="Intervenant">
-          <Key>
-            <PropertyRef Name="intervenant_id" />
-          </Key>
-          <Property Name="intervenant_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="actif" Type="Int32" />
-          <NavigationProperty Name="Suivi" Relationship="Self.FK__Suivi__intervena__23F3538A" FromRole="Intervenant" ToRole="Suivi" />
         </EntityType>
         <EntityType Name="LienReferrent">
           <Key>
@@ -625,7 +633,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Property Name="intervenant_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dossier" Relationship="Self.FK__Suivi__dossier_i__25DB9BFC" FromRole="Suivi" ToRole="Dossier" />
           <NavigationProperty Name="Enfants" Relationship="Self.FK__Suivi__enfant_id__24E777C3" FromRole="Suivi" ToRole="Enfants" />
-          <NavigationProperty Name="Intervenant" Relationship="Self.FK__Suivi__intervena__23F3538A" FromRole="Suivi" ToRole="Intervenant" />
+          <NavigationProperty Name="Intervenant" Relationship="MFTRModel.FK__Suivi__intervena__370627FE" FromRole="Suivi" ToRole="Intervenant" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -808,18 +816,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Suivi__intervena__23F3538A">
-          <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="1" />
-          <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Intervenant">
-              <PropertyRef Name="intervenant_id" />
-            </Principal>
-            <Dependent Role="Suivi">
-              <PropertyRef Name="intervenant_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="LienReferrent_ParentLienReferrent">
           <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -866,7 +862,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <EntitySet Name="Communication" EntityType="Self.Communication" />
           <EntitySet Name="Dossier" EntityType="Self.Dossier" />
           <EntitySet Name="Enfants" EntityType="Self.Enfants" />
-          <EntitySet Name="Intervenant" EntityType="Self.Intervenant" />
           <EntitySet Name="LienReferrent" EntityType="Self.LienReferrent" />
           <EntitySet Name="Parent" EntityType="Self.Parent" />
           <EntitySet Name="Referent" EntityType="Self.Referent" />
@@ -916,10 +911,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             <End Role="Enfants" EntitySet="Enfants" />
             <End Role="Suivi" EntitySet="Suivi" />
           </AssociationSet>
-          <AssociationSet Name="FK__Suivi__intervena__23F3538A" Association="Self.FK__Suivi__intervena__23F3538A">
-            <End Role="Intervenant" EntitySet="Intervenant" />
-            <End Role="Suivi" EntitySet="Suivi" />
-          </AssociationSet>
           <AssociationSet Name="LienReferrent_ParentLienReferrent" Association="Self.LienReferrent_ParentLienReferrent">
             <End Role="Parent" EntitySet="Parent" />
             <End Role="LienReferrent" EntitySet="LienReferrent" />
@@ -932,7 +923,50 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             <End Role="Parent" EntitySet="Parent" />
             <End Role="Transporteur" EntitySet="Transporteur" />
           </AssociationSet>
+          <EntitySet Name="Intervenant" EntityType="MFTRModel.Intervenant" />
+          <AssociationSet Name="FK__Suivi__intervena__370627FE" Association="MFTRModel.FK__Suivi__intervena__370627FE">
+            <End Role="Intervenant" EntitySet="Intervenant" />
+            <End Role="Suivi" EntitySet="Suivi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Communication_IdIntervenant" Association="MFTRModel.FK_Communication_IdIntervenant">
+            <End Role="Intervenant" EntitySet="Intervenant" />
+            <End Role="Communication" EntitySet="Communication" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Intervenant">
+          <Key>
+            <PropertyRef Name="intervenant_id" />
+          </Key>
+          <Property Name="intervenant_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="actif" Type="Boolean" />
+          <NavigationProperty Name="Suivi" Relationship="MFTRModel.FK__Suivi__intervena__370627FE" FromRole="Intervenant" ToRole="Suivi" />
+          <NavigationProperty Name="Communication" Relationship="MFTRModel.FK_Communication_IdIntervenant" FromRole="Intervenant" ToRole="Communication" />
+        </EntityType>
+        <Association Name="FK__Suivi__intervena__370627FE">
+          <End Type="MFTRModel.Intervenant" Role="Intervenant" Multiplicity="1" />
+          <End Type="MFTRModel.Suivi" Role="Suivi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intervenant">
+              <PropertyRef Name="intervenant_id" />
+            </Principal>
+            <Dependent Role="Suivi">
+              <PropertyRef Name="intervenant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Communication_IdIntervenant">
+          <End Type="MFTRModel.Intervenant" Role="Intervenant" Multiplicity="0..1" />
+          <End Type="MFTRModel.Communication" Role="Communication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intervenant">
+              <PropertyRef Name="intervenant_id" />
+            </Principal>
+            <Dependent Role="Communication">
+              <PropertyRef Name="IdIntervenant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -971,6 +1005,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <EntitySetMapping Name="Communication">
             <EntityTypeMapping TypeName="MFTRModel.Communication">
               <MappingFragment StoreEntitySet="Communication">
+                <ScalarProperty Name="IdIntervenant" ColumnName="IdIntervenant" />
                 <ScalarProperty Name="Communication_ID" ColumnName="Communication_ID" />
                 <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
                 <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
@@ -1015,16 +1050,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
                 <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Intervenant">
-            <EntityTypeMapping TypeName="MFTRModel.Intervenant">
-              <MappingFragment StoreEntitySet="Intervenant">
-                <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
-                <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="prenom" ColumnName="prenom" />
-                <ScalarProperty Name="actif" ColumnName="actif" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1134,6 +1159,15 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
                 <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="temp_avocat" ColumnName="temp_avocat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intervenant">
+            <EntityTypeMapping TypeName="MFTRModel.Intervenant">
+              <MappingFragment StoreEntitySet="Intervenant">
+                <ScalarProperty Name="actif" ColumnName="actif" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

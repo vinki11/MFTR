@@ -32,7 +32,7 @@ namespace ProjetMFTR.Forms
             {
                 toggleChamps(false);
                 this.txtNom.Text = currentIntervenant.nom;
-                this.chbActif.CheckState = (CheckState)currentIntervenant.actif;
+                this.chbActif.Checked = currentIntervenant.actif.Value;
             }
             else
             {
@@ -51,12 +51,12 @@ namespace ProjetMFTR.Forms
             if (!chkInactifs.Checked)
             {
                 //On affiche seulement les intervenants actifs
-                intervenants = intervenants.Where((x) => x.actif.Equals(1)).ToList();
+                intervenants = intervenants.Where((x) => x.actif.Value).ToList();
             }
             else
             {
                 //On affiche seulement les inactifs
-                intervenants = intervenants.Where((x) => x.actif.Equals(0)).ToList();
+                intervenants = intervenants.Where((x) => !x.actif.Value).ToList();
             }
 
             cboIntervenant.Text = "";
@@ -154,8 +154,7 @@ namespace ProjetMFTR.Forms
             else
             {
                 currentIntervenant.nom = this.txtNom.Text;
-                currentIntervenant.actif = (int)this.chbActif.CheckState;
-                currentIntervenant.prenom = ""; //temporaire, va etre flushé quand on va réupdater les modeles
+                currentIntervenant.actif = this.chbActif.Checked;
 
                 if (editMode == EditMode.Edit)
                 {

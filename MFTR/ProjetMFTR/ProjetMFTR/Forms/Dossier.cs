@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Entities;
 using ProjetMFTR.Resources;
 
@@ -19,6 +20,8 @@ namespace ProjetMFTR.Forms
 		#region Members
 		Entities.Dossier CurrentDossier;
 		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
+		Communication communication;
+		int rownum = 0;
 		#endregion
 
 		public Dossier()
@@ -30,6 +33,8 @@ namespace ProjetMFTR.Forms
 		public void Init()
 		{
 			bsData.DataSource = Connexion.Instance().Dossier.OrderByDescending((x) => x.Ouverture).ToList();
+			gvParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
+			gvParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
 			InitialiseCombos();
 		}
 
@@ -47,17 +52,55 @@ namespace ProjetMFTR.Forms
 		private void btnAddCommunication_Click(object sender, EventArgs e)
 		{
 			//Nouvelle communication
-		
+			communication = new Communication();
+			communication.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			communication.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
+			communication.Show();
+		}
+
+		private void UpdateDataSource(object sender, EventArgs e)
+		{
+			Init();
+		}
+
+		private void CommunicationAdded(object sender, Entities.Communication e)
+		{
+			if (((Entities.Dossier)bsData.Current).Dossier_ID.Equals(e.Dossier_ID))
+			{
+				bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(e.Dossier_ID)).OrderByDescending(c => c.DateComm).ToList();
+			}
+		}
+
+		/// <summary>
+		/// Sur le double click sur une row
+		/// </summary>
+		private void gvCommunications_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvCommunications.CurrentRow;
+			communication = new Communication((Entities.Communication)row.DataBoundItem);
+			communication.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
+			communication.Show();
 		}
 
 		private void gvList_SelectionChanged(object sender, EventArgs e)
 		{
+			OnGvListSelectionChanged();
+		}
+
+		private void OnGvListSelectionChanged()
+		{
 			DataGridViewRow row = gvList.CurrentRow;
 			if (row == null) return;
 
-			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
-			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
-			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
+			CurrentDossier = (Entities.Dossier) row.DataBoundItem;
+		var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+		bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
+			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+		bsDataKids.DataSource = kids;
+
+			//var parents = Connexion.Instance().Parent.Where(x => CurrentDossier.Adultes.Any(v => v.Adulte_ID.Equals(x.Adulte_ID))).ToList();
+			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
+		bsDataParents.DataSource = parents;
 		}
 
 		private void btnRecherche_Click(object sender, EventArgs e)
@@ -74,7 +117,7 @@ namespace ProjetMFTR.Forms
 
 			if (txtLastName.Text != "")
 			{
-				var ads = adultes.Where(v => v.Prenom == txtLastName.Text).ToList();
+				var ads = adultes.Where(v => v.Nom == txtLastName.Text).ToList();
 				dossiers = dossiers.Where(x => ads.Any(o => o.Dossier_ID == x.Dossier_ID)).ToList();
 			}
 
@@ -119,6 +162,49 @@ namespace ProjetMFTR.Forms
 			CurrentDossier.Ouverture = dtpDossier.Value.Date;
 			CurrentDossier.Type = cboType.Text;
 			CurrentDossier.Remarque = rtxtRemarque.Text;
+		}
+
+		private void gvParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			try
+			{
+				if ((gvParents.Rows[e.RowIndex].DataBoundItem != null) &&
+								(gvParents.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
+				{
+					e.Value = Helper.BindProperty(
+												gvParents.Rows[e.RowIndex].DataBoundItem,
+												gvParents.Columns[e.ColumnIndex].DataPropertyName
+											);
+				}
+			}
+			catch (Exception)
+			{
+
+				return;
+			}
+
+		}
+		private void gvParents_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		{
+			e.ContextMenuStrip = contextMenu;
+			rownum = e.RowIndex;
+		}
+
+		private void addRow_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void deleteRow_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = gvParents.CurrentRow;
+			if (row == null) return;
+
+			var parent = (Entities.Parent)row.DataBoundItem;
+
+			Connexion.Instance().Parent.Remove(parent);
+			Connexion.Instance().SaveChanges();
+			OnGvListSelectionChanged();
 		}
 	}
 }

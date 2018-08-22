@@ -24,16 +24,16 @@ namespace ProjetMFTR.Entities
         public string Dossier_ID { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string Name { get { return Prenom + ", " + Nom; }}
         public string Sexe { get; set; }
-		public Nullable<System.DateTime> Naissance { get; set; }
+        public Nullable<System.DateTime> Naissance { get; set; }
         public Nullable<bool> Accueil { get; set; }
         public string Notes { get; set; }
         public string Referent_ID { get; set; }
         public string Photo { get; set; }
         public byte[] SSMA_TimeStamp { get; set; }
-    
-        public virtual Dossier Dossier { get; set; }
+		    public string Name { get { return Prenom + ", " + Nom; } }
+
+		public virtual Dossier Dossier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suivi> Suivi { get; set; }
     }

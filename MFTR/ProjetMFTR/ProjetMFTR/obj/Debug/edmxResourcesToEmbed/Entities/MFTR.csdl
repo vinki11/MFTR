@@ -52,6 +52,8 @@
     <Property Name="Temp_interlocuteur" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="Dossier" Relationship="Self.FK_Communication_Dossier" FromRole="Communication" ToRole="Dossier" />
+    <Property Name="IdIntervenant" Type="Int32" />
+    <NavigationProperty Name="Intervenant1" Relationship="MFTRModel.FK_Communication_IdIntervenant" FromRole="Communication" ToRole="Intervenant" />
   </EntityType>
   <EntityType Name="Dossier">
     <Key>
@@ -87,16 +89,6 @@
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="Dossier" Relationship="Self.Enfants_Dossier2Enfants" FromRole="Enfants" ToRole="Dossier" />
     <NavigationProperty Name="Suivi" Relationship="Self.FK__Suivi__enfant_id__24E777C3" FromRole="Enfants" ToRole="Suivi" />
-  </EntityType>
-  <EntityType Name="Intervenant">
-    <Key>
-      <PropertyRef Name="intervenant_id" />
-    </Key>
-    <Property Name="intervenant_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="actif" Type="Int32" />
-    <NavigationProperty Name="Suivi" Relationship="Self.FK__Suivi__intervena__23F3538A" FromRole="Intervenant" ToRole="Suivi" />
   </EntityType>
   <EntityType Name="LienReferrent">
     <Key>
@@ -164,7 +156,7 @@
     <Property Name="intervenant_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Dossier" Relationship="Self.FK__Suivi__dossier_i__25DB9BFC" FromRole="Suivi" ToRole="Dossier" />
     <NavigationProperty Name="Enfants" Relationship="Self.FK__Suivi__enfant_id__24E777C3" FromRole="Suivi" ToRole="Enfants" />
-    <NavigationProperty Name="Intervenant" Relationship="Self.FK__Suivi__intervena__23F3538A" FromRole="Suivi" ToRole="Intervenant" />
+    <NavigationProperty Name="Intervenant" Relationship="MFTRModel.FK__Suivi__intervena__370627FE" FromRole="Suivi" ToRole="Intervenant" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -347,18 +339,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Suivi__intervena__23F3538A">
-    <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="1" />
-    <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Intervenant">
-        <PropertyRef Name="intervenant_id" />
-      </Principal>
-      <Dependent Role="Suivi">
-        <PropertyRef Name="intervenant_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="LienReferrent_ParentLienReferrent">
     <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -405,7 +385,6 @@
     <EntitySet Name="Communication" EntityType="Self.Communication" />
     <EntitySet Name="Dossier" EntityType="Self.Dossier" />
     <EntitySet Name="Enfants" EntityType="Self.Enfants" />
-    <EntitySet Name="Intervenant" EntityType="Self.Intervenant" />
     <EntitySet Name="LienReferrent" EntityType="Self.LienReferrent" />
     <EntitySet Name="Parent" EntityType="Self.Parent" />
     <EntitySet Name="Referent" EntityType="Self.Referent" />
@@ -455,10 +434,6 @@
       <End Role="Enfants" EntitySet="Enfants" />
       <End Role="Suivi" EntitySet="Suivi" />
     </AssociationSet>
-    <AssociationSet Name="FK__Suivi__intervena__23F3538A" Association="Self.FK__Suivi__intervena__23F3538A">
-      <End Role="Intervenant" EntitySet="Intervenant" />
-      <End Role="Suivi" EntitySet="Suivi" />
-    </AssociationSet>
     <AssociationSet Name="LienReferrent_ParentLienReferrent" Association="Self.LienReferrent_ParentLienReferrent">
       <End Role="Parent" EntitySet="Parent" />
       <End Role="LienReferrent" EntitySet="LienReferrent" />
@@ -471,5 +446,48 @@
       <End Role="Parent" EntitySet="Parent" />
       <End Role="Transporteur" EntitySet="Transporteur" />
     </AssociationSet>
+    <EntitySet Name="Intervenant" EntityType="MFTRModel.Intervenant" />
+    <AssociationSet Name="FK__Suivi__intervena__370627FE" Association="MFTRModel.FK__Suivi__intervena__370627FE">
+      <End Role="Intervenant" EntitySet="Intervenant" />
+      <End Role="Suivi" EntitySet="Suivi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Communication_IdIntervenant" Association="MFTRModel.FK_Communication_IdIntervenant">
+      <End Role="Intervenant" EntitySet="Intervenant" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Intervenant">
+    <Key>
+      <PropertyRef Name="intervenant_id" />
+    </Key>
+    <Property Name="intervenant_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="actif" Type="Boolean" />
+    <NavigationProperty Name="Suivi" Relationship="MFTRModel.FK__Suivi__intervena__370627FE" FromRole="Intervenant" ToRole="Suivi" />
+    <NavigationProperty Name="Communication" Relationship="MFTRModel.FK_Communication_IdIntervenant" FromRole="Intervenant" ToRole="Communication" />
+  </EntityType>
+  <Association Name="FK__Suivi__intervena__370627FE">
+    <End Type="MFTRModel.Intervenant" Role="Intervenant" Multiplicity="1" />
+    <End Type="MFTRModel.Suivi" Role="Suivi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intervenant">
+        <PropertyRef Name="intervenant_id" />
+      </Principal>
+      <Dependent Role="Suivi">
+        <PropertyRef Name="intervenant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Communication_IdIntervenant">
+    <End Type="MFTRModel.Intervenant" Role="Intervenant" Multiplicity="0..1" />
+    <End Type="MFTRModel.Communication" Role="Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intervenant">
+        <PropertyRef Name="intervenant_id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="IdIntervenant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

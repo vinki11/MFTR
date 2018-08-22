@@ -30,7 +30,6 @@ namespace ProjetMFTR.Entities
         public virtual DbSet<Communication> Communication { get; set; }
         public virtual DbSet<Dossier> Dossier { get; set; }
         public virtual DbSet<Enfants> Enfants { get; set; }
-        public virtual DbSet<Intervenant> Intervenant { get; set; }
         public virtual DbSet<LienReferrent> LienReferrent { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
         public virtual DbSet<Referent> Referent { get; set; }
@@ -40,5 +39,6 @@ namespace ProjetMFTR.Entities
         public virtual DbSet<Telephone> Telephone { get; set; }
         public virtual DbSet<Transporteur> Transporteur { get; set; }
         public virtual DbSet<new_table> new_table { get; set; }
+        public virtual DbSet<Intervenant> Intervenant { get; set; }
     }
 }

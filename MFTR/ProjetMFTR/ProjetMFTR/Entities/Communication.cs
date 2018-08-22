@@ -28,7 +28,9 @@ namespace ProjetMFTR.Entities
         public string Intervenant { get; set; }
         public string Temp_interlocuteur { get; set; }
         public byte[] SSMA_TimeStamp { get; set; }
+        public Nullable<int> IdIntervenant { get; set; }
     
         public virtual Dossier Dossier { get; set; }
+        public virtual Intervenant Intervenant1 { get; set; }
     }
 }

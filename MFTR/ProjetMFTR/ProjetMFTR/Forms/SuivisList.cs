@@ -27,14 +27,11 @@ namespace ProjetMFTR
 		/// </summary>
 		public SuivisList()
 		{
-			//Thread thread = new Thread(new ThreadStart(Splash));
-			//thread.Start();
 			InitializeComponent();
 			//Initialisation des combosbox
 			Init();
 			InitialiseCombos();
-			//thread.Abort();
-			//this.Focus();
+
 		}
 
 		#endregion

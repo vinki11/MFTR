@@ -34,3 +34,19 @@ INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Marika Pruneau',1)
 INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Mathilde Fallu',1)
 INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Nathan Grenier Gauvin',1)
 INSERT INTO [dbo].[Intervenant]([nom],[actif]) VALUES('Yanni Gélinas',1)
+
+
+
+
+------------------------------------
+
+
+IF COL_LENGTH('dbo.Communication', 'IdIntervenant') IS NULL
+BEGIN
+   ALTER TABLE Communication
+	ADD IdIntervenant int
+END
+
+ALTER TABLE Communication
+ADD CONSTRAINT FK_Communication_IdIntervenant
+FOREIGN KEY (IdIntervenant) REFERENCES Intervenant(intervenant_id);

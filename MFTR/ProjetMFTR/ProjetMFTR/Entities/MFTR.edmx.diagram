@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="MFTRModel.Communication" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MFTRModel.Dossier" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MFTRModel.Enfants" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MFTRModel.Intervenant" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MFTRModel.LienReferrent" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MFTRModel.Parent" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MFTRModel.Referent" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
@@ -30,10 +29,12 @@
         <AssociationConnector Association="MFTRModel.FK__Suivi__dossier_i__25DB9BFC" ManuallyRouted="false" />
         <AssociationConnector Association="MFTRModel.Services_Dossier2Services" ManuallyRouted="false" />
         <AssociationConnector Association="MFTRModel.FK__Suivi__enfant_id__24E777C3" ManuallyRouted="false" />
-        <AssociationConnector Association="MFTRModel.FK__Suivi__intervena__23F3538A" ManuallyRouted="false" />
         <AssociationConnector Association="MFTRModel.LienReferrent_ParentLienReferrent" ManuallyRouted="false" />
         <AssociationConnector Association="MFTRModel.LienReferrent_ReferentLienReferrent" ManuallyRouted="false" />
         <AssociationConnector Association="MFTRModel.FK_Transporteur_Parent" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MFTRModel.Intervenant" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="MFTRModel.FK__Suivi__intervena__370627FE" />
+        <AssociationConnector Association="MFTRModel.FK_Communication_IdIntervenant" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

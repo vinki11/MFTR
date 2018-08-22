@@ -21,7 +21,7 @@ namespace ProjetMFTR.Forms
 						Thread.Sleep(2000);
             thread.Abort();
             Focus();
-			TopMost = true;
+						TopMost = true;
         }
 
         void Splash()
@@ -39,7 +39,7 @@ namespace ProjetMFTR.Forms
             }
             catch (Exception e)
             {
-
+				frm.Close();	
             }
         }
         /// <summary>
@@ -70,7 +70,16 @@ namespace ProjetMFTR.Forms
 					TopMost = false;
 					Dossier dossier = new Dossier();
 					dossier.ShowDialog();
-		}
+				}
 
+				/// <summary>
+				/// Accède à la fenêtre des communications
+				/// </summary>
+				private void button1_Click(object sender, EventArgs e)
+				{
+					TopMost = false;
+					Communication communication = new Communication();
+					communication.ShowDialog();
+				}
 	}
 }

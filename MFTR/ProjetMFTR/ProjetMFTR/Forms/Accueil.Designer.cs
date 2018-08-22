@@ -30,7 +30,7 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
 			this.label1 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnCommunication = new System.Windows.Forms.Button();
 			this.btnGestionIntervenant = new System.Windows.Forms.Button();
 			this.btnGestionDossier = new System.Windows.Forms.Button();
 			this.btnGestionSuivi = new System.Windows.Forms.Button();
@@ -48,21 +48,22 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Maison de la famille de Trois-Rivières inc, 2018";
 			// 
-			// button1
+			// btnCommunication
 			// 
-			this.button1.BackColor = System.Drawing.Color.Salmon;
-			this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.ForeColor = System.Drawing.Color.Black;
-			this.button1.Image = global::ProjetMFTR.Properties.Resources.icone_chat64;
-			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button1.Location = new System.Drawing.Point(12, 292);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(458, 80);
-			this.button1.TabIndex = 5;
-			this.button1.Text = "Communication";
-			this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.button1.UseVisualStyleBackColor = false;
+			this.btnCommunication.BackColor = System.Drawing.Color.Salmon;
+			this.btnCommunication.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnCommunication.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnCommunication.ForeColor = System.Drawing.Color.Black;
+			this.btnCommunication.Image = global::ProjetMFTR.Properties.Resources.icone_chat64;
+			this.btnCommunication.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnCommunication.Location = new System.Drawing.Point(12, 292);
+			this.btnCommunication.Name = "btnCommunication";
+			this.btnCommunication.Size = new System.Drawing.Size(458, 80);
+			this.btnCommunication.TabIndex = 5;
+			this.btnCommunication.Text = "Communication";
+			this.btnCommunication.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnCommunication.UseVisualStyleBackColor = false;
+			this.btnCommunication.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// btnGestionIntervenant
 			// 
@@ -129,7 +130,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(661, 417);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnCommunication);
 			this.Controls.Add(this.btnGestionIntervenant);
 			this.Controls.Add(this.btnGestionDossier);
 			this.Controls.Add(this.btnGestionSuivi);
@@ -153,6 +154,6 @@
         private System.Windows.Forms.Button btnGestionSuivi;
         private System.Windows.Forms.Button btnGestionDossier;
         private System.Windows.Forms.Button btnGestionIntervenant;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnCommunication;
 	}
 }

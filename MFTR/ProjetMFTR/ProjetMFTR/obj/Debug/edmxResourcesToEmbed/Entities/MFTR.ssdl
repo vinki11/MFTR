@@ -45,6 +45,7 @@
     <Property Name="Intervenant" Type="nchar" MaxLength="150" />
     <Property Name="Temp_interlocuteur" Type="nvarchar" MaxLength="100" />
     <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IdIntervenant" Type="int" />
   </EntityType>
   <EntityType Name="Dossier">
     <Key>
@@ -79,9 +80,8 @@
       <PropertyRef Name="intervenant_id" />
     </Key>
     <Property Name="intervenant_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="actif" Type="int" />
+    <Property Name="nom" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="actif" Type="bit" />
   </EntityType>
   <EntityType Name="LienReferrent">
     <Key>
@@ -227,7 +227,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Suivi__dossier_i__25DB9BFC">
+  <Association Name="FK__Suivi__dossier_i__38EE7070">
     <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
     <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,7 +239,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Suivi__enfant_id__24E777C3">
+  <Association Name="FK__Suivi__enfant_id__37FA4C37">
     <End Role="Enfants" Type="Self.Enfants" Multiplicity="1" />
     <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
     <ReferentialConstraint>
@@ -251,7 +251,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Suivi__intervena__23F3538A">
+  <Association Name="FK__Suivi__intervena__370627FE">
     <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="1" />
     <End Role="Suivi" Type="Self.Suivi" Multiplicity="*" />
     <ReferentialConstraint>
@@ -274,6 +274,18 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       </Principal>
       <Dependent Role="Communication">
         <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Communication_IdIntervenant">
+    <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="0..1" />
+    <End Role="Communication" Type="Self.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intervenant">
+        <PropertyRef Name="intervenant_id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="IdIntervenant" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -407,20 +419,24 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       <End Role="Dossier" EntitySet="Dossier" />
       <End Role="Enfants" EntitySet="Enfants" />
     </AssociationSet>
-    <AssociationSet Name="FK__Suivi__dossier_i__25DB9BFC" Association="Self.FK__Suivi__dossier_i__25DB9BFC">
+    <AssociationSet Name="FK__Suivi__dossier_i__38EE7070" Association="Self.FK__Suivi__dossier_i__38EE7070">
       <End Role="Dossier" EntitySet="Dossier" />
       <End Role="Suivi" EntitySet="Suivi" />
     </AssociationSet>
-    <AssociationSet Name="FK__Suivi__enfant_id__24E777C3" Association="Self.FK__Suivi__enfant_id__24E777C3">
+    <AssociationSet Name="FK__Suivi__enfant_id__37FA4C37" Association="Self.FK__Suivi__enfant_id__37FA4C37">
       <End Role="Enfants" EntitySet="Enfants" />
       <End Role="Suivi" EntitySet="Suivi" />
     </AssociationSet>
-    <AssociationSet Name="FK__Suivi__intervena__23F3538A" Association="Self.FK__Suivi__intervena__23F3538A">
+    <AssociationSet Name="FK__Suivi__intervena__370627FE" Association="Self.FK__Suivi__intervena__370627FE">
       <End Role="Intervenant" EntitySet="Intervenant" />
       <End Role="Suivi" EntitySet="Suivi" />
     </AssociationSet>
     <AssociationSet Name="FK_Communication_Dossier" Association="Self.FK_Communication_Dossier">
       <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Communication_IdIntervenant" Association="Self.FK_Communication_IdIntervenant">
+      <End Role="Intervenant" EntitySet="Intervenant" />
       <End Role="Communication" EntitySet="Communication" />
     </AssociationSet>
     <AssociationSet Name="FK_Transporteur_Parent" Association="Self.FK_Transporteur_Parent">

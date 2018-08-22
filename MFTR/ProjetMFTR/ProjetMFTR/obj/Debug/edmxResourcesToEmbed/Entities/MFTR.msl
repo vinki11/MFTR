@@ -33,6 +33,7 @@
     <EntitySetMapping Name="Communication">
       <EntityTypeMapping TypeName="MFTRModel.Communication">
         <MappingFragment StoreEntitySet="Communication">
+          <ScalarProperty Name="IdIntervenant" ColumnName="IdIntervenant" />
           <ScalarProperty Name="Communication_ID" ColumnName="Communication_ID" />
           <ScalarProperty Name="Dossier_ID" ColumnName="Dossier_ID" />
           <ScalarProperty Name="Adulte_ID" ColumnName="Adulte_ID" />
@@ -77,16 +78,6 @@
           <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
           <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Intervenant">
-      <EntityTypeMapping TypeName="MFTRModel.Intervenant">
-        <MappingFragment StoreEntitySet="Intervenant">
-          <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
-          <ScalarProperty Name="nom" ColumnName="nom" />
-          <ScalarProperty Name="prenom" ColumnName="prenom" />
-          <ScalarProperty Name="actif" ColumnName="actif" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -196,6 +187,15 @@
           <ScalarProperty Name="Referent_ID" ColumnName="Referent_ID" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
           <ScalarProperty Name="temp_avocat" ColumnName="temp_avocat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intervenant">
+      <EntityTypeMapping TypeName="MFTRModel.Intervenant">
+        <MappingFragment StoreEntitySet="Intervenant">
+          <ScalarProperty Name="actif" ColumnName="actif" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

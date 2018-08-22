@@ -205,6 +205,7 @@
 			this.gvList.Location = new System.Drawing.Point(12, 173);
 			this.gvList.Name = "gvList";
 			this.gvList.ReadOnly = true;
+			this.gvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.gvList.Size = new System.Drawing.Size(794, 286);
 			this.gvList.TabIndex = 1;
 			this.gvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvList_CellDoubleClick);

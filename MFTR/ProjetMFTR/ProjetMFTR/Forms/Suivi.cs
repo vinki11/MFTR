@@ -10,7 +10,7 @@ namespace ProjetMFTR
 	{
 		#region Members
 
-		Entities.Suivi CurrentSuivi;
+		Entities.Suivi CurrentEntity;
 		Connexion.ConnexionActions<Entities.Suivi> connexionActions = new Connexion.ConnexionActions<Entities.Suivi>();
 
 		#endregion
@@ -49,7 +49,7 @@ namespace ProjetMFTR
 			rtxtRemarque.Text = suivi.remarque;
 			dtpDateSuivi.Value = suivi.dateSuivi;
 			cboEmployes.Text = Connexion.Instance().Intervenant.FirstOrDefault((x) => x.intervenant_id.Equals(suivi.intervenant_id)).nom;
-			CurrentSuivi = suivi;
+			CurrentEntity = suivi;
 		}
 		/// <summary>
 		/// Initialisation des combos box
@@ -66,7 +66,7 @@ namespace ProjetMFTR
 			cboKids.ValueMember = ResourcesString.STR_EnfantId;
 			cboKids.SelectedValue = -1;
 
-			cboEmployes.DataSource = Connexion.Instance().Intervenant.Where((x) => x.actif == 1).ToList();
+			cboEmployes.DataSource = Connexion.Instance().Intervenant.Where((x) => x.actif == true).ToList();
 			cboEmployes.DisplayMember = ResourcesString.STR_Nom;
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
@@ -96,10 +96,10 @@ namespace ProjetMFTR
 		private Boolean Save()
 		{
 			DialogResult result;
-			if (CurrentSuivi != null)
+			if (CurrentEntity != null)
 			{
 				AssignValues();
-				connexionActions.Update(CurrentSuivi);
+				connexionActions.Update(CurrentEntity);
 				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du suivi" + ResourcesString.STR_MessageUpdateConfirmation2,
 				ResourcesString.STR_TitleUpdateConfirmation,
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,9 +130,9 @@ namespace ProjetMFTR
 				return false;
 			}
 
-			CurrentSuivi = new Entities.Suivi();
+			CurrentEntity = new Entities.Suivi();
 			AssignValues();
-			connexionActions.Add(CurrentSuivi);
+			connexionActions.Add(CurrentEntity);
 			bindingNavigator1.Enabled = true;
 			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
 			OnSuiviAdded(new EventArgs());
@@ -150,7 +150,7 @@ namespace ProjetMFTR
 			cboMoment.Text = "";
 			dtpDateSuivi.Value = DateTime.Now.Date;
 			rtxtRemarque.Text = "";
-			CurrentSuivi = null;
+			CurrentEntity = null;
 			cboFolders.Enabled = true;
 			bindingNavigator1.Enabled = false;
 		}
@@ -160,12 +160,12 @@ namespace ProjetMFTR
 		/// </summary>
 		private void AssignValues()
 		{
-			CurrentSuivi.enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID;
-			CurrentSuivi.dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
-			CurrentSuivi.dateSuivi = dtpDateSuivi.Value.Date;
-			CurrentSuivi.intervenant_id = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id;
-			CurrentSuivi.remarque = rtxtRemarque.Text;
-			CurrentSuivi.moment = cboMoment.Text;
+			CurrentEntity.enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID;
+			CurrentEntity.dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
+			CurrentEntity.dateSuivi = dtpDateSuivi.Value.Date;
+			CurrentEntity.intervenant_id = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id;
+			CurrentEntity.remarque = rtxtRemarque.Text;
+			CurrentEntity.moment = cboMoment.Text;
 		}
 		/// <summary>
 		/// Affecter les enfants selon le dossier sélectionné
@@ -188,30 +188,30 @@ namespace ProjetMFTR
 		#region Binding
 		private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
 		{
-			var obj = bsData.List.OfType<Entities.Suivi>().ToList().Find(f => f == CurrentSuivi);
-			var index = bsData.IndexOf(obj);
-			if (index.Equals((Connexion.Instance().Suivi.AsEnumerable().Count() - 1))) { return; }
-
-			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderBy(f => f.dateSuivi).ElementAtOrDefault(index + 1));
+			bsData.MoveNext();
+			CurrentEntity = (Entities.Suivi)bsData.Current;
+			AssignSuivi(CurrentEntity);
 		}
 
 		private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
 		{
-			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderByDescending((x) => x.dateSuivi).FirstOrDefault());
+			bsData.MoveLast();
+			CurrentEntity = (Entities.Suivi)bsData.Current;
+			AssignSuivi(CurrentEntity);
 		}
 
 		private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
 		{
-			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderBy((x) => x.dateSuivi).FirstOrDefault());
+			bsData.MoveFirst();
+			CurrentEntity = (Entities.Suivi)bsData.Current;
+			AssignSuivi(CurrentEntity);
 		}
 
 		private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
 		{
-			var obj = bsData.List.OfType<Entities.Suivi>().ToList().Find(f => f == CurrentSuivi);
-			var index = bsData.IndexOf(obj);
-			if (index.Equals(bsData.IndexOf(Connexion.Instance().Suivi.AsEnumerable().OrderBy((x) => x.dateSuivi).FirstOrDefault()))) { return; }
-
-			AssignSuivi(Connexion.Instance().Suivi.AsEnumerable().OrderBy(f => f.dateSuivi).ElementAtOrDefault(index - 1));
+			bsData.MovePrevious();
+			CurrentEntity = (Entities.Suivi)bsData.Current;
+			AssignSuivi(CurrentEntity);
 		}
 		#endregion
 

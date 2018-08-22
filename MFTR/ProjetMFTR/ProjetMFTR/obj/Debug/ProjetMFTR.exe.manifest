@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ProjetMFTR.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ProjetMFTR.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -138,14 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="579584">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="598016">
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MxbRX1dQ4FOzTtTK8a8Xw5xDbe/bO0OqBN5ZCYg3kjo=</dsig:DigestValue>
+        <dsig:DigestValue>8qYhyffvM1xbMb3s0IcxXvxBFMv3rBt8jBD0PvDf7gA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -269,13 +269,13 @@
       <dsig:DigestValue>pxZ0QbZQmLCRWnE4EBcT+Loy2rxunsEbGEql3H9pqYM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sql\DbInit.sql" size="1501">
+  <file name="Sql\DbInit.sql" size="1823">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>mCZKnHDhoWFjMh93Q5Bc01MfZmtiVIAJuAAsP1q5LwM=</dsig:DigestValue>
+      <dsig:DigestValue>S0KJKkecvOLGJZFGXI4fnCyzEhCPNFbGoPVATcHNccI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
