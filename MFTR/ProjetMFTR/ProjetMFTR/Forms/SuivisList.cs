@@ -83,7 +83,7 @@ namespace ProjetMFTR
 			}
 
 			bsData.DataSource = null;
-			bsData.DataSource = suivis.OrderBy(x => x.dateSuivi).ToList();
+			bsData.DataSource = suivis.OrderByDescending(x => x.dateSuivi).ToList();
 		}
 
 		/// <summary>
@@ -134,7 +134,7 @@ namespace ProjetMFTR
 				suivis.Add(s);
 			}
 
-			foreach (Entities.Suivi s in suivis.OrderBy(f => f.dateSuivi))
+			foreach (Entities.Suivi s in suivis.OrderByDescending(f => f.dateSuivi))
 			{
 				connexionActions.Print(s, pd);
 			}
@@ -238,11 +238,13 @@ namespace ProjetMFTR
 		/// </summary>
 		private void Init()
 		{
-			bsData.DataSource = Connexion.Instance().Suivi.OrderBy((x) => x.dateSuivi).ToList();
+			bsData.DataSource = Connexion.Instance().Suivi.OrderByDescending((x) => x.dateSuivi).ToList();
 			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
 			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";
 			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.nom";
 
+			cboFolders.KeyDown += EnterPressed;
+			cboKid.KeyDown += EnterPressed;
 		}
 
 		/// <summary>
@@ -264,6 +266,14 @@ namespace ProjetMFTR
 			cboEmployes.DisplayMember = ResourcesString.STR_Nom;
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
+		}
+
+		private void EnterPressed(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				btnRecherche.PerformClick();
+			}
 		}
 		#endregion
 

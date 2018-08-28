@@ -156,6 +156,8 @@
 			// 
 			// cboEmployes
 			// 
+			this.cboEmployes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cboEmployes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboEmployes.FormattingEnabled = true;
 			this.cboEmployes.Location = new System.Drawing.Point(462, 123);
 			this.cboEmployes.Name = "cboEmployes";

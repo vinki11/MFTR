@@ -63,3 +63,4 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.cs
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.exe
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.pdb
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.DossierNouveau.resources

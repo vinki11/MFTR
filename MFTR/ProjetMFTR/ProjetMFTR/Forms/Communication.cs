@@ -49,6 +49,10 @@ namespace ProjetMFTR.Forms
 			cboEmployes.DisplayMember = ResourcesString.STR_Nom;
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
+
+			cboReferent.DisplayMember = ResourcesString.STR_Adultes + "." + ResourcesString.STR_Nom;
+			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
+
 		}
 
 		void AssignCommunication(Entities.Communication communication)
