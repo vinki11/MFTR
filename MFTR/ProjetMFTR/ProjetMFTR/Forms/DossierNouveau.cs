@@ -1,4 +1,5 @@
 ﻿using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,12 @@ namespace ProjetMFTR.Forms
 		public DossierNouveau()
 		{
 			InitializeComponent();
-			CurrentDossier = new Entities.Dossier();
+			Init();
+		}
+
+		public DossierNouveau(Entities.Dossier dossier) : this()
+		{
+			AssignFolder(dossier);
 		}
 
 		private void label6_Click(object sender, EventArgs e)
@@ -40,6 +46,13 @@ namespace ProjetMFTR.Forms
 		private void btnSaveAndQuit_Click(object sender, EventArgs e)
 		{
 			Save();
+			Close();
+		}
+
+		private void Init()
+		{
+			listParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
+			listParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
 		}
 
 		/// <summary>
@@ -47,6 +60,7 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private Boolean Save()
 		{
+			CurrentDossier = new Entities.Dossier();
 			CurrentDossier.Dossier_ID = this.txtNoDossier.Text;
 			CurrentDossier.Ouverture = this.dtpDateOuverture.Value.Date;
 			CurrentDossier.Actif = "0"; //T'es sérieux la que la colonne est en String pi que c'est des 0 et -1
@@ -64,9 +78,50 @@ namespace ProjetMFTR.Forms
 			return true;
 		}
 
+		private void AssignFolder(Entities.Dossier dossier)
+		{
+			txtNoDossier.Text = Connexion.Instance().Dossier.FirstOrDefault(x => x.Dossier_ID == dossier.Dossier_ID).Dossier_ID;
+			cboType.Text = dossier.Type;
+			dtpDateOuverture.Value = dossier.Ouverture.HasValue ? dossier.Ouverture.Value : DateTime.MinValue;
+
+			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == dossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+			bsDataKids.DataSource = kids;
+
+			var parents = dossier.Adultes.SelectMany(x => x.Parent).ToList();
+			bsDataParents.DataSource = parents;
+			CurrentDossier = dossier;
+
+			rtxtRemarque.Text = dossier.Remarque;
+		}
+
+		private void AssignValues()
+		{
+
+		}
+
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
 
+		}
+
+		private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			try
+			{
+				if ((listParents.Rows[e.RowIndex].DataBoundItem != null) &&
+								(listParents.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
+				{
+					e.Value = Helper.BindProperty(
+												listParents.Rows[e.RowIndex].DataBoundItem,
+												listParents.Columns[e.ColumnIndex].DataPropertyName
+											);
+				}
+			}
+			catch (Exception)
+			{
+
+				return;
+			}
 		}
 	}
 }

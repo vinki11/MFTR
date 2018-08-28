@@ -268,6 +268,9 @@ namespace ProjetMFTR
 			cboEmployes.SelectedValue = -1;
 		}
 
+		/// <summary>
+		/// Handler qui survient lorsque nous appuyons sur Enter
+		/// </summary>
 		private void EnterPressed(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)

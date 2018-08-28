@@ -406,6 +406,7 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.cboTypeCommunication);
 			this.Controls.Add(this.bindingNavigator1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Communication";
 			this.Text = "Communication";
 			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();

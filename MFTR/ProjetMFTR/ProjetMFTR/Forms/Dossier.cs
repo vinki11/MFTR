@@ -21,6 +21,8 @@ namespace ProjetMFTR.Forms
 		Entities.Dossier CurrentDossier;
 		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 		Communication communication;
+		DossierNouveau DossierNouveau;
+
 		int rownum = 0;
 		#endregion
 
@@ -39,6 +41,11 @@ namespace ProjetMFTR.Forms
 			gvParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
 			gvParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
 			InitialiseCombos();
+
+			cboFolders.KeyDown += EnterPressed;
+			txtFirstName.KeyDown += EnterPressed;
+			txtFirstName.KeyDown += EnterPressed;
+			txtRechercheTelephone.KeyDown += EnterPressed;
 		}
 
 		/// <summary>
@@ -61,6 +68,9 @@ namespace ProjetMFTR.Forms
 			communication.Show();
 		}
 
+		/// <summary>
+		/// Met à jour le datasource
+		/// </summary>
 		private void UpdateDataSource(object sender, EventArgs e)
 		{
 			Init();
@@ -75,6 +85,14 @@ namespace ProjetMFTR.Forms
 		}
 
 		/// <summary>
+		/// Survient lors du changement d'un dossier
+		/// </summary>
+		private void FolderEntityUpdated(object sender, Entities.Dossier e)
+		{
+
+		}
+
+		/// <summary>
 		/// Sur le double click sur une row
 		/// </summary>
 		private void gvCommunications_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -83,6 +101,17 @@ namespace ProjetMFTR.Forms
 			communication = new Communication((Entities.Communication)row.DataBoundItem);
 			communication.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
 			communication.Show();
+		}
+
+		/// <summary>
+		/// Survient lors du double click sur un dossier
+		/// </summary>
+		private void gvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvList.CurrentRow;
+			DossierNouveau = new DossierNouveau((Entities.Dossier)row.DataBoundItem);
+			//DossierNouveau.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
+			DossierNouveau.Show();
 		}
 
 		private void gvList_SelectionChanged(object sender, EventArgs e)
@@ -101,7 +130,6 @@ namespace ProjetMFTR.Forms
 			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
 			bsDataKids.DataSource = kids;
 
-			//var parents = Connexion.Instance().Parent.Where(x => CurrentDossier.Adultes.Any(v => v.Adulte_ID.Equals(x.Adulte_ID))).ToList();
 			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
 			bsDataParents.DataSource = parents;
 		}
@@ -216,6 +244,18 @@ namespace ProjetMFTR.Forms
 			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_NewDossier.ShowDialog();
 		}
+
+		/// <summary>
+		/// Handler qui survient lorsque nous appuyons sur Enter
+		/// </summary>
+		private void EnterPressed(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				btnRecherche.PerformClick();
+			}
+		}
+
 	}
 }
 
