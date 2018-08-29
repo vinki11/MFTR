@@ -111,7 +111,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = gvList.CurrentRow;
 			DossierNouveau = new DossierNouveau((Entities.Dossier)row.DataBoundItem);
 			//DossierNouveau.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
-			DossierNouveau.Show();
+			DossierNouveau.ShowDialog();
 		}
 
 		private void gvList_SelectionChanged(object sender, EventArgs e)
@@ -256,7 +256,11 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
-	}
+        private void gvList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
 }
 
 

@@ -18,7 +18,8 @@ namespace ProjetMFTR.Forms
 		#region Members
 
 		Entities.Dossier CurrentDossier;
-		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
+        EditMode editMode;
+        Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 
 		#endregion
 
@@ -26,12 +27,16 @@ namespace ProjetMFTR.Forms
 		{
 			InitializeComponent();
 			Init();
-		}
+            //editMode = EditMode.New;
+            nouveau();
+        }
 
 		public DossierNouveau(Entities.Dossier dossier) : this()
 		{
 			AssignFolder(dossier);
-		}
+            editMode = EditMode.Edit;
+            this.Text = "Modification d'un dossier";
+        }
 
 		private void label6_Click(object sender, EventArgs e)
 		{
@@ -60,6 +65,8 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private Boolean Save()
 		{
+            //Valider si un dossier existe déja avec ce numéro si on est en mode ajout
+
 			CurrentDossier = new Entities.Dossier();
 			CurrentDossier.Dossier_ID = this.txtNoDossier.Text;
 			CurrentDossier.Ouverture = this.dtpDateOuverture.Value.Date;
@@ -72,8 +79,6 @@ namespace ProjetMFTR.Forms
 			DialogResult result = MessageBox.Show("Le dossier " + CurrentDossier.Dossier_ID + ResourcesString.STR_MessageAddConfirmation,
 							 ResourcesString.STR_TitleAddConfirmation,
 							 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-			Close();
 
 			return true;
 		}
@@ -101,10 +106,24 @@ namespace ProjetMFTR.Forms
 
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
+            Save();
+            nouveau();
+        }
 
-		}
+        private void nouveau()
+        {
+            this.Text = "Nouveau dossier";
+            CurrentDossier = null;
 
-		private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+            this.txtNoDossier.Text = "";
+            this.dtpDateOuverture.Value = DateTime.Today;
+            this.rtxtRemarque.Text = "";
+            this.cboType.SelectedIndex = 0;
+            editMode = EditMode.New;
+
+        }
+
+        private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
 			try
 			{
@@ -123,5 +142,12 @@ namespace ProjetMFTR.Forms
 				return;
 			}
 		}
-	}
+
+        private enum EditMode
+        {
+            New = 1,
+            Edit = 2
+        };
+        
+    }
 }
