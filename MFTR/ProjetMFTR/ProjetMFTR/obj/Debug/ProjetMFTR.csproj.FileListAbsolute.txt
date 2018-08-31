@@ -66,3 +66,5 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.cs
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.DossierNouveau.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Communication.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.DossierNouveau.resources
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Parent.resources
+C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Enfant.resources

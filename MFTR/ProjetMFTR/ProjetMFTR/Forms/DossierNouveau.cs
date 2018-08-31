@@ -1,5 +1,6 @@
 ﻿using ProjetMFTR.DataAccess;
 using ProjetMFTR.DbConnexion.Helper;
+using ProjetMFTR.Forms;
 using ProjetMFTR.Resources;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,12 @@ namespace ProjetMFTR.Forms
         EditMode editMode;
         Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 
-		#endregion
+        private Parent m_NewParent;
+        private Enfant m_NewEnfant;
 
-		public DossierNouveau()
+        #endregion
+
+        public DossierNouveau()
 		{
 			InitializeComponent();
 			Init();
@@ -143,11 +147,38 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
+        private void btnAddParent_Click(object sender, EventArgs e)
+        {
+			m_NewParent = new Parent();
+            m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+            m_NewParent.ShowDialog();
+		
+        }
+
+        private void btnAjouterEnfant_Click(object sender, EventArgs e)
+        {
+            if (txtNoDossier.Text.Count() != 0)
+            {
+                m_NewEnfant = new Enfant(this.txtNoDossier.Text);
+                m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+                m_NewEnfant.ShowDialog();
+            } 
+            
+        }
+
+        /// <summary>
+		/// Met à jour le datasource
+		/// </summary>
+		private void UpdateDataSource(object sender, EventArgs e)
+        {
+            Init();
+        }
+
+
         private enum EditMode
         {
             New = 1,
             Edit = 2
         };
-        
     }
 }
