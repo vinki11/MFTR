@@ -28,7 +28,7 @@ namespace ProjetMFTR.Forms
         public Parent(string dossierId)
         {
             InitializeComponent();
-            CurrentDossierID = dossierID;
+            CurrentDossierID = dossierId;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -49,13 +49,13 @@ namespace ProjetMFTR.Forms
             connexionActionsAdulte.Add(CurrentAdulte);
 
             CurrentParent.Adultes = CurrentAdulte;
-            CurrentParent.Adulte_ID 
+            CurrentParent.Adulte_ID = 1; //Aller chercher l'id qu'on vient d'ajouter
             CurrentParent.Naissance = this.dtpNaissance.Value.Date;
             CurrentParent.Statut = this.cboStatut.SelectedItem.ToString();
             CurrentParent.Sexe = this.cboSexe.SelectedItem.ToString();
 
 
-            connexionActions.Add(CurrentParent);
+            connexionActionsParent.Add(CurrentParent);
             DialogResult result = MessageBox.Show("Le parent " + CurrentAdulte.Prenom + " " + CurrentAdulte.Nom + ResourcesString.STR_MessageAddConfirmation,
                              ResourcesString.STR_TitleAddConfirmation,
                              MessageBoxButtons.OK, MessageBoxIcon.Information);

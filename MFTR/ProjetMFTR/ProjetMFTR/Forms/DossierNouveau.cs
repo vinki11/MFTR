@@ -149,7 +149,7 @@ namespace ProjetMFTR.Forms
 
         private void btnAddParent_Click(object sender, EventArgs e)
         {
-			m_NewParent = new Parent();
+			m_NewParent = new Parent(this.txtNoDossier.Text);
             m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
             m_NewParent.ShowDialog();
 		

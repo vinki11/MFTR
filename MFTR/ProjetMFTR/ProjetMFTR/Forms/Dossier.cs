@@ -260,6 +260,11 @@ namespace ProjetMFTR.Forms
         {
 
         }
+
+        private void Dossier_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

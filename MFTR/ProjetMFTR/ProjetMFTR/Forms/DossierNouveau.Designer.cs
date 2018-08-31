@@ -33,8 +33,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDateOuverture = new System.Windows.Forms.DateTimePicker();
             this.gbParent = new System.Windows.Forms.GroupBox();
+            this.listParents = new System.Windows.Forms.DataGridView();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAddParent = new System.Windows.Forms.Button();
             this.gbEnfants = new System.Windows.Forms.GroupBox();
+            this.listEnfants = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.rtxtRemarque = new System.Windows.Forms.RichTextBox();
             this.txtNoDossier = new System.Windows.Forms.TextBox();
@@ -42,11 +46,7 @@
             this.btnSaveAndNew = new System.Windows.Forms.Button();
             this.cboType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.listEnfants = new System.Windows.Forms.DataGridView();
             this.btnAjouterEnfant = new System.Windows.Forms.Button();
-            this.listParents = new System.Windows.Forms.DataGridView();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sexeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,9 +59,9 @@
             this.transporteurDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsDataParents = new System.Windows.Forms.BindingSource(this.components);
             this.gbParent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listParents)).BeginInit();
             this.gbEnfants.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listEnfants)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listParents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).BeginInit();
             this.SuspendLayout();
@@ -101,6 +101,42 @@
             this.gbParent.TabStop = false;
             this.gbParent.Text = "Parents";
             // 
+            // listParents
+            // 
+            this.listParents.AllowUserToAddRows = false;
+            this.listParents.AllowUserToOrderColumns = true;
+            this.listParents.AllowUserToResizeRows = false;
+            this.listParents.AutoGenerateColumns = false;
+            this.listParents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listParents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listParents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nom,
+            this.SubName,
+            this.sexeDataGridViewTextBoxColumn1,
+            this.naissanceDataGridViewTextBoxColumn1,
+            this.statutDataGridViewTextBoxColumn,
+            this.transporteurDataGridViewTextBoxColumn});
+            this.listParents.DataSource = this.bsDataParents;
+            this.listParents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listParents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.listParents.Location = new System.Drawing.Point(3, 16);
+            this.listParents.Name = "listParents";
+            this.listParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listParents.Size = new System.Drawing.Size(604, 175);
+            this.listParents.TabIndex = 18;
+            // 
+            // Nom
+            // 
+            this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nom.HeaderText = "Nom";
+            this.Nom.Name = "Nom";
+            // 
+            // SubName
+            // 
+            this.SubName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SubName.HeaderText = "Prénom";
+            this.SubName.Name = "SubName";
+            // 
             // btnAddParent
             // 
             this.btnAddParent.BackColor = System.Drawing.Color.PaleGreen;
@@ -123,6 +159,29 @@
             this.gbEnfants.TabIndex = 15;
             this.gbEnfants.TabStop = false;
             this.gbEnfants.Text = "Enfants";
+            // 
+            // listEnfants
+            // 
+            this.listEnfants.AllowUserToAddRows = false;
+            this.listEnfants.AllowUserToOrderColumns = true;
+            this.listEnfants.AllowUserToResizeColumns = false;
+            this.listEnfants.AutoGenerateColumns = false;
+            this.listEnfants.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listEnfants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listEnfants.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nomDataGridViewTextBoxColumn,
+            this.prenomDataGridViewTextBoxColumn,
+            this.sexeDataGridViewTextBoxColumn,
+            this.naissanceDataGridViewTextBoxColumn,
+            this.accueilDataGridViewTextBoxColumn});
+            this.listEnfants.DataSource = this.bsDataKids;
+            this.listEnfants.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listEnfants.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.listEnfants.Location = new System.Drawing.Point(3, 16);
+            this.listEnfants.Name = "listEnfants";
+            this.listEnfants.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listEnfants.Size = new System.Drawing.Size(598, 205);
+            this.listEnfants.TabIndex = 24;
             // 
             // label6
             // 
@@ -200,30 +259,6 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "Type";
             // 
-            // listEnfants
-            // 
-            this.listEnfants.AllowUserToAddRows = false;
-            this.listEnfants.AllowUserToDeleteRows = false;
-            this.listEnfants.AllowUserToOrderColumns = true;
-            this.listEnfants.AllowUserToResizeColumns = false;
-            this.listEnfants.AutoGenerateColumns = false;
-            this.listEnfants.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listEnfants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listEnfants.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nomDataGridViewTextBoxColumn,
-            this.prenomDataGridViewTextBoxColumn,
-            this.sexeDataGridViewTextBoxColumn,
-            this.naissanceDataGridViewTextBoxColumn,
-            this.accueilDataGridViewTextBoxColumn});
-            this.listEnfants.DataSource = this.bsDataKids;
-            this.listEnfants.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listEnfants.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.listEnfants.Location = new System.Drawing.Point(3, 16);
-            this.listEnfants.Name = "listEnfants";
-            this.listEnfants.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listEnfants.Size = new System.Drawing.Size(598, 205);
-            this.listEnfants.TabIndex = 24;
-            // 
             // btnAjouterEnfant
             // 
             this.btnAjouterEnfant.BackColor = System.Drawing.Color.PaleGreen;
@@ -236,43 +271,6 @@
             this.btnAjouterEnfant.Text = "Ajouter";
             this.btnAjouterEnfant.UseVisualStyleBackColor = false;
             this.btnAjouterEnfant.Click += new System.EventHandler(this.btnAjouterEnfant_Click);
-            // 
-            // listParents
-            // 
-            this.listParents.AllowUserToAddRows = false;
-            this.listParents.AllowUserToDeleteRows = false;
-            this.listParents.AllowUserToOrderColumns = true;
-            this.listParents.AllowUserToResizeRows = false;
-            this.listParents.AutoGenerateColumns = false;
-            this.listParents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listParents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listParents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nom,
-            this.SubName,
-            this.sexeDataGridViewTextBoxColumn1,
-            this.naissanceDataGridViewTextBoxColumn1,
-            this.statutDataGridViewTextBoxColumn,
-            this.transporteurDataGridViewTextBoxColumn});
-            this.listParents.DataSource = this.bsDataParents;
-            this.listParents.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listParents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.listParents.Location = new System.Drawing.Point(3, 16);
-            this.listParents.Name = "listParents";
-            this.listParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listParents.Size = new System.Drawing.Size(604, 175);
-            this.listParents.TabIndex = 18;
-            // 
-            // Nom
-            // 
-            this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
-            // 
-            // SubName
-            // 
-            this.SubName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SubName.HeaderText = "Prénom";
-            this.SubName.Name = "SubName";
             // 
             // nomDataGridViewTextBoxColumn
             // 
@@ -370,9 +368,9 @@
             this.Name = "DossierNouveau";
             this.Text = "Nouveau Dossier";
             this.gbParent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listParents)).EndInit();
             this.gbEnfants.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listEnfants)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listParents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).EndInit();
             this.ResumeLayout(false);
