@@ -1,61 +1,98 @@
-﻿using ProjetMFTR.DataAccess;
-using ProjetMFTR.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using ProjetMFTR.DataAccess;
+using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
 {
-    public partial class Enfant : Form
-    {
-        #region Members
+	public partial class Enfant : Form
+	{
+		#region Members
 
-        Entities.Enfants CurrentEnfant;
-        String CurrentDossierID;
-        EditMode editMode;
-        Connexion.ConnexionActions<Entities.Enfants> connexionActions = new Connexion.ConnexionActions<Entities.Enfants>();
+		private Entities.Enfants CurrentEnfant;
+		private String CurrentDossierID;
+		private Connexion.ConnexionActions<Entities.Enfants> connexionActions = new Connexion.ConnexionActions<Entities.Enfants>();
 
-        #endregion
+		#endregion Members
 
-        public Enfant(string dossierID)
-        {
-            InitializeComponent();
-            CurrentDossierID = dossierID;
-        }
+		public Enfant(string dossierID)
+		{
+			InitializeComponent();
+			CurrentDossierID = dossierID;
+		}
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            save();
-        }
+		public Enfant(Entities.Enfants enfants)
+		{
+			CurrentEnfant = enfants;
+			AssignChild(CurrentEnfant);
+		}
 
-        private void save()
-        {
-            CurrentEnfant = new Entities.Enfants();
-            CurrentEnfant.Dossier_ID = CurrentDossierID;
-            CurrentEnfant.Naissance = this.dtpNaissance.Value.Date;
-            CurrentEnfant.Nom = this.txtNom.Text;
-            CurrentEnfant.Prenom = this.txtPrenom.Text;
-            CurrentEnfant.Accueil = this.cboStatut.SelectedIndex == 1 ? false : true;
-            CurrentEnfant.Sexe = this.cboSexe.SelectedItem.ToString();
+		private void btnSave_Click(object sender, EventArgs e)
+		{
+			Save();
+		}
 
+		private Boolean Save()
+		{
+			DialogResult result;
+			if (CurrentEnfant != null)
+			{
+				AssignValues();
+				connexionActions.Update(CurrentEnfant);
+				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'enfant" + ResourcesString.STR_MessageUpdateConfirmation2,
+				ResourcesString.STR_TitleUpdateConfirmation,
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return true;
+			}
 
-            connexionActions.Add(CurrentEnfant);
-            DialogResult result = MessageBox.Show("L'enfant " + CurrentEnfant.Prenom + " " + CurrentEnfant.Nom + ResourcesString.STR_MessageAddConfirmation,
-                             ResourcesString.STR_TitleAddConfirmation,
-                             MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+			if (string.IsNullOrWhiteSpace(txtNom.Text))
+			{
+				MessageBox.Show("Vous devez définir un nom pour pouvoir ajouter l'enfant",
+				"Attention",
+				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
 
-        private enum EditMode
-        {
-            New = 1,
-            Edit = 2
-        };
+			if (string.IsNullOrWhiteSpace(txtPrenom.Text))
+			{
+				MessageBox.Show("Vous devez définir un prénom pour pouvoir ajouter l'enfant",
+				"Attention",
+				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
 
-    }
+			CurrentEnfant = new Entities.Enfants();
+			AssignValues();
+			connexionActions.Add(CurrentEnfant);
+			result = MessageBox.Show("L'enfant " + CurrentEnfant.Prenom + " " + CurrentEnfant.Nom + ResourcesString.STR_MessageAddConfirmation,
+											ResourcesString.STR_TitleAddConfirmation,
+											MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			return true;
+		}
+
+		private void AssignValues()
+		{
+			CurrentEnfant.Dossier_ID = CurrentDossierID;
+			CurrentEnfant.Naissance = this.dtpNaissance.Value.Date;
+			CurrentEnfant.Nom = this.txtNom.Text;
+			CurrentEnfant.Prenom = this.txtPrenom.Text;
+			CurrentEnfant.Accueil = this.cboStatut.SelectedIndex == 1 ? false : true;
+			CurrentEnfant.Sexe = this.cboSexe.SelectedItem.ToString();
+		}
+
+		private void AssignChild(Entities.Enfants enfants)
+		{
+			dtpNaissance.Value = enfants.Naissance.HasValue ? enfants.Naissance.Value : DateTime.Now;
+			txtNom.Text = enfants.Nom;
+			txtPrenom.Text = enfants.Prenom;
+			var accueil = "";
+			if (enfants.Accueil.HasValue)
+			{
+				accueil = enfants.Accueil.Value == true ? "Oui" : "Non";
+			}
+			cboStatut.Text = accueil;
+			cboSexe.Text = enfants.Sexe;
+		}
+	}
 }

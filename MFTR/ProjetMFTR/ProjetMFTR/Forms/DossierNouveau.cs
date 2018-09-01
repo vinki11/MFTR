@@ -19,28 +19,28 @@ namespace ProjetMFTR.Forms
 		#region Members
 
 		Entities.Dossier CurrentDossier;
-        EditMode editMode;
-        Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
+		EditMode editMode;
+		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 
-        private Parent m_NewParent;
-        private Enfant m_NewEnfant;
+		private Parent m_NewParent;
+		private Enfant m_NewEnfant;
 
-        #endregion
+		#endregion
 
-        public DossierNouveau()
+		public DossierNouveau()
 		{
 			InitializeComponent();
 			Init();
-            //editMode = EditMode.New;
-            nouveau();
-        }
+			//editMode = EditMode.New;
+			nouveau();
+		}
 
 		public DossierNouveau(Entities.Dossier dossier) : this()
 		{
 			AssignFolder(dossier);
-            editMode = EditMode.Edit;
-            this.Text = "Modification d'un dossier";
-        }
+			editMode = EditMode.Edit;
+			this.Text = "Modification d'un dossier";
+		}
 
 		private void label6_Click(object sender, EventArgs e)
 		{
@@ -69,7 +69,7 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private Boolean Save()
 		{
-            //Valider si un dossier existe déja avec ce numéro si on est en mode ajout
+			//Valider si un dossier existe déja avec ce numéro si on est en mode ajout
 
 			CurrentDossier = new Entities.Dossier();
 			CurrentDossier.Dossier_ID = this.txtNoDossier.Text;
@@ -110,24 +110,24 @@ namespace ProjetMFTR.Forms
 
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
-            Save();
-            nouveau();
-        }
+			Save();
+			nouveau();
+		}
 
-        private void nouveau()
-        {
-            this.Text = "Nouveau dossier";
-            CurrentDossier = null;
+		private void nouveau()
+		{
+			this.Text = "Nouveau dossier";
+			CurrentDossier = null;
 
-            this.txtNoDossier.Text = "";
-            this.dtpDateOuverture.Value = DateTime.Today;
-            this.rtxtRemarque.Text = "";
-            this.cboType.SelectedIndex = 0;
-            editMode = EditMode.New;
+			this.txtNoDossier.Text = "";
+			this.dtpDateOuverture.Value = DateTime.Today;
+			this.rtxtRemarque.Text = "";
+			this.cboType.SelectedIndex = 0;
+			editMode = EditMode.New;
 
-        }
+		}
 
-        private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
 			try
 			{
@@ -147,38 +147,38 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
-        private void btnAddParent_Click(object sender, EventArgs e)
-        {
+		private void btnAddParent_Click(object sender, EventArgs e)
+		{
 			m_NewParent = new Parent(this.txtNoDossier.Text);
-            m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-            m_NewParent.ShowDialog();
-		
-        }
+			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewParent.ShowDialog();
 
-        private void btnAjouterEnfant_Click(object sender, EventArgs e)
-        {
-            if (txtNoDossier.Text.Count() != 0)
-            {
-                m_NewEnfant = new Enfant(this.txtNoDossier.Text);
-                m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-                m_NewEnfant.ShowDialog();
-            } 
-            
-        }
+		}
 
-        /// <summary>
+		private void btnAjouterEnfant_Click(object sender, EventArgs e)
+		{
+			if (txtNoDossier.Text.Count() != 0)
+			{
+				m_NewEnfant = new Enfant(this.txtNoDossier.Text);
+				m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+				m_NewEnfant.ShowDialog();
+			}
+
+		}
+
+		/// <summary>
 		/// Met à jour le datasource
 		/// </summary>
 		private void UpdateDataSource(object sender, EventArgs e)
-        {
-            Init();
-        }
+		{
+			Init();
+		}
 
 
-        private enum EditMode
-        {
-            New = 1,
-            Edit = 2
-        };
-    }
+		private enum EditMode
+		{
+			New = 1,
+			Edit = 2
+		};
+	}
 }
