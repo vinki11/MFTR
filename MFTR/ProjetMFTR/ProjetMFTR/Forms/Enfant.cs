@@ -9,11 +9,20 @@ namespace ProjetMFTR.Forms
 	{
 		#region Members
 
-		private Entities.Enfants CurrentEnfant;
+		private Entities.Enfants CurrentChild;
 		private String CurrentDossierID;
 		private Connexion.ConnexionActions<Entities.Enfants> connexionActions = new Connexion.ConnexionActions<Entities.Enfants>();
 
 		#endregion Members
+
+		#region Events
+		public event EventHandler<Entities.Enfants> ChildAdded;
+		#endregion
+
+		protected virtual void OnChildAdded(EventArgs e)
+		{
+			ChildAdded?.Invoke(this, CurrentChild);
+		}
 
 		public Enfant(string dossierID)
 		{
@@ -21,10 +30,10 @@ namespace ProjetMFTR.Forms
 			CurrentDossierID = dossierID;
 		}
 
-		public Enfant(Entities.Enfants enfants)
+		public Enfant(Entities.Enfants enfants) : this(enfants.Dossier_ID)
 		{
-			CurrentEnfant = enfants;
-			AssignChild(CurrentEnfant);
+			CurrentChild = enfants;
+			AssignChild(CurrentChild);
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -35,10 +44,10 @@ namespace ProjetMFTR.Forms
 		private Boolean Save()
 		{
 			DialogResult result;
-			if (CurrentEnfant != null)
+			if (CurrentChild != null)
 			{
 				AssignValues();
-				connexionActions.Update(CurrentEnfant);
+				connexionActions.Update(CurrentChild);
 				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'enfant" + ResourcesString.STR_MessageUpdateConfirmation2,
 				ResourcesString.STR_TitleUpdateConfirmation,
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -61,24 +70,25 @@ namespace ProjetMFTR.Forms
 				return false;
 			}
 
-			CurrentEnfant = new Entities.Enfants();
+			CurrentChild = new Entities.Enfants();
 			AssignValues();
-			connexionActions.Add(CurrentEnfant);
-			result = MessageBox.Show("L'enfant " + CurrentEnfant.Prenom + " " + CurrentEnfant.Nom + ResourcesString.STR_MessageAddConfirmation,
+			connexionActions.Add(CurrentChild);
+			result = MessageBox.Show("L'enfant " + CurrentChild.Prenom + " " + CurrentChild.Nom + ResourcesString.STR_MessageAddConfirmation,
 											ResourcesString.STR_TitleAddConfirmation,
 											MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+			OnChildAdded(new EventArgs());
 			return true;
 		}
 
 		private void AssignValues()
 		{
-			CurrentEnfant.Dossier_ID = CurrentDossierID;
-			CurrentEnfant.Naissance = this.dtpNaissance.Value.Date;
-			CurrentEnfant.Nom = this.txtNom.Text;
-			CurrentEnfant.Prenom = this.txtPrenom.Text;
-			CurrentEnfant.Accueil = this.cboStatut.SelectedIndex == 1 ? false : true;
-			CurrentEnfant.Sexe = this.cboSexe.SelectedItem.ToString();
+			CurrentChild.Dossier_ID = CurrentDossierID;
+			CurrentChild.Naissance = this.dtpNaissance.Value.Date;
+			CurrentChild.Nom = this.txtNom.Text;
+			CurrentChild.Prenom = this.txtPrenom.Text;
+			CurrentChild.Accueil = this.cboStatut.SelectedIndex == 1 ? false : true;
+			CurrentChild.Sexe = this.cboSexe.SelectedItem.ToString();
 		}
 
 		private void AssignChild(Entities.Enfants enfants)

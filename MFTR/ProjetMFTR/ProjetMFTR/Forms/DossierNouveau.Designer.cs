@@ -1,33 +1,33 @@
 ﻿namespace ProjetMFTR.Forms
 {
-    partial class DossierNouveau
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class DossierNouveau
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DossierNouveau));
 			this.label4 = new System.Windows.Forms.Label();
@@ -125,6 +125,7 @@
 			this.listParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.listParents.Size = new System.Drawing.Size(604, 175);
 			this.listParents.TabIndex = 18;
+			this.listParents.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listParents_CellFormatting);
 			// 
 			// Nom
 			// 
@@ -218,6 +219,7 @@
 			this.listEnfants.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.listEnfants.Size = new System.Drawing.Size(598, 205);
 			this.listEnfants.TabIndex = 24;
+			this.listEnfants.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listEnfants_CellContentDoubleClick);
 			// 
 			// nomDataGridViewTextBoxColumn
 			// 
@@ -378,38 +380,38 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpDateOuverture;
-        private System.Windows.Forms.GroupBox gbParent;
-        private System.Windows.Forms.GroupBox gbEnfants;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RichTextBox rtxtRemarque;
-        private System.Windows.Forms.TextBox txtNoDossier;
-        private System.Windows.Forms.Button btnSaveAndQuit;
-        private System.Windows.Forms.Button btnSaveAndNew;
-        private System.Windows.Forms.ComboBox cboType;
-        private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.DateTimePicker dtpDateOuverture;
+		private System.Windows.Forms.GroupBox gbParent;
+		private System.Windows.Forms.GroupBox gbEnfants;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.RichTextBox rtxtRemarque;
+		private System.Windows.Forms.TextBox txtNoDossier;
+		private System.Windows.Forms.Button btnSaveAndQuit;
+		private System.Windows.Forms.Button btnSaveAndNew;
+		private System.Windows.Forms.ComboBox cboType;
+		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.BindingSource bsDataParents;
 		private System.Windows.Forms.BindingSource bsDataKids;
-        private System.Windows.Forms.Button btnAddParent;
-        private System.Windows.Forms.DataGridView listEnfants;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prenomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sexeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn naissanceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accueilDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnAjouterEnfant;
-        private System.Windows.Forms.DataGridView listParents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sexeDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn naissanceDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statutDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn transporteurDataGridViewTextBoxColumn;
-    }
+		private System.Windows.Forms.Button btnAddParent;
+		private System.Windows.Forms.DataGridView listEnfants;
+		private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn prenomDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn sexeDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn naissanceDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn accueilDataGridViewTextBoxColumn;
+		private System.Windows.Forms.Button btnAjouterEnfant;
+		private System.Windows.Forms.DataGridView listParents;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
+		private System.Windows.Forms.DataGridViewTextBoxColumn SubName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn sexeDataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn naissanceDataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn statutDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn transporteurDataGridViewTextBoxColumn;
+	}
 }

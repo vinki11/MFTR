@@ -256,16 +256,16 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
-        private void gvList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+		private void gvList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
 
-        }
+		}
 
-        private void Dossier_Load(object sender, EventArgs e)
-        {
+		private void Dossier_Load(object sender, EventArgs e)
+		{
 
-        }
-    }
+		}
+	}
 }
 
 

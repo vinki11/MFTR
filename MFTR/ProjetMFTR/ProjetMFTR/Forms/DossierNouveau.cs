@@ -70,19 +70,41 @@ namespace ProjetMFTR.Forms
 		private Boolean Save()
 		{
 			//Valider si un dossier existe déja avec ce numéro si on est en mode ajout
+			DialogResult result;
+			if (CurrentDossier != null)
+			{
+				AssignValues();
+				connexionActions.Update(CurrentDossier);
+				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du dossier" + ResourcesString.STR_MessageUpdateConfirmation2,
+				ResourcesString.STR_TitleUpdateConfirmation,
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return true;
+			}
+
+			if (string.IsNullOrWhiteSpace(txtNoDossier.Text))
+			{
+				MessageBox.Show("Vous devez définir un numéro de dossier pour pouvoir ajouter le dossier",
+				"Attention",
+				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
+
+			if (Connexion.Instance().Dossier.Any(x => x.Dossier_ID == txtNoDossier.Text))
+			{
+				MessageBox.Show("Le numéro de dossier doit être unique",
+				"Erreur",
+				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return false;
+			}
 
 			CurrentDossier = new Entities.Dossier();
-			CurrentDossier.Dossier_ID = this.txtNoDossier.Text;
-			CurrentDossier.Ouverture = this.dtpDateOuverture.Value.Date;
-			CurrentDossier.Actif = "0"; //T'es sérieux la que la colonne est en String pi que c'est des 0 et -1
-			CurrentDossier.Remarque = this.rtxtRemarque.Text;
-			CurrentDossier.Type = this.cboType.Text;
+			AssignValues();
 
 
 			connexionActions.Add(CurrentDossier);
-			DialogResult result = MessageBox.Show("Le dossier " + CurrentDossier.Dossier_ID + ResourcesString.STR_MessageAddConfirmation,
-							 ResourcesString.STR_TitleAddConfirmation,
-							 MessageBoxButtons.OK, MessageBoxIcon.Information);
+			result = MessageBox.Show("Le dossier " + CurrentDossier.Dossier_ID + ResourcesString.STR_MessageAddConfirmation,
+							ResourcesString.STR_TitleAddConfirmation,
+							MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			return true;
 		}
@@ -93,19 +115,30 @@ namespace ProjetMFTR.Forms
 			cboType.Text = dossier.Type;
 			dtpDateOuverture.Value = dossier.Ouverture.HasValue ? dossier.Ouverture.Value : DateTime.MinValue;
 
-			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == dossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
-			bsDataKids.DataSource = kids;
-
-			var parents = dossier.Adultes.SelectMany(x => x.Parent).ToList();
-			bsDataParents.DataSource = parents;
+			rtxtRemarque.Text = dossier.Remarque;
 			CurrentDossier = dossier;
 
-			rtxtRemarque.Text = dossier.Remarque;
+			AssignDataSources();
+		}
+
+		private void AssignDataSources()
+		{
+			if (CurrentDossier == null) { return; }
+
+			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+			bsDataKids.DataSource = kids;
+
+			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
+			bsDataParents.DataSource = parents;
 		}
 
 		private void AssignValues()
 		{
-
+			CurrentDossier.Dossier_ID = txtNoDossier.Text;
+			CurrentDossier.Ouverture = this.dtpDateOuverture.Value.Date;
+			CurrentDossier.Remarque = this.rtxtRemarque.Text;
+			CurrentDossier.Type = cboType.Text;
+			CurrentDossier.Actif = "0";
 		}
 
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -127,6 +160,45 @@ namespace ProjetMFTR.Forms
 
 		}
 
+		private void btnAddParent_Click(object sender, EventArgs e)
+		{
+			m_NewParent = new Parent(this.txtNoDossier.Text);
+			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewParent.ShowDialog();
+
+		}
+
+		private void btnAjouterEnfant_Click(object sender, EventArgs e)
+		{
+			if (txtNoDossier.Text.Count() != 0)
+			{
+				m_NewEnfant = new Enfant(txtNoDossier.Text);
+				m_NewEnfant.ChildAdded += new EventHandler<Entities.Enfants>(ChildAdded);
+				m_NewEnfant.ShowDialog();
+			}
+
+		}
+
+		private void ChildAdded(object sender, Entities.Enfants e)
+		{
+			bsDataKids.Add(e);
+		}
+		/// <summary>
+		/// Met à jour le datasource
+		/// </summary>
+		private void UpdateDataSource(object sender, EventArgs e)
+		{
+			Init();
+			AssignDataSources();
+		}
+
+
+		private enum EditMode
+		{
+			New = 1,
+			Edit = 2
+		};
+
 		private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
 			try
@@ -145,40 +217,14 @@ namespace ProjetMFTR.Forms
 
 				return;
 			}
-		}
-
-		private void btnAddParent_Click(object sender, EventArgs e)
-		{
-			m_NewParent = new Parent(this.txtNoDossier.Text);
-			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewParent.ShowDialog();
 
 		}
 
-		private void btnAjouterEnfant_Click(object sender, EventArgs e)
+		private void listEnfants_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (txtNoDossier.Text.Count() != 0)
-			{
-				m_NewEnfant = new Enfant(this.txtNoDossier.Text);
-				m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-				m_NewEnfant.ShowDialog();
-			}
-
+			DataGridViewRow row = listEnfants.CurrentRow;
+			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
+			m_NewEnfant.ShowDialog();
 		}
-
-		/// <summary>
-		/// Met à jour le datasource
-		/// </summary>
-		private void UpdateDataSource(object sender, EventArgs e)
-		{
-			Init();
-		}
-
-
-		private enum EditMode
-		{
-			New = 1,
-			Edit = 2
-		};
 	}
 }
