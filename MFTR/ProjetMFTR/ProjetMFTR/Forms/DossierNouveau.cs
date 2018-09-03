@@ -12,17 +12,20 @@ namespace ProjetMFTR.Forms
 	{
 		#region Members
 
-		Entities.Dossier CurrentDossier;
-		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
+		private Entities.Dossier CurrentDossier;
+		private Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 
 		private Parent m_NewParent;
 		private Enfant m_NewEnfant;
+		private Services m_NewServices;
 
-		#endregion
+		#endregion Members
 
 		#region Events
+
 		public event EventHandler<Entities.Dossier> FolderUpdated;
-		#endregion
+
+		#endregion Events
 
 		public DossierNouveau()
 		{
@@ -43,16 +46,6 @@ namespace ProjetMFTR.Forms
 			FolderUpdated?.Invoke(this, CurrentDossier);
 		}
 
-		private void label6_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void rtxtRemarque_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
 		private void btnSaveAndQuit_Click(object sender, EventArgs e)
 		{
 			Save();
@@ -63,6 +56,7 @@ namespace ProjetMFTR.Forms
 			listParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
 			listParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
 			SetButtonVisibility();
+
 		}
 
 		/// <summary>
@@ -111,7 +105,6 @@ namespace ProjetMFTR.Forms
 			CurrentDossier.Dossier_ID = txtNoDossier.Text;
 			AssignValues();
 
-
 			connexionActions.Add(CurrentDossier);
 			result = MessageBox.Show("Le dossier " + CurrentDossier.Dossier_ID + ResourcesString.STR_MessageAddConfirmation,
 							ResourcesString.STR_TitleAddConfirmation,
@@ -141,6 +134,9 @@ namespace ProjetMFTR.Forms
 
 			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
 			bsDataParents.DataSource = parents;
+
+			var services = CurrentDossier.Services;
+			bsServices.DataSource = services;
 		}
 
 		private void AssignValues()
@@ -186,7 +182,6 @@ namespace ProjetMFTR.Forms
 				m_NewEnfant.ChildAdded += new EventHandler<Entities.Enfants>(ChildAdded);
 				m_NewEnfant.ShowDialog();
 			}
-
 		}
 
 		private void ChildAdded(object sender, Entities.Enfants e)
@@ -197,6 +192,12 @@ namespace ProjetMFTR.Forms
 		private void ParentAdded(object sender, Entities.Parent e)
 		{
 			bsDataParents.Add(e);
+		}
+
+		private void ServicesAdded(object sender, Entities.Services e)
+		{
+			var service = Connexion.Instance().Services.Where(x => x.Service_ID == e.Service_ID).FirstOrDefault();
+			bsServices.Add(service);
 		}
 
 		/// <summary>
@@ -229,10 +230,8 @@ namespace ProjetMFTR.Forms
 			}
 			catch (Exception)
 			{
-
 				return;
 			}
-
 		}
 
 		private void listEnfants_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -249,6 +248,21 @@ namespace ProjetMFTR.Forms
 			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
 			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_NewParent.ShowDialog();
+		}
+
+		private void btnAddService_Click(object sender, EventArgs e)
+		{
+			m_NewServices = new Services(txtNoDossier.Text);
+			m_NewServices.ServicesAdded += new EventHandler<Entities.Services>(ServicesAdded);
+			m_NewServices.ShowDialog();
+		}
+
+		private void gvServices_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvServices.CurrentRow;
+			m_NewServices = new Services((Entities.Services)row.DataBoundItem);
+			m_NewServices.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewServices.ShowDialog();
 		}
 	}
 }

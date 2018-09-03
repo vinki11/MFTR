@@ -84,13 +84,11 @@
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsDataCommunication = new System.Windows.Forms.BindingSource(this.components);
 			this.tabReferent = new System.Windows.Forms.TabPage();
-			this.tabServices = new System.Windows.Forms.TabPage();
 			this.btnAddCommunication = new System.Windows.Forms.Button();
 			this.btnAddFolder = new System.Windows.Forms.Button();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.deleteRow = new System.Windows.Forms.ToolStripMenuItem();
-			this.addRow = new System.Windows.Forms.ToolStripMenuItem();
-			this.bsServices = new System.Windows.Forms.BindingSource(this.components);
+			this.Add_Folder = new System.Windows.Forms.ToolStripMenuItem();
+			this.Remove_Folder = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
@@ -106,7 +104,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gvCommunications)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsDataCommunication)).BeginInit();
 			this.contextMenu.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bsServices)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -241,6 +238,7 @@
 			this.gvList.Size = new System.Drawing.Size(484, 231);
 			this.gvList.TabIndex = 2;
 			this.gvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvList_CellDoubleClick);
+			this.gvList.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvList_RowContextMenuStripNeeded);
 			this.gvList.SelectionChanged += new System.EventHandler(this.gvList_SelectionChanged);
 			// 
 			// dataGridViewTextBoxColumn1
@@ -387,7 +385,6 @@
 			this.tb.Controls.Add(this.pageKids);
 			this.tb.Controls.Add(this.pageCommunication);
 			this.tb.Controls.Add(this.tabReferent);
-			this.tb.Controls.Add(this.tabServices);
 			this.tb.Location = new System.Drawing.Point(22, 398);
 			this.tb.Name = "tb";
 			this.tb.SelectedIndex = 0;
@@ -653,16 +650,6 @@
 			this.tabReferent.Text = "Référent";
 			this.tabReferent.UseVisualStyleBackColor = true;
 			// 
-			// tabServices
-			// 
-			this.tabServices.Location = new System.Drawing.Point(4, 22);
-			this.tabServices.Name = "tabServices";
-			this.tabServices.Padding = new System.Windows.Forms.Padding(3);
-			this.tabServices.Size = new System.Drawing.Size(1198, 292);
-			this.tabServices.TabIndex = 4;
-			this.tabServices.Text = "Services";
-			this.tabServices.UseVisualStyleBackColor = true;
-			// 
 			// btnAddCommunication
 			// 
 			this.btnAddCommunication.BackColor = System.Drawing.Color.LightGreen;
@@ -687,33 +674,30 @@
 			this.btnAddFolder.TabIndex = 15;
 			this.btnAddFolder.Text = "Nouveau dossier";
 			this.btnAddFolder.UseVisualStyleBackColor = false;
+			this.btnAddFolder.Visible = false;
 			this.btnAddFolder.Click += new System.EventHandler(this.btnAddFolder_Click);
 			// 
 			// contextMenu
 			// 
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteRow,
-            this.addRow});
+            this.Add_Folder,
+            this.Remove_Folder});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(130, 48);
+			this.contextMenu.Size = new System.Drawing.Size(220, 48);
 			// 
-			// deleteRow
+			// Add_Folder
 			// 
-			this.deleteRow.Name = "deleteRow";
-			this.deleteRow.Size = new System.Drawing.Size(129, 22);
-			this.deleteRow.Text = "Supprimer";
-			this.deleteRow.Click += new System.EventHandler(this.deleteRow_Click);
+			this.Add_Folder.Name = "Add_Folder";
+			this.Add_Folder.Size = new System.Drawing.Size(219, 22);
+			this.Add_Folder.Text = "Ajouter un nouveau dossier";
+			this.Add_Folder.Click += new System.EventHandler(this.addRow_Click);
 			// 
-			// addRow
+			// Remove_Folder
 			// 
-			this.addRow.Name = "addRow";
-			this.addRow.Size = new System.Drawing.Size(129, 22);
-			this.addRow.Text = "Ajouter";
-			this.addRow.Click += new System.EventHandler(this.addRow_Click);
-			// 
-			// bsServices
-			// 
-			this.bsServices.DataSource = typeof(ProjetMFTR.Entities.Services);
+			this.Remove_Folder.Name = "Remove_Folder";
+			this.Remove_Folder.Size = new System.Drawing.Size(219, 22);
+			this.Remove_Folder.Text = "Suppression";
+			this.Remove_Folder.Click += new System.EventHandler(this.Remove_Folder_Click);
 			// 
 			// Dossier
 			// 
@@ -749,7 +733,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gvCommunications)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsDataCommunication)).EndInit();
 			this.contextMenu.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.bsServices)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -807,16 +790,14 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn accueilDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridView gvParents;
 		private System.Windows.Forms.BindingSource bsDataParents;
-		private System.Windows.Forms.TabPage tabServices;
-		private System.Windows.Forms.BindingSource bsServices;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
-		private System.Windows.Forms.ToolStripMenuItem deleteRow;
-		private System.Windows.Forms.ToolStripMenuItem addRow;
+		private System.Windows.Forms.ToolStripMenuItem Add_Folder;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
 		private System.Windows.Forms.DataGridViewTextBoxColumn SubName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn sexeDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn naissanceDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn statutDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn transporteurDataGridViewTextBoxColumn;
+		private System.Windows.Forms.ToolStripMenuItem Remove_Folder;
 	}
 }

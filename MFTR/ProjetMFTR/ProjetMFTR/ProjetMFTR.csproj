@@ -170,6 +170,12 @@
     <Compile Include="Forms\Communication.Designer.cs">
       <DependentUpon>Communication.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DeleteFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeleteFolder.Designer.cs">
+      <DependentUpon>DeleteFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dossier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,12 @@
     </Compile>
     <Compile Include="Forms\DossierNouveau.Designer.cs">
       <DependentUpon>DossierNouveau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Services.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Services.designer.cs">
+      <DependentUpon>Services.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Enfant.cs">
       <SubType>Form</SubType>
@@ -222,11 +234,17 @@
     <EmbeddedResource Include="Forms\Communication.resx">
       <DependentUpon>Communication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeleteFolder.resx">
+      <DependentUpon>DeleteFolder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dossier.resx">
       <DependentUpon>Dossier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DossierNouveau.resx">
       <DependentUpon>DossierNouveau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Services.resx">
+      <DependentUpon>Services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Enfant.resx">
       <DependentUpon>Enfant.cs</DependentUpon>
@@ -328,7 +346,7 @@
     <Content Include="Resources\icone_suivi_64.png" />
     <Content Include="Resources\sda_icone.ico" />
     <Content Include="Sql\1.0.0.1.sql" />
-    <Content Include="Sql\DbInit.sql" />
+    <Content Include="Sql\1.0.0.0.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

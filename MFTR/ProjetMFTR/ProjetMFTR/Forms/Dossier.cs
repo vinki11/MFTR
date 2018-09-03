@@ -27,6 +27,7 @@ namespace ProjetMFTR.Forms
 
 		private Parent m_NewParent;
 		private Enfant m_NewEnfant;
+		private DeleteFolder m_DeleteFolder;
 		#endregion
 
 		private DossierNouveau m_NewDossier;
@@ -241,9 +242,14 @@ namespace ProjetMFTR.Forms
 			//rownum = e.RowIndex;
 		}
 
+		/// <summary>
+		/// Ajout à partir du menu contextuel
+		/// </summary>
 		private void addRow_Click(object sender, EventArgs e)
 		{
-
+			m_NewDossier = new DossierNouveau();
+			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewDossier.ShowDialog();
 		}
 
 		private void deleteRow_Click(object sender, EventArgs e)
@@ -260,9 +266,9 @@ namespace ProjetMFTR.Forms
 
 		private void btnAddFolder_Click(object sender, EventArgs e)
 		{
-			m_NewDossier = new DossierNouveau();
-			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewDossier.ShowDialog();
+			//m_NewDossier = new DossierNouveau();
+			//m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			//m_NewDossier.ShowDialog();
 		}
 
 		/// <summary>
@@ -290,6 +296,18 @@ namespace ProjetMFTR.Forms
 			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
 			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
 			m_NewEnfant.ShowDialog();
+		}
+
+		private void gvList_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		{
+			e.ContextMenuStrip = contextMenu;
+		}
+
+		private void Remove_Folder_Click(object sender, EventArgs e)
+		{
+			m_DeleteFolder = new DeleteFolder();
+			m_DeleteFolder.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_DeleteFolder.Show();
 		}
 	}
 }
