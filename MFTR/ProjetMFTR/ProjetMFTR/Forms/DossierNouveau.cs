@@ -31,7 +31,7 @@ namespace ProjetMFTR.Forms
 		{
 			InitializeComponent();
 			Init();
-			nouveau();
+			Nouveau();
 		}
 
 		public DossierNouveau(Entities.Dossier dossier) : this()
@@ -150,10 +150,10 @@ namespace ProjetMFTR.Forms
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
 			Save();
-			nouveau();
+			Nouveau();
 		}
 
-		private void nouveau()
+		private void Nouveau()
 		{
 			this.Text = "Nouveau dossier";
 			CurrentDossier = null;
@@ -162,6 +162,10 @@ namespace ProjetMFTR.Forms
 			this.dtpDateOuverture.Value = DateTime.Today;
 			this.rtxtRemarque.Text = "";
 			this.cboType.SelectedIndex = 0;
+
+			bsDataKids.Clear();
+			bsDataParents.Clear();
+			bsServices.Clear();
 		}
 
 		private void btnAddParent_Click(object sender, EventArgs e)
@@ -233,34 +237,10 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
-		private void listEnfants_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = listEnfants.CurrentRow;
-			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
-			m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewEnfant.ShowDialog();
-		}
-
-		private void listParents_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = listParents.CurrentRow;
-			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
-			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewParent.ShowDialog();
-		}
-
 		private void btnAddService_Click(object sender, EventArgs e)
 		{
 			m_NewServices = new Services(txtNoDossier.Text);
 			m_NewServices.ServicesAdded += new EventHandler<Entities.Services>(ServicesAdded);
-			m_NewServices.ShowDialog();
-		}
-
-		private void gvServices_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = gvServices.CurrentRow;
-			m_NewServices = new Services((Entities.Services)row.DataBoundItem);
-			m_NewServices.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_NewServices.ShowDialog();
 		}
 
@@ -292,6 +272,30 @@ namespace ProjetMFTR.Forms
 			Connexion.Instance().Services.Remove(services);
 			Connexion.Instance().SaveChanges();
 			AssignDataSources();
+		}
+
+		private void listParents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = listParents.CurrentRow;
+			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
+			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewParent.ShowDialog();
+		}
+
+		private void listEnfants_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = listEnfants.CurrentRow;
+			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
+			m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewEnfant.ShowDialog();
+		}
+
+		private void gvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvServices.CurrentRow;
+			m_NewServices = new Services((Entities.Services)row.DataBoundItem);
+			m_NewServices.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewServices.ShowDialog();
 		}
 	}
 }

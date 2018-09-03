@@ -282,25 +282,9 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
-		private void gvParents_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = gvParents.CurrentRow;
-			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
-			m_NewParent.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
-			m_NewParent.ShowDialog();
-		}
-
-		private void gvKids_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = gvKids.CurrentRow;
-			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
-			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
-			m_NewEnfant.ShowDialog();
-		}
-
 		private void gvList_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
 		{
-			e.ContextMenuStrip = contextMenu;
+			e.ContextMenuStrip = DossierContextMenu;
 		}
 
 		private void Remove_Folder_Click(object sender, EventArgs e)
@@ -308,6 +292,37 @@ namespace ProjetMFTR.Forms
 			m_DeleteFolder = new DeleteFolder();
 			m_DeleteFolder.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_DeleteFolder.Show();
+		}
+
+		private void gvParents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvParents.CurrentRow;
+			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
+			m_NewParent.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
+			m_NewParent.ShowDialog();
+		}
+
+		private void gvKids_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvKids.CurrentRow;
+			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
+			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
+			m_NewEnfant.ShowDialog();
+		}
+
+		private void gvCommunications_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		{
+			e.ContextMenuStrip = CommunicationContextMenu;
+		}
+
+		private void Remove_Communication_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = gvCommunications.CurrentRow;
+			var communication = (Entities.Communication)row.DataBoundItem;
+			Connexion.Instance().Communication.Remove(communication);
+			Connexion.Instance().SaveChanges();
+
+			OnGvListSelectionChanged();
 		}
 	}
 }
