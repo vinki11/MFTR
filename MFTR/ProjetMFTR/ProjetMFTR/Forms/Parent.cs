@@ -22,6 +22,7 @@ namespace ProjetMFTR.Forms
 		String CurrentDossierID;
 		Connexion.ConnexionActions<Entities.Adultes> connexionActionsAdulte = new Connexion.ConnexionActions<Entities.Adultes>();
 		Connexion.ConnexionActions<Entities.Parent> connexionActionsParent = new Connexion.ConnexionActions<Entities.Parent>();
+		Connexion.ConnexionActions<Entities.Adresse> connexionActionsAdresse = new Connexion.ConnexionActions<Entities.Adresse>();
 
 		#endregion
 
@@ -45,6 +46,7 @@ namespace ProjetMFTR.Forms
 		{
 			CurrentParent = parent;
 			CurrentAdulte = parent.Adultes;
+			bsAdresse.DataSource = CurrentAdulte.Adresse.Any() ? CurrentAdulte.Adresse.FirstOrDefault() : new Entities.Adresse();
 			AssignParent();
 		}
 
@@ -69,12 +71,23 @@ namespace ProjetMFTR.Forms
 			CurrentParent.Sexe = this.cboSexe.Text;
 		}
 
+		private void AssignAdresse(Entities.Adresse adresse)
+		{
+			adresse.Civic = txtNumero.Text;
+			adresse.Rue = txtAdresse.Text;
+			adresse.Unite = txtUnite.Text;
+			adresse.Ville = txtTown.Text;
+			adresse.Province = txtProvince.Text;
+			adresse.CodePostal = txtPostalCode.Text;
+			adresse.Pays = txtPays.Text;
+		}
+
 		private void AssignParent()
 		{
 			txtNom.Text = CurrentAdulte.Nom;
 			txtPrenom.Text = CurrentAdulte.Prenom;
 
-			dtpNaissance.Value = CurrentParent.Naissance.HasValue ? CurrentParent.Naissance.Value : DateTime.Now;
+			dtpNaissance.Value = CurrentParent.Naissance.HasValue ? CurrentParent.Naissance.Value : DateTime.Now.Date;
 			cboStatut.Text = CurrentParent.Statut;
 			cboSexe.Text = CurrentParent.Sexe;
 		}
@@ -82,12 +95,22 @@ namespace ProjetMFTR.Forms
 		private Boolean Save()
 		{
 			DialogResult result;
+			Entities.Adresse adresse;
 			if (CurrentParent != null && CurrentAdulte != null)
 			{
 				AssignValuesAdultes();
 				AssignValuesParent();
 				connexionActionsParent.Update(CurrentParent);
 				connexionActionsAdulte.Update(CurrentAdulte);
+
+				if (!CurrentAdulte.Adresse.Any())
+				{
+					adresse = new Entities.Adresse();
+					AssignAdresse(adresse);
+					adresse.Adulte_ID = CurrentAdulte.Adulte_ID;
+
+					connexionActionsAdresse.Add(adresse);
+				}
 				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du parent" + ResourcesString.STR_MessageUpdateConfirmation2,
 				ResourcesString.STR_TitleUpdateConfirmation,
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -97,12 +120,18 @@ namespace ProjetMFTR.Forms
 			//Si nouveau Parent
 			CurrentAdulte = new Entities.Adultes();
 			CurrentParent = new Entities.Parent();
+			adresse = new Entities.Adresse();
 
 			AssignValuesAdultes();
 			connexionActionsAdulte.Add(CurrentAdulte);
 			AssignValuesParent();
 
+			AssignAdresse(adresse);
+			adresse.Adulte_ID = CurrentAdulte.Adulte_ID;
+
 			connexionActionsParent.Add(CurrentParent);
+			connexionActionsAdresse.Add(adresse);
+
 			result = MessageBox.Show("Le parent " + CurrentAdulte.Prenom + " " + CurrentAdulte.Nom + ResourcesString.STR_MessageAddConfirmation,
 											ResourcesString.STR_TitleAddConfirmation,
 											MessageBoxButtons.OK, MessageBoxIcon.Information);
