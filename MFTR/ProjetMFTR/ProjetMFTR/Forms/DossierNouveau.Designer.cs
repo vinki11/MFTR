@@ -46,23 +46,26 @@
 			this.btnAddParent = new System.Windows.Forms.Button();
 			this.gbEnfants = new System.Windows.Forms.GroupBox();
 			this.listEnfants = new System.Windows.Forms.DataGridView();
+			this.gbParent = new System.Windows.Forms.GroupBox();
+			this.listParents = new System.Windows.Forms.DataGridView();
+			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SubName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tbServices = new System.Windows.Forms.TabPage();
+			this.btnAddService = new System.Windows.Forms.Button();
+			this.gvServices = new System.Windows.Forms.DataGridView();
+			this.btnDelParent = new System.Windows.Forms.Button();
+			this.btnDelEnfant = new System.Windows.Forms.Button();
+			this.btnDelServices = new System.Windows.Forms.Button();
 			this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.sexeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.naissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.accueilDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsDataKids = new System.Windows.Forms.BindingSource(this.components);
-			this.gbParent = new System.Windows.Forms.GroupBox();
-			this.listParents = new System.Windows.Forms.DataGridView();
-			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.SubName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.sexeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.naissanceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.statutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsDataParents = new System.Windows.Forms.BindingSource(this.components);
-			this.tbServices = new System.Windows.Forms.TabPage();
-			this.btnAddService = new System.Windows.Forms.Button();
-			this.gvServices = new System.Windows.Forms.DataGridView();
 			this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colFrequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colJournee = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,12 +75,12 @@
 			this.tbFamily.SuspendLayout();
 			this.gbEnfants.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.listEnfants)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).BeginInit();
 			this.gbParent.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.listParents)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).BeginInit();
 			this.tbServices.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvServices)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsServices)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -109,7 +112,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(35, 622);
+			this.label6.Location = new System.Drawing.Point(35, 635);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(61, 13);
 			this.label6.TabIndex = 17;
@@ -187,11 +190,13 @@
 			this.tc.Location = new System.Drawing.Point(32, 110);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(660, 525);
+			this.tc.Size = new System.Drawing.Size(660, 522);
 			this.tc.TabIndex = 26;
 			// 
 			// tbFamily
 			// 
+			this.tbFamily.Controls.Add(this.btnDelEnfant);
+			this.tbFamily.Controls.Add(this.btnDelParent);
 			this.tbFamily.Controls.Add(this.btnAjouterEnfant);
 			this.tbFamily.Controls.Add(this.btnAddParent);
 			this.tbFamily.Controls.Add(this.gbEnfants);
@@ -199,7 +204,7 @@
 			this.tbFamily.Location = new System.Drawing.Point(4, 22);
 			this.tbFamily.Name = "tbFamily";
 			this.tbFamily.Padding = new System.Windows.Forms.Padding(3);
-			this.tbFamily.Size = new System.Drawing.Size(652, 499);
+			this.tbFamily.Size = new System.Drawing.Size(652, 496);
 			this.tbFamily.TabIndex = 0;
 			this.tbFamily.Text = "Famille";
 			this.tbFamily.UseVisualStyleBackColor = true;
@@ -243,6 +248,7 @@
 			// listEnfants
 			// 
 			this.listEnfants.AllowUserToAddRows = false;
+			this.listEnfants.AllowUserToDeleteRows = false;
 			this.listEnfants.AllowUserToOrderColumns = true;
 			this.listEnfants.AllowUserToResizeColumns = false;
 			this.listEnfants.AutoGenerateColumns = false;
@@ -259,49 +265,11 @@
 			this.listEnfants.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.listEnfants.Location = new System.Drawing.Point(3, 16);
 			this.listEnfants.Name = "listEnfants";
+			this.listEnfants.ReadOnly = true;
 			this.listEnfants.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.listEnfants.Size = new System.Drawing.Size(598, 205);
 			this.listEnfants.TabIndex = 24;
 			this.listEnfants.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listEnfants_CellContentDoubleClick);
-			// 
-			// nomDataGridViewTextBoxColumn
-			// 
-			this.nomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-			this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-			this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-			// 
-			// prenomDataGridViewTextBoxColumn
-			// 
-			this.prenomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.prenomDataGridViewTextBoxColumn.DataPropertyName = "Prenom";
-			this.prenomDataGridViewTextBoxColumn.HeaderText = "Prenom";
-			this.prenomDataGridViewTextBoxColumn.Name = "prenomDataGridViewTextBoxColumn";
-			// 
-			// sexeDataGridViewTextBoxColumn
-			// 
-			this.sexeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.sexeDataGridViewTextBoxColumn.DataPropertyName = "Sexe";
-			this.sexeDataGridViewTextBoxColumn.HeaderText = "Sexe";
-			this.sexeDataGridViewTextBoxColumn.Name = "sexeDataGridViewTextBoxColumn";
-			// 
-			// naissanceDataGridViewTextBoxColumn
-			// 
-			this.naissanceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.naissanceDataGridViewTextBoxColumn.DataPropertyName = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn.HeaderText = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn.Name = "naissanceDataGridViewTextBoxColumn";
-			// 
-			// accueilDataGridViewTextBoxColumn
-			// 
-			this.accueilDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.accueilDataGridViewTextBoxColumn.DataPropertyName = "Accueil";
-			this.accueilDataGridViewTextBoxColumn.HeaderText = "Accueil";
-			this.accueilDataGridViewTextBoxColumn.Name = "accueilDataGridViewTextBoxColumn";
-			// 
-			// bsDataKids
-			// 
-			this.bsDataKids.DataSource = typeof(ProjetMFTR.Entities.Enfants);
 			// 
 			// gbParent
 			// 
@@ -316,6 +284,7 @@
 			// listParents
 			// 
 			this.listParents.AllowUserToAddRows = false;
+			this.listParents.AllowUserToDeleteRows = false;
 			this.listParents.AllowUserToOrderColumns = true;
 			this.listParents.AllowUserToResizeRows = false;
 			this.listParents.AutoGenerateColumns = false;
@@ -332,6 +301,7 @@
 			this.listParents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.listParents.Location = new System.Drawing.Point(3, 16);
 			this.listParents.Name = "listParents";
+			this.listParents.ReadOnly = true;
 			this.listParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.listParents.Size = new System.Drawing.Size(604, 175);
 			this.listParents.TabIndex = 18;
@@ -343,43 +313,18 @@
 			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.Nom.HeaderText = "Nom";
 			this.Nom.Name = "Nom";
+			this.Nom.ReadOnly = true;
 			// 
 			// SubName
 			// 
 			this.SubName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.SubName.HeaderText = "Prénom";
 			this.SubName.Name = "SubName";
-			// 
-			// sexeDataGridViewTextBoxColumn1
-			// 
-			this.sexeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.sexeDataGridViewTextBoxColumn1.DataPropertyName = "Sexe";
-			this.sexeDataGridViewTextBoxColumn1.HeaderText = "Sexe";
-			this.sexeDataGridViewTextBoxColumn1.Name = "sexeDataGridViewTextBoxColumn1";
-			this.sexeDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// naissanceDataGridViewTextBoxColumn1
-			// 
-			this.naissanceDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.naissanceDataGridViewTextBoxColumn1.DataPropertyName = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn1.HeaderText = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn1.Name = "naissanceDataGridViewTextBoxColumn1";
-			this.naissanceDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// statutDataGridViewTextBoxColumn
-			// 
-			this.statutDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.statutDataGridViewTextBoxColumn.DataPropertyName = "Statut";
-			this.statutDataGridViewTextBoxColumn.HeaderText = "Statut";
-			this.statutDataGridViewTextBoxColumn.Name = "statutDataGridViewTextBoxColumn";
-			this.statutDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// bsDataParents
-			// 
-			this.bsDataParents.DataSource = typeof(ProjetMFTR.Entities.Parent);
+			this.SubName.ReadOnly = true;
 			// 
 			// tbServices
 			// 
+			this.tbServices.Controls.Add(this.btnDelServices);
 			this.tbServices.Controls.Add(this.btnAddService);
 			this.tbServices.Controls.Add(this.gvServices);
 			this.tbServices.Location = new System.Drawing.Point(4, 22);
@@ -405,6 +350,8 @@
 			// 
 			// gvServices
 			// 
+			this.gvServices.AllowUserToAddRows = false;
+			this.gvServices.AllowUserToDeleteRows = false;
 			this.gvServices.AllowUserToOrderColumns = true;
 			this.gvServices.AutoGenerateColumns = false;
 			this.gvServices.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -418,16 +365,132 @@
 			this.gvServices.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
 			this.gvServices.Location = new System.Drawing.Point(3, 6);
 			this.gvServices.Name = "gvServices";
+			this.gvServices.ReadOnly = true;
 			this.gvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.gvServices.Size = new System.Drawing.Size(646, 247);
 			this.gvServices.TabIndex = 25;
 			this.gvServices.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvServices_CellContentDoubleClick);
+			// 
+			// btnDelParent
+			// 
+			this.btnDelParent.BackColor = System.Drawing.Color.LightCoral;
+			this.btnDelParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDelParent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDelParent.Location = new System.Drawing.Point(327, 206);
+			this.btnDelParent.Name = "btnDelParent";
+			this.btnDelParent.Size = new System.Drawing.Size(144, 23);
+			this.btnDelParent.TabIndex = 30;
+			this.btnDelParent.Text = "Supprimer";
+			this.btnDelParent.UseVisualStyleBackColor = false;
+			this.btnDelParent.Click += new System.EventHandler(this.btnDelParent_Click);
+			// 
+			// btnDelEnfant
+			// 
+			this.btnDelEnfant.BackColor = System.Drawing.Color.LightCoral;
+			this.btnDelEnfant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDelEnfant.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDelEnfant.Location = new System.Drawing.Point(327, 462);
+			this.btnDelEnfant.Name = "btnDelEnfant";
+			this.btnDelEnfant.Size = new System.Drawing.Size(144, 23);
+			this.btnDelEnfant.TabIndex = 31;
+			this.btnDelEnfant.Text = "Supprimer";
+			this.btnDelEnfant.UseVisualStyleBackColor = false;
+			this.btnDelEnfant.Click += new System.EventHandler(this.btnDelEnfant_Click);
+			// 
+			// btnDelServices
+			// 
+			this.btnDelServices.BackColor = System.Drawing.Color.LightCoral;
+			this.btnDelServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDelServices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDelServices.Location = new System.Drawing.Point(327, 259);
+			this.btnDelServices.Name = "btnDelServices";
+			this.btnDelServices.Size = new System.Drawing.Size(144, 23);
+			this.btnDelServices.TabIndex = 31;
+			this.btnDelServices.Text = "Supprimer";
+			this.btnDelServices.UseVisualStyleBackColor = false;
+			this.btnDelServices.Click += new System.EventHandler(this.btnDelServices_Click);
+			// 
+			// nomDataGridViewTextBoxColumn
+			// 
+			this.nomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+			this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+			this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+			this.nomDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// prenomDataGridViewTextBoxColumn
+			// 
+			this.prenomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.prenomDataGridViewTextBoxColumn.DataPropertyName = "Prenom";
+			this.prenomDataGridViewTextBoxColumn.HeaderText = "Prenom";
+			this.prenomDataGridViewTextBoxColumn.Name = "prenomDataGridViewTextBoxColumn";
+			this.prenomDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// sexeDataGridViewTextBoxColumn
+			// 
+			this.sexeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.sexeDataGridViewTextBoxColumn.DataPropertyName = "Sexe";
+			this.sexeDataGridViewTextBoxColumn.HeaderText = "Sexe";
+			this.sexeDataGridViewTextBoxColumn.Name = "sexeDataGridViewTextBoxColumn";
+			this.sexeDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// naissanceDataGridViewTextBoxColumn
+			// 
+			this.naissanceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.naissanceDataGridViewTextBoxColumn.DataPropertyName = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn.HeaderText = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn.Name = "naissanceDataGridViewTextBoxColumn";
+			this.naissanceDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// accueilDataGridViewTextBoxColumn
+			// 
+			this.accueilDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.accueilDataGridViewTextBoxColumn.DataPropertyName = "Accueil";
+			this.accueilDataGridViewTextBoxColumn.HeaderText = "Accueil";
+			this.accueilDataGridViewTextBoxColumn.Name = "accueilDataGridViewTextBoxColumn";
+			this.accueilDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// bsDataKids
+			// 
+			this.bsDataKids.DataSource = typeof(ProjetMFTR.Entities.Enfants);
+			// 
+			// sexeDataGridViewTextBoxColumn1
+			// 
+			this.sexeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.sexeDataGridViewTextBoxColumn1.DataPropertyName = "Sexe";
+			this.sexeDataGridViewTextBoxColumn1.HeaderText = "Sexe";
+			this.sexeDataGridViewTextBoxColumn1.Name = "sexeDataGridViewTextBoxColumn1";
+			this.sexeDataGridViewTextBoxColumn1.ReadOnly = true;
+			this.sexeDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// naissanceDataGridViewTextBoxColumn1
+			// 
+			this.naissanceDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.naissanceDataGridViewTextBoxColumn1.DataPropertyName = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn1.HeaderText = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn1.Name = "naissanceDataGridViewTextBoxColumn1";
+			this.naissanceDataGridViewTextBoxColumn1.ReadOnly = true;
+			this.naissanceDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// statutDataGridViewTextBoxColumn
+			// 
+			this.statutDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.statutDataGridViewTextBoxColumn.DataPropertyName = "Statut";
+			this.statutDataGridViewTextBoxColumn.HeaderText = "Statut";
+			this.statutDataGridViewTextBoxColumn.Name = "statutDataGridViewTextBoxColumn";
+			this.statutDataGridViewTextBoxColumn.ReadOnly = true;
+			this.statutDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// bsDataParents
+			// 
+			this.bsDataParents.DataSource = typeof(ProjetMFTR.Entities.Parent);
 			// 
 			// nomDataGridViewTextBoxColumn1
 			// 
 			this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
 			this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
 			this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
+			this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
 			this.nomDataGridViewTextBoxColumn1.Width = 151;
 			// 
 			// colFrequence
@@ -436,6 +499,7 @@
 			this.colFrequence.DataPropertyName = "Frequence";
 			this.colFrequence.HeaderText = "Frequence";
 			this.colFrequence.Name = "colFrequence";
+			this.colFrequence.ReadOnly = true;
 			this.colFrequence.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			// 
 			// colJournee
@@ -444,6 +508,7 @@
 			this.colJournee.DataPropertyName = "Journee";
 			this.colJournee.HeaderText = "Journee";
 			this.colJournee.Name = "colJournee";
+			this.colJournee.ReadOnly = true;
 			this.colJournee.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			// 
 			// dureeDataGridViewTextBoxColumn
@@ -452,6 +517,7 @@
 			this.dureeDataGridViewTextBoxColumn.DataPropertyName = "Duree";
 			this.dureeDataGridViewTextBoxColumn.HeaderText = "Duree";
 			this.dureeDataGridViewTextBoxColumn.Name = "dureeDataGridViewTextBoxColumn";
+			this.dureeDataGridViewTextBoxColumn.ReadOnly = true;
 			// 
 			// bsServices
 			// 
@@ -480,12 +546,12 @@
 			this.tbFamily.ResumeLayout(false);
 			this.gbEnfants.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.listEnfants)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).EndInit();
 			this.gbParent.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.listParents)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).EndInit();
 			this.tbServices.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvServices)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsServices)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -532,5 +598,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn colJournee;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dureeDataGridViewTextBoxColumn;
 		private System.Windows.Forms.Button btnAddService;
+		private System.Windows.Forms.Button btnDelEnfant;
+		private System.Windows.Forms.Button btnDelParent;
+		private System.Windows.Forms.Button btnDelServices;
 	}
 }

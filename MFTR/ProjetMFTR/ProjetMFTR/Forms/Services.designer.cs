@@ -48,7 +48,7 @@
 			this.btnSave.Location = new System.Drawing.Point(350, 117);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(136, 23);
-			this.btnSave.TabIndex = 36;
+			this.btnSave.TabIndex = 5;
 			this.btnSave.Text = "Enregistrer";
 			this.btnSave.UseVisualStyleBackColor = false;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -67,15 +67,15 @@
             "Jeudi",
             "Vendredi",
             "Samedi"});
-			this.cboJournée.Location = new System.Drawing.Point(73, 62);
+			this.cboJournée.Location = new System.Drawing.Point(316, 62);
 			this.cboJournée.Name = "cboJournée";
 			this.cboJournée.Size = new System.Drawing.Size(170, 21);
-			this.cboJournée.TabIndex = 33;
+			this.cboJournée.TabIndex = 4;
 			// 
 			// Fréquence
 			// 
 			this.Fréquence.AutoSize = true;
-			this.Fréquence.Location = new System.Drawing.Point(252, 68);
+			this.Fréquence.Location = new System.Drawing.Point(9, 65);
 			this.Fréquence.Name = "Fréquence";
 			this.Fréquence.Size = new System.Drawing.Size(58, 13);
 			this.Fréquence.TabIndex = 32;
@@ -88,19 +88,19 @@
 			this.cboFrequence.FormattingEnabled = true;
 			this.cboFrequence.Items.AddRange(new object[] {
             "",
-            "Bimensuel                                         ",
-            "Hebdomadaire                                      ",
-            "Mensuel                                           ",
-            "Sur demande                                       "});
-			this.cboFrequence.Location = new System.Drawing.Point(316, 62);
+            "Bimensuel",
+            "Hebdomadaire",
+            "Mensuel",
+            "Sur demande"});
+			this.cboFrequence.Location = new System.Drawing.Point(73, 62);
 			this.cboFrequence.Name = "cboFrequence";
 			this.cboFrequence.Size = new System.Drawing.Size(170, 21);
-			this.cboFrequence.TabIndex = 31;
+			this.cboFrequence.TabIndex = 3;
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(22, 65);
+			this.label6.Location = new System.Drawing.Point(252, 65);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(45, 13);
 			this.label6.TabIndex = 30;
@@ -111,7 +111,7 @@
 			this.txtDuree.Location = new System.Drawing.Point(316, 23);
 			this.txtDuree.Name = "txtDuree";
 			this.txtDuree.Size = new System.Drawing.Size(170, 20);
-			this.txtDuree.TabIndex = 29;
+			this.txtDuree.TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -127,12 +127,12 @@
 			this.txtNom.Location = new System.Drawing.Point(73, 23);
 			this.txtNom.Name = "txtNom";
 			this.txtNom.Size = new System.Drawing.Size(170, 20);
-			this.txtNom.TabIndex = 27;
+			this.txtNom.TabIndex = 1;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(24, 26);
+			this.label5.Location = new System.Drawing.Point(9, 26);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(29, 13);
 			this.label5.TabIndex = 26;

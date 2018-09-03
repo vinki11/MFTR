@@ -135,7 +135,7 @@ namespace ProjetMFTR.Forms
 			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
 			bsDataParents.DataSource = parents;
 
-			var services = CurrentDossier.Services;
+			var services = CurrentDossier.Services.ToList();
 			bsServices.DataSource = services;
 		}
 
@@ -196,8 +196,7 @@ namespace ProjetMFTR.Forms
 
 		private void ServicesAdded(object sender, Entities.Services e)
 		{
-			var service = Connexion.Instance().Services.Where(x => x.Service_ID == e.Service_ID).FirstOrDefault();
-			bsServices.Add(service);
+			bsServices.Add(e);
 		}
 
 		/// <summary>
@@ -263,6 +262,36 @@ namespace ProjetMFTR.Forms
 			m_NewServices = new Services((Entities.Services)row.DataBoundItem);
 			m_NewServices.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_NewServices.ShowDialog();
+		}
+
+		private void btnDelParent_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = listParents.CurrentRow;
+			var parent = (Entities.Parent)row.DataBoundItem;
+
+			Connexion.Instance().Parent.Remove(parent);
+			Connexion.Instance().SaveChanges();
+			AssignDataSources();
+		}
+
+		private void btnDelEnfant_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = listEnfants.CurrentRow;
+			var enfants = (Entities.Enfants)row.DataBoundItem;
+
+			Connexion.Instance().Enfants.Remove(enfants);
+			Connexion.Instance().SaveChanges();
+			AssignDataSources();
+		}
+
+		private void btnDelServices_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = gvServices.CurrentRow;
+			var services = (Entities.Services)row.DataBoundItem;
+
+			Connexion.Instance().Services.Remove(services);
+			Connexion.Instance().SaveChanges();
+			AssignDataSources();
 		}
 	}
 }

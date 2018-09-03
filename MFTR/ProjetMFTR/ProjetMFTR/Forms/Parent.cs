@@ -53,6 +53,7 @@ namespace ProjetMFTR.Forms
 
 		private void AssignValuesAdultes()
 		{
+			CurrentAdulte.Dossier_ID = CurrentDossierID;
 			CurrentAdulte.Nom = txtNom.Text;
 			CurrentAdulte.Prenom = txtPrenom.Text;
 		}

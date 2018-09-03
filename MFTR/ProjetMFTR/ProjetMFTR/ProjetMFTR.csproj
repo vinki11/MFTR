@@ -345,6 +345,7 @@
     <Content Include="Resources\icone_suivi.png" />
     <Content Include="Resources\icone_suivi_64.png" />
     <Content Include="Resources\sda_icone.ico" />
+    <Content Include="Sql\1.0.0.2.sql" />
     <Content Include="Sql\1.0.0.1.sql" />
     <Content Include="Sql\1.0.0.0.sql" />
   </ItemGroup>

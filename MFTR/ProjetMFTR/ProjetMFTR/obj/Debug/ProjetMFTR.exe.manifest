@@ -138,14 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="1294848">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="1295872">
       <assemblyIdentity name="ProjetMFTR" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6ArehFg27pc0wZLxLhEqQ/+3Asierbf3RXNCsZTWqfE=</dsig:DigestValue>
+        <dsig:DigestValue>5e0N3rovGsrK4JIebZa+C3C3UI5X2cura+ur04QorIQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -285,6 +285,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>ANlHqA6xkd4eZMt9ej7T1Ajz+KkygDJ4wh6ELDr0plQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Sql\1.0.0.2.sql" size="656">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>lWtuxdavZfgjWMiTy5O912qryex/w32FMG0/jtHC3vY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
