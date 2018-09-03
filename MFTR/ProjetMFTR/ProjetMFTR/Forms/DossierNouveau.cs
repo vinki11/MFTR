@@ -56,7 +56,7 @@ namespace ProjetMFTR.Forms
 			listParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
 			listParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
 			SetButtonVisibility();
-
+			dtpDateOuverture.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		/// <summary>

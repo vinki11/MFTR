@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
@@ -28,6 +29,7 @@ namespace ProjetMFTR.Forms
 		{
 			InitializeComponent();
 			CurrentDossierID = dossierID;
+			dtpNaissance.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		public Enfant(Entities.Enfants enfants) : this(enfants.Dossier_ID)

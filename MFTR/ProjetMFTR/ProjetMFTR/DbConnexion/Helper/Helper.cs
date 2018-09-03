@@ -54,5 +54,12 @@ namespace ProjetMFTR.DbConnexion.Helper
 			return retValue;
 		}
 
+		/// <summary>
+		/// Retourne la date d'aujourd'hui comme date maximum
+		/// </summary>
+		public static DateTime CurrentMaxDateTime()
+		{
+			return DateTime.Now;
+		}
 	}
 }

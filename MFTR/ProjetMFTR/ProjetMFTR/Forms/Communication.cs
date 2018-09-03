@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
@@ -28,6 +29,8 @@ namespace ProjetMFTR.Forms
 		public void Init()
 		{
 			InitialiseCombos();
+			dtpDateEvent.MaxDate = Helper.CurrentMaxDateTime();
+			dtpDateSuivi.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		protected virtual void OnCommunicationAdded(EventArgs e)

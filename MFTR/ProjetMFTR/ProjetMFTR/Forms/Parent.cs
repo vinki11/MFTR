@@ -1,4 +1,5 @@
 ﻿using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace ProjetMFTR.Forms
 		{
 			InitializeComponent();
 			CurrentDossierID = dossierId;
+			dtpNaissance.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		public Parent(Entities.Parent parent) : this(parent.Adultes.Dossier_ID)

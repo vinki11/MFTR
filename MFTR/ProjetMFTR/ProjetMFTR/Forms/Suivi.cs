@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
 using ProjetMFTR.Resources;
 
 namespace ProjetMFTR
@@ -30,6 +31,7 @@ namespace ProjetMFTR
 			InitializeComponent();
 			CombosInitialisation();
 			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
+			dtpDateSuivi.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		public Suivi(Entities.Suivi suivi) : this()
