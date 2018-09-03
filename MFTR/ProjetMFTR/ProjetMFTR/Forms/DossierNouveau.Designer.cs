@@ -125,6 +125,7 @@
 			this.listParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.listParents.Size = new System.Drawing.Size(604, 175);
 			this.listParents.TabIndex = 18;
+			this.listParents.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listParents_CellContentDoubleClick);
 			this.listParents.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listParents_CellFormatting);
 			// 
 			// Nom
@@ -295,7 +296,7 @@
 			this.btnSaveAndQuit.Name = "btnSaveAndQuit";
 			this.btnSaveAndQuit.Size = new System.Drawing.Size(136, 23);
 			this.btnSaveAndQuit.TabIndex = 4;
-			this.btnSaveAndQuit.Text = "Enregistrer et Fermer";
+			this.btnSaveAndQuit.Text = "Enregistrer";
 			this.btnSaveAndQuit.UseVisualStyleBackColor = false;
 			this.btnSaveAndQuit.Click += new System.EventHandler(this.btnSaveAndQuit_Click);
 			// 

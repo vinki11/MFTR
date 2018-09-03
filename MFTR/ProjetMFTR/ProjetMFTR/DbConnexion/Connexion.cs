@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -11,11 +12,11 @@ using ProjetMFTR.DbConnexion.Helper;
 namespace ProjetMFTR.DataAccess
 {
 	//Classe ayant la connexion Entity Framework
-	class Connexion
+	internal class Connexion
 	{
 		//Membres privés
 		private static Entities.MFTR m_Instance;
-
+		private static string ConnexionString;
 		//Voir si on garde en singleton ou non (ne permet pas de refresh les instances et d'avoir du data à jour
 		/// <summary>
 		/// Retourne l'instance de la connexion
@@ -32,10 +33,11 @@ namespace ProjetMFTR.DataAccess
 				{
 					string[] lines = System.IO.File.ReadAllLines(destinationFile);
 					m_Instance.Database.Connection.ConnectionString = lines[0];
+					ConnexionString = lines[0];
 					m_Instance.Configuration.LazyLoadingEnabled = true;
 				}
 
-				//m_Instance.Database.Connection.Open(); 
+				//m_Instance.Database.Connection.Open();
 			}
 			return m_Instance;
 		}
@@ -45,10 +47,10 @@ namespace ProjetMFTR.DataAccess
 		/// </summary>
 		public partial class ConnexionActions<TEntity> : IActions<TEntity> where TEntity : class
 		{
-			TEntity currentEntity = null;
-			PrintDocument pdoc = null;
-			string strPrint = "";
-			Entities.Suivi suivi;
+			private TEntity currentEntity = null;
+			private PrintDocument pdoc = null;
+			private string strPrint = "";
+			private Entities.Suivi suivi;
 
 			public bool Add(TEntity entity)
 			{
@@ -79,7 +81,6 @@ namespace ProjetMFTR.DataAccess
 					return false;
 				}
 			}
-
 
 			public void Print(TEntity entity, PrintDialog pd)
 			{
@@ -119,7 +120,8 @@ namespace ProjetMFTR.DataAccess
 				strPrint = suivi.remarque;
 				pdoc.Print();
 			}
-			void pdoc_PrintPage(object sender, PrintPageEventArgs e)
+
+			private void pdoc_PrintPage(object sender, PrintPageEventArgs e)
 			{
 				if (suivi == null) { return; }
 
@@ -187,6 +189,28 @@ namespace ProjetMFTR.DataAccess
 					e.HasMorePages = false;
 			}
 
+			/// <summary>
+			/// Permet de mettre à jour la clé primaire de dossier
+			/// </summary>
+			public void UpdateIDs(string oldId, string newId)
+			{
+				using (SqlConnection conn = new SqlConnection(ConnexionString))
+				{
+					conn.Open();
+
+					// 1.  create a command object identifying the stored procedure
+					SqlCommand cmd = new SqlCommand("UpdateFolderIds", conn);
+
+					// 2. set the command object so it knows to execute a stored procedure
+					cmd.CommandType = CommandType.StoredProcedure;
+
+					// 3. add parameter to command, which will be passed to the stored procedure
+					cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
+					cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+
+					cmd.ExecuteNonQuery();
+				}
+			}
 		}
 	}
 }

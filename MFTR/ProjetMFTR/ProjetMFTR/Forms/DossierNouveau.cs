@@ -1,16 +1,10 @@
-﻿using ProjetMFTR.DataAccess;
-using ProjetMFTR.DbConnexion.Helper;
-using ProjetMFTR.Forms;
-using ProjetMFTR.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetMFTR.DataAccess;
+using ProjetMFTR.DbConnexion.Helper;
+using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
 {
@@ -19,7 +13,6 @@ namespace ProjetMFTR.Forms
 		#region Members
 
 		Entities.Dossier CurrentDossier;
-		EditMode editMode;
 		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 
 		private Parent m_NewParent;
@@ -27,19 +20,27 @@ namespace ProjetMFTR.Forms
 
 		#endregion
 
+		#region Events
+		public event EventHandler<Entities.Dossier> FolderUpdated;
+		#endregion
+
 		public DossierNouveau()
 		{
 			InitializeComponent();
 			Init();
-			//editMode = EditMode.New;
 			nouveau();
 		}
 
 		public DossierNouveau(Entities.Dossier dossier) : this()
 		{
 			AssignFolder(dossier);
-			editMode = EditMode.Edit;
 			this.Text = "Modification d'un dossier";
+			SetButtonVisibility();
+		}
+
+		private void OnFolderUpdated(EventArgs e)
+		{
+			FolderUpdated?.Invoke(this, CurrentDossier);
 		}
 
 		private void label6_Click(object sender, EventArgs e)
@@ -55,13 +56,13 @@ namespace ProjetMFTR.Forms
 		private void btnSaveAndQuit_Click(object sender, EventArgs e)
 		{
 			Save();
-			Close();
 		}
 
 		private void Init()
 		{
 			listParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
 			listParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
+			SetButtonVisibility();
 		}
 
 		/// <summary>
@@ -73,11 +74,20 @@ namespace ProjetMFTR.Forms
 			DialogResult result;
 			if (CurrentDossier != null)
 			{
+				var oldId = CurrentDossier.Dossier_ID;
+				var newId = txtNoDossier.Text;
+				connexionActions.UpdateIDs(oldId, newId);
+				CurrentDossier = Connexion.Instance().Dossier.Single(x => x.Dossier_ID == newId);
 				AssignValues();
-				connexionActions.Update(CurrentDossier);
+
+				var updated = connexionActions.Update(CurrentDossier);
+
+				if (!updated) { return false; }
+
 				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du dossier" + ResourcesString.STR_MessageUpdateConfirmation2,
 				ResourcesString.STR_TitleUpdateConfirmation,
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
+				OnFolderUpdated(new EventArgs());
 				return true;
 			}
 
@@ -98,6 +108,7 @@ namespace ProjetMFTR.Forms
 			}
 
 			CurrentDossier = new Entities.Dossier();
+			CurrentDossier.Dossier_ID = txtNoDossier.Text;
 			AssignValues();
 
 
@@ -111,7 +122,7 @@ namespace ProjetMFTR.Forms
 
 		private void AssignFolder(Entities.Dossier dossier)
 		{
-			txtNoDossier.Text = Connexion.Instance().Dossier.FirstOrDefault(x => x.Dossier_ID == dossier.Dossier_ID).Dossier_ID;
+			txtNoDossier.Text = dossier.Dossier_ID;
 			cboType.Text = dossier.Type;
 			dtpDateOuverture.Value = dossier.Ouverture.HasValue ? dossier.Ouverture.Value : DateTime.MinValue;
 
@@ -134,7 +145,6 @@ namespace ProjetMFTR.Forms
 
 		private void AssignValues()
 		{
-			CurrentDossier.Dossier_ID = txtNoDossier.Text;
 			CurrentDossier.Ouverture = this.dtpDateOuverture.Value.Date;
 			CurrentDossier.Remarque = this.rtxtRemarque.Text;
 			CurrentDossier.Type = cboType.Text;
@@ -156,21 +166,21 @@ namespace ProjetMFTR.Forms
 			this.dtpDateOuverture.Value = DateTime.Today;
 			this.rtxtRemarque.Text = "";
 			this.cboType.SelectedIndex = 0;
-			editMode = EditMode.New;
-
 		}
 
 		private void btnAddParent_Click(object sender, EventArgs e)
 		{
-			m_NewParent = new Parent(this.txtNoDossier.Text);
-			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewParent.ShowDialog();
-
+			if (!string.IsNullOrWhiteSpace(txtNoDossier.Text))
+			{
+				m_NewParent = new Parent(this.txtNoDossier.Text);
+				m_NewParent.ParentAdded += new EventHandler<Entities.Parent>(ParentAdded);
+				m_NewParent.ShowDialog();
+			}
 		}
 
 		private void btnAjouterEnfant_Click(object sender, EventArgs e)
 		{
-			if (txtNoDossier.Text.Count() != 0)
+			if (!string.IsNullOrWhiteSpace(txtNoDossier.Text))
 			{
 				m_NewEnfant = new Enfant(txtNoDossier.Text);
 				m_NewEnfant.ChildAdded += new EventHandler<Entities.Enfants>(ChildAdded);
@@ -183,6 +193,12 @@ namespace ProjetMFTR.Forms
 		{
 			bsDataKids.Add(e);
 		}
+
+		private void ParentAdded(object sender, Entities.Parent e)
+		{
+			bsDataParents.Add(e);
+		}
+
 		/// <summary>
 		/// Met à jour le datasource
 		/// </summary>
@@ -192,12 +208,11 @@ namespace ProjetMFTR.Forms
 			AssignDataSources();
 		}
 
-
-		private enum EditMode
+		private void SetButtonVisibility()
 		{
-			New = 1,
-			Edit = 2
-		};
+			btnAddParent.Enabled = CurrentDossier != null;
+			btnAjouterEnfant.Enabled = CurrentDossier != null;
+		}
 
 		private void listParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
@@ -224,7 +239,16 @@ namespace ProjetMFTR.Forms
 		{
 			DataGridViewRow row = listEnfants.CurrentRow;
 			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
+			m_NewEnfant.FormClosing += new FormClosingEventHandler(UpdateDataSource);
 			m_NewEnfant.ShowDialog();
+		}
+
+		private void listParents_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = listParents.CurrentRow;
+			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
+			m_NewParent.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewParent.ShowDialog();
 		}
 	}
 }

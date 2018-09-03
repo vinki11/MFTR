@@ -24,6 +24,9 @@ namespace ProjetMFTR.Forms
 		DossierNouveau DossierNouveau;
 
 		int rownum = 0;
+
+		private Parent m_NewParent;
+		private Enfant m_NewEnfant;
 		#endregion
 
 		private DossierNouveau m_NewDossier;
@@ -89,7 +92,27 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void FolderEntityUpdated(object sender, Entities.Dossier e)
 		{
+			InitialiseCombos();
+			bsData.Remove(CurrentDossier);
+			bsData.Add(e);
 
+			foreach (DataGridViewRow item in gvList.Rows)
+			{
+				if (item.Cells[0].Value.ToString().Equals(e.Dossier_ID))
+				{
+					item.Selected = true;
+				}
+			}
+			OnGvListSelectionChanged();
+		}
+
+		private void ParentAndChildsUpdated(object sender, EventArgs e)
+		{
+			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+			bsDataKids.DataSource = kids;
+
+			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
+			bsDataParents.DataSource = parents;
 		}
 
 		/// <summary>
@@ -110,7 +133,7 @@ namespace ProjetMFTR.Forms
 		{
 			DataGridViewRow row = gvList.CurrentRow;
 			DossierNouveau = new DossierNouveau((Entities.Dossier)row.DataBoundItem);
-			//DossierNouveau.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
+			DossierNouveau.FolderUpdated += new EventHandler<Entities.Dossier>(FolderEntityUpdated);
 			DossierNouveau.ShowDialog();
 		}
 
@@ -127,11 +150,8 @@ namespace ProjetMFTR.Forms
 			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
 			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
 			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
-			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
-			bsDataKids.DataSource = kids;
 
-			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
-			bsDataParents.DataSource = parents;
+			ParentAndChildsUpdated(null, null);
 		}
 
 		private void btnRecherche_Click(object sender, EventArgs e)
@@ -217,8 +237,8 @@ namespace ProjetMFTR.Forms
 		}
 		private void gvParents_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
 		{
-			e.ContextMenuStrip = contextMenu;
-			rownum = e.RowIndex;
+			//e.ContextMenuStrip = contextMenu;
+			//rownum = e.RowIndex;
 		}
 
 		private void addRow_Click(object sender, EventArgs e)
@@ -256,14 +276,20 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
-		private void gvList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		private void gvParents_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
-
+			DataGridViewRow row = gvParents.CurrentRow;
+			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
+			m_NewParent.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
+			m_NewParent.ShowDialog();
 		}
 
-		private void Dossier_Load(object sender, EventArgs e)
+		private void gvKids_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
-
+			DataGridViewRow row = gvKids.CurrentRow;
+			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
+			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
+			m_NewEnfant.ShowDialog();
 		}
 	}
 }

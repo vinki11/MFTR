@@ -10,5 +10,6 @@ namespace ProjetMFTR.DbConnexion.Helper
 		void Print(TEntity entity, PrintDialog t);
 		bool Add(TEntity entity);
 		bool Update(TEntity entity);
+		void UpdateIDs(string oldId, string newID);
 	}
 }

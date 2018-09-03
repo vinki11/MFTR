@@ -7,14 +7,14 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ProjetMFTR.exe.manifest" size="14617">
+    <dependentAssembly dependencyType="install" codebase="ProjetMFTR.exe.manifest" size="15009">
       <assemblyIdentity name="ProjetMFTR.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BVM8SQDbq6k934Vp04A1rCBODV9aXEn8n96LaEp39EY=</dsig:DigestValue>
+        <dsig:DigestValue>KOCYBnW2ziLhVzKBUyHFttAd3l02mFjGljG5MS+S46w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

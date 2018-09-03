@@ -16,16 +16,25 @@ namespace ProjetMFTR.Forms
 		public Accueil()
 		{
 			Thread thread = new Thread(new ThreadStart(Splash));
-			thread.Start();
-			InitializeComponent();
-			Thread.Sleep(2000);
-			thread.Abort();
-			Focus();
-			TopMost = true;
+			try
+			{
+				thread.Start();
+				Thread.Sleep(2000);
+			}
+			catch (Exception e)
+			{
+			}
+			finally
+			{
+				thread.Abort();
+				Focus();
+				TopMost = true;
+			}
 		}
 
 		void Splash()
 		{
+			InitializeComponent();
 			SplashScreen.SplashForm frm = new SplashScreen.SplashForm();
 			frm.AppName = "Maison de la famille";
 			frm.Icon = Properties.Resources.icone_MFTR;
@@ -39,7 +48,7 @@ namespace ProjetMFTR.Forms
 			}
 			catch (Exception e)
 			{
-				frm.Close();
+				throw;
 			}
 		}
 		/// <summary>
