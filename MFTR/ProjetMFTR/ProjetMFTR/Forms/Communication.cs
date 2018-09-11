@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
@@ -10,6 +11,7 @@ namespace ProjetMFTR.Forms
 	public partial class Communication : Form
 	{
 		Entities.Communication CurrentEntity;
+		bool initialize = false;
 		Connexion.ConnexionActions<Entities.Communication> connexionActions = new Connexion.ConnexionActions<Entities.Communication>();
 		public event EventHandler<Entities.Communication> CommunicationAdded;
 
@@ -53,9 +55,15 @@ namespace ProjetMFTR.Forms
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
 
+			cboReferent.DataSource = new List<Entities.Referent>();
 			cboReferent.DisplayMember = ResourcesString.STR_Adultes + "." + ResourcesString.STR_Nom;
 			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
 
+
+			cboInterlocuteur.DisplayMember = ResourcesString.STR_Prenom;
+			cboInterlocuteur.ValueMember = ResourcesString.STR_Adultes_ID;
+
+			initialize = true;
 		}
 
 		void AssignCommunication(Entities.Communication communication)
@@ -63,8 +71,14 @@ namespace ProjetMFTR.Forms
 			cboFolders.DataSource = Connexion.Instance().Dossier.Where((x) => x.Dossier_ID.Equals(communication.Dossier_ID)).ToList();
 			cboFolders.Enabled = false;
 
-			cboReferent.DataSource = Connexion.Instance().Referent.Where((x) => x.Referent_ID.Equals(communication.Referent_ID)).ToList();
+			var parents = Connexion.Instance().Dossier.SelectMany(x => x.Adultes).Where(o => o.Dossier_ID == communication.Dossier_ID).ToList();
 
+			//cboInterlocuteur.Items.AddRange(parents.SelectMany(x => x.Nom + ", " + x.Prenom).Cast<object>().ToList().ToArray());
+
+			var referents = SelectReferents();
+
+			cboReferent.DataSource = referents.ToList();
+			cboReferent.Text = referents.FirstOrDefault((x) => x.Referent_ID == (communication.Referent_ID))?.Referent_ID;
 			cboInterlocuteur.Text = communication.Interlocuteur;
 			cboMotif.Text = communication.Motif;
 			cboTypeCommunication.Text = communication.Type;
@@ -72,7 +86,7 @@ namespace ProjetMFTR.Forms
 			CurrentEntity = communication;
 			if (communication.DateEven.HasValue) { dtpDateEvent.Value = communication.DateEven.Value; }
 			if (communication.DateComm.HasValue) { dtpDateSuivi.Value = communication.DateComm.Value; }
-			dtpHours.Value = Convert.ToDateTime(communication.Heure.Value.ToString());
+			if (communication.Heure.HasValue) { dtpHours.Value = Convert.ToDateTime(communication.Heure.Value.ToString()); }
 			rtxtNotes.Text = communication.Note;
 		}
 
@@ -87,13 +101,13 @@ namespace ProjetMFTR.Forms
 			CurrentEntity.DateComm = dtpDateSuivi.Value.Date;
 			CurrentEntity.DateEven = dtpDateEvent.Value.Date;
 			CurrentEntity.Heure = new TimeSpan(dtpHours.Value.Hour, dtpHours.Value.Minute, dtpHours.Value.Second);
-			CurrentEntity.Referent_ID = (cboReferent.SelectedItem != null) ? ((Entities.Referent)cboReferent.SelectedItem).Referent_ID : null;
+			CurrentEntity.Referent_ID = ((Entities.Referent)cboReferent.SelectedItem)?.Referent_ID;
 			CurrentEntity.Note = rtxtNotes.Text;
 			CurrentEntity.Interlocuteur = cboInterlocuteur.Text;
 			CurrentEntity.Type = cboTypeCommunication.Text;
 			CurrentEntity.Motif = cboMotif.Text;
 			CurrentEntity.Intervenant = cboEmployes.Text;
-			CurrentEntity.IdIntervenant = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id;
+			CurrentEntity.IdIntervenant = ((Entities.Intervenant)cboEmployes.SelectedItem)?.intervenant_id;
 		}
 
 		/// <summary>
@@ -101,9 +115,39 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void cboFolders_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (cboFolders.SelectedItem == null) { return; }
+			if (!initialize) { return; }
 
-			cboReferent.DataSource = Connexion.Instance().Referent.Where(x => x.Referent_ID == ((Entities.Dossier)cboFolders.SelectedItem).Referent_ID).ToList();
+			//if (string.IsNullOrWhiteSpace(cboFolders.Text)) { return; }
+
+			//cboReferent.DataSource = Connexion.Instance().Referent.Where(x => x.Referent_ID == ((Entities.Dossier)cboFolders.SelectedItem).Referent_ID).ToList();
+			cboInterlocuteur.DataSource = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.ToList();
+			var referents = SelectReferents();
+
+			if (!referents.Any()) { return; }
+			cboReferent.DataSource = referents.ToList();
+		}
+
+		private List<Entities.Referent> SelectReferents()
+		{
+			if (!initialize) { return new List<Entities.Referent>(); }
+			if (((Entities.Dossier)cboFolders.SelectedItem) == null) { return new List<Entities.Referent>(); }
+
+			var lienReferrents = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.SelectMany(x => x.Parent.SelectMany(o => o.LienReferrent)).ToList();
+			var referents = Connexion.Instance().Referent.ToList().Where(x => lienReferrents.Any(p => p.Referent_ID == x.Referent_ID)).ToList();
+			var kids = ((Entities.Dossier)cboFolders.SelectedItem).Enfants.Select(o => o.Referent_ID).ToList();
+			var kidReferent = Connexion.Instance().Referent.Where(x => kids.Any(o => o == x.Referent_ID)).ToList();
+			referents.Concat(kidReferent);
+			return referents.ToList();
+		}
+		/// <summary>
+		/// Survient au changement d'un référent
+		/// </summary>
+		private void cboReferent_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			var referent = ((Entities.Referent)cboReferent.SelectedItem);
+			if (referent == null) { return; }
+
+			cboInterlocuteur.Text = referent.Adultes.Nom + ", " + referent.Adultes.Prenom;
 		}
 
 		#region Binding
@@ -154,9 +198,9 @@ namespace ProjetMFTR.Forms
 			{
 				AssignValues();
 				connexionActions.Update(CurrentEntity);
-				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de la communication" + ResourcesString.STR_MessageUpdateConfirmation2,
-				ResourcesString.STR_TitleUpdateConfirmation,
-				MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de la communication" + ResourcesString.STR_MessageUpdateConfirmation2,
+				//ResourcesString.STR_TitleUpdateConfirmation,
+				//MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return true;
 			}
 
@@ -194,12 +238,22 @@ namespace ProjetMFTR.Forms
 			CurrentEntity = null;
 			cboFolders.Enabled = true;
 			bindingNavigator1.Enabled = false;
+			initialize = false;
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			Save();
 		}
+
+		/// <summary>
+		/// Avant la fermeture de la fenêtre, nous allons sauvegarder
+		/// </summary>
+		private void Communication_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			e.Cancel = !Save();
+		}
+
 
 	}
 }

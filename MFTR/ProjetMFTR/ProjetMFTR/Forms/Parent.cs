@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace ProjetMFTR.Forms
 		Connexion.ConnexionActions<Entities.Adultes> connexionActionsAdulte = new Connexion.ConnexionActions<Entities.Adultes>();
 		Connexion.ConnexionActions<Entities.Parent> connexionActionsParent = new Connexion.ConnexionActions<Entities.Parent>();
 		Connexion.ConnexionActions<Entities.Adresse> connexionActionsAdresse = new Connexion.ConnexionActions<Entities.Adresse>();
+		Connexion.ConnexionActions<Entities.Telephone> connexionActionsPhone = new Connexion.ConnexionActions<Entities.Telephone>();
 
 		#endregion
 
@@ -40,6 +42,7 @@ namespace ProjetMFTR.Forms
 			InitializeComponent();
 			CurrentDossierID = dossierId;
 			dtpNaissance.MaxDate = Helper.CurrentMaxDateTime();
+			gvPhone.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
 		}
 
 		public Parent(Entities.Parent parent) : this(parent.Adultes.Dossier_ID)
@@ -47,6 +50,7 @@ namespace ProjetMFTR.Forms
 			CurrentParent = parent;
 			CurrentAdulte = parent.Adultes;
 			bsAdresse.DataSource = CurrentAdulte.Adresse.Any() ? CurrentAdulte.Adresse.FirstOrDefault() : new Entities.Adresse();
+			bsTelephone.DataSource = CurrentAdulte.Telephone.ToList();
 			AssignParent();
 		}
 
@@ -138,6 +142,33 @@ namespace ProjetMFTR.Forms
 
 			OnParentAdded(new EventArgs());
 			return true;
+		}
+
+		private void listParents_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		{
+			e.ContextMenuStrip = ParentContextMenu;
+		}
+
+		private void remove_phone_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = gvPhone.CurrentRow;
+			if (!Connexion.Instance().Telephone.Any(x => x.Tel_ID == ((Entities.Telephone)row.DataBoundItem).Tel_ID)) { return; }
+
+			Connexion.Instance().Telephone.Remove((Entities.Telephone)row.DataBoundItem);
+			Connexion.Instance().SaveChanges();
+		}
+
+		private void gvPhone_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+		{
+			if (CurrentAdulte == null) { return; }
+			var telephone = (Entities.Telephone)bsTelephone.Current;
+
+			if (telephone == null) { return; }
+			if (telephone.Adulte_ID != null) { return; }
+
+			telephone.Adulte_ID = CurrentAdulte.Adulte_ID;
+			telephone.Adultes = CurrentAdulte;
+			connexionActionsPhone.Add(telephone);
 		}
 	}
 }

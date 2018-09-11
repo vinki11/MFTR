@@ -304,6 +304,7 @@
 			this.Name = "Suivi";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Déroulement de la période d’attente dans la salle (30 minutes)";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Suivi_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
 			this.bindingNavigator1.ResumeLayout(false);
 			this.bindingNavigator1.PerformLayout();

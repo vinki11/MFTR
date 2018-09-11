@@ -79,7 +79,7 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
-			if (!Save()) { return; }
+			if (!Save(true)) { return; }
 			Clean();
 			CombosInitialisation();
 		}
@@ -89,13 +89,13 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnSave_Click(object sender, EventArgs e)
 		{
-			Save();
+			Save(true);
 		}
 
 		/// <summary>
 		/// Sauvegarde le suivi présent
 		/// </summary>
-		private Boolean Save()
+		private Boolean Save(bool skipValidation)
 		{
 			DialogResult result;
 			if (CurrentEntity != null)
@@ -116,7 +116,7 @@ namespace ProjetMFTR
 				return false;
 			}
 
-			if (((Entities.Enfants)cboKids.SelectedItem) == null)
+			if (((Entities.Enfants)cboKids.SelectedItem) == null && !skipValidation)
 			{
 				MessageBox.Show("Vous devez sélectionner un enfant pour pouvoir sauvegarder le suivi",
 				"Attention",
@@ -124,7 +124,7 @@ namespace ProjetMFTR
 				return false;
 			}
 
-			if (((Entities.Intervenant)cboEmployes.SelectedItem) == null)
+			if (((Entities.Intervenant)cboEmployes.SelectedItem) == null && !skipValidation)
 			{
 				MessageBox.Show("Vous devez sélectionner un intervenant pour pouvoir sauvegarder le suivi",
 				"Attention",
@@ -217,5 +217,12 @@ namespace ProjetMFTR
 		}
 		#endregion
 
+		/// <summary>
+		/// Avant la fermeture de la fenêtre, nous allons sauvegarder
+		/// </summary>
+		private void Suivi_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			e.Cancel = !Save(true);
+		}
 	}
 }

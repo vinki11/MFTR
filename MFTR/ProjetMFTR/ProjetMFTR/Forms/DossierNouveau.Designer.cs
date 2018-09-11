@@ -96,7 +96,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(29, 72);
+			this.label1.Location = new System.Drawing.Point(630, 32);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(86, 13);
 			this.label1.TabIndex = 12;
@@ -104,7 +104,7 @@
 			// 
 			// dtpDateOuverture
 			// 
-			this.dtpDateOuverture.Location = new System.Drawing.Point(117, 70);
+			this.dtpDateOuverture.Location = new System.Drawing.Point(718, 30);
 			this.dtpDateOuverture.Name = "dtpDateOuverture";
 			this.dtpDateOuverture.Size = new System.Drawing.Size(146, 20);
 			this.dtpDateOuverture.TabIndex = 3;
@@ -123,7 +123,7 @@
 			// 
 			this.rtxtRemarque.Location = new System.Drawing.Point(38, 651);
 			this.rtxtRemarque.Name = "rtxtRemarque";
-			this.rtxtRemarque.Size = new System.Drawing.Size(650, 78);
+			this.rtxtRemarque.Size = new System.Drawing.Size(565, 107);
 			this.rtxtRemarque.TabIndex = 16;
 			this.rtxtRemarque.Text = "";
 			// 
@@ -139,9 +139,9 @@
 			this.btnSaveAndQuit.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSaveAndQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSaveAndQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveAndQuit.Location = new System.Drawing.Point(363, 745);
+			this.btnSaveAndQuit.Location = new System.Drawing.Point(984, 735);
 			this.btnSaveAndQuit.Name = "btnSaveAndQuit";
-			this.btnSaveAndQuit.Size = new System.Drawing.Size(136, 23);
+			this.btnSaveAndQuit.Size = new System.Drawing.Size(144, 23);
 			this.btnSaveAndQuit.TabIndex = 4;
 			this.btnSaveAndQuit.Text = "Enregistrer";
 			this.btnSaveAndQuit.UseVisualStyleBackColor = false;
@@ -152,7 +152,7 @@
 			this.btnSaveAndNew.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSaveAndNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSaveAndNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveAndNew.Location = new System.Drawing.Point(534, 745);
+			this.btnSaveAndNew.Location = new System.Drawing.Point(1146, 735);
 			this.btnSaveAndNew.Name = "btnSaveAndNew";
 			this.btnSaveAndNew.Size = new System.Drawing.Size(154, 23);
 			this.btnSaveAndNew.TabIndex = 5;
@@ -166,10 +166,10 @@
 			this.cboType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboType.FormattingEnabled = true;
 			this.cboType.Items.AddRange(new object[] {
-						"",
-						"Cour Supérieure",
-						"Centre Jeunesse",
-						"Entente entre les parties"});
+            "",
+            "Cour Supérieure",
+            "Centre Jeunesse",
+            "Entente entre les parties"});
 			this.cboType.Location = new System.Drawing.Point(384, 29);
 			this.cboType.Name = "cboType";
 			this.cboType.Size = new System.Drawing.Size(219, 21);
@@ -191,7 +191,7 @@
 			this.tc.Location = new System.Drawing.Point(32, 110);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(660, 522);
+			this.tc.Size = new System.Drawing.Size(1293, 522);
 			this.tc.TabIndex = 26;
 			// 
 			// tbFamily
@@ -205,7 +205,7 @@
 			this.tbFamily.Location = new System.Drawing.Point(4, 22);
 			this.tbFamily.Name = "tbFamily";
 			this.tbFamily.Padding = new System.Windows.Forms.Padding(3);
-			this.tbFamily.Size = new System.Drawing.Size(652, 496);
+			this.tbFamily.Size = new System.Drawing.Size(1285, 496);
 			this.tbFamily.TabIndex = 0;
 			this.tbFamily.Text = "Famille";
 			this.tbFamily.UseVisualStyleBackColor = true;
@@ -215,7 +215,7 @@
 			this.btnDelEnfant.BackColor = System.Drawing.Color.LightCoral;
 			this.btnDelEnfant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDelEnfant.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDelEnfant.Location = new System.Drawing.Point(327, 462);
+			this.btnDelEnfant.Location = new System.Drawing.Point(948, 467);
 			this.btnDelEnfant.Name = "btnDelEnfant";
 			this.btnDelEnfant.Size = new System.Drawing.Size(144, 23);
 			this.btnDelEnfant.TabIndex = 31;
@@ -228,7 +228,7 @@
 			this.btnDelParent.BackColor = System.Drawing.Color.LightCoral;
 			this.btnDelParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDelParent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDelParent.Location = new System.Drawing.Point(327, 206);
+			this.btnDelParent.Location = new System.Drawing.Point(948, 203);
 			this.btnDelParent.Name = "btnDelParent";
 			this.btnDelParent.Size = new System.Drawing.Size(144, 23);
 			this.btnDelParent.TabIndex = 30;
@@ -241,7 +241,7 @@
 			this.btnAjouterEnfant.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnAjouterEnfant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAjouterEnfant.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAjouterEnfant.Location = new System.Drawing.Point(489, 462);
+			this.btnAjouterEnfant.Location = new System.Drawing.Point(1110, 467);
 			this.btnAjouterEnfant.Name = "btnAjouterEnfant";
 			this.btnAjouterEnfant.Size = new System.Drawing.Size(136, 23);
 			this.btnAjouterEnfant.TabIndex = 29;
@@ -254,7 +254,7 @@
 			this.btnAddParent.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnAddParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAddParent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddParent.Location = new System.Drawing.Point(489, 206);
+			this.btnAddParent.Location = new System.Drawing.Point(1110, 203);
 			this.btnAddParent.Name = "btnAddParent";
 			this.btnAddParent.Size = new System.Drawing.Size(136, 23);
 			this.btnAddParent.TabIndex = 28;
@@ -267,7 +267,7 @@
 			this.gbEnfants.Controls.Add(this.listEnfants);
 			this.gbEnfants.Location = new System.Drawing.Point(21, 232);
 			this.gbEnfants.Name = "gbEnfants";
-			this.gbEnfants.Size = new System.Drawing.Size(604, 224);
+			this.gbEnfants.Size = new System.Drawing.Size(1225, 224);
 			this.gbEnfants.TabIndex = 27;
 			this.gbEnfants.TabStop = false;
 			this.gbEnfants.Text = "Enfants";
@@ -282,11 +282,11 @@
 			this.listEnfants.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.listEnfants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.listEnfants.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-						this.nomDataGridViewTextBoxColumn,
-						this.prenomDataGridViewTextBoxColumn,
-						this.sexeDataGridViewTextBoxColumn,
-						this.naissanceDataGridViewTextBoxColumn,
-						this.accueilDataGridViewTextBoxColumn});
+            this.nomDataGridViewTextBoxColumn,
+            this.prenomDataGridViewTextBoxColumn,
+            this.sexeDataGridViewTextBoxColumn,
+            this.naissanceDataGridViewTextBoxColumn,
+            this.accueilDataGridViewTextBoxColumn});
 			this.listEnfants.DataSource = this.bsDataKids;
 			this.listEnfants.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listEnfants.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -294,7 +294,7 @@
 			this.listEnfants.Name = "listEnfants";
 			this.listEnfants.ReadOnly = true;
 			this.listEnfants.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.listEnfants.Size = new System.Drawing.Size(598, 205);
+			this.listEnfants.Size = new System.Drawing.Size(1219, 205);
 			this.listEnfants.TabIndex = 24;
 			this.listEnfants.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listEnfants_CellDoubleClick);
 			// 
@@ -347,7 +347,7 @@
 			this.gbParent.Controls.Add(this.listParents);
 			this.gbParent.Location = new System.Drawing.Point(15, 6);
 			this.gbParent.Name = "gbParent";
-			this.gbParent.Size = new System.Drawing.Size(610, 194);
+			this.gbParent.Size = new System.Drawing.Size(1234, 194);
 			this.gbParent.TabIndex = 26;
 			this.gbParent.TabStop = false;
 			this.gbParent.Text = "Parents";
@@ -362,11 +362,11 @@
 			this.listParents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.listParents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.listParents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-						this.Nom,
-						this.SubName,
-						this.sexeDataGridViewTextBoxColumn1,
-						this.naissanceDataGridViewTextBoxColumn1,
-						this.statutDataGridViewTextBoxColumn});
+            this.Nom,
+            this.SubName,
+            this.sexeDataGridViewTextBoxColumn1,
+            this.naissanceDataGridViewTextBoxColumn1,
+            this.statutDataGridViewTextBoxColumn});
 			this.listParents.DataSource = this.bsDataParents;
 			this.listParents.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listParents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -374,7 +374,7 @@
 			this.listParents.Name = "listParents";
 			this.listParents.ReadOnly = true;
 			this.listParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.listParents.Size = new System.Drawing.Size(604, 175);
+			this.listParents.Size = new System.Drawing.Size(1228, 175);
 			this.listParents.TabIndex = 18;
 			this.listParents.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listParents_CellDoubleClick);
 			this.listParents.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.listParents_CellFormatting);
@@ -432,7 +432,7 @@
 			this.tbServices.Location = new System.Drawing.Point(4, 22);
 			this.tbServices.Name = "tbServices";
 			this.tbServices.Padding = new System.Windows.Forms.Padding(3);
-			this.tbServices.Size = new System.Drawing.Size(652, 496);
+			this.tbServices.Size = new System.Drawing.Size(1285, 496);
 			this.tbServices.TabIndex = 1;
 			this.tbServices.Text = "Services";
 			this.tbServices.UseVisualStyleBackColor = true;
@@ -442,7 +442,7 @@
 			this.btnDelServices.BackColor = System.Drawing.Color.LightCoral;
 			this.btnDelServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDelServices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDelServices.Location = new System.Drawing.Point(327, 259);
+			this.btnDelServices.Location = new System.Drawing.Point(948, 271);
 			this.btnDelServices.Name = "btnDelServices";
 			this.btnDelServices.Size = new System.Drawing.Size(144, 23);
 			this.btnDelServices.TabIndex = 31;
@@ -455,7 +455,7 @@
 			this.btnAddService.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnAddService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAddService.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddService.Location = new System.Drawing.Point(513, 259);
+			this.btnAddService.Location = new System.Drawing.Point(1128, 271);
 			this.btnAddService.Name = "btnAddService";
 			this.btnAddService.Size = new System.Drawing.Size(136, 23);
 			this.btnAddService.TabIndex = 29;
@@ -470,17 +470,17 @@
 			this.gvServices.AutoGenerateColumns = false;
 			this.gvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gvServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-						this.nomDataGridViewTextBoxColumn1,
-						this.colFrequence,
-						this.colJournee,
-						this.dureeDataGridViewTextBoxColumn});
+            this.nomDataGridViewTextBoxColumn1,
+            this.colFrequence,
+            this.colJournee,
+            this.dureeDataGridViewTextBoxColumn});
 			this.gvServices.DataSource = this.bsServices;
 			this.gvServices.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.gvServices.Location = new System.Drawing.Point(3, 6);
 			this.gvServices.Name = "gvServices";
 			this.gvServices.ReadOnly = true;
 			this.gvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvServices.Size = new System.Drawing.Size(646, 247);
+			this.gvServices.Size = new System.Drawing.Size(1261, 247);
 			this.gvServices.TabIndex = 25;
 			this.gvServices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvServices_CellDoubleClick);
 			// 
@@ -526,7 +526,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(718, 789);
+			this.ClientSize = new System.Drawing.Size(1352, 789);
 			this.Controls.Add(this.tc);
 			this.Controls.Add(this.cboType);
 			this.Controls.Add(this.label2);
@@ -540,6 +540,7 @@
 			this.Controls.Add(this.dtpDateOuverture);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DossierNouveau";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Nouveau Dossier";
 			this.tc.ResumeLayout(false);
 			this.tbFamily.ResumeLayout(false);
