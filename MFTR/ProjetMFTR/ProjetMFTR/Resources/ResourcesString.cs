@@ -17,6 +17,7 @@
 		public const string STR_Ok = "Ok";
 		public const string STR_Oui = "Oui";
 		public const string STR_Prenom = "Prenom";
+		public const string STR_Retry = "Réessayer";
 		public const string STR_ReferentId = "Referent_id";
 		public const string STR_TitleAddConfirmation = "Ajout fait avec succès";
 		public const string STR_TitleConfirmDelete = "Confirmation de suppression";

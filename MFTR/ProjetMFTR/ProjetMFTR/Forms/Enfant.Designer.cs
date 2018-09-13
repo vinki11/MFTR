@@ -40,6 +40,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtNom = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.btnSaveAndClose = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnSave
@@ -47,7 +48,7 @@
 			this.btnSave.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(335, 155);
+			this.btnSave.Location = new System.Drawing.Point(367, 155);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(136, 23);
 			this.btnSave.TabIndex = 36;
@@ -148,11 +149,25 @@
 			this.label5.TabIndex = 26;
 			this.label5.Text = "Nom";
 			// 
+			// btnSaveAndClose
+			// 
+			this.btnSaveAndClose.BackColor = System.Drawing.Color.PaleGreen;
+			this.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSaveAndClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSaveAndClose.Location = new System.Drawing.Point(203, 155);
+			this.btnSaveAndClose.Name = "btnSaveAndClose";
+			this.btnSaveAndClose.Size = new System.Drawing.Size(136, 23);
+			this.btnSaveAndClose.TabIndex = 37;
+			this.btnSaveAndClose.Text = "Enregistrer et Fermer";
+			this.btnSaveAndClose.UseVisualStyleBackColor = false;
+			this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
+			// 
 			// Enfant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(515, 196);
+			this.Controls.Add(this.btnSaveAndClose);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.dtpNaissance);
@@ -166,6 +181,7 @@
 			this.Controls.Add(this.label5);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Enfant";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Enfant";
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -185,5 +201,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Label label5;
-    }
+		private System.Windows.Forms.Button btnSaveAndClose;
+	}
 }

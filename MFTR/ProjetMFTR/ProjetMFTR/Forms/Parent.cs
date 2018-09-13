@@ -25,6 +25,8 @@ namespace ProjetMFTR.Forms
 		Connexion.ConnexionActions<Entities.Parent> connexionActionsParent = new Connexion.ConnexionActions<Entities.Parent>();
 		Connexion.ConnexionActions<Entities.Adresse> connexionActionsAdresse = new Connexion.ConnexionActions<Entities.Adresse>();
 		Connexion.ConnexionActions<Entities.Telephone> connexionActionsPhone = new Connexion.ConnexionActions<Entities.Telephone>();
+		Connexion.ConnexionActions<Entities.Referent> connexionActionReferent = new Connexion.ConnexionActions<Entities.Referent>();
+		Connexion.ConnexionActions<Entities.LienReferrent> connexionActionLienReferrent = new Connexion.ConnexionActions<Entities.LienReferrent>();
 
 		#endregion
 
@@ -51,12 +53,61 @@ namespace ProjetMFTR.Forms
 			CurrentAdulte = parent.Adultes;
 			bsAdresse.DataSource = CurrentAdulte.Adresse.Any() ? CurrentAdulte.Adresse.FirstOrDefault() : new Entities.Adresse();
 			bsTelephone.DataSource = CurrentAdulte.Telephone.ToList();
+			var lienReferents = CurrentAdulte.Parent.Where(x => x.Adulte_ID == CurrentAdulte.Adulte_ID).SelectMany(o => o.LienReferrent).ToList();
+			bsReferent.DataSource = Connexion.Instance().Referent.ToList().Where(x => lienReferents.Any(o => x.Referent_ID.Equals(o.Referent_ID))).ToList();
+			init();
 			AssignParent();
 		}
 
+		public void init()
+		{
+			gvReferent.Columns["Nom"].DataPropertyName = "Adultes.Nom";
+			gvReferent.Columns["Prenom"].DataPropertyName = "Adultes.Prenom";
+		}
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			Save();
+			AddReferent();
+		}
+
+		private void AddReferent()
+		{
+			if (CurrentParent == null) { return; }
+			var bs = new BindingSource();
+			bs = bsReferent;
+			var referents = bs.List.OfType<Entities.Referent>().Where(x => x.Adulte_ID == null).ToList();
+
+			foreach (var r in referents)
+			{
+				var referent = Connexion.Instance().Referent.FirstOrDefault(x => x.Referent_ID == r.Referent_ID);
+
+				if (referent == null)
+				{
+					var adulte = new Entities.Adultes();
+					adulte.Nom = r.Adultes.Nom;
+					adulte.Prenom = r.Adultes.Prenom;
+					connexionActionsAdulte.Add(adulte);
+					var refe = new Entities.Referent();
+					refe.Adulte_ID = adulte.Adulte_ID;
+					refe.Organisation = r.Organisation;
+					refe.Type = r.Type;
+					connexionActionReferent.Add(refe);
+					var lienReferent = new Entities.LienReferrent();
+					lienReferent.Referent_ID = refe.Referent_ID;
+					lienReferent.Parent_ID = CurrentParent.Parent_ID;
+					connexionActionLienReferrent.Add(lienReferent);
+				}
+				else
+				{
+					var lienReferent = new Entities.LienReferrent();
+					lienReferent.Referent_ID = referent.Referent_ID;
+					lienReferent.Parent_ID = CurrentParent.Parent_ID;
+
+					connexionActionLienReferrent.Add(lienReferent);
+				}
+			}
+
+
 		}
 
 		private void AssignValuesAdultes()
@@ -115,9 +166,9 @@ namespace ProjetMFTR.Forms
 
 					connexionActionsAdresse.Add(adresse);
 				}
-				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du parent" + ResourcesString.STR_MessageUpdateConfirmation2,
-				ResourcesString.STR_TitleUpdateConfirmation,
-				MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du parent" + ResourcesString.STR_MessageUpdateConfirmation2,
+				//ResourcesString.STR_TitleUpdateConfirmation,
+				//MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return true;
 			}
 
@@ -136,9 +187,9 @@ namespace ProjetMFTR.Forms
 			connexionActionsParent.Add(CurrentParent);
 			connexionActionsAdresse.Add(adresse);
 
-			result = MessageBox.Show("Le parent " + CurrentAdulte.Prenom + " " + CurrentAdulte.Nom + ResourcesString.STR_MessageAddConfirmation,
-											ResourcesString.STR_TitleAddConfirmation,
-											MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//result = MessageBox.Show("Le parent " + CurrentAdulte.Prenom + " " + CurrentAdulte.Nom + ResourcesString.STR_MessageAddConfirmation,
+			//								ResourcesString.STR_TitleAddConfirmation,
+			//								MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			OnParentAdded(new EventArgs());
 			return true;
@@ -169,6 +220,40 @@ namespace ProjetMFTR.Forms
 			telephone.Adulte_ID = CurrentAdulte.Adulte_ID;
 			telephone.Adultes = CurrentAdulte;
 			connexionActionsPhone.Add(telephone);
+		}
+
+		private void btnSaveAndClose_Click(object sender, EventArgs e)
+		{
+			Save();
+			Close();
+		}
+
+		private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			if ((gvReferent.Rows[e.RowIndex].DataBoundItem != null) &&
+		 (gvReferent.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
+			{
+				e.Value = Helper.BindProperty(
+											gvReferent.Rows[e.RowIndex].DataBoundItem,
+											gvReferent.Columns[e.ColumnIndex].DataPropertyName
+										);
+			}
+		}
+
+		private void gvReferent_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+		{
+			//if (CurrentAdulte == null) { return; }
+			var referent = (Entities.Referent)bsReferent.Current;
+
+			if (referent == null) { return; }
+			if (referent.Adulte_ID != null) { return; }
+
+			var adulte = new Entities.Adultes();
+			referent.Adultes = adulte;
+			referent.Adultes.Nom = "";
+			referent.Adultes.Prenom = "";
+
+			init();
 		}
 	}
 }

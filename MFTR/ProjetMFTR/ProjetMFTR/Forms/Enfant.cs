@@ -106,5 +106,11 @@ namespace ProjetMFTR.Forms
 			cboStatut.Text = accueil;
 			cboSexe.Text = enfants.Sexe;
 		}
+
+		private void btnSaveAndClose_Click(object sender, EventArgs e)
+		{
+			Save();
+			Close();
+		}
 	}
 }

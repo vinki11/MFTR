@@ -13,7 +13,7 @@ namespace ProjetMFTR
 
 		Entities.Suivi CurrentEntity;
 		Connexion.ConnexionActions<Entities.Suivi> connexionActions = new Connexion.ConnexionActions<Entities.Suivi>();
-
+		private bool m_SkipSave = false;
 		#endregion
 
 
@@ -102,17 +102,21 @@ namespace ProjetMFTR
 			{
 				AssignValues();
 				connexionActions.Update(CurrentEntity);
-				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du suivi" + ResourcesString.STR_MessageUpdateConfirmation2,
-				ResourcesString.STR_TitleUpdateConfirmation,
-				MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return true;
 			}
 
 			if (((Entities.Dossier)cboFolders.SelectedItem) == null)
 			{
-				MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder le suivi",
+				result = MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder le suivi",
 				"Attention",
-				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+
+				if (result == DialogResult.Cancel)
+				{
+					m_SkipSave = true;
+					Close();
+				}
+				m_SkipSave = false;
 				return false;
 			}
 
@@ -222,7 +226,15 @@ namespace ProjetMFTR
 		/// </summary>
 		private void Suivi_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			e.Cancel = !Save(true);
+			if (m_SkipSave)
+			{
+				e.Cancel = false;
+			}
+			else
+			{
+				e.Cancel = !Save(true);
+			}
+
 		}
 	}
 }

@@ -62,7 +62,6 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.ap
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csproj.CopyComplete
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.exe
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.pdb
-C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.DossierNouveau.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Communication.resources
 C:\Users\Vincent\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.DossierNouveau.resources
@@ -72,3 +71,4 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Fo
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Parent.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.DeleteFolder.resources
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.Forms.Services.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ProjetMFTR\obj\Debug\ProjetMFTR.csprojResolveAssemblyReference.cache
