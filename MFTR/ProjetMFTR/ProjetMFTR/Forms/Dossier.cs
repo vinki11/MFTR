@@ -150,7 +150,7 @@ namespace ProjetMFTR.Forms
 
 			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
 			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
-			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm);
+			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm).ToList();
 
 			ParentAndChildsUpdated(null, null);
 		}
@@ -317,6 +317,12 @@ namespace ProjetMFTR.Forms
 
 		private void Remove_Communication_Click(object sender, EventArgs e)
 		{
+			DialogResult result = MessageBox.Show("Êtes-vous sur de vouloir supprimer cette communication ?",
+											"Suppression",
+											MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+			if (result == DialogResult.No) { return; }
+
 			DataGridViewRow row = gvCommunications.CurrentRow;
 			var communication = (Entities.Communication)row.DataBoundItem;
 			Connexion.Instance().Communication.Remove(communication);

@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Communication));
 			this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -60,7 +61,7 @@
 			this.cboMotif = new System.Windows.Forms.ComboBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.cboInterlocuteur = new System.Windows.Forms.ComboBox();
-			this.bsData = new System.Windows.Forms.BindingSource(this.components);
+			this.count = new System.Windows.Forms.ToolStripLabel();
 			((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
 			this.bindingNavigator1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
@@ -73,13 +74,14 @@
 			this.bindingNavigator1.CountItem = null;
 			this.bindingNavigator1.DeleteItem = null;
 			this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-						this.bindingNavigatorMoveFirstItem,
-						this.bindingNavigatorMovePreviousItem,
-						this.bindingNavigatorSeparator,
-						this.bindingNavigatorSeparator1,
-						this.bindingNavigatorMoveNextItem,
-						this.bindingNavigatorMoveLastItem,
-						this.bindingNavigatorSeparator2});
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.count,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2});
 			this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
 			this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
 			this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -90,6 +92,10 @@
 			this.bindingNavigator1.Size = new System.Drawing.Size(856, 25);
 			this.bindingNavigator1.TabIndex = 15;
 			this.bindingNavigator1.Text = "bindingNavigator1";
+			// 
+			// bsData
+			// 
+			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
 			// 
 			// bindingNavigatorMoveFirstItem
 			// 
@@ -263,13 +269,13 @@
 			this.cboTypeCommunication.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboTypeCommunication.FormattingEnabled = true;
 			this.cboTypeCommunication.Items.AddRange(new object[] {
-						"Appel fait",
-						"Appel reçu",
-						"Boîte vocale",
-						"Courriel envoyé",
-						"Courriel reçu",
-						"Facebook",
-						"En personne"});
+            "Appel fait",
+            "Appel reçu",
+            "Boîte vocale",
+            "Courriel envoyé",
+            "Courriel reçu",
+            "Facebook",
+            "En personne"});
 			this.cboTypeCommunication.Location = new System.Drawing.Point(25, 172);
 			this.cboTypeCommunication.Name = "cboTypeCommunication";
 			this.cboTypeCommunication.Size = new System.Drawing.Size(209, 21);
@@ -339,18 +345,18 @@
 			this.cboMotif.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cboMotif.FormattingEnabled = true;
 			this.cboMotif.Items.AddRange(new object[] {
-						"É-Confirmation",
-						"É-Annulation",
-						"VS-Confirmation",
-						"VS-Annulation",
-						"RV-Ouverture de dossier",
-						"RV-Mise à jour de dossier",
-						"RV-Confirmation",
-						"RV-Annulation",
-						"Demande d\'information",
-						"Transmission d\'information",
-						"Suivi",
-						"Autre"});
+            "É-Confirmation",
+            "É-Annulation",
+            "VS-Confirmation",
+            "VS-Annulation",
+            "RV-Ouverture de dossier",
+            "RV-Mise à jour de dossier",
+            "RV-Confirmation",
+            "RV-Annulation",
+            "Demande d\'information",
+            "Transmission d\'information",
+            "Suivi",
+            "Autre"});
 			this.cboMotif.Location = new System.Drawing.Point(297, 172);
 			this.cboMotif.Name = "cboMotif";
 			this.cboMotif.Size = new System.Drawing.Size(148, 21);
@@ -375,9 +381,11 @@
 			this.cboInterlocuteur.Size = new System.Drawing.Size(262, 21);
 			this.cboInterlocuteur.TabIndex = 36;
 			// 
-			// bsData
+			// count
 			// 
-			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
+			this.count.Name = "count";
+			this.count.Size = new System.Drawing.Size(10, 22);
+			this.count.Text = " ";
 			// 
 			// Communication
 			// 
@@ -454,5 +462,6 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.ComboBox cboInterlocuteur;
 		private System.Windows.Forms.BindingSource bsData;
+		private System.Windows.Forms.ToolStripLabel count;
 	}
 }

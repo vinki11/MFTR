@@ -14,12 +14,15 @@ namespace ProjetMFTR.Forms
 		bool initialize = false;
 		Connexion.ConnexionActions<Entities.Communication> connexionActions = new Connexion.ConnexionActions<Entities.Communication>();
 		public event EventHandler<Entities.Communication> CommunicationAdded;
+		private bool m_SkipSave = false;
 
 		public Communication()
 		{
 			InitializeComponent();
 			Init();
-			bsData.DataSource = Connexion.Instance().Communication.OrderBy(f => f.DateComm).ToList();
+			var list = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID);
+			bsData.DataSource = list.ToList();
+			count.Text = bsData.List.Count.ToString();
 		}
 
 		public Communication(Entities.Communication communication) : this()
@@ -31,7 +34,7 @@ namespace ProjetMFTR.Forms
 		public void Init()
 		{
 			InitialiseCombos();
-			dtpDateEvent.MaxDate = Helper.CurrentMaxDateTime();
+			//dtpDateEvent.MaxDate = Helper.CurrentMaxDateTime();
 			dtpDateSuivi.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
@@ -117,9 +120,8 @@ namespace ProjetMFTR.Forms
 		{
 			if (!initialize) { return; }
 
-			//if (string.IsNullOrWhiteSpace(cboFolders.Text)) { return; }
+			if (cboFolders.SelectedItem == null) { return; }
 
-			//cboReferent.DataSource = Connexion.Instance().Referent.Where(x => x.Referent_ID == ((Entities.Dossier)cboFolders.SelectedItem).Referent_ID).ToList();
 			cboInterlocuteur.DataSource = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.ToList();
 			var referents = SelectReferents();
 
@@ -146,6 +148,7 @@ namespace ProjetMFTR.Forms
 		{
 			var referent = ((Entities.Referent)cboReferent.SelectedItem);
 			if (referent == null) { return; }
+			if (referent.Adultes == null) { return; }
 
 			cboInterlocuteur.Text = referent.Adultes.Nom + ", " + referent.Adultes.Prenom;
 		}
@@ -198,17 +201,22 @@ namespace ProjetMFTR.Forms
 			{
 				AssignValues();
 				connexionActions.Update(CurrentEntity);
-				//result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de la communication" + ResourcesString.STR_MessageUpdateConfirmation2,
-				//ResourcesString.STR_TitleUpdateConfirmation,
-				//MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 				return true;
 			}
 
 			if (((Entities.Dossier)cboFolders.SelectedItem) == null)
 			{
-				MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder la communication",
+				result = MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder la communication",
 				"Attention",
-				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+
+				if (result == DialogResult.Cancel)
+				{
+					m_SkipSave = true;
+					Close();
+				}
+				m_SkipSave = false;
 				return false;
 			}
 
@@ -216,7 +224,7 @@ namespace ProjetMFTR.Forms
 			AssignValues();
 			connexionActions.Add(CurrentEntity);
 			bindingNavigator1.Enabled = true;
-			bsData.DataSource = Connexion.Instance().Communication.OrderBy(f => f.DateComm).ToList();
+			bsData.DataSource = Connexion.Instance().Communication.OrderByDescending(f => f.Communication_ID).ToList();
 			OnCommunicationAdded(new EventArgs());
 			return true;
 		}
@@ -231,6 +239,7 @@ namespace ProjetMFTR.Forms
 			cboReferent.Text = "";
 			cboMotif.Text = "";
 			cboInterlocuteur.Text = "";
+			cboTypeCommunication.Text = "";
 			dtpDateSuivi.Value = DateTime.Now.Date;
 			dtpDateEvent.Value = DateTime.Now.Date;
 			dtpHours.Value = DateTime.Now.Date;
@@ -251,7 +260,14 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void Communication_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			e.Cancel = !Save();
+			if (m_SkipSave)
+			{
+				e.Cancel = false;
+			}
+			else
+			{
+				e.Cancel = !Save();
+			}
 		}
 
 

@@ -21,10 +21,14 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <TargetCulture>fr-CA</TargetCulture>
+    <ProductName>MFTR</ProductName>
+    <SuiteName>MFTR</SuiteName>
+    <MinimumRequiredVersion>1.0.0.7</MinimumRequiredVersion>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>1.0.0.7</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -345,6 +349,7 @@
     <Content Include="Resources\icone_suivi.png" />
     <Content Include="Resources\icone_suivi_64.png" />
     <Content Include="Resources\sda_icone.ico" />
+    <Content Include="Sql\1.0.0.3.sql" />
     <Content Include="Sql\1.0.0.2.sql" />
     <Content Include="Sql\1.0.0.1.sql" />
     <Content Include="Sql\1.0.0.0.sql" />

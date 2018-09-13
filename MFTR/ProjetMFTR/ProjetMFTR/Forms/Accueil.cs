@@ -58,7 +58,7 @@ namespace ProjetMFTR.Forms
 		{
 			TopMost = false;
 			Intervenant intervenantForm = new Intervenant();
-			intervenantForm.ShowDialog();
+			intervenantForm.Show();
 		}
 
 		/// <summary>
@@ -68,7 +68,7 @@ namespace ProjetMFTR.Forms
 		{
 			TopMost = false;
 			SuivisList suiviListtForm = new SuivisList();
-			suiviListtForm.ShowDialog();
+			suiviListtForm.Show();
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace ProjetMFTR.Forms
 		{
 			TopMost = false;
 			Dossier dossier = new Dossier();
-			dossier.ShowDialog();
+			dossier.Show();
 		}
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace ProjetMFTR.Forms
 		{
 			TopMost = false;
 			Communication communication = new Communication();
-			communication.ShowDialog();
+			communication.Show();
 		}
 	}
 }
