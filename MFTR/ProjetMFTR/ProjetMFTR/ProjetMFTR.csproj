@@ -16,7 +16,7 @@
     <PublishUrl>D:\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -24,8 +24,9 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>fr-CA</TargetCulture>
-    <ProductName>MFTR</ProductName>
-    <SuiteName>MFTR</SuiteName>
+    <ProductName>Maison de la famille</ProductName>
+    <PublisherName>DLA</PublisherName>
+    <SuiteName>Maison de la famille</SuiteName>
     <MinimumRequiredVersion>1.0.0.7</MinimumRequiredVersion>
     <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.7</ApplicationVersion>
@@ -72,6 +73,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
@@ -168,6 +178,12 @@
     <Compile Include="Forms\Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Referent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Referent.Designer.cs">
+      <DependentUpon>Referent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Communication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +208,12 @@
     <Compile Include="Forms\DossierNouveau.Designer.cs">
       <DependentUpon>DossierNouveau.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSplashScreen.Designer.cs">
+      <DependentUpon>frmSplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Services.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +225,12 @@
     </Compile>
     <Compile Include="Forms\Enfant.designer.cs">
       <DependentUpon>Enfant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReferentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReferentList.Designer.cs">
+      <DependentUpon>ReferentList.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SuivisList.cs">
       <SubType>Form</SubType>
@@ -235,6 +263,9 @@
     <EmbeddedResource Include="Forms\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Referent.resx">
+      <DependentUpon>Referent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Communication.resx">
       <DependentUpon>Communication.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,11 +278,17 @@
     <EmbeddedResource Include="Forms\DossierNouveau.resx">
       <DependentUpon>DossierNouveau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSplashScreen.resx">
+      <DependentUpon>frmSplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Enfant.resx">
       <DependentUpon>Enfant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReferentList.resx">
+      <DependentUpon>ReferentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SuivisList.resx">
       <DependentUpon>SuivisList.cs</DependentUpon>
@@ -339,6 +376,8 @@
       <LastGenOutput>MFTR.cs</LastGenOutput>
     </Content>
     <None Include="Resources\icone_folder_58.png" />
+    <Content Include="MetroFramework.txt" />
+    <None Include="Resources\56448.png" />
     <Content Include="Resources\icone_chat64.png" />
     <Content Include="Resources\icone_dossier.png" />
     <Content Include="Resources\icone_folder.png" />
@@ -348,7 +387,9 @@
     <Content Include="Resources\icone_person_64.png" />
     <Content Include="Resources\icone_suivi.png" />
     <Content Include="Resources\icone_suivi_64.png" />
+    <None Include="Resources\images.jpg" />
     <Content Include="Resources\sda_icone.ico" />
+    <Content Include="Sql\1.0.0.4.sql" />
     <Content Include="Sql\1.0.0.3.sql" />
     <Content Include="Sql\1.0.0.2.sql" />
     <Content Include="Sql\1.0.0.1.sql" />

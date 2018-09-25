@@ -70,7 +70,7 @@ namespace ProjetMFTR.Forms
 			{
 				var oldId = CurrentDossier.Dossier_ID;
 				var newId = txtNoDossier.Text;
-				connexionActions.UpdateIDs(oldId, newId);
+				connexionActions.UpdateFolderIDs(oldId, newId);
 				CurrentDossier = Connexion.Instance().Dossier.Single(x => x.Dossier_ID == newId);
 				AssignValues();
 

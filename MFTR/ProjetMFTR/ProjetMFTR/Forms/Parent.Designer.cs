@@ -60,27 +60,27 @@
 			this.btnSaveAndClose = new System.Windows.Forms.Button();
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpTelephone = new System.Windows.Forms.TabPage();
-			this.tpReferent = new System.Windows.Forms.TabPage();
 			this.gvPhone = new System.Windows.Forms.DataGridView();
+			this.tpReferent = new System.Windows.Forms.TabPage();
 			this.gvReferent = new System.Windows.Forms.DataGridView();
+			this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.telephone1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.posteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.precisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsTelephone = new System.Windows.Forms.BindingSource(this.components);
-			this.bsReferent = new System.Windows.Forms.BindingSource(this.components);
-			this.bsAdresse = new System.Windows.Forms.BindingSource(this.components);
 			this.referentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.organisationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.typeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsReferent = new System.Windows.Forms.BindingSource(this.components);
+			this.bsAdresse = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1.SuspendLayout();
 			this.ParentContextMenu.SuspendLayout();
 			this.tc.SuspendLayout();
 			this.tpTelephone.SuspendLayout();
-			this.tpReferent.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).BeginInit();
+			this.tpReferent.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvReferent)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsReferent)).BeginInit();
@@ -377,17 +377,6 @@
 			this.tpTelephone.Text = "Téléphones";
 			this.tpTelephone.UseVisualStyleBackColor = true;
 			// 
-			// tpReferent
-			// 
-			this.tpReferent.Controls.Add(this.gvReferent);
-			this.tpReferent.Location = new System.Drawing.Point(4, 22);
-			this.tpReferent.Name = "tpReferent";
-			this.tpReferent.Padding = new System.Windows.Forms.Padding(3);
-			this.tpReferent.Size = new System.Drawing.Size(848, 233);
-			this.tpReferent.TabIndex = 1;
-			this.tpReferent.Text = "Référents";
-			this.tpReferent.UseVisualStyleBackColor = true;
-			// 
 			// gvPhone
 			// 
 			this.gvPhone.AllowUserToDeleteRows = false;
@@ -409,6 +398,19 @@
 			this.gvPhone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.gvPhone.Size = new System.Drawing.Size(842, 227);
 			this.gvPhone.TabIndex = 20;
+			this.gvPhone.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvPhone_RowContextMenuStripNeeded);
+			this.gvPhone.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvPhone_RowsAdded);
+			// 
+			// tpReferent
+			// 
+			this.tpReferent.Controls.Add(this.gvReferent);
+			this.tpReferent.Location = new System.Drawing.Point(4, 22);
+			this.tpReferent.Name = "tpReferent";
+			this.tpReferent.Padding = new System.Windows.Forms.Padding(3);
+			this.tpReferent.Size = new System.Drawing.Size(848, 233);
+			this.tpReferent.TabIndex = 1;
+			this.tpReferent.Text = "Référents";
+			this.tpReferent.UseVisualStyleBackColor = true;
 			// 
 			// gvReferent
 			// 
@@ -434,6 +436,18 @@
 			this.gvReferent.TabIndex = 21;
 			this.gvReferent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
 			this.gvReferent.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvReferent_RowsAdded);
+			// 
+			// Prenom
+			// 
+			this.Prenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Prenom.HeaderText = "Prénom";
+			this.Prenom.Name = "Prenom";
+			// 
+			// Nom
+			// 
+			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Nom.HeaderText = "Nom";
+			this.Nom.Name = "Nom";
 			// 
 			// typeDataGridViewTextBoxColumn
 			// 
@@ -468,32 +482,12 @@
 			// 
 			this.bsTelephone.DataSource = typeof(ProjetMFTR.Entities.Telephone);
 			// 
-			// bsReferent
-			// 
-			this.bsReferent.DataSource = typeof(ProjetMFTR.Entities.Referent);
-			// 
-			// bsAdresse
-			// 
-			this.bsAdresse.DataSource = typeof(ProjetMFTR.Entities.Adresse);
-			// 
 			// referentIDDataGridViewTextBoxColumn
 			// 
 			this.referentIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.referentIDDataGridViewTextBoxColumn.DataPropertyName = "Referent_ID";
 			this.referentIDDataGridViewTextBoxColumn.HeaderText = "Numéro référent";
 			this.referentIDDataGridViewTextBoxColumn.Name = "referentIDDataGridViewTextBoxColumn";
-			// 
-			// Prenom
-			// 
-			this.Prenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Prenom.HeaderText = "Prénom";
-			this.Prenom.Name = "Prenom";
-			// 
-			// Nom
-			// 
-			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Nom.HeaderText = "Nom";
-			this.Nom.Name = "Nom";
 			// 
 			// organisationDataGridViewTextBoxColumn
 			// 
@@ -508,6 +502,14 @@
 			this.typeDataGridViewTextBoxColumn1.DataPropertyName = "Type";
 			this.typeDataGridViewTextBoxColumn1.HeaderText = "Type";
 			this.typeDataGridViewTextBoxColumn1.Name = "typeDataGridViewTextBoxColumn1";
+			// 
+			// bsReferent
+			// 
+			this.bsReferent.DataSource = typeof(ProjetMFTR.Entities.Referent);
+			// 
+			// bsAdresse
+			// 
+			this.bsAdresse.DataSource = typeof(ProjetMFTR.Entities.Adresse);
 			// 
 			// Parent
 			// 
@@ -537,8 +539,8 @@
 			this.ParentContextMenu.ResumeLayout(false);
 			this.tc.ResumeLayout(false);
 			this.tpTelephone.ResumeLayout(false);
-			this.tpReferent.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).EndInit();
+			this.tpReferent.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvReferent)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsReferent)).EndInit();

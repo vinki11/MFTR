@@ -1,37 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
 using ProjetMFTR.DbConnexion.Helper;
-using ProjetMFTR.Entities;
 using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
 {
 	public partial class Dossier : Form
 	{
-
 		#region Members
-		Entities.Dossier CurrentDossier;
-		Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
-		Communication communication;
-		DossierNouveau DossierNouveau;
 
-		int rownum = 0;
-
-		private Parent m_NewParent;
-		private Enfant m_NewEnfant;
+		private Communication communication;
+		private Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
+		private Entities.Dossier CurrentDossier;
+		private DossierNouveau DossierNouveau;
 		private DeleteFolder m_DeleteFolder;
-		#endregion
+		private Enfant m_NewEnfant;
+		private Parent m_NewParent;
+
+		#endregion Members
 
 		private DossierNouveau m_NewDossier;
-
 
 		public Dossier()
 		{
@@ -44,6 +36,9 @@ namespace ProjetMFTR.Forms
 			bsData.DataSource = Connexion.Instance().Dossier.OrderByDescending((x) => x.Ouverture).ToList();
 			gvParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
 			gvParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
+			gvTelephones.Columns["TelNom"].DataPropertyName = "Adultes.Nom";
+			gvTelephones.Columns["TelPrenom"].DataPropertyName = "Adultes.Prenom";
+
 			InitialiseCombos();
 
 			cboFolders.KeyDown += EnterPressed;
@@ -53,14 +48,24 @@ namespace ProjetMFTR.Forms
 		}
 
 		/// <summary>
-		/// Initialisation du combobox des enfants
+		/// Ajout à partir du menu contextuel
 		/// </summary>
-		private void InitialiseCombos()
+		private void addRow_Click(object sender, EventArgs e)
 		{
-			cboFolders.DataSource = Connexion.Instance().Dossier.ToList();
-			cboFolders.DisplayMember = ResourcesString.STR_Dossier_ID;
-			cboFolders.ValueMember = ResourcesString.STR_Dossier_ID;
-			cboFolders.SelectedValue = -1;
+			m_NewDossier = new DossierNouveau();
+			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_NewDossier.ShowDialog();
+		}
+
+		/// <summary>
+		/// Assignation des valeurs
+		/// </summary>
+		private void AssignValues()
+		{
+			CurrentDossier.Dossier_ID = txtDossier.Text;
+			CurrentDossier.Ouverture = dtpDossier.Value.Date;
+			CurrentDossier.Type = cboType.Text;
+			CurrentDossier.Remarque = rtxtRemarque.Text;
 		}
 
 		private void btnAddCommunication_Click(object sender, EventArgs e)
@@ -72,87 +77,16 @@ namespace ProjetMFTR.Forms
 			communication.Show();
 		}
 
-		/// <summary>
-		/// Met à jour le datasource
-		/// </summary>
-		private void UpdateDataSource(object sender, EventArgs e)
+		private void btnAddFolder_Click(object sender, EventArgs e)
 		{
-			Init();
+			ReferentList referentList = new ReferentList();
+			referentList.Show();
 		}
 
-		private void CommunicationAdded(object sender, Entities.Communication e)
+		private void btnClearFilters_Click(object sender, EventArgs e)
 		{
-			if (((Entities.Dossier)bsData.Current).Dossier_ID.Equals(e.Dossier_ID))
-			{
-				bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(e.Dossier_ID)).OrderByDescending(c => c.DateComm).ToList();
-			}
-		}
-
-		/// <summary>
-		/// Survient lors du changement d'un dossier
-		/// </summary>
-		private void FolderEntityUpdated(object sender, Entities.Dossier e)
-		{
-			InitialiseCombos();
-			bsData.Remove(CurrentDossier);
-			bsData.Add(e);
-
-			foreach (DataGridViewRow item in gvList.Rows)
-			{
-				if (item.Cells[0].Value.ToString().Equals(e.Dossier_ID))
-				{
-					item.Selected = true;
-				}
-			}
-			OnGvListSelectionChanged();
-		}
-
-		private void ParentAndChildsUpdated(object sender, EventArgs e)
-		{
-			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
-			bsDataKids.DataSource = kids;
-
-			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
-			bsDataParents.DataSource = parents;
-		}
-
-		/// <summary>
-		/// Sur le double click sur une row
-		/// </summary>
-		private void gvCommunications_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = gvCommunications.CurrentRow;
-			communication = new Communication((Entities.Communication)row.DataBoundItem);
-			communication.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
-			communication.Show();
-		}
-
-		/// <summary>
-		/// Survient lors du double click sur un dossier
-		/// </summary>
-		private void gvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = gvList.CurrentRow;
-			DossierNouveau = new DossierNouveau((Entities.Dossier)row.DataBoundItem);
-			DossierNouveau.FolderUpdated += new EventHandler<Entities.Dossier>(FolderEntityUpdated);
-			DossierNouveau.ShowDialog();
-		}
-
-		private void gvList_SelectionChanged(object sender, EventArgs e)
-		{
-			OnGvListSelectionChanged();
-		}
-
-		private void OnGvListSelectionChanged()
-		{
-			DataGridViewRow row = gvList.CurrentRow;
-			if (row == null) return;
-
-			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
-			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
-			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm).ToList();
-
-			ParentAndChildsUpdated(null, null);
+			txtFirstName.Text = txtLastName.Text = txtRechercheTelephone.Text = "";
+			cboFolders.SelectedValue = -1;
 		}
 
 		private void btnRecherche_Click(object sender, EventArgs e)
@@ -190,12 +124,6 @@ namespace ProjetMFTR.Forms
 			bsData.DataSource = dossiers.OrderByDescending(x => x.Ouverture).ToList();
 		}
 
-		private void btnClearFilters_Click(object sender, EventArgs e)
-		{
-			txtFirstName.Text = txtLastName.Text = txtRechercheTelephone.Text = "";
-			cboFolders.SelectedValue = -1;
-		}
-
 		private void btnSaveDossier_Click(object sender, EventArgs e)
 		{
 			AssignValues();
@@ -205,15 +133,107 @@ namespace ProjetMFTR.Forms
 			MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		/// <summary>
-		/// Assignation des valeurs
-		/// </summary>
-		private void AssignValues()
+		private void CommunicationAdded(object sender, Entities.Communication e)
 		{
-			CurrentDossier.Dossier_ID = txtDossier.Text;
-			CurrentDossier.Ouverture = dtpDossier.Value.Date;
-			CurrentDossier.Type = cboType.Text;
-			CurrentDossier.Remarque = rtxtRemarque.Text;
+			if (((Entities.Dossier)bsData.Current).Dossier_ID.Equals(e.Dossier_ID))
+			{
+				bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(e.Dossier_ID)).OrderByDescending(c => c.DateComm).ToList();
+			}
+		}
+
+		private void deleteRow_Click(object sender, EventArgs e)
+		{
+			DataGridViewRow row = gvParents.CurrentRow;
+			if (row == null) return;
+
+			var parent = (Entities.Parent)row.DataBoundItem;
+
+			Connexion.Instance().Parent.Remove(parent);
+			Connexion.Instance().SaveChanges();
+			OnGvListSelectionChanged();
+		}
+
+		/// <summary>
+		/// Handler qui survient lorsque nous appuyons sur Enter
+		/// </summary>
+		private void EnterPressed(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				btnRecherche.PerformClick();
+			}
+		}
+
+		/// <summary>
+		/// Survient lors du changement d'un dossier
+		/// </summary>
+		private void FolderEntityUpdated(object sender, Entities.Dossier e)
+		{
+			InitialiseCombos();
+			bsData.Remove(CurrentDossier);
+			bsData.Add(e);
+
+			foreach (DataGridViewRow item in gvList.Rows)
+			{
+				if (item.Cells[0].Value.ToString().Equals(e.Dossier_ID))
+				{
+					item.Selected = true;
+				}
+			}
+			OnGvListSelectionChanged();
+		}
+
+		/// <summary>
+		/// Sur le double click sur une row
+		/// </summary>
+		private void gvCommunications_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvCommunications.CurrentRow;
+			communication = new Communication((Entities.Communication)row.DataBoundItem);
+			communication.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
+			communication.Show();
+		}
+
+		private void gvCommunications_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		{
+			e.ContextMenuStrip = CommunicationContextMenu;
+		}
+
+		private void gvKids_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvKids.CurrentRow;
+			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
+			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
+			m_NewEnfant.ShowDialog();
+		}
+
+		/// <summary>
+		/// Survient lors du double click sur un dossier
+		/// </summary>
+		private void gvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvList.CurrentRow;
+			DossierNouveau = new DossierNouveau((Entities.Dossier)row.DataBoundItem);
+			DossierNouveau.FolderUpdated += new EventHandler<Entities.Dossier>(FolderEntityUpdated);
+			DossierNouveau.ShowDialog();
+		}
+
+		private void gvList_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		{
+			e.ContextMenuStrip = DossierContextMenu;
+		}
+
+		private void gvList_SelectionChanged(object sender, EventArgs e)
+		{
+			OnGvListSelectionChanged();
+		}
+
+		private void gvParents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvParents.CurrentRow;
+			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
+			m_NewParent.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
+			m_NewParent.ShowDialog();
 		}
 
 		private void gvParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -231,88 +251,67 @@ namespace ProjetMFTR.Forms
 			}
 			catch (Exception)
 			{
-
 				return;
 			}
-
 		}
+
 		private void gvParents_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
 		{
 			//e.ContextMenuStrip = contextMenu;
 			//rownum = e.RowIndex;
 		}
 
-		/// <summary>
-		/// Ajout à partir du menu contextuel
-		/// </summary>
-		private void addRow_Click(object sender, EventArgs e)
+		private void gvTelephones_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			m_NewDossier = new DossierNouveau();
-			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewDossier.ShowDialog();
-		}
-
-		private void deleteRow_Click(object sender, EventArgs e)
-		{
-			DataGridViewRow row = gvParents.CurrentRow;
-			if (row == null) return;
-
-			var parent = (Entities.Parent)row.DataBoundItem;
-
-			Connexion.Instance().Parent.Remove(parent);
-			Connexion.Instance().SaveChanges();
-			OnGvListSelectionChanged();
-		}
-
-		private void btnAddFolder_Click(object sender, EventArgs e)
-		{
-			//m_NewDossier = new DossierNouveau();
-			//m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			//m_NewDossier.ShowDialog();
-		}
-
-		/// <summary>
-		/// Handler qui survient lorsque nous appuyons sur Enter
-		/// </summary>
-		private void EnterPressed(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
+			try
 			{
-				btnRecherche.PerformClick();
+				if ((gvTelephones.Rows[e.RowIndex].DataBoundItem != null) &&
+								(gvTelephones.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
+				{
+					e.Value = Helper.BindProperty(
+												gvTelephones.Rows[e.RowIndex].DataBoundItem,
+												gvTelephones.Columns[e.ColumnIndex].DataPropertyName
+											);
+				}
+			}
+			catch (Exception)
+			{
+				return;
 			}
 		}
 
-		private void gvList_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
+		/// <summary>
+		/// Initialisation du combobox des enfants
+		/// </summary>
+		private void InitialiseCombos()
 		{
-			e.ContextMenuStrip = DossierContextMenu;
+			cboFolders.DataSource = Connexion.Instance().Dossier.ToList();
+			cboFolders.DisplayMember = ResourcesString.STR_Dossier_ID;
+			cboFolders.ValueMember = ResourcesString.STR_Dossier_ID;
+			cboFolders.SelectedValue = -1;
 		}
 
-		private void Remove_Folder_Click(object sender, EventArgs e)
+		private void OnGvListSelectionChanged()
 		{
-			m_DeleteFolder = new DeleteFolder();
-			m_DeleteFolder.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_DeleteFolder.Show();
+			DataGridViewRow row = gvList.CurrentRow;
+			if (row == null) return;
+
+			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
+			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm).ToList();
+
+			ParentAndChildsUpdated(null, null);
+
+			bsTelephones.DataSource = CurrentDossier.Adultes.SelectMany(x => x.Telephone).OrderBy(o => o.Adultes.Prenom).ThenBy(p => p.Adultes.Nom).ToList();
 		}
 
-		private void gvParents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		private void ParentAndChildsUpdated(object sender, EventArgs e)
 		{
-			DataGridViewRow row = gvParents.CurrentRow;
-			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
-			m_NewParent.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
-			m_NewParent.ShowDialog();
-		}
+			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+			bsDataKids.DataSource = kids;
 
-		private void gvKids_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-		{
-			DataGridViewRow row = gvKids.CurrentRow;
-			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
-			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
-			m_NewEnfant.ShowDialog();
-		}
-
-		private void gvCommunications_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
-		{
-			e.ContextMenuStrip = CommunicationContextMenu;
+			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
+			bsDataParents.DataSource = parents;
 		}
 
 		private void Remove_Communication_Click(object sender, EventArgs e)
@@ -330,7 +329,20 @@ namespace ProjetMFTR.Forms
 
 			OnGvListSelectionChanged();
 		}
+
+		private void Remove_Folder_Click(object sender, EventArgs e)
+		{
+			m_DeleteFolder = new DeleteFolder();
+			m_DeleteFolder.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			m_DeleteFolder.Show();
+		}
+
+		/// <summary>
+		/// Met à jour le datasource
+		/// </summary>
+		private void UpdateDataSource(object sender, EventArgs e)
+		{
+			Init();
+		}
 	}
 }
-
-

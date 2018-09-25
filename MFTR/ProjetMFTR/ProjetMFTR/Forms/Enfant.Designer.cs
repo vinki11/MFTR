@@ -41,6 +41,8 @@
 			this.txtNom = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.btnSaveAndClose = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.cboReferent = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// btnSave
@@ -48,7 +50,7 @@
 			this.btnSave.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(367, 155);
+			this.btnSave.Location = new System.Drawing.Point(418, 192);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(136, 23);
 			this.btnSave.TabIndex = 36;
@@ -80,7 +82,7 @@
 			this.cboStatut.Items.AddRange(new object[] {
             "Oui",
             "Non"});
-			this.cboStatut.Location = new System.Drawing.Point(301, 65);
+			this.cboStatut.Location = new System.Drawing.Point(347, 65);
 			this.cboStatut.Name = "cboStatut";
 			this.cboStatut.Size = new System.Drawing.Size(170, 21);
 			this.cboStatut.TabIndex = 33;
@@ -88,7 +90,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(252, 68);
+			this.label2.Location = new System.Drawing.Point(298, 68);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(42, 13);
 			this.label2.TabIndex = 32;
@@ -119,7 +121,7 @@
 			// 
 			// txtPrenom
 			// 
-			this.txtPrenom.Location = new System.Drawing.Point(301, 23);
+			this.txtPrenom.Location = new System.Drawing.Point(347, 23);
 			this.txtPrenom.Name = "txtPrenom";
 			this.txtPrenom.Size = new System.Drawing.Size(170, 20);
 			this.txtPrenom.TabIndex = 29;
@@ -127,7 +129,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(252, 26);
+			this.label1.Location = new System.Drawing.Point(298, 26);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(43, 13);
 			this.label1.TabIndex = 28;
@@ -154,7 +156,7 @@
 			this.btnSaveAndClose.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSaveAndClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveAndClose.Location = new System.Drawing.Point(203, 155);
+			this.btnSaveAndClose.Location = new System.Drawing.Point(254, 192);
 			this.btnSaveAndClose.Name = "btnSaveAndClose";
 			this.btnSaveAndClose.Size = new System.Drawing.Size(136, 23);
 			this.btnSaveAndClose.TabIndex = 37;
@@ -162,11 +164,32 @@
 			this.btnSaveAndClose.UseVisualStyleBackColor = false;
 			this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
 			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(298, 107);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(48, 13);
+			this.label3.TabIndex = 38;
+			this.label3.Text = "Référent";
+			// 
+			// cboReferent
+			// 
+			this.cboReferent.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cboReferent.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cboReferent.FormattingEnabled = true;
+			this.cboReferent.Location = new System.Drawing.Point(347, 104);
+			this.cboReferent.Name = "cboReferent";
+			this.cboReferent.Size = new System.Drawing.Size(170, 21);
+			this.cboReferent.TabIndex = 39;
+			// 
 			// Enfant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(515, 196);
+			this.ClientSize = new System.Drawing.Size(566, 236);
+			this.Controls.Add(this.cboReferent);
+			this.Controls.Add(this.label3);
 			this.Controls.Add(this.btnSaveAndClose);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.label4);
@@ -202,5 +225,7 @@
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button btnSaveAndClose;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.ComboBox cboReferent;
 	}
 }

@@ -42,10 +42,7 @@
 			this.btnRecherche = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.gvList = new System.Windows.Forms.DataGridView();
-			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.rtxtRemarque = new System.Windows.Forms.RichTextBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -56,11 +53,8 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.dtpDossier = new System.Windows.Forms.DateTimePicker();
 			this.btnSaveDossier = new System.Windows.Forms.Button();
-			this.bsDataParents = new System.Windows.Forms.BindingSource(this.components);
-			this.bsDataKids = new System.Windows.Forms.BindingSource(this.components);
-			this.bsDataCommunication = new System.Windows.Forms.BindingSource(this.components);
 			this.btnAddCommunication = new System.Windows.Forms.Button();
-			this.btnAddFolder = new System.Windows.Forms.Button();
+			this.btnReferents = new System.Windows.Forms.Button();
 			this.DossierContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.Add_Folder = new System.Windows.Forms.ToolStripMenuItem();
 			this.Remove_Folder = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,35 +62,43 @@
 			this.Remove_Communication = new System.Windows.Forms.ToolStripMenuItem();
 			this.pageCommunication = new System.Windows.Forms.TabPage();
 			this.gvCommunications = new System.Windows.Forms.DataGridView();
-			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.EventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Interlocuteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Motif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Motif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Interlocuteur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.pageKids = new System.Windows.Forms.TabPage();
 			this.gvKids = new System.Windows.Forms.DataGridView();
-			this.accueilDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.naissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.sexeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.pageParents = new System.Windows.Forms.TabPage();
 			this.gvParents = new System.Windows.Forms.DataGridView();
-			this.transporteurDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.statutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.naissanceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.sexeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.SubName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SubName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tb = new System.Windows.Forms.TabControl();
+			this.gvTelephones = new System.Windows.Forms.DataGridView();
+			this.TelNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TelPrenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.typeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.telephone1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.posteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsTelephones = new System.Windows.Forms.BindingSource(this.components);
+			this.sexeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.naissanceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.statutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsDataParents = new System.Windows.Forms.BindingSource(this.components);
+			this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.sexeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.naissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.accueilDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsDataKids = new System.Windows.Forms.BindingSource(this.components);
+			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.bsDataCommunication = new System.Windows.Forms.BindingSource(this.components);
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
+			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
 			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataCommunication)).BeginInit();
 			this.DossierContextMenu.SuspendLayout();
 			this.CommunicationContextMenu.SuspendLayout();
 			this.pageCommunication.SuspendLayout();
@@ -106,6 +108,12 @@
 			this.pageParents.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvParents)).BeginInit();
 			this.tb.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gvTelephones)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephones)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataCommunication)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -123,22 +131,22 @@
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Location = new System.Drawing.Point(22, 27);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(1206, 117);
+			this.groupBox1.Size = new System.Drawing.Size(1469, 121);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Critères de recherche";
 			// 
 			// txtFirstName
 			// 
-			this.txtFirstName.Location = new System.Drawing.Point(373, 34);
+			this.txtFirstName.Location = new System.Drawing.Point(495, 34);
 			this.txtFirstName.Name = "txtFirstName";
 			this.txtFirstName.Size = new System.Drawing.Size(170, 20);
-			this.txtFirstName.TabIndex = 16;
+			this.txtFirstName.TabIndex = 2;
 			// 
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(324, 37);
+			this.label8.Location = new System.Drawing.Point(446, 37);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(43, 13);
 			this.label8.TabIndex = 15;
@@ -146,15 +154,15 @@
 			// 
 			// txtLastName
 			// 
-			this.txtLastName.Location = new System.Drawing.Point(640, 34);
+			this.txtLastName.Location = new System.Drawing.Point(841, 34);
 			this.txtLastName.Name = "txtLastName";
 			this.txtLastName.Size = new System.Drawing.Size(170, 20);
-			this.txtLastName.TabIndex = 14;
+			this.txtLastName.TabIndex = 3;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(605, 37);
+			this.label1.Location = new System.Drawing.Point(806, 37);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(29, 13);
 			this.label1.TabIndex = 13;
@@ -162,15 +170,15 @@
 			// 
 			// txtRechercheTelephone
 			// 
-			this.txtRechercheTelephone.Location = new System.Drawing.Point(1017, 34);
+			this.txtRechercheTelephone.Location = new System.Drawing.Point(1293, 34);
 			this.txtRechercheTelephone.Name = "txtRechercheTelephone";
 			this.txtRechercheTelephone.Size = new System.Drawing.Size(170, 20);
-			this.txtRechercheTelephone.TabIndex = 12;
+			this.txtRechercheTelephone.TabIndex = 4;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(876, 37);
+			this.label3.Location = new System.Drawing.Point(1152, 37);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(109, 13);
 			this.label3.TabIndex = 11;
@@ -197,17 +205,17 @@
 			this.cboFolders.Location = new System.Drawing.Point(132, 34);
 			this.cboFolders.Name = "cboFolders";
 			this.cboFolders.Size = new System.Drawing.Size(170, 21);
-			this.cboFolders.TabIndex = 6;
+			this.cboFolders.TabIndex = 1;
 			// 
 			// btnRecherche
 			// 
 			this.btnRecherche.BackColor = System.Drawing.Color.LightSkyBlue;
 			this.btnRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRecherche.Location = new System.Drawing.Point(1060, 67);
+			this.btnRecherche.Location = new System.Drawing.Point(1336, 79);
 			this.btnRecherche.Name = "btnRecherche";
 			this.btnRecherche.Size = new System.Drawing.Size(127, 23);
-			this.btnRecherche.TabIndex = 3;
+			this.btnRecherche.TabIndex = 5;
 			this.btnRecherche.Text = "Rechercher";
 			this.btnRecherche.UseVisualStyleBackColor = false;
 			this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
@@ -244,14 +252,6 @@
 			this.gvList.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvList_RowContextMenuStripNeeded);
 			this.gvList.SelectionChanged += new System.EventHandler(this.gvList_SelectionChanged);
 			// 
-			// dataGridViewTextBoxColumn1
-			// 
-			this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.dataGridViewTextBoxColumn1.DataPropertyName = "Dossier_ID";
-			this.dataGridViewTextBoxColumn1.HeaderText = "Dossier";
-			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-			this.dataGridViewTextBoxColumn1.ReadOnly = true;
-			// 
 			// Date
 			// 
 			this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -261,17 +261,6 @@
 			this.Date.Name = "Date";
 			this.Date.ReadOnly = true;
 			this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			// 
-			// typeDataGridViewTextBoxColumn
-			// 
-			this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-			this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-			this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-			this.typeDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// bsData
-			// 
-			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Dossier);
 			// 
 			// groupBox2
 			// 
@@ -287,7 +276,7 @@
 			this.groupBox2.Enabled = false;
 			this.groupBox2.Location = new System.Drawing.Point(531, 161);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(697, 231);
+			this.groupBox2.Size = new System.Drawing.Size(960, 231);
 			this.groupBox2.TabIndex = 13;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Dossier";
@@ -297,7 +286,7 @@
 			this.rtxtRemarque.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsData, "Remarque", true));
 			this.rtxtRemarque.Location = new System.Drawing.Point(121, 87);
 			this.rtxtRemarque.Name = "rtxtRemarque";
-			this.rtxtRemarque.Size = new System.Drawing.Size(538, 96);
+			this.rtxtRemarque.Size = new System.Drawing.Size(700, 96);
 			this.rtxtRemarque.TabIndex = 15;
 			this.rtxtRemarque.Text = "";
 			// 
@@ -320,7 +309,7 @@
             "Cour Supérieure",
             "Centre Jeunesse",
             "Entente entre les parties"});
-			this.cboType.Location = new System.Drawing.Point(440, 22);
+			this.cboType.Location = new System.Drawing.Point(588, 19);
 			this.cboType.Name = "cboType";
 			this.cboType.Size = new System.Drawing.Size(219, 21);
 			this.cboType.TabIndex = 14;
@@ -336,7 +325,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(382, 25);
+			this.label6.Location = new System.Drawing.Point(530, 22);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(31, 13);
 			this.label6.TabIndex = 13;
@@ -373,7 +362,7 @@
 			this.btnSaveDossier.BackColor = System.Drawing.Color.LightGreen;
 			this.btnSaveDossier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSaveDossier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveDossier.Location = new System.Drawing.Point(1101, 718);
+			this.btnSaveDossier.Location = new System.Drawing.Point(1364, 722);
 			this.btnSaveDossier.Name = "btnSaveDossier";
 			this.btnSaveDossier.Size = new System.Drawing.Size(127, 23);
 			this.btnSaveDossier.TabIndex = 13;
@@ -381,18 +370,6 @@
 			this.btnSaveDossier.UseVisualStyleBackColor = false;
 			this.btnSaveDossier.Visible = false;
 			this.btnSaveDossier.Click += new System.EventHandler(this.btnSaveDossier_Click);
-			// 
-			// bsDataParents
-			// 
-			this.bsDataParents.DataSource = typeof(ProjetMFTR.Entities.Parent);
-			// 
-			// bsDataKids
-			// 
-			this.bsDataKids.DataSource = typeof(ProjetMFTR.Entities.Enfants);
-			// 
-			// bsDataCommunication
-			// 
-			this.bsDataCommunication.DataSource = typeof(ProjetMFTR.Entities.Communication);
 			// 
 			// btnAddCommunication
 			// 
@@ -407,19 +384,18 @@
 			this.btnAddCommunication.UseVisualStyleBackColor = false;
 			this.btnAddCommunication.Click += new System.EventHandler(this.btnAddCommunication_Click);
 			// 
-			// btnAddFolder
+			// btnReferents
 			// 
-			this.btnAddFolder.BackColor = System.Drawing.Color.LightGreen;
-			this.btnAddFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnAddFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddFolder.Location = new System.Drawing.Point(212, 722);
-			this.btnAddFolder.Name = "btnAddFolder";
-			this.btnAddFolder.Size = new System.Drawing.Size(164, 23);
-			this.btnAddFolder.TabIndex = 15;
-			this.btnAddFolder.Text = "Nouveau dossier";
-			this.btnAddFolder.UseVisualStyleBackColor = false;
-			this.btnAddFolder.Visible = false;
-			this.btnAddFolder.Click += new System.EventHandler(this.btnAddFolder_Click);
+			this.btnReferents.BackColor = System.Drawing.Color.LightGreen;
+			this.btnReferents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnReferents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnReferents.Location = new System.Drawing.Point(212, 722);
+			this.btnReferents.Name = "btnReferents";
+			this.btnReferents.Size = new System.Drawing.Size(164, 23);
+			this.btnReferents.TabIndex = 15;
+			this.btnReferents.Text = "Référents";
+			this.btnReferents.UseVisualStyleBackColor = false;
+			this.btnReferents.Click += new System.EventHandler(this.btnAddFolder_Click);
 			// 
 			// DossierContextMenu
 			// 
@@ -462,7 +438,7 @@
 			this.pageCommunication.Controls.Add(this.gvCommunications);
 			this.pageCommunication.Location = new System.Drawing.Point(4, 22);
 			this.pageCommunication.Name = "pageCommunication";
-			this.pageCommunication.Size = new System.Drawing.Size(1198, 292);
+			this.pageCommunication.Size = new System.Drawing.Size(916, 292);
 			this.pageCommunication.TabIndex = 2;
 			this.pageCommunication.Text = "Communications";
 			this.pageCommunication.UseVisualStyleBackColor = true;
@@ -488,50 +464,10 @@
 			this.gvCommunications.Name = "gvCommunications";
 			this.gvCommunications.ReadOnly = true;
 			this.gvCommunications.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvCommunications.Size = new System.Drawing.Size(1198, 292);
+			this.gvCommunications.Size = new System.Drawing.Size(916, 292);
 			this.gvCommunications.TabIndex = 15;
 			this.gvCommunications.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCommunications_CellDoubleClick);
 			this.gvCommunications.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvCommunications_RowContextMenuStripNeeded);
-			// 
-			// dataGridViewTextBoxColumn2
-			// 
-			this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.dataGridViewTextBoxColumn2.DataPropertyName = "Note";
-			this.dataGridViewTextBoxColumn2.HeaderText = "Notes";
-			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-			this.dataGridViewTextBoxColumn2.ReadOnly = true;
-			// 
-			// EventDate
-			// 
-			this.EventDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.EventDate.DataPropertyName = "DateEven";
-			this.EventDate.HeaderText = "Date événement";
-			this.EventDate.Name = "EventDate";
-			this.EventDate.ReadOnly = true;
-			// 
-			// Interlocuteur
-			// 
-			this.Interlocuteur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Interlocuteur.DataPropertyName = "Interlocuteur";
-			this.Interlocuteur.HeaderText = "Interlocuteur";
-			this.Interlocuteur.Name = "Interlocuteur";
-			this.Interlocuteur.ReadOnly = true;
-			// 
-			// Motif
-			// 
-			this.Motif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Motif.DataPropertyName = "Motif";
-			this.Motif.HeaderText = "Motif";
-			this.Motif.Name = "Motif";
-			this.Motif.ReadOnly = true;
-			// 
-			// Type
-			// 
-			this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Type.DataPropertyName = "Type";
-			this.Type.HeaderText = "Type communication";
-			this.Type.Name = "Type";
-			this.Type.ReadOnly = true;
 			// 
 			// dataGridViewTextBoxColumn3
 			// 
@@ -543,13 +479,45 @@
 			this.dataGridViewTextBoxColumn3.ReadOnly = true;
 			this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			// 
+			// Type
+			// 
+			this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Type.DataPropertyName = "Type";
+			this.Type.HeaderText = "Type communication";
+			this.Type.Name = "Type";
+			this.Type.ReadOnly = true;
+			// 
+			// Motif
+			// 
+			this.Motif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Motif.DataPropertyName = "Motif";
+			this.Motif.HeaderText = "Motif";
+			this.Motif.Name = "Motif";
+			this.Motif.ReadOnly = true;
+			// 
+			// Interlocuteur
+			// 
+			this.Interlocuteur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Interlocuteur.DataPropertyName = "Interlocuteur";
+			this.Interlocuteur.HeaderText = "Interlocuteur";
+			this.Interlocuteur.Name = "Interlocuteur";
+			this.Interlocuteur.ReadOnly = true;
+			// 
+			// EventDate
+			// 
+			this.EventDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.EventDate.DataPropertyName = "DateEven";
+			this.EventDate.HeaderText = "Date événement";
+			this.EventDate.Name = "EventDate";
+			this.EventDate.ReadOnly = true;
+			// 
 			// pageKids
 			// 
 			this.pageKids.Controls.Add(this.gvKids);
 			this.pageKids.Location = new System.Drawing.Point(4, 22);
 			this.pageKids.Name = "pageKids";
 			this.pageKids.Padding = new System.Windows.Forms.Padding(3);
-			this.pageKids.Size = new System.Drawing.Size(1198, 292);
+			this.pageKids.Size = new System.Drawing.Size(916, 292);
 			this.pageKids.TabIndex = 1;
 			this.pageKids.Text = "Enfants";
 			this.pageKids.UseVisualStyleBackColor = true;
@@ -575,44 +543,9 @@
 			this.gvKids.Location = new System.Drawing.Point(3, 3);
 			this.gvKids.Name = "gvKids";
 			this.gvKids.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvKids.Size = new System.Drawing.Size(1192, 286);
+			this.gvKids.Size = new System.Drawing.Size(910, 286);
 			this.gvKids.TabIndex = 16;
 			this.gvKids.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvKids_CellDoubleClick);
-			// 
-			// accueilDataGridViewTextBoxColumn
-			// 
-			this.accueilDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.accueilDataGridViewTextBoxColumn.DataPropertyName = "Accueil";
-			this.accueilDataGridViewTextBoxColumn.HeaderText = "Accueil";
-			this.accueilDataGridViewTextBoxColumn.Name = "accueilDataGridViewTextBoxColumn";
-			// 
-			// naissanceDataGridViewTextBoxColumn
-			// 
-			this.naissanceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.naissanceDataGridViewTextBoxColumn.DataPropertyName = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn.HeaderText = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn.Name = "naissanceDataGridViewTextBoxColumn";
-			// 
-			// sexeDataGridViewTextBoxColumn
-			// 
-			this.sexeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.sexeDataGridViewTextBoxColumn.DataPropertyName = "Sexe";
-			this.sexeDataGridViewTextBoxColumn.HeaderText = "Sexe";
-			this.sexeDataGridViewTextBoxColumn.Name = "sexeDataGridViewTextBoxColumn";
-			// 
-			// prenomDataGridViewTextBoxColumn
-			// 
-			this.prenomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.prenomDataGridViewTextBoxColumn.DataPropertyName = "Prenom";
-			this.prenomDataGridViewTextBoxColumn.HeaderText = "Prenom";
-			this.prenomDataGridViewTextBoxColumn.Name = "prenomDataGridViewTextBoxColumn";
-			// 
-			// nomDataGridViewTextBoxColumn
-			// 
-			this.nomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-			this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-			this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
 			// 
 			// pageParents
 			// 
@@ -620,7 +553,7 @@
 			this.pageParents.Location = new System.Drawing.Point(4, 22);
 			this.pageParents.Name = "pageParents";
 			this.pageParents.Padding = new System.Windows.Forms.Padding(3);
-			this.pageParents.Size = new System.Drawing.Size(1198, 292);
+			this.pageParents.Size = new System.Drawing.Size(916, 292);
 			this.pageParents.TabIndex = 0;
 			this.pageParents.Text = "Parents";
 			this.pageParents.UseVisualStyleBackColor = true;
@@ -639,62 +572,30 @@
             this.SubName,
             this.sexeDataGridViewTextBoxColumn1,
             this.naissanceDataGridViewTextBoxColumn1,
-            this.statutDataGridViewTextBoxColumn,
-            this.transporteurDataGridViewTextBoxColumn});
+            this.statutDataGridViewTextBoxColumn});
 			this.gvParents.DataSource = this.bsDataParents;
 			this.gvParents.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gvParents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.gvParents.Location = new System.Drawing.Point(3, 3);
 			this.gvParents.Name = "gvParents";
 			this.gvParents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvParents.Size = new System.Drawing.Size(1192, 286);
+			this.gvParents.Size = new System.Drawing.Size(910, 286);
 			this.gvParents.TabIndex = 17;
 			this.gvParents.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvParents_CellDoubleClick);
 			this.gvParents.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvParents_CellFormatting);
 			this.gvParents.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvParents_RowContextMenuStripNeeded);
-			// 
-			// transporteurDataGridViewTextBoxColumn
-			// 
-			this.transporteurDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.transporteurDataGridViewTextBoxColumn.DataPropertyName = "Transporteur";
-			this.transporteurDataGridViewTextBoxColumn.HeaderText = "Transporteur";
-			this.transporteurDataGridViewTextBoxColumn.Name = "transporteurDataGridViewTextBoxColumn";
-			// 
-			// statutDataGridViewTextBoxColumn
-			// 
-			this.statutDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.statutDataGridViewTextBoxColumn.DataPropertyName = "Statut";
-			this.statutDataGridViewTextBoxColumn.HeaderText = "Statut";
-			this.statutDataGridViewTextBoxColumn.Name = "statutDataGridViewTextBoxColumn";
-			this.statutDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// naissanceDataGridViewTextBoxColumn1
-			// 
-			this.naissanceDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.naissanceDataGridViewTextBoxColumn1.DataPropertyName = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn1.HeaderText = "Naissance";
-			this.naissanceDataGridViewTextBoxColumn1.Name = "naissanceDataGridViewTextBoxColumn1";
-			this.naissanceDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// sexeDataGridViewTextBoxColumn1
-			// 
-			this.sexeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.sexeDataGridViewTextBoxColumn1.DataPropertyName = "Sexe";
-			this.sexeDataGridViewTextBoxColumn1.HeaderText = "Sexe";
-			this.sexeDataGridViewTextBoxColumn1.Name = "sexeDataGridViewTextBoxColumn1";
-			this.sexeDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// SubName
-			// 
-			this.SubName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.SubName.HeaderText = "Prénom";
-			this.SubName.Name = "SubName";
 			// 
 			// Nom
 			// 
 			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.Nom.HeaderText = "Nom";
 			this.Nom.Name = "Nom";
+			// 
+			// SubName
+			// 
+			this.SubName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.SubName.HeaderText = "Prénom";
+			this.SubName.Name = "SubName";
 			// 
 			// tb
 			// 
@@ -704,16 +605,182 @@
 			this.tb.Location = new System.Drawing.Point(22, 398);
 			this.tb.Name = "tb";
 			this.tb.SelectedIndex = 0;
-			this.tb.Size = new System.Drawing.Size(1206, 318);
+			this.tb.Size = new System.Drawing.Size(924, 318);
 			this.tb.TabIndex = 14;
+			// 
+			// gvTelephones
+			// 
+			this.gvTelephones.AllowUserToAddRows = false;
+			this.gvTelephones.AllowUserToDeleteRows = false;
+			this.gvTelephones.AllowUserToOrderColumns = true;
+			this.gvTelephones.AllowUserToResizeRows = false;
+			this.gvTelephones.AutoGenerateColumns = false;
+			this.gvTelephones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.gvTelephones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gvTelephones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TelNom,
+            this.TelPrenom,
+            this.typeDataGridViewTextBoxColumn1,
+            this.telephone1DataGridViewTextBoxColumn,
+            this.posteDataGridViewTextBoxColumn});
+			this.gvTelephones.DataSource = this.bsTelephones;
+			this.gvTelephones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+			this.gvTelephones.Location = new System.Drawing.Point(963, 420);
+			this.gvTelephones.Name = "gvTelephones";
+			this.gvTelephones.ReadOnly = true;
+			this.gvTelephones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.gvTelephones.Size = new System.Drawing.Size(528, 289);
+			this.gvTelephones.TabIndex = 18;
+			this.gvTelephones.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gvTelephones_CellFormatting);
+			// 
+			// TelNom
+			// 
+			this.TelNom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.TelNom.HeaderText = "Nom";
+			this.TelNom.Name = "TelNom";
+			this.TelNom.ReadOnly = true;
+			// 
+			// TelPrenom
+			// 
+			this.TelPrenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.TelPrenom.HeaderText = "Prénom";
+			this.TelPrenom.Name = "TelPrenom";
+			this.TelPrenom.ReadOnly = true;
+			// 
+			// typeDataGridViewTextBoxColumn1
+			// 
+			this.typeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.typeDataGridViewTextBoxColumn1.DataPropertyName = "Type";
+			this.typeDataGridViewTextBoxColumn1.HeaderText = "Type";
+			this.typeDataGridViewTextBoxColumn1.Name = "typeDataGridViewTextBoxColumn1";
+			this.typeDataGridViewTextBoxColumn1.ReadOnly = true;
+			// 
+			// telephone1DataGridViewTextBoxColumn
+			// 
+			this.telephone1DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.telephone1DataGridViewTextBoxColumn.DataPropertyName = "Telephone1";
+			this.telephone1DataGridViewTextBoxColumn.HeaderText = "Téléphone";
+			this.telephone1DataGridViewTextBoxColumn.Name = "telephone1DataGridViewTextBoxColumn";
+			this.telephone1DataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// posteDataGridViewTextBoxColumn
+			// 
+			this.posteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.posteDataGridViewTextBoxColumn.DataPropertyName = "Poste";
+			this.posteDataGridViewTextBoxColumn.HeaderText = "Poste";
+			this.posteDataGridViewTextBoxColumn.Name = "posteDataGridViewTextBoxColumn";
+			this.posteDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// bsTelephones
+			// 
+			this.bsTelephones.DataSource = typeof(ProjetMFTR.Entities.Telephone);
+			// 
+			// sexeDataGridViewTextBoxColumn1
+			// 
+			this.sexeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.sexeDataGridViewTextBoxColumn1.DataPropertyName = "Sexe";
+			this.sexeDataGridViewTextBoxColumn1.HeaderText = "Sexe";
+			this.sexeDataGridViewTextBoxColumn1.Name = "sexeDataGridViewTextBoxColumn1";
+			this.sexeDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// naissanceDataGridViewTextBoxColumn1
+			// 
+			this.naissanceDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.naissanceDataGridViewTextBoxColumn1.DataPropertyName = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn1.HeaderText = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn1.Name = "naissanceDataGridViewTextBoxColumn1";
+			this.naissanceDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// statutDataGridViewTextBoxColumn
+			// 
+			this.statutDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.statutDataGridViewTextBoxColumn.DataPropertyName = "Statut";
+			this.statutDataGridViewTextBoxColumn.HeaderText = "Statut";
+			this.statutDataGridViewTextBoxColumn.Name = "statutDataGridViewTextBoxColumn";
+			this.statutDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// bsDataParents
+			// 
+			this.bsDataParents.DataSource = typeof(ProjetMFTR.Entities.Parent);
+			// 
+			// nomDataGridViewTextBoxColumn
+			// 
+			this.nomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+			this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+			this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+			// 
+			// prenomDataGridViewTextBoxColumn
+			// 
+			this.prenomDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.prenomDataGridViewTextBoxColumn.DataPropertyName = "Prenom";
+			this.prenomDataGridViewTextBoxColumn.HeaderText = "Prenom";
+			this.prenomDataGridViewTextBoxColumn.Name = "prenomDataGridViewTextBoxColumn";
+			// 
+			// sexeDataGridViewTextBoxColumn
+			// 
+			this.sexeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.sexeDataGridViewTextBoxColumn.DataPropertyName = "Sexe";
+			this.sexeDataGridViewTextBoxColumn.HeaderText = "Sexe";
+			this.sexeDataGridViewTextBoxColumn.Name = "sexeDataGridViewTextBoxColumn";
+			// 
+			// naissanceDataGridViewTextBoxColumn
+			// 
+			this.naissanceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.naissanceDataGridViewTextBoxColumn.DataPropertyName = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn.HeaderText = "Naissance";
+			this.naissanceDataGridViewTextBoxColumn.Name = "naissanceDataGridViewTextBoxColumn";
+			// 
+			// accueilDataGridViewTextBoxColumn
+			// 
+			this.accueilDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.accueilDataGridViewTextBoxColumn.DataPropertyName = "Accueil";
+			this.accueilDataGridViewTextBoxColumn.HeaderText = "Accueil";
+			this.accueilDataGridViewTextBoxColumn.Name = "accueilDataGridViewTextBoxColumn";
+			// 
+			// bsDataKids
+			// 
+			this.bsDataKids.DataSource = typeof(ProjetMFTR.Entities.Enfants);
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn2.DataPropertyName = "Note";
+			this.dataGridViewTextBoxColumn2.HeaderText = "Notes";
+			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+			this.dataGridViewTextBoxColumn2.ReadOnly = true;
+			// 
+			// bsDataCommunication
+			// 
+			this.bsDataCommunication.DataSource = typeof(ProjetMFTR.Entities.Communication);
+			// 
+			// bsData
+			// 
+			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Dossier);
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn1.DataPropertyName = "Dossier_ID";
+			this.dataGridViewTextBoxColumn1.HeaderText = "Dossier";
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			this.dataGridViewTextBoxColumn1.ReadOnly = true;
+			// 
+			// typeDataGridViewTextBoxColumn
+			// 
+			this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+			this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+			this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+			this.typeDataGridViewTextBoxColumn.ReadOnly = true;
 			// 
 			// Dossier
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1240, 757);
+			this.ClientSize = new System.Drawing.Size(1503, 747);
+			this.Controls.Add(this.gvTelephones);
 			this.Controls.Add(this.btnSaveDossier);
-			this.Controls.Add(this.btnAddFolder);
+			this.Controls.Add(this.btnReferents);
 			this.Controls.Add(this.btnAddCommunication);
 			this.Controls.Add(this.tb);
 			this.Controls.Add(this.groupBox2);
@@ -727,12 +794,8 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsData)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsDataCommunication)).EndInit();
 			this.DossierContextMenu.ResumeLayout(false);
 			this.CommunicationContextMenu.ResumeLayout(false);
 			this.pageCommunication.ResumeLayout(false);
@@ -742,6 +805,12 @@
 			this.pageParents.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvParents)).EndInit();
 			this.tb.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gvTelephones)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephones)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataParents)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataKids)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsDataCommunication)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -763,7 +832,7 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.DateTimePicker dtpDossier;
-		private System.Windows.Forms.Button btnAddFolder;
+		private System.Windows.Forms.Button btnReferents;
 		private System.Windows.Forms.RichTextBox rtxtRemarque;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.ComboBox cboType;
@@ -802,12 +871,18 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn accueilDataGridViewTextBoxColumn;
 		private System.Windows.Forms.TabPage pageParents;
 		private System.Windows.Forms.DataGridView gvParents;
+		private System.Windows.Forms.TabControl tb;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
 		private System.Windows.Forms.DataGridViewTextBoxColumn SubName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn sexeDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn naissanceDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn statutDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn transporteurDataGridViewTextBoxColumn;
-		private System.Windows.Forms.TabControl tb;
+		private System.Windows.Forms.DataGridView gvTelephones;
+		private System.Windows.Forms.BindingSource bsTelephones;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TelNom;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TelPrenom;
+		private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn telephone1DataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn posteDataGridViewTextBoxColumn;
 	}
 }

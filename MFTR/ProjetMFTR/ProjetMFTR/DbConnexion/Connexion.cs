@@ -192,7 +192,7 @@ namespace ProjetMFTR.DataAccess
 			/// <summary>
 			/// Permet de mettre à jour la clé primaire de dossier
 			/// </summary>
-			public void UpdateIDs(string oldId, string newId)
+			public void UpdateFolderIDs(string oldId, string newId)
 			{
 				using (SqlConnection conn = new SqlConnection(ConnexionString))
 				{
@@ -200,6 +200,53 @@ namespace ProjetMFTR.DataAccess
 
 					// 1.  create a command object identifying the stored procedure
 					SqlCommand cmd = new SqlCommand("UpdateFolderIds", conn);
+
+					// 2. set the command object so it knows to execute a stored procedure
+					cmd.CommandType = CommandType.StoredProcedure;
+
+					// 3. add parameter to command, which will be passed to the stored procedure
+					cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
+					cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+
+			/// <summary>
+			/// Permet de mettre à jour la clé primaire du dossier de la communication
+			/// </summary>
+			public void UpdateCommunicationFolderID(string oldId, string newId)
+			{
+				using (SqlConnection conn = new SqlConnection(ConnexionString))
+				{
+					conn.Open();
+
+					// 1.  create a command object identifying the stored procedure
+					SqlCommand cmd = new SqlCommand("UpdateCommunicationFolderID", conn);
+
+					// 2. set the command object so it knows to execute a stored procedure
+					cmd.CommandType = CommandType.StoredProcedure;
+
+					// 3. add parameter to command, which will be passed to the stored procedure
+					cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
+					cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+
+
+			/// <summary>
+			/// Permet de mettre à jour la clé primaire du referent
+			/// </summary>
+			public void UpdateReferentId(string oldId, string newId)
+			{
+				using (SqlConnection conn = new SqlConnection(ConnexionString))
+				{
+					conn.Open();
+
+					// 1.  create a command object identifying the stored procedure
+					SqlCommand cmd = new SqlCommand("UpdateReferentId", conn);
 
 					// 2. set the command object so it knows to execute a stored procedure
 					cmd.CommandType = CommandType.StoredProcedure;

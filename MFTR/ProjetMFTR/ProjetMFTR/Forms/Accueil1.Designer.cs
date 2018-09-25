@@ -1,66 +1,52 @@
 ﻿namespace ProjetMFTR.Forms
 {
-	partial class Accueil
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class Accueil1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil1));
 			this.label1 = new System.Windows.Forms.Label();
-			this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
 			this.btnCommunication = new System.Windows.Forms.Button();
 			this.btnGestionIntervenant = new System.Windows.Forms.Button();
 			this.btnGestionDossier = new System.Windows.Forms.Button();
 			this.btnGestionSuivi = new System.Windows.Forms.Button();
-			this.btnOptions = new System.Windows.Forms.Button();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(196, 380);
+			this.label1.Location = new System.Drawing.Point(194, 390);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(276, 13);
-			this.label1.TabIndex = 5;
+			this.label1.TabIndex = 0;
 			this.label1.Text = "Maison de la famille de Trois-Rivières inc, 2018";
-			// 
-			// metroPanel1
-			// 
-			this.metroPanel1.BackgroundImage = global::ProjetMFTR.Properties.Resources.icone_MFTR_ACCUEIL;
-			this.metroPanel1.HorizontalScrollbarBarColor = true;
-			this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-			this.metroPanel1.HorizontalScrollbarSize = 10;
-			this.metroPanel1.Location = new System.Drawing.Point(527, 63);
-			this.metroPanel1.Name = "metroPanel1";
-			this.metroPanel1.Size = new System.Drawing.Size(172, 266);
-			this.metroPanel1.TabIndex = 6;
-			this.metroPanel1.VerticalScrollbarBarColor = true;
-			this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-			this.metroPanel1.VerticalScrollbarSize = 10;
 			// 
 			// btnCommunication
 			// 
@@ -70,14 +56,14 @@
 			this.btnCommunication.ForeColor = System.Drawing.Color.Black;
 			this.btnCommunication.Image = global::ProjetMFTR.Properties.Resources.icone_chat64;
 			this.btnCommunication.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnCommunication.Location = new System.Drawing.Point(14, 232);
+			this.btnCommunication.Location = new System.Drawing.Point(12, 292);
 			this.btnCommunication.Name = "btnCommunication";
-			this.btnCommunication.Size = new System.Drawing.Size(458, 64);
-			this.btnCommunication.TabIndex = 10;
+			this.btnCommunication.Size = new System.Drawing.Size(458, 80);
+			this.btnCommunication.TabIndex = 5;
 			this.btnCommunication.Text = "Communication";
 			this.btnCommunication.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnCommunication.UseVisualStyleBackColor = false;
-			this.btnCommunication.Click += new System.EventHandler(this.btnCommunication_Click);
+			this.btnCommunication.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// btnGestionIntervenant
 			// 
@@ -87,10 +73,10 @@
 			this.btnGestionIntervenant.ForeColor = System.Drawing.Color.Black;
 			this.btnGestionIntervenant.Image = global::ProjetMFTR.Properties.Resources.icone_person_64;
 			this.btnGestionIntervenant.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnGestionIntervenant.Location = new System.Drawing.Point(14, 162);
+			this.btnGestionIntervenant.Location = new System.Drawing.Point(12, 204);
 			this.btnGestionIntervenant.Name = "btnGestionIntervenant";
-			this.btnGestionIntervenant.Size = new System.Drawing.Size(458, 64);
-			this.btnGestionIntervenant.TabIndex = 9;
+			this.btnGestionIntervenant.Size = new System.Drawing.Size(458, 80);
+			this.btnGestionIntervenant.TabIndex = 4;
 			this.btnGestionIntervenant.Text = "Gestion des intervenants";
 			this.btnGestionIntervenant.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnGestionIntervenant.UseVisualStyleBackColor = false;
@@ -104,10 +90,10 @@
 			this.btnGestionDossier.ForeColor = System.Drawing.Color.Black;
 			this.btnGestionDossier.Image = global::ProjetMFTR.Properties.Resources.icone_folder_64;
 			this.btnGestionDossier.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnGestionDossier.Location = new System.Drawing.Point(14, 22);
+			this.btnGestionDossier.Location = new System.Drawing.Point(12, 12);
 			this.btnGestionDossier.Name = "btnGestionDossier";
-			this.btnGestionDossier.Size = new System.Drawing.Size(458, 64);
-			this.btnGestionDossier.TabIndex = 8;
+			this.btnGestionDossier.Size = new System.Drawing.Size(458, 80);
+			this.btnGestionDossier.TabIndex = 3;
 			this.btnGestionDossier.Text = "Gestion des dossiers";
 			this.btnGestionDossier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnGestionDossier.UseVisualStyleBackColor = false;
@@ -121,59 +107,52 @@
 			this.btnGestionSuivi.ForeColor = System.Drawing.Color.Black;
 			this.btnGestionSuivi.Image = global::ProjetMFTR.Properties.Resources.icone_suivi_64;
 			this.btnGestionSuivi.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnGestionSuivi.Location = new System.Drawing.Point(14, 92);
+			this.btnGestionSuivi.Location = new System.Drawing.Point(12, 107);
 			this.btnGestionSuivi.Name = "btnGestionSuivi";
-			this.btnGestionSuivi.Size = new System.Drawing.Size(458, 64);
-			this.btnGestionSuivi.TabIndex = 7;
+			this.btnGestionSuivi.Size = new System.Drawing.Size(458, 80);
+			this.btnGestionSuivi.TabIndex = 2;
 			this.btnGestionSuivi.Text = "Gestion des suivis";
 			this.btnGestionSuivi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnGestionSuivi.UseVisualStyleBackColor = false;
 			this.btnGestionSuivi.Click += new System.EventHandler(this.btnGestionSuivi_Click);
 			// 
-			// btnOptions
+			// pictureBox1
 			// 
-			this.btnOptions.BackColor = System.Drawing.Color.Salmon;
-			this.btnOptions.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnOptions.ForeColor = System.Drawing.Color.Black;
-			this.btnOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnOptions.Location = new System.Drawing.Point(14, 302);
-			this.btnOptions.Name = "btnOptions";
-			this.btnOptions.Size = new System.Drawing.Size(458, 64);
-			this.btnOptions.TabIndex = 11;
-			this.btnOptions.Text = "Options";
-			this.btnOptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnOptions.UseVisualStyleBackColor = false;
-			this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
+			this.pictureBox1.BackgroundImage = global::ProjetMFTR.Properties.Resources.icone_MFTR_ACCUEIL;
+			this.pictureBox1.Location = new System.Drawing.Point(476, 69);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(173, 262);
+			this.pictureBox1.TabIndex = 1;
+			this.pictureBox1.TabStop = false;
 			// 
 			// Accueil
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(738, 413);
-			this.Controls.Add(this.btnOptions);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.ClientSize = new System.Drawing.Size(661, 417);
 			this.Controls.Add(this.btnCommunication);
 			this.Controls.Add(this.btnGestionIntervenant);
 			this.Controls.Add(this.btnGestionDossier);
 			this.Controls.Add(this.btnGestionSuivi);
-			this.Controls.Add(this.metroPanel1);
+			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.label1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Accueil";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Accueil";
-			this.Load += new System.EventHandler(this.Accueil_Load);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-		}
+        }
 
-		#endregion
-		private System.Windows.Forms.Label label1;
-		private MetroFramework.Controls.MetroPanel metroPanel1;
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnGestionSuivi;
+        private System.Windows.Forms.Button btnGestionDossier;
+        private System.Windows.Forms.Button btnGestionIntervenant;
 		private System.Windows.Forms.Button btnCommunication;
-		private System.Windows.Forms.Button btnGestionIntervenant;
-		private System.Windows.Forms.Button btnGestionDossier;
-		private System.Windows.Forms.Button btnGestionSuivi;
-		private System.Windows.Forms.Button btnOptions;
 	}
 }

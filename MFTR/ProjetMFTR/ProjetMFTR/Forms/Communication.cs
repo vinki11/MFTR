@@ -10,10 +10,12 @@ namespace ProjetMFTR.Forms
 {
 	public partial class Communication : Form
 	{
-		Entities.Communication CurrentEntity;
-		bool initialize = false;
-		Connexion.ConnexionActions<Entities.Communication> connexionActions = new Connexion.ConnexionActions<Entities.Communication>();
+		private Entities.Communication CurrentEntity;
+		private bool initialize = false;
+		private Connexion.ConnexionActions<Entities.Communication> connexionActions = new Connexion.ConnexionActions<Entities.Communication>();
+
 		public event EventHandler<Entities.Communication> CommunicationAdded;
+
 		private bool m_SkipSave = false;
 
 		public Communication()
@@ -34,15 +36,13 @@ namespace ProjetMFTR.Forms
 		public void Init()
 		{
 			InitialiseCombos();
-			//dtpDateEvent.MaxDate = Helper.CurrentMaxDateTime();
-			dtpDateSuivi.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		protected virtual void OnCommunicationAdded(EventArgs e)
 		{
 			CommunicationAdded?.Invoke(this, CurrentEntity);
-
 		}
+
 		/// <summary>W
 		/// Initialisation du combobox des enfants
 		/// </summary>
@@ -62,21 +62,15 @@ namespace ProjetMFTR.Forms
 			cboReferent.DisplayMember = ResourcesString.STR_Adultes + "." + ResourcesString.STR_Nom;
 			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
 
-
-			cboInterlocuteur.DisplayMember = ResourcesString.STR_Prenom;
+			cboInterlocuteur.DisplayMember = ResourcesString.STR_FullName;
 			cboInterlocuteur.ValueMember = ResourcesString.STR_Adultes_ID;
 
 			initialize = true;
 		}
 
-		void AssignCommunication(Entities.Communication communication)
+		private void AssignCommunication(Entities.Communication communication)
 		{
 			cboFolders.DataSource = Connexion.Instance().Dossier.Where((x) => x.Dossier_ID.Equals(communication.Dossier_ID)).ToList();
-			cboFolders.Enabled = false;
-
-			var parents = Connexion.Instance().Dossier.SelectMany(x => x.Adultes).Where(o => o.Dossier_ID == communication.Dossier_ID).ToList();
-
-			//cboInterlocuteur.Items.AddRange(parents.SelectMany(x => x.Nom + ", " + x.Prenom).Cast<object>().ToList().ToArray());
 
 			var referents = SelectReferents();
 
@@ -85,12 +79,51 @@ namespace ProjetMFTR.Forms
 			cboInterlocuteur.Text = communication.Interlocuteur;
 			cboMotif.Text = communication.Motif;
 			cboTypeCommunication.Text = communication.Type;
-			cboEmployes.Text = Connexion.Instance().Intervenant.FirstOrDefault((x) => x.intervenant_id == communication.IdIntervenant)?.nom;
+
+			var intervenant = Connexion.Instance().Intervenant.FirstOrDefault((x) => x.intervenant_id == communication.IdIntervenant);
+			if (intervenant == null)
+			{
+				cboEmployes.Text = communication.Intervenant;
+			}
+			else
+			{
+				cboEmployes.Text = intervenant.nom;
+			}
 			CurrentEntity = communication;
-			if (communication.DateEven.HasValue) { dtpDateEvent.Value = communication.DateEven.Value; }
-			if (communication.DateComm.HasValue) { dtpDateSuivi.Value = communication.DateComm.Value; }
-			if (communication.Heure.HasValue) { dtpHours.Value = Convert.ToDateTime(communication.Heure.Value.ToString()); }
 			rtxtNotes.Text = communication.Note;
+
+			if (communication.DateEven.HasValue)
+			{
+				dtpDateEvent.CustomFormat = "dd/MM/yyyy";
+				dtpDateEvent.Value = communication.DateEven.Value;
+			}
+			else
+			{
+				dtpDateEvent.Value = Helper.MinDateTime();
+				dtpDateEvent.CustomFormat = " ";
+			}
+
+			if (communication.DateComm.HasValue)
+			{
+				dtpDateCommunication.CustomFormat = "dd/MM/yyyy";
+				dtpDateCommunication.Value = communication.DateComm.Value;
+			}
+			else
+			{
+				dtpDateCommunication.Value = Helper.MinDateTime();
+				dtpDateCommunication.CustomFormat = " ";
+			}
+
+			if (communication.Heure.HasValue)
+			{
+				dtpHours.CustomFormat = "hh:mm:ss";
+				dtpHours.Value = Convert.ToDateTime(communication.Heure.Value.ToString());
+			}
+			else
+			{
+				dtpHours.Value = Helper.MinDateTime();
+				dtpHours.CustomFormat = " ";
+			}
 		}
 
 		/// <summary>
@@ -101,9 +134,17 @@ namespace ProjetMFTR.Forms
 			if (CurrentEntity == null) { return; }
 
 			CurrentEntity.Dossier_ID = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
-			CurrentEntity.DateComm = dtpDateSuivi.Value.Date;
-			CurrentEntity.DateEven = dtpDateEvent.Value.Date;
-			CurrentEntity.Heure = new TimeSpan(dtpHours.Value.Hour, dtpHours.Value.Minute, dtpHours.Value.Second);
+			DateTime date = new DateTime();
+
+			DateTime.TryParse(dtpDateCommunication.Text, out date);
+			CurrentEntity.DateComm = date == DateTime.MinValue ? (DateTime?)null : date;
+
+			DateTime.TryParse(dtpDateEvent.Text, out date);
+			CurrentEntity.DateEven = date == DateTime.MinValue ? (DateTime?)null : date;
+
+			DateTime.TryParse(dtpHours.Text, out date);
+			CurrentEntity.Heure = date == DateTime.MinValue ? (TimeSpan?)null : new TimeSpan(date.Hour, date.Minute, date.Second);
+
 			CurrentEntity.Referent_ID = ((Entities.Referent)cboReferent.SelectedItem)?.Referent_ID;
 			CurrentEntity.Note = rtxtNotes.Text;
 			CurrentEntity.Interlocuteur = cboInterlocuteur.Text;
@@ -141,6 +182,7 @@ namespace ProjetMFTR.Forms
 			referents.Concat(kidReferent);
 			return referents.ToList();
 		}
+
 		/// <summary>
 		/// Survient au changement d'un référent
 		/// </summary>
@@ -182,7 +224,8 @@ namespace ProjetMFTR.Forms
 			CurrentEntity = (Entities.Communication)bsData.Current;
 			AssignCommunication(CurrentEntity);
 		}
-		#endregion
+
+		#endregion Binding
 
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
@@ -240,7 +283,7 @@ namespace ProjetMFTR.Forms
 			cboMotif.Text = "";
 			cboInterlocuteur.Text = "";
 			cboTypeCommunication.Text = "";
-			dtpDateSuivi.Value = DateTime.Now.Date;
+			dtpDateCommunication.Value = DateTime.Now.Date;
 			dtpDateEvent.Value = DateTime.Now.Date;
 			dtpHours.Value = DateTime.Now.Date;
 			rtxtNotes.Text = "";
@@ -270,6 +313,46 @@ namespace ProjetMFTR.Forms
 			}
 		}
 
+		private void dtpDateEvent_ValueChanged(object sender, EventArgs e)
+		{
+			dtpDateEvent.CustomFormat = "yyyy/MM/dd";
+		}
 
+		private void dtpHours_ValueChanged(object sender, EventArgs e)
+		{
+			dtpHours.CustomFormat = "hh:mm:ss";
+		}
+
+		private void dtpDateEvent_KeyDown(object sender, KeyEventArgs e)
+		{
+			if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+			{
+				dtpDateEvent.Value = Helper.MinDateTime();
+				dtpDateEvent.CustomFormat = " ";
+			}
+		}
+
+		private void dtpDateCommunication_KeyDown(object sender, KeyEventArgs e)
+		{
+			if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+			{
+				dtpDateCommunication.Value = Helper.MinDateTime();
+				dtpDateCommunication.CustomFormat = " ";
+			}
+		}
+
+		private void dtpHours_KeyDown(object sender, KeyEventArgs e)
+		{
+			if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+			{
+				dtpHours.Value = Helper.MinDateTime();
+				dtpHours.CustomFormat = " ";
+			}
+		}
+
+		private void dtpDateCommunication_ValueChanged(object sender, EventArgs e)
+		{
+			dtpDateCommunication.CustomFormat = "yyyy/MM/dd";
+		}
 	}
 }

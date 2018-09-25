@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace ProjetMFTR.Forms
 		#region Members
 
 		//Liste de nos dossiers
-		private DbSet<Entities.Dossier> m_Dossiers;
+		private List<Entities.Dossier> m_Dossiers;
 
 		#endregion Members
 
@@ -36,8 +37,16 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void Initialize()
 		{
-			m_Dossiers = Connexion.Instance().Dossier;
-			bsData.DataSource = m_Dossiers.Where(x => x.Ouverture.HasValue && x.Ouverture.Value.Year <= DateTime.Now.Year - 5).OrderByDescending(o => o.Ouverture.Value).ToList();
+			m_Dossiers = Connexion.Instance().Dossier.ToList();
+
+			var communications = m_Dossiers.SelectMany(x => x.Communication).Where(v => v.DateComm.HasValue && v.Motif != null).ToList();
+			communications = communications.GroupBy(x => x.Dossier_ID).Select(g => g.OrderByDescending(o => o.DateEven).FirstOrDefault()).ToList();
+			var comms = communications.Where(x => x.DateComm.Value.Year <= DateTime.Now.Year - 5 && (x.Motif.Trim() == "É - Confirmation" || x.Motif.Trim() == "VS-Confirmation")).ToList();
+
+
+			var dossiers = m_Dossiers.Where(x => comms.Any(c => c.Dossier_ID.Equals(x.Dossier_ID))).ToList();
+			bsData.DataSource = dossiers;
+			//bsData.DataSource = m_Dossiers.ToList().Where(x => communications.Any(c => c.Dossier_ID == x.Dossier_ID)).OrderByDescending(o => o.Ouverture.Value);
 
 			lblFolderCount.Text = bsData.Count.ToString();
 

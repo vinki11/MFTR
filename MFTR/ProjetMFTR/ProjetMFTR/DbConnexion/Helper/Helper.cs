@@ -46,9 +46,9 @@ namespace ProjetMFTR.DbConnexion.Helper
 				Type propertyType;
 				PropertyInfo propertyInfo;
 
-				propertyType = @object.GetType();
-				propertyInfo = propertyType.GetProperty(propertyName);
-				retValue = propertyInfo.GetValue(@object, null).ToString();
+				propertyType = @object?.GetType();
+				propertyInfo = propertyType?.GetProperty(propertyName);
+				retValue = propertyInfo?.GetValue(@object, null)?.ToString();
 			}
 
 			return retValue;
@@ -60,6 +60,14 @@ namespace ProjetMFTR.DbConnexion.Helper
 		public static DateTime CurrentMaxDateTime()
 		{
 			return DateTime.Now;
+		}
+
+		/// <summary>
+		/// Retourne la date minimum
+		/// </summary>
+		public static DateTime MinDateTime()
+		{
+			return Convert.ToDateTime("1763-01-01");
 		}
 	}
 }

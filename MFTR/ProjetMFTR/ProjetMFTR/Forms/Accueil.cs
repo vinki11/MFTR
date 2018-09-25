@@ -1,56 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetMFTR.Forms
 {
-	public partial class Accueil : Form
+	public partial class Accueil : MetroFramework.Forms.MetroForm
 	{
 		public Accueil()
 		{
-			Thread thread = new Thread(new ThreadStart(Splash));
-			try
-			{
-				thread.Start();
-				InitializeComponent();
-				Thread.Sleep(2000);
-				Focus();
-				TopMost = true;
-			}
-			catch (Exception e)
-			{
-			}
-			finally
-			{
-				thread.Abort();
-			}
+			Thread thread = new Thread(new ThreadStart(Loading));
+			thread.Start();
+			InitializeComponent();
+			Thread.Sleep(2000);
+			thread.Abort();
 		}
 
-		void Splash()
+		/// <summary>
+		/// Chargement de la fenêtre splashscreen
+		/// </summary>
+		private void Loading()
 		{
-			SplashScreen.SplashForm frm = new SplashScreen.SplashForm();
-			frm.AppName = "Maison de la famille";
-			frm.Icon = Properties.Resources.icone_MFTR;
-			frm.ShowIcon = true;
-			frm.ShowInTaskbar = true;
-			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Width = 300;
-			frm.Controls.OfType<Label>().Where((x) => x.Name.Equals("lStatusInfo")).FirstOrDefault().Text = "Chargement...";
-			try
-			{
-				Application.Run(frm);
-			}
-			catch (Exception e)
-			{
-				Application.ExitThread();
-			}
+			frmSplashScreen frm = new frmSplashScreen();
+			Application.Run(frm);
 		}
+
+		#region Handlers
+
+		private void Accueil_Load(object sender, EventArgs e)
+		{
+			BringToFront();
+			Activate();
+		}
+
+		/// <summary>
+		/// Accède à la fenêtre des communications
+		/// </summary>
+		private void btnCommunication_Click(object sender, EventArgs e)
+		{
+			TopMost = false;
+			Communication communication = new Communication();
+			communication.Show();
+		}
+
+		/// <summary>
+		/// Accède à la form de gestion des dossiers
+		/// </summary>
+		private void btnGestionDossier_Click(object sender, EventArgs e)
+		{
+			TopMost = false;
+			Dossier dossier = new Dossier();
+			dossier.Show();
+		}
+
 		/// <summary>
 		/// Accède à la form de gestion des intervenants
 		/// </summary>
@@ -71,24 +72,10 @@ namespace ProjetMFTR.Forms
 			suiviListtForm.Show();
 		}
 
-		/// <summary>
-		/// Accède à la form de gestion des dossiers
-		/// </summary>
-		private void btnGestionDossier_Click(object sender, EventArgs e)
+		private void btnOptions_Click(object sender, EventArgs e)
 		{
-			TopMost = false;
-			Dossier dossier = new Dossier();
-			dossier.Show();
 		}
 
-		/// <summary>
-		/// Accède à la fenêtre des communications
-		/// </summary>
-		private void button1_Click(object sender, EventArgs e)
-		{
-			TopMost = false;
-			Communication communication = new Communication();
-			communication.Show();
-		}
+		#endregion Handlers
 	}
 }
