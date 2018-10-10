@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
@@ -14,6 +16,7 @@ namespace ProjetMFTR.Forms
 		private Connexion.ConnexionActions<Entities.Enfants> connexionActions = new Connexion.ConnexionActions<Entities.Enfants>();
 		private Entities.Enfants CurrentChild;
 		private String CurrentDossierID;
+		private Entities.Options options;
 
 		#endregion Members
 
@@ -32,12 +35,33 @@ namespace ProjetMFTR.Forms
 			cboReferent.DisplayMember = ResourcesString.STR_ReferentId;
 			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
 			cboReferent.SelectedValue = -1;
+
+			options = Connexion.Instance().Options.FirstOrDefault();
+
+			openFile.InitialDirectory = options.Path;
+			openFile.Title = "Choisir une photo";
+			openFile.CheckFileExists = true;
+			openFile.CheckPathExists = true;
+			openFile.Filter = "Photos PNG (*.png)|*.png|Photos JPG (*.jpg)|*.jpg|Tous (*.*)|*.*";
 		}
 
 		public Enfant(Entities.Enfants enfants) : this(enfants.Dossier_ID)
 		{
 			CurrentChild = enfants;
 			AssignChild(CurrentChild);
+
+			// Create the ToolTip and associate with the Form container.
+			ToolTip toolTip1 = new ToolTip();
+
+			// Set up the delays for the ToolTip.
+			toolTip1.AutoPopDelay = 5000;
+			toolTip1.InitialDelay = 1000;
+			toolTip1.ReshowDelay = 500;
+			// Force the ToolTip text to be displayed whether or not the form is active.
+			toolTip1.ShowAlways = true;
+
+			// Set up the ToolTip text for the Button and Checkbox.
+			toolTip1.SetToolTip(this.pnlPicture, CurrentChild.Photo);
 		}
 
 		protected virtual void OnChildAdded(EventArgs e)
@@ -58,6 +82,35 @@ namespace ProjetMFTR.Forms
 			cboStatut.Text = accueil;
 			cboSexe.Text = enfants.Sexe;
 			cboReferent.Text = enfants.Referent_ID;
+
+			var title = "enf";
+			var path = options.Path;
+			var suffix = CurrentDossierID + " " + title + " " + CurrentChild.Prenom;
+			var jpg = ".jpg";
+			var png = ".png";
+			var finalPath = Path.Combine(path, suffix);
+
+			if (File.Exists(finalPath + jpg))
+			{
+				Bitmap bmp = new Bitmap(finalPath + jpg);
+
+				pnlPicture.BackgroundImage = bmp;
+				CurrentChild.Photo = finalPath + jpg;
+			}
+			else if (File.Exists(finalPath + png))
+			{
+				Bitmap bmp = new Bitmap(finalPath + png);
+
+				pnlPicture.BackgroundImage = bmp;
+				CurrentChild.Photo = finalPath + png;
+			}
+			else if (File.Exists(CurrentChild.Photo))
+			{
+				Bitmap bmp = new Bitmap(CurrentChild.Photo);
+
+				pnlPicture.BackgroundImage = bmp;
+			}
+
 		}
 
 		private void AssignValues()
@@ -114,6 +167,19 @@ namespace ProjetMFTR.Forms
 
 			OnChildAdded(new EventArgs());
 			return true;
+		}
+
+		private void pnlPicture_DoubleClick(object sender, EventArgs e)
+		{
+			if (openFile.ShowDialog() == DialogResult.OK)
+			{
+				var filename = openFile.FileName;
+				CurrentChild.Photo = filename;
+
+				Bitmap bmp = new Bitmap(CurrentChild.Photo);
+
+				pnlPicture.BackgroundImage = bmp;
+			}
 		}
 	}
 }

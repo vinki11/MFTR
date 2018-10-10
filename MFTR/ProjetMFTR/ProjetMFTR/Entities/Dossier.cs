@@ -9,38 +9,38 @@
 
 namespace ProjetMFTR.Entities
 {
-	using System;
-	using System.Collections.Generic;
-
-	public partial class Dossier
-	{
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-		public Dossier()
-		{
-			this.Adultes = new HashSet<Adultes>();
-			this.Communication = new HashSet<Communication>();
-			this.Enfants = new HashSet<Enfants>();
-			this.Suivi = new HashSet<Suivi>();
-			this.Services = new HashSet<Services>();
-		}
-
-		public string Dossier_ID { get; set; }
-		public Nullable<System.DateTime> Ouverture { get; set; }
-		public string Actif { get; set; }
-		public string Type { get; set; }
-		public string Referent_ID { get; set; }
-		public string Remarque { get; set; }
-		public byte[] SSMA_TimeStamp { get; set; }
-
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Adultes> Adultes { get; set; }
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Communication> Communication { get; set; }
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Enfants> Enfants { get; set; }
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Suivi> Suivi { get; set; }
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Services> Services { get; set; }
-	}
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Dossier
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Dossier()
+        {
+            this.Adultes = new HashSet<Adultes>();
+            this.Communication = new HashSet<Communication>();
+            this.Enfants = new HashSet<Enfants>();
+            this.Suivi = new HashSet<Suivi>();
+            this.Services = new HashSet<Services>();
+        }
+    
+        public string Dossier_ID { get; set; }
+        public Nullable<System.DateTime> Ouverture { get; set; }
+        public string Actif { get; set; }
+        public string Type { get; set; }
+        public string Referent_ID { get; set; }
+        public string Remarque { get; set; }
+        public byte[] SSMA_TimeStamp { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Adultes> Adultes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Communication> Communication { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Enfants> Enfants { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Suivi> Suivi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Services> Services { get; set; }
+    }
 }

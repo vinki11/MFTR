@@ -151,6 +151,9 @@
     <Compile Include="Entities\new_table.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Options.cs">
+      <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Parent.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
@@ -171,6 +174,12 @@
     </Compile>
     <Compile Include="Entities\Transporteur.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Accueil.cs">
       <SubType>Form</SubType>
@@ -260,6 +269,9 @@
     </Compile>
     <Compile Include="Resources\MessageBoxManager.cs" />
     <Compile Include="Resources\ResourcesString.cs" />
+    <EmbeddedResource Include="Forms\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
@@ -389,6 +401,7 @@
     <Content Include="Resources\icone_suivi_64.png" />
     <None Include="Resources\images.jpg" />
     <Content Include="Resources\sda_icone.ico" />
+    <Content Include="Sql\1.0.0.5.sql" />
     <Content Include="Sql\1.0.0.4.sql" />
     <Content Include="Sql\1.0.0.3.sql" />
     <Content Include="Sql\1.0.0.2.sql" />

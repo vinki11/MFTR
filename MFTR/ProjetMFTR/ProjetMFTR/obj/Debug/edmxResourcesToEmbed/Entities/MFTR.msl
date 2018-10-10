@@ -199,5 +199,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Options">
+      <EntityTypeMapping TypeName="MFTRModel.Options">
+        <MappingFragment StoreEntitySet="Options">
+          <ScalarProperty Name="KidsPrefix" ColumnName="KidsPrefix" />
+          <ScalarProperty Name="ParentPrefix" ColumnName="ParentPrefix" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="IdOptions" ColumnName="IdOptions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

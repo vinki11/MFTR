@@ -40,7 +40,7 @@
     <Property Name="Communication_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Adulte_ID" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-    <Property Name="Referent_ID" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DateEven" Type="DateTime" Precision="0" />
     <Property Name="DateComm" Type="DateTime" Precision="0" />
     <Property Name="Heure" Type="Time" Precision="0" />
@@ -96,7 +96,7 @@
     </Key>
     <Property Name="Lien_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Parent_ID" Type="Int32" />
-    <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="Parent" Relationship="Self.LienReferrent_ParentLienReferrent" FromRole="LienReferrent" ToRole="Parent" />
@@ -121,7 +121,7 @@
     <Key>
       <PropertyRef Name="Referent_ID" />
     </Key>
-    <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Adulte_ID" Type="Int32" />
     <Property Name="Organisation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -136,10 +136,10 @@
     </Key>
     <Property Name="Service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Frequence" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Journee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Duree" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Frequence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Journee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Duree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="Dossier" Relationship="Self.Services_Dossier2Services" FromRole="Services" ToRole="Dossier" />
   </EntityType>
@@ -455,6 +455,7 @@
       <End Role="Intervenant" EntitySet="Intervenant" />
       <End Role="Communication" EntitySet="Communication" />
     </AssociationSet>
+    <EntitySet Name="Options" EntityType="MFTRModel.Options" />
   </EntityContainer>
   <EntityType Name="Intervenant">
     <Key>
@@ -490,4 +491,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Options">
+    <Key>
+      <PropertyRef Name="IdOptions" />
+    </Key>
+    <Property Name="IdOptions" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ParentPrefix" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="KidsPrefix" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

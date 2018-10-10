@@ -40,5 +40,6 @@ namespace ProjetMFTR.Entities
         public virtual DbSet<Transporteur> Transporteur { get; set; }
         public virtual DbSet<new_table> new_table { get; set; }
         public virtual DbSet<Intervenant> Intervenant { get; set; }
+        public virtual DbSet<Options> Options { get; set; }
     }
 }

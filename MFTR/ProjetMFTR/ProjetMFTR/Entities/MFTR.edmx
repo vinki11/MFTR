@@ -39,7 +39,7 @@
           <Property Name="Communication_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" />
           <Property Name="Adulte_ID" Type="nchar" MaxLength="15" />
-          <Property Name="Referent_ID" Type="nchar" MaxLength="15" />
+          <Property Name="Referent_ID" Type="varchar" MaxLength="50" />
           <Property Name="DateEven" Type="date" />
           <Property Name="DateComm" Type="date" />
           <Property Name="Heure" Type="time" Precision="0" />
@@ -94,7 +94,7 @@
           </Key>
           <Property Name="Lien_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Parent_ID" Type="int" />
-          <Property Name="Referent_ID" Type="nchar" MaxLength="20" />
+          <Property Name="Referent_ID" Type="varchar" MaxLength="50" />
           <Property Name="Notes" Type="nvarchar" MaxLength="50" />
           <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
@@ -107,6 +107,15 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Property Name="Referent_ID" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Nom" Type="nvarchar" MaxLength="50" />
           <Property Name="temp_avocat" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="IdOptions" />
+          </Key>
+          <Property Name="IdOptions" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="500" />
+          <Property Name="ParentPrefix" Type="varchar" MaxLength="500" />
+          <Property Name="KidsPrefix" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Parent">
           <Key>
@@ -124,7 +133,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Key>
             <PropertyRef Name="Referent_ID" />
           </Key>
-          <Property Name="Referent_ID" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Referent_ID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Adulte_ID" Type="int" />
           <Property Name="Organisation" Type="nvarchar" MaxLength="150" />
           <Property Name="Type" Type="nchar" MaxLength="50" />
@@ -137,10 +146,10 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           </Key>
           <Property Name="Service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Dossier_ID" Type="nvarchar" MaxLength="150" />
-          <Property Name="Nom" Type="nchar" MaxLength="50" />
-          <Property Name="Frequence" Type="nchar" MaxLength="50" />
-          <Property Name="Journee" Type="nchar" MaxLength="50" />
-          <Property Name="Duree" Type="nchar" MaxLength="50" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" />
+          <Property Name="Frequence" Type="varchar" MaxLength="50" />
+          <Property Name="Journee" Type="varchar" MaxLength="50" />
+          <Property Name="Duree" Type="varchar" MaxLength="50" />
           <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="Suivi">
@@ -322,18 +331,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="LienReferrent$ReferentLienReferrent">
-          <End Role="Referent" Type="Self.Referent" Multiplicity="0..1" />
-          <End Role="LienReferrent" Type="Self.LienReferrent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Referent">
-              <PropertyRef Name="Referent_ID" />
-            </Principal>
-            <Dependent Role="LienReferrent">
-              <PropertyRef Name="Referent_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Parent$AdultesParent">
           <End Role="Adultes" Type="Self.Adultes" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -398,6 +395,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <EntitySet Name="Enfants" EntityType="Self.Enfants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Intervenant" EntityType="Self.Intervenant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LienReferrent" EntityType="Self.LienReferrent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Options" EntityType="Self.Options" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Referent" EntityType="Self.Referent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
@@ -450,10 +448,6 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           </AssociationSet>
           <AssociationSet Name="LienReferrent$ParentLienReferrent" Association="Self.LienReferrent$ParentLienReferrent">
             <End Role="Parent" EntitySet="Parent" />
-            <End Role="LienReferrent" EntitySet="LienReferrent" />
-          </AssociationSet>
-          <AssociationSet Name="LienReferrent$ReferentLienReferrent" Association="Self.LienReferrent$ReferentLienReferrent">
-            <End Role="Referent" EntitySet="Referent" />
             <End Role="LienReferrent" EntitySet="LienReferrent" />
           </AssociationSet>
           <AssociationSet Name="Parent$AdultesParent" Association="Self.Parent$AdultesParent">
@@ -517,7 +511,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Property Name="Communication_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Adulte_ID" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-          <Property Name="Referent_ID" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DateEven" Type="DateTime" Precision="0" />
           <Property Name="DateComm" Type="DateTime" Precision="0" />
           <Property Name="Heure" Type="Time" Precision="0" />
@@ -573,7 +567,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           </Key>
           <Property Name="Lien_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Parent_ID" Type="Int32" />
-          <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Parent" Relationship="Self.LienReferrent_ParentLienReferrent" FromRole="LienReferrent" ToRole="Parent" />
@@ -598,7 +592,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           <Key>
             <PropertyRef Name="Referent_ID" />
           </Key>
-          <Property Name="Referent_ID" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Referent_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Adulte_ID" Type="Int32" />
           <Property Name="Organisation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -613,10 +607,10 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
           </Key>
           <Property Name="Service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Dossier_ID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Frequence" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Journee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Duree" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Frequence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Journee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Dossier" Relationship="Self.Services_Dossier2Services" FromRole="Services" ToRole="Dossier" />
         </EntityType>
@@ -932,6 +926,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             <End Role="Intervenant" EntitySet="Intervenant" />
             <End Role="Communication" EntitySet="Communication" />
           </AssociationSet>
+          <EntitySet Name="Options" EntityType="MFTRModel.Options" />
         </EntityContainer>
         <EntityType Name="Intervenant">
           <Key>
@@ -967,6 +962,15 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="IdOptions" />
+          </Key>
+          <Property Name="IdOptions" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ParentPrefix" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KidsPrefix" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1168,6 +1172,16 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
                 <ScalarProperty Name="actif" ColumnName="actif" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Options">
+            <EntityTypeMapping TypeName="MFTRModel.Options">
+              <MappingFragment StoreEntitySet="Options">
+                <ScalarProperty Name="KidsPrefix" ColumnName="KidsPrefix" />
+                <ScalarProperty Name="ParentPrefix" ColumnName="ParentPrefix" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="IdOptions" ColumnName="IdOptions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

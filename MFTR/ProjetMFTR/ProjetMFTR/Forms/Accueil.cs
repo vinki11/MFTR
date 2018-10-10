@@ -74,6 +74,9 @@ namespace ProjetMFTR.Forms
 
 		private void btnOptions_Click(object sender, EventArgs e)
 		{
+			TopMost = false;
+			Options options = new Options();
+			options.Show();
 		}
 
 		#endregion Handlers

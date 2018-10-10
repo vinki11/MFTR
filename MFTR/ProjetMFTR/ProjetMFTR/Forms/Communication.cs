@@ -22,8 +22,11 @@ namespace ProjetMFTR.Forms
 		{
 			InitializeComponent();
 			Init();
-			var list = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID);
+			var list = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure);
 			bsData.DataSource = list.ToList();
+			bindingNavigator1.BindingSource = bsData;
+			bindingNavigator1.BindingSource.DataSource = list.ToList();
+			bindingNavigator1.BindingSource.Sort = "Communication_ID DESC";
 			count.Text = bsData.List.Count.ToString();
 		}
 
@@ -62,6 +65,7 @@ namespace ProjetMFTR.Forms
 			cboReferent.DisplayMember = ResourcesString.STR_Adultes + "." + ResourcesString.STR_Nom;
 			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
 
+			cboInterlocuteur.DataSource = new List<Entities.Adultes>();
 			cboInterlocuteur.DisplayMember = ResourcesString.STR_FullName;
 			cboInterlocuteur.ValueMember = ResourcesString.STR_Adultes_ID;
 
@@ -116,12 +120,12 @@ namespace ProjetMFTR.Forms
 
 			if (communication.Heure.HasValue)
 			{
-				dtpHours.CustomFormat = "hh:mm:ss";
+				dtpHours.CustomFormat = "HH:mm:ss";
 				dtpHours.Value = Convert.ToDateTime(communication.Heure.Value.ToString());
 			}
 			else
 			{
-				dtpHours.Value = Helper.MinDateTime();
+				dtpHours.Value = Helper.CurrentDateTime();
 				dtpHours.CustomFormat = " ";
 			}
 		}
@@ -199,28 +203,24 @@ namespace ProjetMFTR.Forms
 
 		private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
 		{
-			bsData.MoveNext();
 			CurrentEntity = (Entities.Communication)bsData.Current;
 			AssignCommunication(CurrentEntity);
 		}
 
 		private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
 		{
-			bsData.MoveLast();
 			CurrentEntity = (Entities.Communication)bsData.Current;
 			AssignCommunication(CurrentEntity);
 		}
 
 		private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
 		{
-			bsData.MoveFirst();
 			CurrentEntity = (Entities.Communication)bsData.Current;
 			AssignCommunication(CurrentEntity);
 		}
 
 		private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
 		{
-			bsData.MovePrevious();
 			CurrentEntity = (Entities.Communication)bsData.Current;
 			AssignCommunication(CurrentEntity);
 		}
@@ -320,7 +320,7 @@ namespace ProjetMFTR.Forms
 
 		private void dtpHours_ValueChanged(object sender, EventArgs e)
 		{
-			dtpHours.CustomFormat = "hh:mm:ss";
+			dtpHours.CustomFormat = "HH:mm:ss";
 		}
 
 		private void dtpDateEvent_KeyDown(object sender, KeyEventArgs e)
@@ -345,7 +345,7 @@ namespace ProjetMFTR.Forms
 		{
 			if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
 			{
-				dtpHours.Value = Helper.MinDateTime();
+				dtpHours.Value = Helper.CurrentDateTime();
 				dtpHours.CustomFormat = " ";
 			}
 		}

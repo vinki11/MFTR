@@ -11,6 +11,7 @@ namespace ProjetMFTR.Entities
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations.Schema;
 
 	public partial class Adultes
 	{
@@ -30,7 +31,8 @@ namespace ProjetMFTR.Entities
 		public string Courriel { get; set; }
 		public string Note { get; set; }
 		public byte[] SSMA_TimeStamp { get; set; }
-		public string FullName { get { return Nom + ',' + Prenom; } }
+		[NotMapped]
+		public string FullName { get { return Prenom + "," + Nom; } }
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		public virtual ICollection<Adresse> Adresse { get; set; }

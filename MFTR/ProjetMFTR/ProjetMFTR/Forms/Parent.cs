@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
 using ProjetMFTR.DbConnexion.Helper;
@@ -20,6 +23,7 @@ namespace ProjetMFTR.Forms
 		private Entities.Adultes CurrentAdulte;
 		private String CurrentDossierID;
 		private Entities.Parent CurrentParent;
+		private Entities.Options options;
 
 		#endregion Members
 
@@ -35,6 +39,19 @@ namespace ProjetMFTR.Forms
 			CurrentDossierID = dossierId;
 			dtpNaissance.MaxDate = Helper.CurrentMaxDateTime();
 			gvPhone.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+
+			this.SetStyle(
+							ControlStyles.AllPaintingInWmPaint |
+							ControlStyles.DoubleBuffer,
+							true);
+
+			options = Connexion.Instance().Options.FirstOrDefault();
+
+			openFile.InitialDirectory = options.Path;
+			openFile.Title = "Choisir une photo";
+			openFile.CheckFileExists = true;
+			openFile.CheckPathExists = true;
+			openFile.Filter = "Photos PNG (*.png)|*.png|Photos JPG (*.jpg)|*.jpg|Tous (*.*)|*.*";
 		}
 
 		public Parent(Entities.Parent parent) : this(parent.Adultes.Dossier_ID)
@@ -47,6 +64,20 @@ namespace ProjetMFTR.Forms
 			bsReferent.DataSource = Connexion.Instance().Referent.ToList().Where(x => lienReferents.Any(o => x.Referent_ID.Equals(o.Referent_ID))).ToList();
 			init();
 			AssignParent();
+
+
+			// Create the ToolTip and associate with the Form container.
+			ToolTip toolTip1 = new ToolTip();
+
+			// Set up the delays for the ToolTip.
+			toolTip1.AutoPopDelay = 5000;
+			toolTip1.InitialDelay = 1000;
+			toolTip1.ReshowDelay = 500;
+			// Force the ToolTip text to be displayed whether or not the form is active.
+			toolTip1.ShowAlways = true;
+
+			// Set up the ToolTip text for the Button and Checkbox.
+			toolTip1.SetToolTip(this.pnlPicture, CurrentParent.Photo);
 		}
 
 		public void init()
@@ -117,6 +148,34 @@ namespace ProjetMFTR.Forms
 			dtpNaissance.Value = CurrentParent.Naissance.HasValue ? CurrentParent.Naissance.Value : DateTime.Now.Date;
 			cboStatut.Text = CurrentParent.Statut;
 			cboSexe.Text = CurrentParent.Sexe;
+
+			var title = CurrentParent.Sexe == "Mère" || CurrentParent.Sexe == "Grand-Mère" ? "Mme" : "M";
+			var path = options.Path;
+			var suffix = CurrentDossierID + " " + title;
+			var jpg = ".jpg";
+			var png = ".png";
+			var finalPath = Path.Combine(path, suffix);
+
+			if (File.Exists(finalPath + jpg))
+			{
+				Bitmap bmp = new Bitmap(finalPath + jpg);
+
+				pnlPicture.BackgroundImage = bmp;
+				CurrentParent.Photo = finalPath + jpg;
+			}
+			else if (File.Exists(finalPath + png))
+			{
+				Bitmap bmp = new Bitmap(finalPath + png);
+
+				pnlPicture.BackgroundImage = bmp;
+				CurrentParent.Photo = finalPath + png;
+			}
+			else if (File.Exists(CurrentParent.Photo))
+			{
+				Bitmap bmp = new Bitmap(CurrentParent.Photo);
+
+				pnlPicture.BackgroundImage = bmp;
+			}
 		}
 
 		private void AssignValuesAdultes()
@@ -242,6 +301,32 @@ namespace ProjetMFTR.Forms
 
 			OnParentAdded(new EventArgs());
 			return true;
+		}
+
+		private void pnlPicture_Paint(object sender, PaintEventArgs e)
+		{
+			Bitmap backgroundImage = new Bitmap(CurrentParent.Photo);
+
+			e.Graphics.DrawImage(
+					backgroundImage,
+					this.ClientRectangle,
+					new Rectangle(0, 0, backgroundImage.Width, backgroundImage.Height),
+					GraphicsUnit.Pixel);
+		}
+
+		private void pnlPicture_DoubleClick(object sender, EventArgs e)
+		{
+			if (openFile.ShowDialog() == DialogResult.OK)
+			{
+
+				var filename = openFile.FileName;
+				CurrentParent.Photo = filename;
+
+				Bitmap bmp = new Bitmap(CurrentParent.Photo);
+
+				pnlPicture.BackgroundImage = bmp;
+			}
+
 		}
 	}
 }

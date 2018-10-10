@@ -31,7 +31,6 @@ namespace ProjetMFTR
 			InitializeComponent();
 			CombosInitialisation();
 			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
-			dtpDateSuivi.MaxDate = Helper.CurrentMaxDateTime();
 		}
 
 		public Suivi(Entities.Suivi suivi) : this()
@@ -194,28 +193,24 @@ namespace ProjetMFTR
 		#region Binding
 		private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
 		{
-			bsData.MoveNext();
 			CurrentEntity = (Entities.Suivi)bsData.Current;
 			AssignSuivi(CurrentEntity);
 		}
 
 		private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
 		{
-			bsData.MoveLast();
 			CurrentEntity = (Entities.Suivi)bsData.Current;
 			AssignSuivi(CurrentEntity);
 		}
 
 		private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
 		{
-			bsData.MoveFirst();
 			CurrentEntity = (Entities.Suivi)bsData.Current;
 			AssignSuivi(CurrentEntity);
 		}
 
 		private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
 		{
-			bsData.MovePrevious();
 			CurrentEntity = (Entities.Suivi)bsData.Current;
 			AssignSuivi(CurrentEntity);
 		}

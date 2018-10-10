@@ -43,6 +43,7 @@
 			this.btnSave = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtUnite = new System.Windows.Forms.TextBox();
+			this.bsAdresse = new System.Windows.Forms.BindingSource(this.components);
 			this.txtPostalCode = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.txtPays = new System.Windows.Forms.TextBox();
@@ -61,35 +62,36 @@
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpTelephone = new System.Windows.Forms.TabPage();
 			this.gvPhone = new System.Windows.Forms.DataGridView();
-			this.tpReferent = new System.Windows.Forms.TabPage();
-			this.gvReferent = new System.Windows.Forms.DataGridView();
-			this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.telephone1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.posteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.precisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsTelephone = new System.Windows.Forms.BindingSource(this.components);
+			this.tpReferent = new System.Windows.Forms.TabPage();
+			this.gvReferent = new System.Windows.Forms.DataGridView();
 			this.referentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.organisationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.typeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsReferent = new System.Windows.Forms.BindingSource(this.components);
-			this.bsAdresse = new System.Windows.Forms.BindingSource(this.components);
+			this.pnlPicture = new MetroFramework.Controls.MetroPanel();
+			this.openFile = new System.Windows.Forms.OpenFileDialog();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).BeginInit();
 			this.ParentContextMenu.SuspendLayout();
 			this.tc.SuspendLayout();
 			this.tpTelephone.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
 			this.tpReferent.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvReferent)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsReferent)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// txtNom
 			// 
-			this.txtNom.Location = new System.Drawing.Point(75, 28);
+			this.txtNom.Location = new System.Drawing.Point(87, 22);
 			this.txtNom.Name = "txtNom";
 			this.txtNom.Size = new System.Drawing.Size(170, 20);
 			this.txtNom.TabIndex = 16;
@@ -97,7 +99,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(6, 31);
+			this.label5.Location = new System.Drawing.Point(18, 25);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(29, 13);
 			this.label5.TabIndex = 15;
@@ -105,7 +107,7 @@
 			// 
 			// txtPrenom
 			// 
-			this.txtPrenom.Location = new System.Drawing.Point(338, 28);
+			this.txtPrenom.Location = new System.Drawing.Point(350, 22);
 			this.txtPrenom.Name = "txtPrenom";
 			this.txtPrenom.Size = new System.Drawing.Size(194, 20);
 			this.txtPrenom.TabIndex = 18;
@@ -113,7 +115,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(271, 31);
+			this.label1.Location = new System.Drawing.Point(283, 25);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(43, 13);
 			this.label1.TabIndex = 17;
@@ -130,7 +132,7 @@
             "Mère",
             "Grand-mère",
             "Grand-père"});
-			this.cboSexe.Location = new System.Drawing.Point(75, 67);
+			this.cboSexe.Location = new System.Drawing.Point(87, 61);
 			this.cboSexe.Name = "cboSexe";
 			this.cboSexe.Size = new System.Drawing.Size(170, 21);
 			this.cboSexe.TabIndex = 20;
@@ -138,7 +140,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 70);
+			this.label6.Location = new System.Drawing.Point(18, 64);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(31, 13);
 			this.label6.TabIndex = 19;
@@ -154,7 +156,7 @@
             "Garde partagée",
             "Parent gardien",
             "Parent non gardien "});
-			this.cboStatut.Location = new System.Drawing.Point(338, 67);
+			this.cboStatut.Location = new System.Drawing.Point(350, 61);
 			this.cboStatut.Name = "cboStatut";
 			this.cboStatut.Size = new System.Drawing.Size(194, 21);
 			this.cboStatut.TabIndex = 22;
@@ -162,7 +164,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(271, 70);
+			this.label2.Location = new System.Drawing.Point(283, 64);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(35, 13);
 			this.label2.TabIndex = 21;
@@ -171,7 +173,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(6, 106);
+			this.label4.Location = new System.Drawing.Point(18, 100);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(57, 13);
 			this.label4.TabIndex = 23;
@@ -179,7 +181,7 @@
 			// 
 			// dtpNaissance
 			// 
-			this.dtpNaissance.Location = new System.Drawing.Point(75, 106);
+			this.dtpNaissance.Location = new System.Drawing.Point(87, 100);
 			this.dtpNaissance.Name = "dtpNaissance";
 			this.dtpNaissance.Size = new System.Drawing.Size(170, 20);
 			this.dtpNaissance.TabIndex = 24;
@@ -189,7 +191,7 @@
 			this.btnSave.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(1143, 443);
+			this.btnSave.Location = new System.Drawing.Point(870, 681);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(136, 23);
 			this.btnSave.TabIndex = 25;
@@ -212,7 +214,7 @@
 			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.txtNumero);
 			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Location = new System.Drawing.Point(9, 155);
+			this.groupBox1.Location = new System.Drawing.Point(21, 145);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(408, 265);
 			this.groupBox1.TabIndex = 26;
@@ -226,6 +228,10 @@
 			this.txtUnite.Name = "txtUnite";
 			this.txtUnite.Size = new System.Drawing.Size(50, 20);
 			this.txtUnite.TabIndex = 31;
+			// 
+			// bsAdresse
+			// 
+			this.bsAdresse.DataSource = typeof(ProjetMFTR.Entities.Adresse);
 			// 
 			// txtPostalCode
 			// 
@@ -348,7 +354,7 @@
 			this.btnSaveAndClose.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSaveAndClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveAndClose.Location = new System.Drawing.Point(977, 443);
+			this.btnSaveAndClose.Location = new System.Drawing.Point(704, 681);
 			this.btnSaveAndClose.Name = "btnSaveAndClose";
 			this.btnSaveAndClose.Size = new System.Drawing.Size(136, 23);
 			this.btnSaveAndClose.TabIndex = 33;
@@ -360,10 +366,10 @@
 			// 
 			this.tc.Controls.Add(this.tpTelephone);
 			this.tc.Controls.Add(this.tpReferent);
-			this.tc.Location = new System.Drawing.Point(423, 161);
+			this.tc.Location = new System.Drawing.Point(21, 416);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(856, 259);
+			this.tc.Size = new System.Drawing.Size(985, 259);
 			this.tc.TabIndex = 34;
 			// 
 			// tpTelephone
@@ -372,7 +378,7 @@
 			this.tpTelephone.Location = new System.Drawing.Point(4, 22);
 			this.tpTelephone.Name = "tpTelephone";
 			this.tpTelephone.Padding = new System.Windows.Forms.Padding(3);
-			this.tpTelephone.Size = new System.Drawing.Size(848, 233);
+			this.tpTelephone.Size = new System.Drawing.Size(977, 233);
 			this.tpTelephone.TabIndex = 0;
 			this.tpTelephone.Text = "Téléphones";
 			this.tpTelephone.UseVisualStyleBackColor = true;
@@ -396,58 +402,10 @@
 			this.gvPhone.Location = new System.Drawing.Point(3, 3);
 			this.gvPhone.Name = "gvPhone";
 			this.gvPhone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvPhone.Size = new System.Drawing.Size(842, 227);
+			this.gvPhone.Size = new System.Drawing.Size(971, 227);
 			this.gvPhone.TabIndex = 20;
 			this.gvPhone.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvPhone_RowContextMenuStripNeeded);
 			this.gvPhone.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvPhone_RowsAdded);
-			// 
-			// tpReferent
-			// 
-			this.tpReferent.Controls.Add(this.gvReferent);
-			this.tpReferent.Location = new System.Drawing.Point(4, 22);
-			this.tpReferent.Name = "tpReferent";
-			this.tpReferent.Padding = new System.Windows.Forms.Padding(3);
-			this.tpReferent.Size = new System.Drawing.Size(848, 233);
-			this.tpReferent.TabIndex = 1;
-			this.tpReferent.Text = "Référents";
-			this.tpReferent.UseVisualStyleBackColor = true;
-			// 
-			// gvReferent
-			// 
-			this.gvReferent.AllowUserToDeleteRows = false;
-			this.gvReferent.AllowUserToOrderColumns = true;
-			this.gvReferent.AllowUserToResizeRows = false;
-			this.gvReferent.AutoGenerateColumns = false;
-			this.gvReferent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.gvReferent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gvReferent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.referentIDDataGridViewTextBoxColumn,
-            this.Prenom,
-            this.Nom,
-            this.organisationDataGridViewTextBoxColumn,
-            this.typeDataGridViewTextBoxColumn1});
-			this.gvReferent.DataSource = this.bsReferent;
-			this.gvReferent.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gvReferent.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-			this.gvReferent.Location = new System.Drawing.Point(3, 3);
-			this.gvReferent.Name = "gvReferent";
-			this.gvReferent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvReferent.Size = new System.Drawing.Size(842, 227);
-			this.gvReferent.TabIndex = 21;
-			this.gvReferent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
-			this.gvReferent.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvReferent_RowsAdded);
-			// 
-			// Prenom
-			// 
-			this.Prenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Prenom.HeaderText = "Prénom";
-			this.Prenom.Name = "Prenom";
-			// 
-			// Nom
-			// 
-			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Nom.HeaderText = "Nom";
-			this.Nom.Name = "Nom";
 			// 
 			// typeDataGridViewTextBoxColumn
 			// 
@@ -482,12 +440,60 @@
 			// 
 			this.bsTelephone.DataSource = typeof(ProjetMFTR.Entities.Telephone);
 			// 
+			// tpReferent
+			// 
+			this.tpReferent.Controls.Add(this.gvReferent);
+			this.tpReferent.Location = new System.Drawing.Point(4, 22);
+			this.tpReferent.Name = "tpReferent";
+			this.tpReferent.Padding = new System.Windows.Forms.Padding(3);
+			this.tpReferent.Size = new System.Drawing.Size(977, 233);
+			this.tpReferent.TabIndex = 1;
+			this.tpReferent.Text = "Référents";
+			this.tpReferent.UseVisualStyleBackColor = true;
+			// 
+			// gvReferent
+			// 
+			this.gvReferent.AllowUserToDeleteRows = false;
+			this.gvReferent.AllowUserToOrderColumns = true;
+			this.gvReferent.AllowUserToResizeRows = false;
+			this.gvReferent.AutoGenerateColumns = false;
+			this.gvReferent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.gvReferent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gvReferent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.referentIDDataGridViewTextBoxColumn,
+            this.Prenom,
+            this.Nom,
+            this.organisationDataGridViewTextBoxColumn,
+            this.typeDataGridViewTextBoxColumn1});
+			this.gvReferent.DataSource = this.bsReferent;
+			this.gvReferent.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gvReferent.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+			this.gvReferent.Location = new System.Drawing.Point(3, 3);
+			this.gvReferent.Name = "gvReferent";
+			this.gvReferent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.gvReferent.Size = new System.Drawing.Size(971, 227);
+			this.gvReferent.TabIndex = 21;
+			this.gvReferent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+			this.gvReferent.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvReferent_RowsAdded);
+			// 
 			// referentIDDataGridViewTextBoxColumn
 			// 
 			this.referentIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.referentIDDataGridViewTextBoxColumn.DataPropertyName = "Referent_ID";
 			this.referentIDDataGridViewTextBoxColumn.HeaderText = "Numéro référent";
 			this.referentIDDataGridViewTextBoxColumn.Name = "referentIDDataGridViewTextBoxColumn";
+			// 
+			// Prenom
+			// 
+			this.Prenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Prenom.HeaderText = "Prénom";
+			this.Prenom.Name = "Prenom";
+			// 
+			// Nom
+			// 
+			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Nom.HeaderText = "Nom";
+			this.Nom.Name = "Nom";
 			// 
 			// organisationDataGridViewTextBoxColumn
 			// 
@@ -507,15 +513,32 @@
 			// 
 			this.bsReferent.DataSource = typeof(ProjetMFTR.Entities.Referent);
 			// 
-			// bsAdresse
+			// pnlPicture
 			// 
-			this.bsAdresse.DataSource = typeof(ProjetMFTR.Entities.Adresse);
+			this.pnlPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.pnlPicture.HorizontalScrollbarBarColor = true;
+			this.pnlPicture.HorizontalScrollbarHighlightOnWheel = false;
+			this.pnlPicture.HorizontalScrollbarSize = 10;
+			this.pnlPicture.Location = new System.Drawing.Point(606, 22);
+			this.pnlPicture.Name = "pnlPicture";
+			this.pnlPicture.Size = new System.Drawing.Size(400, 400);
+			this.pnlPicture.TabIndex = 35;
+			this.pnlPicture.VerticalScrollbarBarColor = true;
+			this.pnlPicture.VerticalScrollbarHighlightOnWheel = false;
+			this.pnlPicture.VerticalScrollbarSize = 10;
+			this.pnlPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPicture_Paint);
+			this.pnlPicture.DoubleClick += new System.EventHandler(this.pnlPicture_DoubleClick);
+			// 
+			// openFile
+			// 
+			this.openFile.FileName = "openFileDialog1";
 			// 
 			// Parent
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1282, 478);
+			this.ClientSize = new System.Drawing.Size(1036, 722);
+			this.Controls.Add(this.pnlPicture);
 			this.Controls.Add(this.tc);
 			this.Controls.Add(this.btnSaveAndClose);
 			this.Controls.Add(this.groupBox1);
@@ -536,15 +559,15 @@
 			this.Text = "Parent";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).EndInit();
 			this.ParentContextMenu.ResumeLayout(false);
 			this.tc.ResumeLayout(false);
 			this.tpTelephone.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
 			this.tpReferent.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvReferent)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsReferent)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -597,5 +620,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
 		private System.Windows.Forms.DataGridViewTextBoxColumn organisationDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn1;
+		private MetroFramework.Controls.MetroPanel pnlPicture;
+		private System.Windows.Forms.OpenFileDialog openFile;
 	}
 }

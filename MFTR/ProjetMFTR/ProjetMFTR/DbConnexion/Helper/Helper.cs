@@ -55,6 +55,14 @@ namespace ProjetMFTR.DbConnexion.Helper
 		}
 
 		/// <summary>
+		/// Retourne la date d'aujourd'hui
+		/// </summary>
+		public static DateTime CurrentDateTime()
+		{
+			return DateTime.Now;
+		}
+
+		/// <summary>
 		/// Retourne la date d'aujourd'hui comme date maximum
 		/// </summary>
 		public static DateTime CurrentMaxDateTime()

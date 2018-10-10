@@ -11,6 +11,7 @@ namespace ProjetMFTR.Entities
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations.Schema;
 
 	public partial class Enfants
 	{
@@ -30,8 +31,9 @@ namespace ProjetMFTR.Entities
 		public string Notes { get; set; }
 		public string Referent_ID { get; set; }
 		public string Photo { get; set; }
+		[NotMapped]
+		public string Name { get { return Prenom + "," + Nom; } }
 		public byte[] SSMA_TimeStamp { get; set; }
-		public string Name { get { return Nom + ',' + Prenom; } }
 
 		public virtual Dossier Dossier { get; set; }
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

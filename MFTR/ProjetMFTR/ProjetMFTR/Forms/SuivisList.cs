@@ -83,7 +83,7 @@ namespace ProjetMFTR
 			}
 
 			bsData.DataSource = null;
-			bsData.DataSource = suivis.OrderByDescending(x => x.dateSuivi).ToList();
+			bsData.DataSource = suivis.OrderByDescending(x => x.dateSuivi).ThenByDescending(p => p.suivi_id).ToList();
 		}
 
 		/// <summary>
@@ -134,7 +134,7 @@ namespace ProjetMFTR
 				suivis.Add(s);
 			}
 
-			foreach (Entities.Suivi s in suivis.OrderByDescending(f => f.dateSuivi))
+			foreach (Entities.Suivi s in suivis.OrderByDescending(f => f.dateSuivi).ThenByDescending(p => p.suivi_id))
 			{
 				connexionActions.Print(s, pd);
 			}
@@ -238,7 +238,7 @@ namespace ProjetMFTR
 		/// </summary>
 		private void Init()
 		{
-			bsData.DataSource = Connexion.Instance().Suivi.OrderByDescending((x) => x.dateSuivi).ToList();
+			bsData.DataSource = Connexion.Instance().Suivi.OrderByDescending((x) => x.dateSuivi).ThenByDescending(p => p.suivi_id).ToList();
 			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
 			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";
 			gvList.Columns["Intervenant"].DataPropertyName = "Intervenant.nom";

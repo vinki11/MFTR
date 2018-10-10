@@ -70,7 +70,6 @@
 			// bindingNavigator1
 			// 
 			this.bindingNavigator1.AddNewItem = null;
-			this.bindingNavigator1.BindingSource = this.bsData;
 			this.bindingNavigator1.CountItem = null;
 			this.bindingNavigator1.DeleteItem = null;
 			this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -395,6 +394,7 @@
 			// bsData
 			// 
 			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
+			this.bsData.Sort = "Communication_ID desc";
 			// 
 			// Communication
 			// 

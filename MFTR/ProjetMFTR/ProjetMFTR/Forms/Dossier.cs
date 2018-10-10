@@ -54,7 +54,7 @@ namespace ProjetMFTR.Forms
 		{
 			m_NewDossier = new DossierNouveau();
 			m_NewDossier.FormClosing += new FormClosingEventHandler(UpdateDataSource);
-			m_NewDossier.ShowDialog();
+			m_NewDossier.Show();
 		}
 
 		/// <summary>
@@ -137,7 +137,7 @@ namespace ProjetMFTR.Forms
 		{
 			if (((Entities.Dossier)bsData.Current).Dossier_ID.Equals(e.Dossier_ID))
 			{
-				bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(e.Dossier_ID)).OrderByDescending(c => c.DateComm).ToList();
+				bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(e.Dossier_ID)).OrderByDescending(c => c.DateComm).ThenByDescending(o => o.Heure).ToList();
 			}
 		}
 
@@ -204,7 +204,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = gvKids.CurrentRow;
 			m_NewEnfant = new Enfant((Entities.Enfants)row.DataBoundItem);
 			m_NewEnfant.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
-			m_NewEnfant.ShowDialog();
+			m_NewEnfant.Show();
 		}
 
 		/// <summary>
@@ -215,7 +215,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = gvList.CurrentRow;
 			DossierNouveau = new DossierNouveau((Entities.Dossier)row.DataBoundItem);
 			DossierNouveau.FolderUpdated += new EventHandler<Entities.Dossier>(FolderEntityUpdated);
-			DossierNouveau.ShowDialog();
+			DossierNouveau.Show();
 		}
 
 		private void gvList_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
@@ -233,7 +233,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = gvParents.CurrentRow;
 			m_NewParent = new Parent((Entities.Parent)row.DataBoundItem);
 			m_NewParent.FormClosing += new FormClosingEventHandler(ParentAndChildsUpdated);
-			m_NewParent.ShowDialog();
+			m_NewParent.Show();
 		}
 
 		private void gvParents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -298,7 +298,7 @@ namespace ProjetMFTR.Forms
 
 			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
 			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
-			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm).ToList();
+			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm).ThenByDescending(o => o.Heure).ToList();
 
 			ParentAndChildsUpdated(null, null);
 

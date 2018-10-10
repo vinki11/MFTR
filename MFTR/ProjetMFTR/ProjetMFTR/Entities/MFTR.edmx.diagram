@@ -35,6 +35,7 @@
         <EntityTypeShape EntityType="MFTRModel.Intervenant" Width="1.5" PointX="0.75" PointY="3.875" />
         <AssociationConnector Association="MFTRModel.FK__Suivi__intervena__370627FE" />
         <AssociationConnector Association="MFTRModel.FK_Communication_IdIntervenant" />
+        <EntityTypeShape EntityType="MFTRModel.Options" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
