@@ -71,7 +71,7 @@ namespace ProjetMFTR.Forms
 				var oldId = CurrentDossier.Dossier_ID;
 				var newId = txtNoDossier.Text;
 				connexionActions.UpdateFolderIDs(oldId, newId);
-				CurrentDossier = Connexion.Instance().Dossier.Single(x => x.Dossier_ID == newId);
+				CurrentDossier = Connexion.Instance().Dossier.AsNoTracking().Single(x => x.Dossier_ID == newId);
 				AssignValues();
 
 				var updated = connexionActions.Update(CurrentDossier);
@@ -132,7 +132,8 @@ namespace ProjetMFTR.Forms
 			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
 			bsDataKids.DataSource = kids;
 
-			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
+			var adults = Connexion.Instance().Adultes.AsNoTracking().Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			var parents = adults.SelectMany(x => x.Parent).ToList();
 			bsDataParents.DataSource = parents;
 
 			var services = CurrentDossier.Services.ToList();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -30,6 +31,7 @@ namespace ProjetMFTR.Forms
 		{
 			BringToFront();
 			Activate();
+			lblVersion.Text += Assembly.GetExecutingAssembly().GetName().Version;
 		}
 
 		/// <summary>

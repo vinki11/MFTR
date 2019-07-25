@@ -16,8 +16,8 @@
     <PublishUrl>D:\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
@@ -27,9 +27,10 @@
     <ProductName>Maison de la famille</ProductName>
     <PublisherName>DLA</PublisherName>
     <SuiteName>Maison de la famille</SuiteName>
-    <MinimumRequiredVersion>1.0.0.7</MinimumRequiredVersion>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.0.0.7</ApplicationVersion>
+    <MinimumRequiredVersion>1.0.1.1</MinimumRequiredVersion>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.1.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -401,6 +402,7 @@
     <Content Include="Resources\icone_suivi_64.png" />
     <None Include="Resources\images.jpg" />
     <Content Include="Resources\sda_icone.ico" />
+    <Content Include="Sql\1.0.0.6.sql" />
     <Content Include="Sql\1.0.0.5.sql" />
     <Content Include="Sql\1.0.0.4.sql" />
     <Content Include="Sql\1.0.0.3.sql" />

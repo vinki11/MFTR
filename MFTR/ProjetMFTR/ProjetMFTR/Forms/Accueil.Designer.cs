@@ -36,13 +36,14 @@
 			this.btnGestionDossier = new System.Windows.Forms.Button();
 			this.btnGestionSuivi = new System.Windows.Forms.Button();
 			this.btnOptions = new System.Windows.Forms.Button();
+			this.lblVersion = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(196, 380);
+			this.label1.Location = new System.Drawing.Point(223, 385);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(276, 13);
 			this.label1.TabIndex = 5;
@@ -146,11 +147,22 @@
 			this.btnOptions.UseVisualStyleBackColor = false;
 			this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
 			// 
+			// lblVersion
+			// 
+			this.lblVersion.AutoSize = true;
+			this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblVersion.Location = new System.Drawing.Point(11, 415);
+			this.lblVersion.Name = "lblVersion";
+			this.lblVersion.Size = new System.Drawing.Size(61, 13);
+			this.lblVersion.TabIndex = 12;
+			this.lblVersion.Text = "Version : ";
+			// 
 			// Accueil
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(738, 413);
+			this.ClientSize = new System.Drawing.Size(725, 431);
+			this.Controls.Add(this.lblVersion);
 			this.Controls.Add(this.btnOptions);
 			this.Controls.Add(this.btnCommunication);
 			this.Controls.Add(this.btnGestionIntervenant);
@@ -175,5 +187,6 @@
 		private System.Windows.Forms.Button btnGestionDossier;
 		private System.Windows.Forms.Button btnGestionSuivi;
 		private System.Windows.Forms.Button btnOptions;
+		private System.Windows.Forms.Label lblVersion;
 	}
 }

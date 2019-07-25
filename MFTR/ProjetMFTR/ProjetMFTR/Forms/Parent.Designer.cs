@@ -77,6 +77,8 @@
 			this.bsReferent = new System.Windows.Forms.BindingSource(this.components);
 			this.pnlPicture = new MetroFramework.Controls.MetroPanel();
 			this.openFile = new System.Windows.Forms.OpenFileDialog();
+			this.label12 = new System.Windows.Forms.Label();
+			this.rtxtRemarque = new System.Windows.Forms.RichTextBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).BeginInit();
 			this.ParentContextMenu.SuspendLayout();
@@ -191,9 +193,9 @@
 			this.btnSave.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSave.Location = new System.Drawing.Point(870, 681);
+			this.btnSave.Location = new System.Drawing.Point(1000, 774);
 			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(136, 23);
+			this.btnSave.Size = new System.Drawing.Size(148, 23);
 			this.btnSave.TabIndex = 25;
 			this.btnSave.Text = "Enregistrer";
 			this.btnSave.UseVisualStyleBackColor = false;
@@ -216,7 +218,7 @@
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Location = new System.Drawing.Point(21, 145);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(408, 265);
+			this.groupBox1.Size = new System.Drawing.Size(408, 257);
 			this.groupBox1.TabIndex = 26;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Adresse";
@@ -354,9 +356,9 @@
 			this.btnSaveAndClose.BackColor = System.Drawing.Color.PaleGreen;
 			this.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSaveAndClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveAndClose.Location = new System.Drawing.Point(704, 681);
+			this.btnSaveAndClose.Location = new System.Drawing.Point(797, 774);
 			this.btnSaveAndClose.Name = "btnSaveAndClose";
-			this.btnSaveAndClose.Size = new System.Drawing.Size(136, 23);
+			this.btnSaveAndClose.Size = new System.Drawing.Size(160, 23);
 			this.btnSaveAndClose.TabIndex = 33;
 			this.btnSaveAndClose.Text = "Enregistrer et Fermer";
 			this.btnSaveAndClose.UseVisualStyleBackColor = false;
@@ -366,10 +368,10 @@
 			// 
 			this.tc.Controls.Add(this.tpTelephone);
 			this.tc.Controls.Add(this.tpReferent);
-			this.tc.Location = new System.Drawing.Point(21, 416);
+			this.tc.Location = new System.Drawing.Point(21, 509);
 			this.tc.Name = "tc";
 			this.tc.SelectedIndex = 0;
-			this.tc.Size = new System.Drawing.Size(985, 259);
+			this.tc.Size = new System.Drawing.Size(1127, 259);
 			this.tc.TabIndex = 34;
 			// 
 			// tpTelephone
@@ -378,7 +380,7 @@
 			this.tpTelephone.Location = new System.Drawing.Point(4, 22);
 			this.tpTelephone.Name = "tpTelephone";
 			this.tpTelephone.Padding = new System.Windows.Forms.Padding(3);
-			this.tpTelephone.Size = new System.Drawing.Size(977, 233);
+			this.tpTelephone.Size = new System.Drawing.Size(1119, 233);
 			this.tpTelephone.TabIndex = 0;
 			this.tpTelephone.Text = "Téléphones";
 			this.tpTelephone.UseVisualStyleBackColor = true;
@@ -402,7 +404,7 @@
 			this.gvPhone.Location = new System.Drawing.Point(3, 3);
 			this.gvPhone.Name = "gvPhone";
 			this.gvPhone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvPhone.Size = new System.Drawing.Size(971, 227);
+			this.gvPhone.Size = new System.Drawing.Size(1113, 227);
 			this.gvPhone.TabIndex = 20;
 			this.gvPhone.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvPhone_RowContextMenuStripNeeded);
 			this.gvPhone.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvPhone_RowsAdded);
@@ -446,7 +448,7 @@
 			this.tpReferent.Location = new System.Drawing.Point(4, 22);
 			this.tpReferent.Name = "tpReferent";
 			this.tpReferent.Padding = new System.Windows.Forms.Padding(3);
-			this.tpReferent.Size = new System.Drawing.Size(977, 233);
+			this.tpReferent.Size = new System.Drawing.Size(1119, 233);
 			this.tpReferent.TabIndex = 1;
 			this.tpReferent.Text = "Référents";
 			this.tpReferent.UseVisualStyleBackColor = true;
@@ -471,7 +473,7 @@
 			this.gvReferent.Location = new System.Drawing.Point(3, 3);
 			this.gvReferent.Name = "gvReferent";
 			this.gvReferent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.gvReferent.Size = new System.Drawing.Size(971, 227);
+			this.gvReferent.Size = new System.Drawing.Size(1113, 227);
 			this.gvReferent.TabIndex = 21;
 			this.gvReferent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
 			this.gvReferent.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvReferent_RowsAdded);
@@ -519,9 +521,9 @@
 			this.pnlPicture.HorizontalScrollbarBarColor = true;
 			this.pnlPicture.HorizontalScrollbarHighlightOnWheel = false;
 			this.pnlPicture.HorizontalScrollbarSize = 10;
-			this.pnlPicture.Location = new System.Drawing.Point(606, 22);
+			this.pnlPicture.Location = new System.Drawing.Point(641, 22);
 			this.pnlPicture.Name = "pnlPicture";
-			this.pnlPicture.Size = new System.Drawing.Size(400, 400);
+			this.pnlPicture.Size = new System.Drawing.Size(500, 500);
 			this.pnlPicture.TabIndex = 35;
 			this.pnlPicture.VerticalScrollbarBarColor = true;
 			this.pnlPicture.VerticalScrollbarHighlightOnWheel = false;
@@ -533,11 +535,30 @@
 			// 
 			this.openFile.FileName = "openFileDialog1";
 			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(18, 405);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(61, 13);
+			this.label12.TabIndex = 37;
+			this.label12.Text = "Remarques";
+			// 
+			// rtxtRemarque
+			// 
+			this.rtxtRemarque.Location = new System.Drawing.Point(21, 421);
+			this.rtxtRemarque.Name = "rtxtRemarque";
+			this.rtxtRemarque.Size = new System.Drawing.Size(565, 82);
+			this.rtxtRemarque.TabIndex = 36;
+			this.rtxtRemarque.Text = "";
+			// 
 			// Parent
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1036, 722);
+			this.ClientSize = new System.Drawing.Size(1197, 815);
+			this.Controls.Add(this.label12);
+			this.Controls.Add(this.rtxtRemarque);
 			this.Controls.Add(this.pnlPicture);
 			this.Controls.Add(this.tc);
 			this.Controls.Add(this.btnSaveAndClose);
@@ -622,5 +643,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn1;
 		private MetroFramework.Controls.MetroPanel pnlPicture;
 		private System.Windows.Forms.OpenFileDialog openFile;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.RichTextBox rtxtRemarque;
 	}
 }

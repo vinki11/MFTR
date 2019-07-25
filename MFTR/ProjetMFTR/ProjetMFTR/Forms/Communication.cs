@@ -22,12 +22,14 @@ namespace ProjetMFTR.Forms
 		{
 			InitializeComponent();
 			Init();
-			var list = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure);
-			bsData.DataSource = list.ToList();
+			var communications = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure);
+			bsData.DataSource = communications.ToList();
 			bindingNavigator1.BindingSource = bsData;
-			bindingNavigator1.BindingSource.DataSource = list.ToList();
+			bindingNavigator1.BindingSource.DataSource = communications.ToList();
 			bindingNavigator1.BindingSource.Sort = "Communication_ID DESC";
 			count.Text = bsData.List.Count.ToString();
+
+			dtpHours.CustomFormat = "HH:mm:ss";
 		}
 
 		public Communication(Entities.Communication communication) : this()
@@ -61,9 +63,10 @@ namespace ProjetMFTR.Forms
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
 
-			cboReferent.DataSource = new List<Entities.Referent>();
+			cboReferent.DataSource = Connexion.Instance().Referent.AsNoTracking().ToList();
 			cboReferent.DisplayMember = ResourcesString.STR_Adultes + "." + ResourcesString.STR_Nom;
 			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
+			cboReferent.SelectedValue = -1;
 
 			cboInterlocuteur.DataSource = new List<Entities.Adultes>();
 			cboInterlocuteur.DisplayMember = ResourcesString.STR_FullName;
@@ -74,7 +77,9 @@ namespace ProjetMFTR.Forms
 
 		private void AssignCommunication(Entities.Communication communication)
 		{
-			cboFolders.DataSource = Connexion.Instance().Dossier.Where((x) => x.Dossier_ID.Equals(communication.Dossier_ID)).ToList();
+
+			cboFolders.DataSource = Connexion.Instance().Dossier.AsNoTracking().ToList();
+			cboFolders.Text = communication.Dossier_ID;
 
 			var referents = SelectReferents();
 
@@ -98,23 +103,23 @@ namespace ProjetMFTR.Forms
 
 			if (communication.DateEven.HasValue)
 			{
-				dtpDateEvent.CustomFormat = "dd/MM/yyyy";
+				dtpDateEvent.CustomFormat = "yyyy/MM/dd";
 				dtpDateEvent.Value = communication.DateEven.Value;
 			}
 			else
 			{
-				dtpDateEvent.Value = Helper.MinDateTime();
+				dtpDateEvent.Value = Helper.CurrentDateTime().Date;
 				dtpDateEvent.CustomFormat = " ";
 			}
 
 			if (communication.DateComm.HasValue)
 			{
-				dtpDateCommunication.CustomFormat = "dd/MM/yyyy";
+				dtpDateCommunication.CustomFormat = "yyyy/MM/dd";
 				dtpDateCommunication.Value = communication.DateComm.Value;
 			}
 			else
 			{
-				dtpDateCommunication.Value = Helper.MinDateTime();
+				dtpDateCommunication.Value = Helper.CurrentDateTime().Date;
 				dtpDateCommunication.CustomFormat = " ";
 			}
 
@@ -167,24 +172,29 @@ namespace ProjetMFTR.Forms
 
 			if (cboFolders.SelectedItem == null) { return; }
 
-			cboInterlocuteur.DataSource = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.ToList();
-			var referents = SelectReferents();
+			//cboInterlocuteur.DataSource = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.ToList();
+			//cboInterlocuteur.SelectedValue = -1;
+			//var referents = SelectReferents();
 
-			if (!referents.Any()) { return; }
-			cboReferent.DataSource = referents.ToList();
+			//if (!referents.Any()) { return; }
+			//cboReferent.DataSource = referents.ToList();
+			//cboReferent.SelectedValue = -1;
+			//cboReferent.SelectedItem = null;
 		}
 
 		private List<Entities.Referent> SelectReferents()
 		{
-			if (!initialize) { return new List<Entities.Referent>(); }
-			if (((Entities.Dossier)cboFolders.SelectedItem) == null) { return new List<Entities.Referent>(); }
+			//if (!initialize) { return new List<Entities.Referent>(); }
+			//if (((Entities.Dossier)cboFolders.SelectedItem) == null) { return new List<Entities.Referent>(); }
 
-			var lienReferrents = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.SelectMany(x => x.Parent.SelectMany(o => o.LienReferrent)).ToList();
-			var referents = Connexion.Instance().Referent.ToList().Where(x => lienReferrents.Any(p => p.Referent_ID == x.Referent_ID)).ToList();
-			var kids = ((Entities.Dossier)cboFolders.SelectedItem).Enfants.Select(o => o.Referent_ID).ToList();
-			var kidReferent = Connexion.Instance().Referent.Where(x => kids.Any(o => o == x.Referent_ID)).ToList();
-			referents.Concat(kidReferent);
-			return referents.ToList();
+			//var lienReferrents = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.SelectMany(x => x.Parent.SelectMany(o => o.LienReferrent)).ToList();
+			//var referents = Connexion.Instance().Referent.ToList().Where(x => lienReferrents.Any(p => p.Referent_ID == x.Referent_ID)).ToList();
+			//var kids = ((Entities.Dossier)cboFolders.SelectedItem).Enfants.Select(o => o.Referent_ID).ToList();
+			//var kidReferent = Connexion.Instance().Referent.Where(x => kids.Any(o => o == x.Referent_ID)).ToList();
+			//referents.Concat(kidReferent);
+			//return referents.ToList();
+
+			return Connexion.Instance().Referent.AsNoTracking().Distinct().ToList();
 		}
 
 		/// <summary>
@@ -193,10 +203,10 @@ namespace ProjetMFTR.Forms
 		private void cboReferent_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			var referent = ((Entities.Referent)cboReferent.SelectedItem);
-			if (referent == null) { return; }
+			if (referent == null) { cboInterlocuteur.Text = ""; return; }
 			if (referent.Adultes == null) { return; }
 
-			cboInterlocuteur.Text = referent.Adultes.Nom + ", " + referent.Adultes.Prenom;
+			cboInterlocuteur.Text = referent.Adultes.Nom + " " + referent.Adultes.Prenom;
 		}
 
 		#region Binding
@@ -267,7 +277,7 @@ namespace ProjetMFTR.Forms
 			AssignValues();
 			connexionActions.Add(CurrentEntity);
 			bindingNavigator1.Enabled = true;
-			bsData.DataSource = Connexion.Instance().Communication.OrderByDescending(f => f.Communication_ID).ToList();
+			bsData.DataSource = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure).ToList();
 			OnCommunicationAdded(new EventArgs());
 			return true;
 		}
@@ -279,13 +289,14 @@ namespace ProjetMFTR.Forms
 		{
 			cboEmployes.SelectedValue = -1;
 			cboFolders.SelectedValue = -1;
+			cboReferent.SelectedIndex = -1;
 			cboReferent.Text = "";
 			cboMotif.Text = "";
 			cboInterlocuteur.Text = "";
 			cboTypeCommunication.Text = "";
 			dtpDateCommunication.Value = DateTime.Now.Date;
 			dtpDateEvent.Value = DateTime.Now.Date;
-			dtpHours.Value = DateTime.Now.Date;
+			dtpHours.Value = Helper.CurrentDateTime();
 			rtxtNotes.Text = "";
 			CurrentEntity = null;
 			cboFolders.Enabled = true;
@@ -327,7 +338,7 @@ namespace ProjetMFTR.Forms
 		{
 			if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
 			{
-				dtpDateEvent.Value = Helper.MinDateTime();
+				dtpDateEvent.Value = Helper.CurrentDateTime();
 				dtpDateEvent.CustomFormat = " ";
 			}
 		}
@@ -336,7 +347,7 @@ namespace ProjetMFTR.Forms
 		{
 			if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
 			{
-				dtpDateCommunication.Value = Helper.MinDateTime();
+				dtpDateCommunication.Value = Helper.CurrentDateTime();
 				dtpDateCommunication.CustomFormat = " ";
 			}
 		}
@@ -353,6 +364,18 @@ namespace ProjetMFTR.Forms
 		private void dtpDateCommunication_ValueChanged(object sender, EventArgs e)
 		{
 			dtpDateCommunication.CustomFormat = "yyyy/MM/dd";
+		}
+
+		private void dtpHours_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				if (dtpHours.CustomFormat == " ")
+				{
+					dtpHours.CustomFormat = "HH:mm:ss";
+				}
+
+			}
 		}
 	}
 }

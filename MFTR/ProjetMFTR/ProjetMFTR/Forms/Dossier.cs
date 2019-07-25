@@ -33,13 +33,15 @@ namespace ProjetMFTR.Forms
 
 		public void Init()
 		{
-			bsData.DataSource = Connexion.Instance().Dossier.OrderByDescending((x) => x.Ouverture).ToList();
+			var folders = Connexion.Instance().Dossier.AsNoTracking().OrderByDescending((x) => x.Ouverture).ToList();
+
+			bsData.DataSource = folders;
 			gvParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
 			gvParents.Columns["SubName"].DataPropertyName = "Adultes.Prenom";
 			gvTelephones.Columns["TelNom"].DataPropertyName = "Adultes.Nom";
 			gvTelephones.Columns["TelPrenom"].DataPropertyName = "Adultes.Prenom";
 
-			InitialiseCombos();
+			InitialiseCombos(folders);
 
 			cboFolders.KeyDown += EnterPressed;
 			txtFirstName.KeyDown += EnterPressed;
@@ -169,8 +171,14 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void FolderEntityUpdated(object sender, Entities.Dossier e)
 		{
-			InitialiseCombos();
+			var folders = Connexion.Instance().Dossier.AsNoTracking().OrderByDescending((x) => x.Ouverture).ToList();
+
+			InitialiseCombos(folders);
+
 			bsData.Remove(CurrentDossier);
+
+			Connexion.Instance().Entry<Entities.Dossier>(e).Reload();
+
 			bsData.Add(e);
 
 			foreach (DataGridViewRow item in gvList.Rows)
@@ -283,9 +291,9 @@ namespace ProjetMFTR.Forms
 		/// <summary>
 		/// Initialisation du combobox des enfants
 		/// </summary>
-		private void InitialiseCombos()
+		private void InitialiseCombos(List<Entities.Dossier> folders)
 		{
-			cboFolders.DataSource = Connexion.Instance().Dossier.ToList();
+			cboFolders.DataSource = folders;
 			cboFolders.DisplayMember = ResourcesString.STR_Dossier_ID;
 			cboFolders.ValueMember = ResourcesString.STR_Dossier_ID;
 			cboFolders.SelectedValue = -1;
@@ -307,10 +315,11 @@ namespace ProjetMFTR.Forms
 
 		private void ParentAndChildsUpdated(object sender, EventArgs e)
 		{
-			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+			var kids = Connexion.Instance().Enfants.AsNoTracking().Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
 			bsDataKids.DataSource = kids;
 
-			var parents = CurrentDossier.Adultes.SelectMany(x => x.Parent).ToList();
+			var adults = Connexion.Instance().Adultes.AsNoTracking().Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			var parents = adults.SelectMany(x => x.Parent).ToList();
 			bsDataParents.DataSource = parents;
 		}
 

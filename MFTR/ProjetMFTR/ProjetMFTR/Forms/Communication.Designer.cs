@@ -206,14 +206,14 @@
 			this.cboEmployes.Location = new System.Drawing.Point(25, 572);
 			this.cboEmployes.Name = "cboEmployes";
 			this.cboEmployes.Size = new System.Drawing.Size(209, 21);
-			this.cboEmployes.TabIndex = 19;
+			this.cboEmployes.TabIndex = 11;
 			// 
 			// rtxtNotes
 			// 
 			this.rtxtNotes.Location = new System.Drawing.Point(25, 247);
 			this.rtxtNotes.Name = "rtxtNotes";
 			this.rtxtNotes.Size = new System.Drawing.Size(796, 258);
-			this.rtxtNotes.TabIndex = 21;
+			this.rtxtNotes.TabIndex = 10;
 			this.rtxtNotes.Text = "";
 			// 
 			// label4
@@ -233,7 +233,7 @@
 			this.cboFolders.Location = new System.Drawing.Point(25, 63);
 			this.cboFolders.Name = "cboFolders";
 			this.cboFolders.Size = new System.Drawing.Size(163, 21);
-			this.cboFolders.TabIndex = 16;
+			this.cboFolders.TabIndex = 1;
 			this.cboFolders.SelectedIndexChanged += new System.EventHandler(this.cboFolders_SelectedIndexChanged);
 			// 
 			// label3
@@ -253,7 +253,7 @@
 			this.cboReferent.Location = new System.Drawing.Point(25, 116);
 			this.cboReferent.Name = "cboReferent";
 			this.cboReferent.Size = new System.Drawing.Size(420, 21);
-			this.cboReferent.TabIndex = 18;
+			this.cboReferent.TabIndex = 5;
 			this.cboReferent.SelectedIndexChanged += new System.EventHandler(this.cboReferent_SelectedIndexChanged);
 			// 
 			// label2
@@ -281,7 +281,7 @@
 			this.cboTypeCommunication.Location = new System.Drawing.Point(25, 172);
 			this.cboTypeCommunication.Name = "cboTypeCommunication";
 			this.cboTypeCommunication.Size = new System.Drawing.Size(209, 21);
-			this.cboTypeCommunication.TabIndex = 17;
+			this.cboTypeCommunication.TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -298,7 +298,7 @@
 			this.dtpDateCommunication.Location = new System.Drawing.Point(505, 64);
 			this.dtpDateCommunication.Name = "dtpDateCommunication";
 			this.dtpDateCommunication.Size = new System.Drawing.Size(145, 20);
-			this.dtpDateCommunication.TabIndex = 28;
+			this.dtpDateCommunication.TabIndex = 3;
 			this.dtpDateCommunication.ValueChanged += new System.EventHandler(this.dtpDateCommunication_ValueChanged);
 			this.dtpDateCommunication.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpDateCommunication_KeyDown);
 			// 
@@ -317,7 +317,7 @@
 			this.dtpDateEvent.Location = new System.Drawing.Point(505, 117);
 			this.dtpDateEvent.Name = "dtpDateEvent";
 			this.dtpDateEvent.Size = new System.Drawing.Size(145, 20);
-			this.dtpDateEvent.TabIndex = 30;
+			this.dtpDateEvent.TabIndex = 8;
 			this.dtpDateEvent.ValueChanged += new System.EventHandler(this.dtpDateEvent_ValueChanged);
 			this.dtpDateEvent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpDateEvent_KeyDown);
 			// 
@@ -336,9 +336,10 @@
 			this.dtpHours.Location = new System.Drawing.Point(686, 64);
 			this.dtpHours.Name = "dtpHours";
 			this.dtpHours.Size = new System.Drawing.Size(81, 20);
-			this.dtpHours.TabIndex = 33;
+			this.dtpHours.TabIndex = 4;
 			this.dtpHours.ValueChanged += new System.EventHandler(this.dtpHours_ValueChanged);
 			this.dtpHours.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpHours_KeyDown);
+			this.dtpHours.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dtpHours_MouseDown);
 			// 
 			// label9
 			// 
@@ -366,11 +367,13 @@
             "Demande d\'information",
             "Transmission d\'information",
             "Suivi",
-            "Autre"});
+            "Autre",
+            "Ouverture de dossier",
+            "Suivi de vacances"});
 			this.cboMotif.Location = new System.Drawing.Point(297, 172);
 			this.cboMotif.Name = "cboMotif";
 			this.cboMotif.Size = new System.Drawing.Size(148, 21);
-			this.cboMotif.TabIndex = 34;
+			this.cboMotif.TabIndex = 7;
 			// 
 			// label10
 			// 
@@ -389,7 +392,7 @@
 			this.cboInterlocuteur.Location = new System.Drawing.Point(505, 172);
 			this.cboInterlocuteur.Name = "cboInterlocuteur";
 			this.cboInterlocuteur.Size = new System.Drawing.Size(262, 21);
-			this.cboInterlocuteur.TabIndex = 36;
+			this.cboInterlocuteur.TabIndex = 6;
 			// 
 			// bsData
 			// 

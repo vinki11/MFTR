@@ -41,10 +41,12 @@ namespace ProjetMFTR
 
 		void AssignSuivi(Entities.Suivi suivi)
 		{
-			cboFolders.DataSource = Connexion.Instance().Dossier.Where((x) => x.Dossier_ID.Equals(suivi.dossier_id)).ToList();
-			cboFolders.Enabled = false;
+			cboFolders.DataSource = Connexion.Instance().Dossier.AsNoTracking().ToList();
+			cboFolders.Text = suivi.dossier_id;
+			//cboFolders.Enabled = false;
 
-			cboKids.DataSource = Connexion.Instance().Enfants.Where((x) => x.Enfant_ID.Equals(suivi.enfant_id)).ToList();
+			cboKids.DataSource = Connexion.Instance().Enfants.ToList();
+			cboFolders_SelectedIndexChanged(null, null);
 
 			cboMoment.Text = suivi.moment;
 			rtxtRemarque.Text = suivi.remarque;
@@ -168,7 +170,9 @@ namespace ProjetMFTR
 			CurrentEntity.enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID;
 			CurrentEntity.dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
 			CurrentEntity.dateSuivi = dtpDateSuivi.Value.Date;
-			CurrentEntity.intervenant_id = ((Entities.Intervenant)cboEmployes.SelectedItem).intervenant_id;
+			var intervenant = ((Entities.Intervenant)cboEmployes.SelectedItem);
+
+			CurrentEntity.intervenant_id = intervenant == null ? CurrentEntity.intervenant_id : intervenant.intervenant_id;
 			CurrentEntity.remarque = rtxtRemarque.Text;
 			CurrentEntity.moment = cboMoment.Text;
 		}

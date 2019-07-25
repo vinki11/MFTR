@@ -144,6 +144,7 @@ namespace ProjetMFTR.Forms
 		{
 			txtNom.Text = CurrentAdulte.Nom;
 			txtPrenom.Text = CurrentAdulte.Prenom;
+			rtxtRemarque.Text = CurrentAdulte.Note;
 
 			dtpNaissance.Value = CurrentParent.Naissance.HasValue ? CurrentParent.Naissance.Value : DateTime.Now.Date;
 			cboStatut.Text = CurrentParent.Statut;
@@ -183,6 +184,7 @@ namespace ProjetMFTR.Forms
 			CurrentAdulte.Dossier_ID = CurrentDossierID;
 			CurrentAdulte.Nom = txtNom.Text;
 			CurrentAdulte.Prenom = txtPrenom.Text;
+			CurrentAdulte.Note = rtxtRemarque.Text;
 		}
 
 		private void AssignValuesParent()
