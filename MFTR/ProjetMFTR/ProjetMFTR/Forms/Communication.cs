@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
 using ProjetMFTR.DbConnexion.Helper;
+using ProjetMFTR.Entities.Helper;
 using ProjetMFTR.Resources;
 
 namespace ProjetMFTR.Forms
@@ -15,13 +16,17 @@ namespace ProjetMFTR.Forms
 		private Connexion.ConnexionActions<Entities.Communication> connexionActions = new Connexion.ConnexionActions<Entities.Communication>();
 
 		public event EventHandler<Entities.Communication> CommunicationAdded;
+		public event EventHandler CommunicationUpdated;
 
 		private bool m_SkipSave = false;
+
+		private InterlocutorServices InterlocutorServices = new InterlocutorServices();
 
 		public Communication()
 		{
 			InitializeComponent();
 			Init();
+
 			var communications = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure);
 			bsData.DataSource = communications.ToList();
 			bindingNavigator1.BindingSource = bsData;
@@ -48,6 +53,10 @@ namespace ProjetMFTR.Forms
 			CommunicationAdded?.Invoke(this, CurrentEntity);
 		}
 
+		protected virtual void OnCommunicationUpdated(EventArgs e)
+		{
+			CommunicationUpdated?.Invoke(this, e);
+		}
 		/// <summary>W
 		/// Initialisation du combobox des enfants
 		/// </summary>
@@ -68,7 +77,7 @@ namespace ProjetMFTR.Forms
 			cboReferent.ValueMember = ResourcesString.STR_ReferentId;
 			cboReferent.SelectedValue = -1;
 
-			cboInterlocuteur.DataSource = new List<Entities.Adultes>();
+			cboInterlocuteur.DataSource = new List<Interlocutor>();
 			cboInterlocuteur.DisplayMember = ResourcesString.STR_FullName;
 			cboInterlocuteur.ValueMember = ResourcesString.STR_Adultes_ID;
 
@@ -78,7 +87,7 @@ namespace ProjetMFTR.Forms
 		private void AssignCommunication(Entities.Communication communication)
 		{
 
-			cboFolders.DataSource = Connexion.Instance().Dossier.AsNoTracking().ToList();
+			cboFolders.DataSource = Connexion.Instance().Dossier.ToList();
 			cboFolders.Text = communication.Dossier_ID;
 
 			var referents = SelectReferents();
@@ -172,8 +181,10 @@ namespace ProjetMFTR.Forms
 
 			if (cboFolders.SelectedItem == null) { return; }
 
-			//cboInterlocuteur.DataSource = ((Entities.Dossier)cboFolders.SelectedItem).Adultes.ToList();
-			//cboInterlocuteur.SelectedValue = -1;
+			var interlocutors = InterlocutorServices.BuildInterlocutors(((Entities.Dossier)cboFolders.SelectedItem).Adultes.ToList());
+
+			cboInterlocuteur.DataSource = interlocutors;
+			cboInterlocuteur.SelectedValue = -1;
 			//var referents = SelectReferents();
 
 			//if (!referents.Any()) { return; }
@@ -206,7 +217,16 @@ namespace ProjetMFTR.Forms
 			if (referent == null) { cboInterlocuteur.Text = ""; return; }
 			if (referent.Adultes == null) { return; }
 
-			cboInterlocuteur.Text = referent.Adultes.Nom + " " + referent.Adultes.Prenom;
+			var folder = (Entities.Dossier)cboFolders.SelectedItem;
+
+			if (folder == null) { return; }
+
+			List<Interlocutor> interlocutors = InterlocutorServices.BuildInterlocutors(folder.Adultes.ToList());
+			interlocutors.Add(new Interlocutor() { FirstName = referent.Adultes.Nom, Name = referent.Adultes.Prenom, Adulte_ID = referent.Adultes.Adulte_ID, FullName = referent.Adultes.FullName });
+
+			var index = cboInterlocuteur.SelectedIndex;
+			cboInterlocuteur.DataSource = interlocutors;
+			cboInterlocuteur.SelectedIndex = index;
 		}
 
 		#region Binding
@@ -250,36 +270,52 @@ namespace ProjetMFTR.Forms
 		private Boolean Save()
 		{
 			DialogResult result;
-			if (CurrentEntity != null)
+			Cursor.Current = Cursors.WaitCursor;
+			Application.DoEvents();
+
+			try
 			{
-				AssignValues();
-				connexionActions.Update(CurrentEntity);
 
-				return true;
-			}
-
-			if (((Entities.Dossier)cboFolders.SelectedItem) == null)
-			{
-				result = MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder la communication",
-				"Attention",
-				MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
-
-				if (result == DialogResult.Cancel)
+				if (CurrentEntity != null)
 				{
-					m_SkipSave = true;
-					Close();
-				}
-				m_SkipSave = false;
-				return false;
-			}
+					//Connexion.connexionActionsCommunication.ObjectContextUpdater();
+					this.CurrentEntity = Connexion.Instance().Communication.FirstOrDefault(x => x.Communication_ID == CurrentEntity.Communication_ID);
+					AssignValues();
+					var sucess = connexionActions.Update(CurrentEntity);
+					OnCommunicationUpdated(new EventArgs());
 
-			CurrentEntity = new Entities.Communication();
-			AssignValues();
-			connexionActions.Add(CurrentEntity);
-			bindingNavigator1.Enabled = true;
-			bsData.DataSource = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure).ToList();
-			OnCommunicationAdded(new EventArgs());
-			return true;
+					return sucess;
+				}
+
+				if (((Entities.Dossier)cboFolders.SelectedItem) == null)
+				{
+					result = MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder la communication",
+					"Attention",
+					MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+
+					if (result == DialogResult.Cancel)
+					{
+						m_SkipSave = true;
+						Close();
+					}
+					m_SkipSave = false;
+					return false;
+				}
+
+				CurrentEntity = new Entities.Communication();
+				AssignValues();
+				connexionActions.Add(CurrentEntity);
+				bindingNavigator1.Enabled = true;
+				bsData.DataSource = Connexion.Instance().Communication.OrderBy(x => x.Communication_ID).ThenBy(o => o.Heure).ToList();
+				OnCommunicationAdded(new EventArgs());
+				return true;
+
+			}
+			finally
+			{
+				Cursor.Current = Cursors.Default;
+				Application.DoEvents();
+			}
 		}
 
 		/// <summary>

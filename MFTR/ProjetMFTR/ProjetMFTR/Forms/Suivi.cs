@@ -12,13 +12,13 @@ namespace ProjetMFTR
 		#region Members
 
 		Entities.Suivi CurrentEntity;
-		Connexion.ConnexionActions<Entities.Suivi> connexionActions = new Connexion.ConnexionActions<Entities.Suivi>();
 		private bool m_SkipSave = false;
 		#endregion
 
 
 		#region Events
 		public event EventHandler SuiviAdded;
+		public event EventHandler SuiviUpdated;
 		#endregion
 
 		protected virtual void OnSuiviAdded(EventArgs e)
@@ -26,11 +26,16 @@ namespace ProjetMFTR
 			SuiviAdded?.Invoke(this, e);
 		}
 
+		protected virtual void OnSuiviUpdated(EventArgs e)
+		{
+			SuiviUpdated?.Invoke(this, e);
+		}
+
 		public Suivi()
 		{
 			InitializeComponent();
 			CombosInitialisation();
-			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
+			bsData.DataSource = Connexion.Instance().Suivi.AsNoTracking().OrderBy(f => f.dateSuivi).ToList();
 		}
 
 		public Suivi(Entities.Suivi suivi) : this()
@@ -45,13 +50,16 @@ namespace ProjetMFTR
 			cboFolders.Text = suivi.dossier_id;
 			//cboFolders.Enabled = false;
 
-			cboKids.DataSource = Connexion.Instance().Enfants.ToList();
+			cboKids.DataSource = Connexion.Instance().Enfants.AsNoTracking().ToList();
 			cboFolders_SelectedIndexChanged(null, null);
+
+			var kid = Connexion.Instance().Enfants.AsNoTracking().FirstOrDefault(x => x.Enfant_ID == suivi.enfant_id);
+			cboKids.Text = kid == null ? "" : kid.Name;
 
 			cboMoment.Text = suivi.moment;
 			rtxtRemarque.Text = suivi.remarque;
 			dtpDateSuivi.Value = suivi.dateSuivi;
-			cboEmployes.Text = Connexion.Instance().Intervenant.FirstOrDefault((x) => x.intervenant_id.Equals(suivi.intervenant_id)).nom;
+			cboEmployes.Text = Connexion.Instance().Intervenant.AsNoTracking().FirstOrDefault((x) => x.intervenant_id.Equals(suivi.intervenant_id)).nom;
 			CurrentEntity = suivi;
 		}
 		/// <summary>
@@ -69,7 +77,7 @@ namespace ProjetMFTR
 			cboKids.ValueMember = ResourcesString.STR_EnfantId;
 			cboKids.SelectedValue = -1;
 
-			cboEmployes.DataSource = Connexion.Instance().Intervenant.Where((x) => x.actif == true).ToList();
+			cboEmployes.DataSource = Connexion.Instance().Intervenant.AsNoTracking().Where((x) => x.actif == true).ToList();
 			cboEmployes.DisplayMember = ResourcesString.STR_Nom;
 			cboEmployes.ValueMember = ResourcesString.STR_IntervenantId;
 			cboEmployes.SelectedValue = -1;
@@ -80,7 +88,9 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnSaveAndNew_Click(object sender, EventArgs e)
 		{
-			if (!Save(true)) { return; }
+			var success = ValidateEntity(true);
+			if (!success) { return; }
+			Save();
 			Clean();
 			CombosInitialisation();
 		}
@@ -90,22 +100,56 @@ namespace ProjetMFTR
 		/// </summary>
 		private void btnSave_Click(object sender, EventArgs e)
 		{
-			Save(true);
+			var success = ValidateEntity(false);
+			if (!success) { return; }
+			Save();
 		}
 
 		/// <summary>
 		/// Sauvegarde le suivi présent
 		/// </summary>
-		private Boolean Save(bool skipValidation)
+		private Boolean Save()
 		{
-			DialogResult result;
 			if (CurrentEntity != null)
 			{
+				CurrentEntity = Connexion.Instance().Suivi.FirstOrDefault(x => x.suivi_id == CurrentEntity.suivi_id);
 				AssignValues();
-				connexionActions.Update(CurrentEntity);
+				Connexion.connexionActionsSuivi.Update(CurrentEntity);
+				//Connexion.connexionActionsSuivi.ObjectContextUpdater();
+				OnSuiviUpdated(new EventArgs());
 				return true;
 			}
 
+
+			CurrentEntity = new Entities.Suivi();
+			AssignValues();
+			Connexion.connexionActionsSuivi.Add(CurrentEntity);
+			//Connexion.connexionActionsSuivi.ObjectContextUpdater();
+			bindingNavigator1.Enabled = true;
+			bsData.DataSource = Connexion.Instance().Suivi.AsNoTracking().OrderBy(f => f.dateSuivi).ToList();
+			OnSuiviAdded(new EventArgs());
+			return true;
+		}
+
+		/// <summary>
+		/// Permet de vider tous les contrôles
+		/// </summary>
+		private void Clean()
+		{
+			cboEmployes.SelectedValue = -1;
+			cboFolders.SelectedValue = -1;
+			cboKids.SelectedValue = -1;
+			cboMoment.Text = "";
+			dtpDateSuivi.Value = DateTime.Now.Date;
+			rtxtRemarque.Text = "";
+			CurrentEntity = null;
+			cboFolders.Enabled = true;
+			bindingNavigator1.Enabled = false;
+		}
+
+		private bool ValidateEntity(bool skipValidation)
+		{
+			DialogResult result;
 			if (((Entities.Dossier)cboFolders.SelectedItem) == null)
 			{
 				result = MessageBox.Show("Vous devez sélectionner un dossier pour pouvoir sauvegarder le suivi",
@@ -137,37 +181,16 @@ namespace ProjetMFTR
 				return false;
 			}
 
-			CurrentEntity = new Entities.Suivi();
-			AssignValues();
-			connexionActions.Add(CurrentEntity);
-			bindingNavigator1.Enabled = true;
-			bsData.DataSource = Connexion.Instance().Suivi.OrderBy(f => f.dateSuivi).ToList();
-			OnSuiviAdded(new EventArgs());
 			return true;
 		}
-
-		/// <summary>
-		/// Permet de vider tous les contrôles
-		/// </summary>
-		private void Clean()
-		{
-			cboEmployes.SelectedValue = -1;
-			cboFolders.SelectedValue = -1;
-			cboKids.SelectedValue = -1;
-			cboMoment.Text = "";
-			dtpDateSuivi.Value = DateTime.Now.Date;
-			rtxtRemarque.Text = "";
-			CurrentEntity = null;
-			cboFolders.Enabled = true;
-			bindingNavigator1.Enabled = false;
-		}
-
 		/// <summary>
 		/// Assignation des valeurs
 		/// </summary>
 		private void AssignValues()
 		{
-			CurrentEntity.enfant_id = ((Entities.Enfants)cboKids.SelectedItem).Enfant_ID;
+			var kid = ((Entities.Enfants)cboKids.SelectedItem);
+			CurrentEntity.enfant_id = kid == null ? CurrentEntity.enfant_id : kid.Enfant_ID;
+
 			CurrentEntity.dossier_id = ((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID;
 			CurrentEntity.dateSuivi = dtpDateSuivi.Value.Date;
 			var intervenant = ((Entities.Intervenant)cboEmployes.SelectedItem);
@@ -183,7 +206,8 @@ namespace ProjetMFTR
 		{
 			if (cboFolders.SelectedItem == null) { return; }
 
-			cboKids.DataSource = Connexion.Instance().Enfants.Where((x) => x.Dossier_ID.Equals(((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID)).ToList();
+			cboKids.DataSource = Connexion.Instance().Enfants.AsNoTracking().Where((x) => x.Dossier_ID.Equals(((Entities.Dossier)cboFolders.SelectedItem).Dossier_ID)).ToList();
+			cboKids.SelectedIndex = -1;
 		}
 
 		private void Control_KeyUp(object sender, KeyEventArgs e)
@@ -231,7 +255,9 @@ namespace ProjetMFTR
 			}
 			else
 			{
-				e.Cancel = !Save(true);
+				var success = ValidateEntity(true);
+				if (!success) { e.Cancel = true; return; }
+				Save();
 			}
 
 		}

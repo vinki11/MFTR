@@ -53,6 +53,8 @@ namespace ProjetMFTR
 
 		private void btnRecherche_Click(object sender, EventArgs e)
 		{
+			//Connexion.connexionActionsReferents.ObjectContextUpdater();
+
 			List<Entities.Referent> referents = Connexion.Instance().Referent.ToList();
 
 			if (cboReferent.SelectedValue != null)

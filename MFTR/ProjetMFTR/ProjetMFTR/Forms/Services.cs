@@ -11,7 +11,6 @@ namespace ProjetMFTR.Forms
 
 		private Entities.Services CurrentServices;
 		private String CurrentDossierID;
-		private Connexion.ConnexionActions<Entities.Services> connexionActions = new Connexion.ConnexionActions<Entities.Services>();
 
 		#endregion Members
 
@@ -48,7 +47,7 @@ namespace ProjetMFTR.Forms
 			if (CurrentServices != null)
 			{
 				AssignValues();
-				connexionActions.Update(CurrentServices);
+				Connexion.connexionActionsServices.Update(CurrentServices);
 				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du service" + ResourcesString.STR_MessageUpdateConfirmation2,
 				ResourcesString.STR_TitleUpdateConfirmation,
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -65,7 +64,9 @@ namespace ProjetMFTR.Forms
 
 			CurrentServices = new Entities.Services();
 			AssignValues();
-			connexionActions.Add(CurrentServices);
+			Connexion.connexionActionsServices.Add(CurrentServices);
+			//Connexion.connexionActionsServices.ObjectContextUpdater();
+
 			result = MessageBox.Show("Le service " + CurrentServices.Nom + ResourcesString.STR_MessageAddConfirmation,
 											ResourcesString.STR_TitleAddConfirmation,
 											MessageBoxButtons.OK, MessageBoxIcon.Information);

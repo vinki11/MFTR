@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Windows.Forms;
 using ProjetMFTR.DataAccess;
@@ -14,7 +15,6 @@ namespace ProjetMFTR.Forms
 		#region Members
 
 		private Communication communication;
-		private Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
 		private Entities.Dossier CurrentDossier;
 		private DossierNouveau DossierNouveau;
 		private DeleteFolder m_DeleteFolder;
@@ -33,7 +33,9 @@ namespace ProjetMFTR.Forms
 
 		public void Init()
 		{
-			var folders = Connexion.Instance().Dossier.AsNoTracking().OrderByDescending((x) => x.Ouverture).ToList();
+			//Connexion.connexionActions.ObjectContextUpdater();
+
+			var folders = Connexion.Instance().Dossier.OrderByDescending((x) => x.Ouverture).ToList();
 
 			bsData.DataSource = folders;
 			gvParents.Columns["Nom"].DataPropertyName = "Adultes.Nom";
@@ -129,7 +131,7 @@ namespace ProjetMFTR.Forms
 		private void btnSaveDossier_Click(object sender, EventArgs e)
 		{
 			AssignValues();
-			connexionActions.Update(CurrentDossier);
+			Connexion.connexionActions.Update(CurrentDossier);
 			var result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du dossier" + ResourcesString.STR_MessageUpdateConfirmation2,
 			ResourcesString.STR_TitleUpdateConfirmation,
 			MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -139,8 +141,17 @@ namespace ProjetMFTR.Forms
 		{
 			if (((Entities.Dossier)bsData.Current).Dossier_ID.Equals(e.Dossier_ID))
 			{
+				//Connexion.connexionActionsCommunication.ObjectContextUpdater();
+
 				bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(e.Dossier_ID)).OrderByDescending(c => c.DateComm).ThenByDescending(o => o.Heure).ToList();
 			}
+		}
+
+		private void CommunicationUpdated(object sender, EventArgs e)
+		{
+			//Connexion.connexionActionsCommunication.ObjectContextUpdater();
+
+			bsDataCommunication.DataSource = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).OrderByDescending(c => c.DateComm).ThenByDescending(o => o.Heure).ToList();
 		}
 
 		private void deleteRow_Click(object sender, EventArgs e)
@@ -175,11 +186,9 @@ namespace ProjetMFTR.Forms
 
 			InitialiseCombos(folders);
 
-			bsData.Remove(CurrentDossier);
+			bsData.DataSource = folders;
 
-			Connexion.Instance().Entry<Entities.Dossier>(e).Reload();
-
-			bsData.Add(e);
+			OnGvListSelectionChanged();
 
 			foreach (DataGridViewRow item in gvList.Rows)
 			{
@@ -188,7 +197,6 @@ namespace ProjetMFTR.Forms
 					item.Selected = true;
 				}
 			}
-			OnGvListSelectionChanged();
 		}
 
 		/// <summary>
@@ -199,6 +207,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = gvCommunications.CurrentRow;
 			communication = new Communication((Entities.Communication)row.DataBoundItem);
 			communication.CommunicationAdded += new EventHandler<Entities.Communication>(CommunicationAdded);
+			communication.CommunicationUpdated += new EventHandler(CommunicationUpdated);
 			communication.Show();
 		}
 
@@ -305,22 +314,33 @@ namespace ProjetMFTR.Forms
 			if (row == null) return;
 
 			CurrentDossier = (Entities.Dossier)row.DataBoundItem;
+			//Connexion.connexionActionsCommunication.ObjectContextUpdater();
+
 			var communications = Connexion.Instance().Communication.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
 			bsDataCommunication.DataSource = communications.OrderByDescending(x => x.DateComm).ThenByDescending(o => o.Heure).ToList();
 
 			ParentAndChildsUpdated(null, null);
 
-			bsTelephones.DataSource = CurrentDossier.Adultes.SelectMany(x => x.Telephone).OrderBy(o => o.Adultes.Prenom).ThenBy(p => p.Adultes.Nom).ToList();
+			//Connexion.connexionActionsAdultes.ObjectContextUpdater();
 		}
 
 		private void ParentAndChildsUpdated(object sender, EventArgs e)
 		{
-			var kids = Connexion.Instance().Enfants.AsNoTracking().Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+
+			//Connexion.connexionActionsEnfants.ObjectContextUpdater();
+			//Connexion.connexionActionsAdultes.ObjectContextUpdater();
+			//Connexion.connexionActionsParent.ObjectContextUpdater();
+
+			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
 			bsDataKids.DataSource = kids;
 
-			var adults = Connexion.Instance().Adultes.AsNoTracking().Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			var adults = Connexion.Instance().Adultes.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+
 			var parents = adults.SelectMany(x => x.Parent).ToList();
+
 			bsDataParents.DataSource = parents;
+
+			bsTelephones.DataSource = Connexion.Instance().Adultes.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList().SelectMany(x => x.Telephone).OrderBy(o => o.Adultes.Prenom).ThenBy(p => p.Adultes.Nom).ToList();
 		}
 
 		private void Remove_Communication_Click(object sender, EventArgs e)

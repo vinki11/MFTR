@@ -37,6 +37,7 @@ namespace ProjetMFTR.Forms
 		/// </summary>
 		private void Initialize()
 		{
+			//Connexion.connexionActions.ObjectContextUpdater();
 			m_Dossiers = Connexion.Instance().Dossier.ToList();
 
 			var communications = m_Dossiers.SelectMany(x => x.Communication).Where(v => v.DateComm.HasValue && v.Motif != null).ToList();

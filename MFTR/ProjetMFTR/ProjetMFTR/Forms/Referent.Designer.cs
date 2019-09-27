@@ -30,7 +30,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Referent));
-			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.btnSaveAndNew = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.tabControl = new MetroFramework.Controls.MetroTabControl();
@@ -51,25 +50,22 @@
 			this.rtxtNotes = new System.Windows.Forms.RichTextBox();
 			this.tbTel = new System.Windows.Forms.TabPage();
 			this.gvPhone = new System.Windows.Forms.DataGridView();
+			this.PhoneContext = new MetroFramework.Controls.MetroContextMenu(this.components);
+			this.remove_ = new System.Windows.Forms.ToolStripMenuItem();
 			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.telephone1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.posteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.precisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsTelephone = new System.Windows.Forms.BindingSource(this.components);
-			this.PhoneContext = new MetroFramework.Controls.MetroContextMenu(this.components);
-			this.remove_ = new System.Windows.Forms.ToolStripMenuItem();
-			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
+			this.bsData = new System.Windows.Forms.BindingSource(this.components);
 			this.tabControl.SuspendLayout();
 			this.tbInfo.SuspendLayout();
 			this.tbTel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
 			this.PhoneContext.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// bsData
-			// 
-			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
 			// 
 			// btnSaveAndNew
 			// 
@@ -285,6 +281,20 @@
 			this.gvPhone.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvPhone_RowContextMenuStripNeeded);
 			this.gvPhone.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvPhone_RowsAdded);
 			// 
+			// PhoneContext
+			// 
+			this.PhoneContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.remove_});
+			this.PhoneContext.Name = "PhoneContext";
+			this.PhoneContext.Size = new System.Drawing.Size(130, 26);
+			// 
+			// remove_
+			// 
+			this.remove_.Name = "remove_";
+			this.remove_.Size = new System.Drawing.Size(129, 22);
+			this.remove_.Text = "Supprimer";
+			this.remove_.Click += new System.EventHandler(this.remove__Click);
+			// 
 			// typeDataGridViewTextBoxColumn
 			// 
 			this.typeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -318,19 +328,9 @@
 			// 
 			this.bsTelephone.DataSource = typeof(ProjetMFTR.Entities.Telephone);
 			// 
-			// PhoneContext
+			// bsData
 			// 
-			this.PhoneContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.remove_});
-			this.PhoneContext.Name = "PhoneContext";
-			this.PhoneContext.Size = new System.Drawing.Size(130, 26);
-			// 
-			// remove_
-			// 
-			this.remove_.Name = "remove_";
-			this.remove_.Size = new System.Drawing.Size(129, 22);
-			this.remove_.Text = "Supprimer";
-			this.remove_.Click += new System.EventHandler(this.remove__Click);
+			this.bsData.DataSource = typeof(ProjetMFTR.Entities.Communication);
 			// 
 			// Referent
 			// 
@@ -345,14 +345,14 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Référent";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Referent_FormClosing);
-			((System.ComponentModel.ISupportInitialize)(this.bsData)).EndInit();
 			this.tabControl.ResumeLayout(false);
 			this.tbInfo.ResumeLayout(false);
 			this.tbInfo.PerformLayout();
 			this.tbTel.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
 			this.PhoneContext.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsData)).EndInit();
 			this.ResumeLayout(false);
 
 		}

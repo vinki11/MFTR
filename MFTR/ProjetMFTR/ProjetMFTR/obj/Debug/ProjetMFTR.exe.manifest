@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ProjetMFTR.exe" version="1.0.1.1" publicKeyToken="0000000000000000" language="fr-CA" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ProjetMFTR.exe" version="1.0.1.4" publicKeyToken="0000000000000000" language="fr-CA" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ProjetMFTR" version="1.0.1.1" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ProjetMFTR" version="1.0.1.4" language="neutral" processorArchitecture="msil" />
     <commandLine file="ProjetMFTR.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -150,14 +150,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="1652224">
-      <assemblyIdentity name="ProjetMFTR" version="1.0.1.1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="1756160">
+      <assemblyIdentity name="ProjetMFTR" version="1.0.1.4" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oMM6CqnlYv1GkKicXXXh0WMrrUpLeIPX+3aodKB7WQI=</dsig:DigestValue>
+        <dsig:DigestValue>/PEKT9m+EAbZIqiegjoHZVc8Ug/8kr09K5e7TdXBKoQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

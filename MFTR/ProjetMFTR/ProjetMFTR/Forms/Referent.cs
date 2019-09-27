@@ -7,9 +7,6 @@ namespace ProjetMFTR.Forms
 {
 	public partial class Referent : Form
 	{
-		private Connexion.ConnexionActions<Entities.Referent> connexionActionsReferent = new Connexion.ConnexionActions<Entities.Referent>();
-		private Connexion.ConnexionActions<Entities.Adultes> connexionActionsAdultes = new Connexion.ConnexionActions<Entities.Adultes>();
-		private Connexion.ConnexionActions<Entities.Telephone> connexionActionsPhone = new Connexion.ConnexionActions<Entities.Telephone>();
 		private Entities.Adultes CurrentAdulte;
 		private Entities.Referent CurrentEntity;
 		private bool m_SkipSave = false;
@@ -134,14 +131,17 @@ namespace ProjetMFTR.Forms
 
 				if (oldId != newId)
 				{
-					connexionActionsReferent.UpdateReferentId(oldId, newId);
+					Connexion.connexionActionsReferents.UpdateReferentId(oldId, newId);
 					CurrentEntity = Connexion.Instance().Referent.Single(x => x.Referent_ID == newId);
 				}
 
 				AssignValuesAdultes();
 				AssignValuesReferent();
-				connexionActionsReferent.Update(CurrentEntity);
-				connexionActionsAdultes.Update(CurrentAdulte);
+				Connexion.connexionActionsReferents.Update(CurrentEntity);
+				//Connexion.connexionActionsReferents.ObjectContextUpdater();
+				Connexion.connexionActionsAdultes.Update(CurrentAdulte);
+				//Connexion.connexionActionsAdultes.ObjectContextUpdater();
+
 				return true;
 			}
 
@@ -164,9 +164,11 @@ namespace ProjetMFTR.Forms
 			CurrentAdulte = new Entities.Adultes();
 
 			AssignValuesAdultes();
-			connexionActionsAdultes.Add(CurrentAdulte);
+			Connexion.connexionActionsAdultes.Add(CurrentAdulte);
+			//Connexion.connexionActionsAdultes.ObjectContextUpdater();
 			AssignValuesReferent();
-			connexionActionsReferent.Add(CurrentEntity);
+			Connexion.connexionActionsReferents.Add(CurrentEntity);
+			//Connexion.connexionActionsReferents.ObjectContextUpdater();
 			OnReferentAdded(new EventArgs());
 			return true;
 		}
@@ -197,7 +199,8 @@ namespace ProjetMFTR.Forms
 
 			telephone.Adulte_ID = CurrentAdulte.Adulte_ID;
 			telephone.Adultes = CurrentAdulte;
-			connexionActionsPhone.Add(telephone);
+			Connexion.connexionActionsTelephone.Add(telephone);
+			//Connexion.connexionActionsTelephone.ObjectContextUpdater();
 		}
 	}
 }

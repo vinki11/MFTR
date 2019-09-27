@@ -11,7 +11,6 @@ namespace ProjetMFTR.Forms
 	public partial class Intervenant : Form
 	{
 		Entities.Intervenant currentIntervenant;
-		Connexion.ConnexionActions<Entities.Intervenant> connexionUpdater = new Connexion.ConnexionActions<Entities.Intervenant>();
 		EditMode editMode;
 
 		public Intervenant()
@@ -158,20 +157,21 @@ namespace ProjetMFTR.Forms
 
 				if (editMode == EditMode.Edit)
 				{
-					connexionUpdater.Update(currentIntervenant);
+					Connexion.connexionActionsIntervenant.Update(currentIntervenant);
 					DialogResult result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "de l'intervenant" + ResourcesString.STR_MessageUpdateConfirmation2,
 					ResourcesString.STR_TitleUpdateConfirmation,
 					MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				else if (editMode == EditMode.New)
 				{
-					connexionUpdater.Add(currentIntervenant);
+					Connexion.connexionActionsIntervenant.Add(currentIntervenant);
 					DialogResult result = MessageBox.Show("L'intervenant " + currentIntervenant.nom + ResourcesString.STR_MessageAddConfirmation,
 					ResourcesString.STR_TitleAddConfirmation,
 					MessageBoxButtons.OK, MessageBoxIcon.Information);
 					nouveau();
 				}
 
+				//Connexion.connexionActionsIntervenant.ObjectContextUpdater();
 				loadCbIntervenant();
 
 			}

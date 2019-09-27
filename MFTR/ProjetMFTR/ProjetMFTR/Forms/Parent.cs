@@ -14,12 +14,6 @@ namespace ProjetMFTR.Forms
 	{
 		#region Members
 
-		private Connexion.ConnexionActions<Entities.LienReferrent> connexionActionLienReferrent = new Connexion.ConnexionActions<Entities.LienReferrent>();
-		private Connexion.ConnexionActions<Entities.Referent> connexionActionReferent = new Connexion.ConnexionActions<Entities.Referent>();
-		private Connexion.ConnexionActions<Entities.Adresse> connexionActionsAdresse = new Connexion.ConnexionActions<Entities.Adresse>();
-		private Connexion.ConnexionActions<Entities.Adultes> connexionActionsAdulte = new Connexion.ConnexionActions<Entities.Adultes>();
-		private Connexion.ConnexionActions<Entities.Parent> connexionActionsParent = new Connexion.ConnexionActions<Entities.Parent>();
-		private Connexion.ConnexionActions<Entities.Telephone> connexionActionsPhone = new Connexion.ConnexionActions<Entities.Telephone>();
 		private Entities.Adultes CurrentAdulte;
 		private String CurrentDossierID;
 		private Entities.Parent CurrentParent;
@@ -56,10 +50,11 @@ namespace ProjetMFTR.Forms
 
 		public Parent(Entities.Parent parent) : this(parent.Adultes.Dossier_ID)
 		{
+			Connexion.Instance().Entry(parent).Reload();
 			CurrentParent = parent;
 			CurrentAdulte = parent.Adultes;
 			bsAdresse.DataSource = CurrentAdulte.Adresse.Any() ? CurrentAdulte.Adresse.FirstOrDefault() : new Entities.Adresse();
-			bsTelephone.DataSource = CurrentAdulte.Telephone.ToList();
+			bsTelephone.DataSource = Connexion.Instance().Telephone.Where(x => x.Adulte_ID == CurrentAdulte.Adulte_ID).ToList();
 			var lienReferents = CurrentAdulte.Parent.Where(x => x.Adulte_ID == CurrentAdulte.Adulte_ID).SelectMany(o => o.LienReferrent).ToList();
 			bsReferent.DataSource = Connexion.Instance().Referent.ToList().Where(x => lienReferents.Any(o => x.Referent_ID.Equals(o.Referent_ID))).ToList();
 			init();
@@ -107,16 +102,18 @@ namespace ProjetMFTR.Forms
 					var adulte = new Entities.Adultes();
 					adulte.Nom = r.Adultes.Nom;
 					adulte.Prenom = r.Adultes.Prenom;
-					connexionActionsAdulte.Add(adulte);
+					Connexion.connexionActionsAdultes.Add(adulte);
 					var refe = new Entities.Referent();
 					refe.Adulte_ID = adulte.Adulte_ID;
 					refe.Organisation = r.Organisation;
 					refe.Type = r.Type;
-					connexionActionReferent.Add(refe);
+					Connexion.connexionActionsReferents.Add(refe);
+					//Connexion.connexionActionsReferents.ObjectContextUpdater();
+
 					var lienReferent = new Entities.LienReferrent();
 					lienReferent.Referent_ID = refe.Referent_ID;
 					lienReferent.Parent_ID = CurrentParent.Parent_ID;
-					connexionActionLienReferrent.Add(lienReferent);
+					Connexion.connexionActionsLienReferrent.Add(lienReferent);
 				}
 				else
 				{
@@ -124,8 +121,9 @@ namespace ProjetMFTR.Forms
 					lienReferent.Referent_ID = referent.Referent_ID;
 					lienReferent.Parent_ID = CurrentParent.Parent_ID;
 
-					connexionActionLienReferrent.Add(lienReferent);
+					Connexion.connexionActionsLienReferrent.Add(lienReferent);
 				}
+				//Connexion.connexionActionsLienReferrent.ObjectContextUpdater();
 			}
 		}
 
@@ -181,7 +179,6 @@ namespace ProjetMFTR.Forms
 
 		private void AssignValuesAdultes()
 		{
-			CurrentAdulte.Dossier_ID = CurrentDossierID;
 			CurrentAdulte.Nom = txtNom.Text;
 			CurrentAdulte.Prenom = txtPrenom.Text;
 			CurrentAdulte.Note = rtxtRemarque.Text;
@@ -227,15 +224,19 @@ namespace ProjetMFTR.Forms
 
 		private void gvPhone_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
 		{
-			if (CurrentAdulte == null) { return; }
-			var telephone = (Entities.Telephone)bsTelephone.Current;
+			//if (CurrentAdulte == null) { return; }
+			//var telephone = (Entities.Telephone)bsTelephone.Current;
 
-			if (telephone == null) { return; }
-			if (telephone.Adulte_ID != null) { return; }
+			//if (telephone == null)
+			//{
+			//	return;
+			//}
 
-			telephone.Adulte_ID = CurrentAdulte.Adulte_ID;
-			telephone.Adultes = CurrentAdulte;
-			connexionActionsPhone.Add(telephone);
+			//if (telephone.Adulte_ID != null) { return; }
+
+			//telephone.Adulte_ID = CurrentAdulte.Adulte_ID;
+			//telephone.Adultes = CurrentAdulte;
+			//connexionActionsPhone.Add(telephone);
 		}
 
 		private void gvReferent_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -257,11 +258,20 @@ namespace ProjetMFTR.Forms
 		private void remove_phone_Click(object sender, EventArgs e)
 		{
 			DataGridViewRow row = gvPhone.CurrentRow;
-			if (!Connexion.Instance().Telephone.Any(x => x.Tel_ID == ((Entities.Telephone)row.DataBoundItem).Tel_ID)) { return; }
+			var telephone = (Entities.Telephone)row.DataBoundItem;
 
-			Connexion.Instance().Telephone.Remove((Entities.Telephone)row.DataBoundItem);
+			if (telephone == null) { return; }
+			if (!Connexion.Instance().Telephone.Any(x => x.Tel_ID == telephone.Tel_ID)) { return; }
+
+			//if (Connexion.Instance().Entry(telephone).State == System.Data.Entity.EntityState.Detached)
+			//{
+			//	Connexion.Instance().Telephone.Attach(telephone);
+			//}
+
+			Connexion.Instance().Telephone.Remove(telephone);
 			Connexion.Instance().SaveChanges();
 
+			//Connexion.connexionActionsTelephone.ObjectContextUpdater();
 			bsTelephone.DataSource = CurrentAdulte.Telephone.ToList();
 		}
 
@@ -270,19 +280,56 @@ namespace ProjetMFTR.Forms
 			Entities.Adresse adresse;
 			if (CurrentParent != null && CurrentAdulte != null)
 			{
-				AssignValuesAdultes();
 				AssignValuesParent();
-				connexionActionsParent.Update(CurrentParent);
-				connexionActionsAdulte.Update(CurrentAdulte);
+				Connexion.connexionActionsParent.Update(CurrentParent);
+			}
+			//foreach (var telephone in CurrentAdulte.Telephone)
+			//{
+			//	if (Connexion.Instance().Telephone.AsNoTracking().Any(x => x.Tel_ID == telephone.Tel_ID))
+			//	{
+			//		var tel = Connexion.Instance().Telephone.FirstOrDefault(x => x.Tel_ID == telephone.Tel_ID);
 
-				if (!CurrentAdulte.Adresse.Any())
-				{
-					adresse = new Entities.Adresse();
-					AssignAdresse(adresse);
-					adresse.Adulte_ID = CurrentAdulte.Adulte_ID;
+			//		tel.Telephone1 = telephone.Telephone1;
+			//		tel.Type = telephone.Type;
+			//		tel.Poste = telephone.Poste;
+			//		tel.Precision = telephone.Precision;
+			//		tel.Adulte_ID = telephone.Adulte_ID;
 
-					connexionActionsAdresse.Add(adresse);
-				}
+			//		if (Connexion.Instance().Entry(tel).State == System.Data.Entity.EntityState.Detached)
+			//		{
+			//			Connexion.Instance().Telephone.Attach(tel);
+			//		}
+			//		Connexion.connexionActionsTelephone.Update(tel);
+			//	}
+			//	else
+			//	{
+			//		Connexion.connexionActionsTelephone.Add(telephone);
+			//	}
+			//}
+
+			//CurrentAdulte = Connexion.Instance().Adultes.FirstOrDefault(x => x.Adulte_ID == CurrentAdulte.Adulte_ID);
+			//Connexion.Instance().Entry(CurrentAdulte).Reload();
+
+			//AssignValuesAdultes();
+			//Connexion.connexionActionsAdultes.Update(CurrentAdulte);
+			//Connexion.connexionActionsAdultes.ObjectContextUpdater();
+
+			var address = (Entities.Adresse)bsAdresse.Current;
+
+			if (address != null)
+			{
+
+				address = Connexion.Instance().Adresse.FirstOrDefault(x => x.Adresse_ID == address.Adresse_ID);
+
+				AssignAdresse(address);
+
+				address.Adulte_ID = CurrentAdulte.Adulte_ID;
+
+				Connexion.connexionActionsAdresse.Update(address);
+				//Connexion.connexionActionsAdresse.ObjectContextUpdater();
+
+				bsAdresse.DataSource = address;
+
 				return true;
 			}
 
@@ -292,14 +339,15 @@ namespace ProjetMFTR.Forms
 			adresse = new Entities.Adresse();
 
 			AssignValuesAdultes();
-			connexionActionsAdulte.Add(CurrentAdulte);
+			CurrentAdulte.Dossier_ID = CurrentDossierID;
+			Connexion.connexionActionsAdultes.Add(CurrentAdulte);
 			AssignValuesParent();
 
 			AssignAdresse(adresse);
 			adresse.Adulte_ID = CurrentAdulte.Adulte_ID;
 
-			connexionActionsParent.Add(CurrentParent);
-			connexionActionsAdresse.Add(adresse);
+			Connexion.connexionActionsParent.Add(CurrentParent);
+			Connexion.connexionActionsAdresse.Add(adresse);
 
 			OnParentAdded(new EventArgs());
 			return true;
@@ -329,6 +377,30 @@ namespace ProjetMFTR.Forms
 				pnlPicture.BackgroundImage = bmp;
 			}
 
+		}
+
+		private void add_phone_Click(object sender, EventArgs e)
+		{
+			ParentPhone p = new ParentPhone(CurrentAdulte);
+			p.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			p.Show();
+		}
+
+		private void UpdateDataSource(object sender, EventArgs e)
+		{
+			var telephones = Connexion.Instance().Telephone.Where(x => x.Adulte_ID == CurrentAdulte.Adulte_ID).ToList();
+
+			bsTelephone.DataSource = telephones;
+		}
+
+		private void gvPhone_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			DataGridViewRow row = gvPhone.CurrentRow;
+			if (row == null) { return; }
+
+			ParentPhone p = new ParentPhone((Entities.Telephone)row.DataBoundItem);
+			p.FormClosing += new FormClosingEventHandler(UpdateDataSource);
+			p.Show();
 		}
 	}
 }

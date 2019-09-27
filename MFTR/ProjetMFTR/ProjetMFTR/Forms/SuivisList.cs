@@ -16,7 +16,6 @@ namespace ProjetMFTR
 		#region Members
 
 		private Suivi m_Suivi;
-		Connexion.ConnexionActions<Entities.Suivi> connexionActions = new Connexion.ConnexionActions<Entities.Suivi>();
 
 		#endregion
 
@@ -57,7 +56,9 @@ namespace ProjetMFTR
 		{
 			string dossier = null;
 			int? enfant = null, intervenant = null;
-			List<Entities.Suivi> suivis = Connexion.Instance().Suivi.ToList();
+			//Connexion.connexionActionsSuivi.ObjectContextUpdater();
+
+			List<Entities.Suivi> suivis = Connexion.Instance().Suivi.AsNoTracking().ToList();
 
 			if (chkDate.Checked)
 			{
@@ -136,7 +137,7 @@ namespace ProjetMFTR
 
 			foreach (Entities.Suivi s in suivis.OrderByDescending(f => f.dateSuivi).ThenByDescending(p => p.suivi_id))
 			{
-				connexionActions.Print(s, pd);
+				Connexion.connexionActionsSuivi.Print(s, pd);
 			}
 		}
 
@@ -193,6 +194,8 @@ namespace ProjetMFTR
 		/// </summary>
 		private void gvList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
+			if (gvList.Rows[e.RowIndex] == null) { return; }
+
 			if ((gvList.Rows[e.RowIndex].DataBoundItem != null) &&
 		 (gvList.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
 			{
@@ -212,6 +215,7 @@ namespace ProjetMFTR
 			DataGridViewRow row = gvList.CurrentRow;
 			m_Suivi = new Suivi((Entities.Suivi)row.DataBoundItem);
 			m_Suivi.SuiviAdded += new EventHandler(UpdateDataSource);
+			m_Suivi.SuiviUpdated += new EventHandler(UpdateDataSource);
 			m_Suivi.Show();
 		}
 
@@ -238,6 +242,7 @@ namespace ProjetMFTR
 		/// </summary>
 		private void Init()
 		{
+			//Connexion.connexionActionsSuivi.ObjectContextUpdater();
 			bsData.DataSource = Connexion.Instance().Suivi.OrderByDescending((x) => x.dateSuivi).ThenByDescending(p => p.suivi_id).ToList();
 			gvList.Columns["Dossier"].DataPropertyName = "Dossier.Dossier_ID";
 			gvList.Columns["Enfant"].DataPropertyName = "Enfants.Name";

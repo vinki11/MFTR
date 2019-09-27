@@ -13,7 +13,7 @@ namespace ProjetMFTR.Forms
 		#region Members
 
 		private Entities.Dossier CurrentDossier;
-		private Connexion.ConnexionActions<Entities.Dossier> connexionActions = new Connexion.ConnexionActions<Entities.Dossier>();
+
 
 		private Parent m_NewParent;
 		private Enfant m_NewEnfant;
@@ -70,13 +70,13 @@ namespace ProjetMFTR.Forms
 			{
 				var oldId = CurrentDossier.Dossier_ID;
 				var newId = txtNoDossier.Text;
-				connexionActions.UpdateFolderIDs(oldId, newId);
-				CurrentDossier = Connexion.Instance().Dossier.AsNoTracking().Single(x => x.Dossier_ID == newId);
+				Connexion.connexionActions.UpdateFolderIDs(oldId, newId);
+				CurrentDossier = Connexion.Instance().Dossier.FirstOrDefault(x => x.Dossier_ID == newId);
 				AssignValues();
 
-				var updated = connexionActions.Update(CurrentDossier);
+				var sucess = Connexion.connexionActions.Update(CurrentDossier);
 
-				if (!updated) { return false; }
+				if (!sucess) { return false; }
 
 				result = MessageBox.Show(ResourcesString.STR_MessageUpdateConfirmation1 + "du dossier" + ResourcesString.STR_MessageUpdateConfirmation2,
 				ResourcesString.STR_TitleUpdateConfirmation,
@@ -105,7 +105,7 @@ namespace ProjetMFTR.Forms
 			CurrentDossier.Dossier_ID = txtNoDossier.Text;
 			AssignValues();
 
-			connexionActions.Add(CurrentDossier);
+			Connexion.connexionActions.Add(CurrentDossier);
 			result = MessageBox.Show("Le dossier " + CurrentDossier.Dossier_ID + ResourcesString.STR_MessageAddConfirmation,
 							ResourcesString.STR_TitleAddConfirmation,
 							MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,13 +130,20 @@ namespace ProjetMFTR.Forms
 			if (CurrentDossier == null) { return; }
 
 			var kids = Connexion.Instance().Enfants.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).OrderBy(o => o.Naissance).ToList();
+			//Connexion.connexionActionsEnfants.ObjectContextUpdater();
 			bsDataKids.DataSource = kids;
 
-			var adults = Connexion.Instance().Adultes.AsNoTracking().Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			var adults = Connexion.Instance().Adultes.Where(x => x.Dossier_ID.Equals(CurrentDossier.Dossier_ID)).ToList();
+			//Connexion.connexionActionsAdultes.ObjectContextUpdater();
+
 			var parents = adults.SelectMany(x => x.Parent).ToList();
+			//Connexion.connexionActionsParent.ObjectContextUpdater();
+
 			bsDataParents.DataSource = parents;
 
-			var services = CurrentDossier.Services.ToList();
+			var services = Connexion.Instance().Services.Where(x => x.Dossier_ID == CurrentDossier.Dossier_ID).ToList();
+			//Connexion.connexionActionsServices.ObjectContextUpdater();
+
 			bsServices.DataSource = services;
 		}
 
@@ -250,6 +257,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = listParents.CurrentRow;
 			var parent = (Entities.Parent)row.DataBoundItem;
 
+			Connexion.Instance().Parent.Attach(parent);
 			Connexion.Instance().Parent.Remove(parent);
 			Connexion.Instance().SaveChanges();
 			AssignDataSources();
@@ -260,6 +268,7 @@ namespace ProjetMFTR.Forms
 			DataGridViewRow row = listEnfants.CurrentRow;
 			var enfants = (Entities.Enfants)row.DataBoundItem;
 
+			Connexion.Instance().Enfants.Attach(enfants);
 			Connexion.Instance().Enfants.Remove(enfants);
 			Connexion.Instance().SaveChanges();
 			AssignDataSources();

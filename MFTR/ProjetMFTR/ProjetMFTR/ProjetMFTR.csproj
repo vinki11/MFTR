@@ -27,10 +27,10 @@
     <ProductName>Maison de la famille</ProductName>
     <PublisherName>DLA</PublisherName>
     <SuiteName>Maison de la famille</SuiteName>
-    <MinimumRequiredVersion>1.0.1.1</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.1.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.1.1</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.1.4</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -128,6 +128,8 @@
     <Compile Include="Entities\Enfants.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Helper\InterlocutorServices.cs" />
+    <Compile Include="Entities\Helper\Interlocutor.cs" />
     <Compile Include="Entities\Intervenant.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
@@ -175,6 +177,12 @@
     </Compile>
     <Compile Include="Entities\Transporteur.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ParentPhone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ParentPhone.Designer.cs">
+      <DependentUpon>ParentPhone.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Options.cs">
       <SubType>Form</SubType>
@@ -270,6 +278,9 @@
     </Compile>
     <Compile Include="Resources\MessageBoxManager.cs" />
     <Compile Include="Resources\ResourcesString.cs" />
+    <EmbeddedResource Include="Forms\ParentPhone.resx">
+      <DependentUpon>ParentPhone.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>

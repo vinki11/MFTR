@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetMFTR.DbConnexion.Helper;
 
@@ -17,6 +20,21 @@ namespace ProjetMFTR.DataAccess
 		//Membres privés
 		private static Entities.MFTR m_Instance;
 		private static string ConnexionString;
+		public static ConnexionActions<Entities.Dossier> connexionActions = new ConnexionActions<Entities.Dossier>();
+		public static ConnexionActions<Entities.Adultes> connexionActionsAdultes = new ConnexionActions<Entities.Adultes>();
+		public static ConnexionActions<Entities.Adresse> connexionActionsAdresse = new ConnexionActions<Entities.Adresse>();
+		public static ConnexionActions<Entities.Parent> connexionActionsParent = new ConnexionActions<Entities.Parent>();
+		public static ConnexionActions<Entities.Suivi> connexionActionsSuivi = new ConnexionActions<Entities.Suivi>();
+		public static ConnexionActions<Entities.Transporteur> connexionActionsTransporteur = new ConnexionActions<Entities.Transporteur>();
+		public static ConnexionActions<Entities.Intervenant> connexionActionsIntervenant = new ConnexionActions<Entities.Intervenant>();
+		public static ConnexionActions<Entities.Enfants> connexionActionsEnfants = new ConnexionActions<Entities.Enfants>();
+		public static ConnexionActions<Entities.Services> connexionActionsServices = new ConnexionActions<Entities.Services>();
+		public static ConnexionActions<Entities.Referent> connexionActionsReferents = new ConnexionActions<Entities.Referent>();
+		public static ConnexionActions<Entities.LienReferrent> connexionActionsLienReferrent = new ConnexionActions<Entities.LienReferrent>();
+		public static ConnexionActions<Entities.Communication> connexionActionsCommunication = new ConnexionActions<Entities.Communication>();
+		public static ConnexionActions<Entities.Telephone> connexionActionsTelephone = new ConnexionActions<Entities.Telephone>();
+		public static ConnexionActions<Entities.Options> connexionActionsOptions = new ConnexionActions<Entities.Options>();
+
 		//Voir si on garde en singleton ou non (ne permet pas de refresh les instances et d'avoir du data à jour
 		/// <summary>
 		/// Retourne l'instance de la connexion
@@ -26,21 +44,23 @@ namespace ProjetMFTR.DataAccess
 			if (m_Instance == null)
 			{
 				m_Instance = new Entities.MFTR();
+
 				string destinationFile = @"C:\MFTR";
 				destinationFile = Path.Combine(destinationFile, "connexion.txt");
 
 				if (File.Exists(destinationFile))
 				{
-					string[] lines = System.IO.File.ReadAllLines(destinationFile);
+					string[] lines = File.ReadAllLines(destinationFile);
 					m_Instance.Database.Connection.ConnectionString = lines[0];
 					ConnexionString = lines[0];
 					m_Instance.Configuration.LazyLoadingEnabled = true;
 				}
 
-				//m_Instance.Database.Connection.Open();
 			}
+
 			return m_Instance;
 		}
+
 
 		/// <summary>
 		/// Classe partial pour update
@@ -56,29 +76,39 @@ namespace ProjetMFTR.DataAccess
 			{
 				try
 				{
-					m_Instance.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-					m_Instance.Set<TEntity>().Add(entity);
-					m_Instance.SaveChanges();
+					Instance().Entry(entity).State = System.Data.Entity.EntityState.Modified;
+					Instance().Set<TEntity>().Add(entity);
+					Instance().SaveChanges();
+					ObjectContextUpdater();
 					return true;
 				}
 				catch (Exception e)
 				{
-					return false;
+					throw e;
 				}
 			}
+
+			public void ObjectContextUpdater()
+			{
+
+				var context = ((IObjectContextAdapter)m_Instance);
+				context.ObjectContext.Refresh(RefreshMode.StoreWins, m_Instance.Set<TEntity>().ToList());
+			}
+
 
 			public bool Update(TEntity entity)
 			{
 				try
 				{
-					m_Instance.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-					m_Instance.Entry(entity).OriginalValues.SetValues(entity);
-					m_Instance.SaveChanges();
+					Instance().Entry(entity).State = System.Data.Entity.EntityState.Modified;
+					Instance().Entry(entity).OriginalValues.SetValues(entity);
+					Instance().SaveChanges();
+					ObjectContextUpdater();
 					return true;
 				}
 				catch (Exception e)
 				{
-					return false;
+					throw e;
 				}
 			}
 
@@ -196,19 +226,28 @@ namespace ProjetMFTR.DataAccess
 			{
 				using (SqlConnection conn = new SqlConnection(ConnexionString))
 				{
-					conn.Open();
+					if (conn.State != ConnectionState.Open) { conn.Open(); }
+					SqlTransaction transaction = conn.BeginTransaction();
+					try
+					{
 
-					// 1.  create a command object identifying the stored procedure
-					SqlCommand cmd = new SqlCommand("UpdateFolderIds", conn);
+						// 1.  create a command object identifying the stored procedure
+						SqlCommand cmd = new SqlCommand("UpdateFolderIds", conn);
 
-					// 2. set the command object so it knows to execute a stored procedure
-					cmd.CommandType = CommandType.StoredProcedure;
+						// 2. set the command object so it knows to execute a stored procedure
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Transaction = transaction;
+						// 3. add parameter to command, which will be passed to the stored procedure
+						cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
+						cmd.Parameters.Add(new SqlParameter("@NewID", newId));
 
-					// 3. add parameter to command, which will be passed to the stored procedure
-					cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
-					cmd.Parameters.Add(new SqlParameter("@NewID", newId));
-
-					cmd.ExecuteNonQuery();
+						cmd.ExecuteNonQuery();
+						transaction.Commit();
+					}
+					catch (Exception e)
+					{
+						transaction.Rollback();
+					}
 				}
 			}
 
@@ -219,19 +258,32 @@ namespace ProjetMFTR.DataAccess
 			{
 				using (SqlConnection conn = new SqlConnection(ConnexionString))
 				{
-					conn.Open();
+					if (conn.State != ConnectionState.Open) { conn.Open(); }
 
-					// 1.  create a command object identifying the stored procedure
-					SqlCommand cmd = new SqlCommand("UpdateCommunicationFolderID", conn);
+					SqlTransaction transaction = conn.BeginTransaction();
 
-					// 2. set the command object so it knows to execute a stored procedure
-					cmd.CommandType = CommandType.StoredProcedure;
+					try
+					{
+						transaction = conn.BeginTransaction();
 
-					// 3. add parameter to command, which will be passed to the stored procedure
-					cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
-					cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+						// 1.  create a command object identifying the stored procedure
+						SqlCommand cmd = new SqlCommand("UpdateCommunicationFolderID", conn);
+						cmd.Transaction = transaction;
 
-					cmd.ExecuteNonQuery();
+						// 2. set the command object so it knows to execute a stored procedure
+						cmd.CommandType = CommandType.StoredProcedure;
+
+						// 3. add parameter to command, which will be passed to the stored procedure
+						cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
+						cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+
+						cmd.ExecuteNonQuery();
+						transaction.Commit();
+					}
+					catch (Exception e)
+					{
+						transaction.Rollback();
+					}
 				}
 			}
 
@@ -243,19 +295,31 @@ namespace ProjetMFTR.DataAccess
 			{
 				using (SqlConnection conn = new SqlConnection(ConnexionString))
 				{
-					conn.Open();
+					if (conn.State != ConnectionState.Open) { conn.Open(); }
 
-					// 1.  create a command object identifying the stored procedure
-					SqlCommand cmd = new SqlCommand("UpdateReferentId", conn);
+					SqlTransaction transaction = conn.BeginTransaction();
 
-					// 2. set the command object so it knows to execute a stored procedure
-					cmd.CommandType = CommandType.StoredProcedure;
+					try
+					{
 
-					// 3. add parameter to command, which will be passed to the stored procedure
-					cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
-					cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+						// 1.  create a command object identifying the stored procedure
+						SqlCommand cmd = new SqlCommand("UpdateReferentId", conn);
+						cmd.Transaction = transaction;
 
-					cmd.ExecuteNonQuery();
+						// 2. set the command object so it knows to execute a stored procedure
+						cmd.CommandType = CommandType.StoredProcedure;
+
+						// 3. add parameter to command, which will be passed to the stored procedure
+						cmd.Parameters.Add(new SqlParameter("@OldId", oldId));
+						cmd.Parameters.Add(new SqlParameter("@NewID", newId));
+
+						cmd.ExecuteNonQuery();
+						transaction.Commit();
+					}
+					catch (Exception e)
+					{
+						transaction.Rollback();
+					}
 				}
 			}
 		}

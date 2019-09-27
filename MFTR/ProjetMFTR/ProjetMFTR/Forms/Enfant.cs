@@ -13,7 +13,6 @@ namespace ProjetMFTR.Forms
 	{
 		#region Members
 
-		private Connexion.ConnexionActions<Entities.Enfants> connexionActions = new Connexion.ConnexionActions<Entities.Enfants>();
 		private Entities.Enfants CurrentChild;
 		private String CurrentDossierID;
 		private Entities.Options options;
@@ -141,7 +140,8 @@ namespace ProjetMFTR.Forms
 			if (CurrentChild != null)
 			{
 				AssignValues();
-				connexionActions.Update(CurrentChild);
+				Connexion.connexionActionsEnfants.Update(CurrentChild);
+				//Connexion.connexionActionsEnfants.ObjectContextUpdater();
 				return true;
 			}
 
@@ -163,7 +163,8 @@ namespace ProjetMFTR.Forms
 
 			CurrentChild = new Entities.Enfants();
 			AssignValues();
-			connexionActions.Add(CurrentChild);
+			Connexion.connexionActionsEnfants.Add(CurrentChild);
+			//Connexion.connexionActionsEnfants.ObjectContextUpdater();
 
 			OnChildAdded(new EventArgs());
 			return true;

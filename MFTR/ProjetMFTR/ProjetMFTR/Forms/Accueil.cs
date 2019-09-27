@@ -2,11 +2,13 @@
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using ProjetMFTR.DataAccess;
 
 namespace ProjetMFTR.Forms
 {
 	public partial class Accueil : MetroFramework.Forms.MetroForm
 	{
+
 		public Accueil()
 		{
 			Thread thread = new Thread(new ThreadStart(Loading));
@@ -32,6 +34,8 @@ namespace ProjetMFTR.Forms
 			BringToFront();
 			Activate();
 			lblVersion.Text += Assembly.GetExecutingAssembly().GetName().Version;
+
+			Connexion.Instance();
 		}
 
 		/// <summary>

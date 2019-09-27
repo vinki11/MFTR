@@ -8,8 +8,6 @@ namespace ProjetMFTR.Forms
 {
 	public partial class Options : MetroFramework.Forms.MetroForm
 	{
-		private Connexion.ConnexionActions<Entities.Options> connexionActions = new Connexion.ConnexionActions<Entities.Options>();
-
 		public Options()
 		{
 			InitializeComponent();
@@ -26,7 +24,7 @@ namespace ProjetMFTR.Forms
 			options.Path = txtPath.Text;
 			options.ParentPrefix = txtParentPrefix.Text;
 			options.KidsPrefix = txtKidsPrefix.Text;
-			connexionActions.Update(options);
+			Connexion.connexionActionsOptions.Update(options);
 		}
 	}
 }

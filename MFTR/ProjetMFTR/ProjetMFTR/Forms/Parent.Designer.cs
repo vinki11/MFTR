@@ -43,7 +43,6 @@
 			this.btnSave = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtUnite = new System.Windows.Forms.TextBox();
-			this.bsAdresse = new System.Windows.Forms.BindingSource(this.components);
 			this.txtPostalCode = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.txtPays = new System.Windows.Forms.TextBox();
@@ -58,37 +57,39 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.ParentContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.remove_phone = new System.Windows.Forms.ToolStripMenuItem();
+			this.add_phone = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnSaveAndClose = new System.Windows.Forms.Button();
 			this.tc = new System.Windows.Forms.TabControl();
 			this.tpTelephone = new System.Windows.Forms.TabPage();
 			this.gvPhone = new System.Windows.Forms.DataGridView();
+			this.tpReferent = new System.Windows.Forms.TabPage();
+			this.gvReferent = new System.Windows.Forms.DataGridView();
+			this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.pnlPicture = new MetroFramework.Controls.MetroPanel();
+			this.openFile = new System.Windows.Forms.OpenFileDialog();
+			this.label12 = new System.Windows.Forms.Label();
+			this.rtxtRemarque = new System.Windows.Forms.RichTextBox();
 			this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.telephone1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.posteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.precisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsTelephone = new System.Windows.Forms.BindingSource(this.components);
-			this.tpReferent = new System.Windows.Forms.TabPage();
-			this.gvReferent = new System.Windows.Forms.DataGridView();
 			this.referentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.organisationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.typeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsReferent = new System.Windows.Forms.BindingSource(this.components);
-			this.pnlPicture = new MetroFramework.Controls.MetroPanel();
-			this.openFile = new System.Windows.Forms.OpenFileDialog();
-			this.label12 = new System.Windows.Forms.Label();
-			this.rtxtRemarque = new System.Windows.Forms.RichTextBox();
+			this.bsAdresse = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).BeginInit();
 			this.ParentContextMenu.SuspendLayout();
 			this.tc.SuspendLayout();
 			this.tpTelephone.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
 			this.tpReferent.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gvReferent)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsReferent)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// txtNom
@@ -231,10 +232,6 @@
 			this.txtUnite.Size = new System.Drawing.Size(50, 20);
 			this.txtUnite.TabIndex = 31;
 			// 
-			// bsAdresse
-			// 
-			this.bsAdresse.DataSource = typeof(ProjetMFTR.Entities.Adresse);
-			// 
 			// txtPostalCode
 			// 
 			this.txtPostalCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAdresse, "CodePostal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -340,16 +337,24 @@
 			// ParentContextMenu
 			// 
 			this.ParentContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.remove_phone});
+            this.remove_phone,
+            this.add_phone});
 			this.ParentContextMenu.Name = "contextMenu";
-			this.ParentContextMenu.Size = new System.Drawing.Size(182, 26);
+			this.ParentContextMenu.Size = new System.Drawing.Size(187, 48);
 			// 
 			// remove_phone
 			// 
 			this.remove_phone.Name = "remove_phone";
-			this.remove_phone.Size = new System.Drawing.Size(181, 22);
+			this.remove_phone.Size = new System.Drawing.Size(186, 22);
 			this.remove_phone.Text = "Retirer un téléphone";
 			this.remove_phone.Click += new System.EventHandler(this.remove_phone_Click);
+			// 
+			// add_phone
+			// 
+			this.add_phone.Name = "add_phone";
+			this.add_phone.Size = new System.Drawing.Size(186, 22);
+			this.add_phone.Text = "Ajouter un téléphone";
+			this.add_phone.Click += new System.EventHandler(this.add_phone_Click);
 			// 
 			// btnSaveAndClose
 			// 
@@ -403,44 +408,13 @@
 			this.gvPhone.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
 			this.gvPhone.Location = new System.Drawing.Point(3, 3);
 			this.gvPhone.Name = "gvPhone";
+			this.gvPhone.ReadOnly = true;
 			this.gvPhone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.gvPhone.Size = new System.Drawing.Size(1113, 227);
 			this.gvPhone.TabIndex = 20;
+			this.gvPhone.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvPhone_CellDoubleClick);
 			this.gvPhone.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.gvPhone_RowContextMenuStripNeeded);
 			this.gvPhone.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvPhone_RowsAdded);
-			// 
-			// typeDataGridViewTextBoxColumn
-			// 
-			this.typeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-			this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-			this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-			this.typeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			// 
-			// telephone1DataGridViewTextBoxColumn
-			// 
-			this.telephone1DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.telephone1DataGridViewTextBoxColumn.DataPropertyName = "Telephone1";
-			this.telephone1DataGridViewTextBoxColumn.HeaderText = "Téléphone";
-			this.telephone1DataGridViewTextBoxColumn.Name = "telephone1DataGridViewTextBoxColumn";
-			// 
-			// posteDataGridViewTextBoxColumn
-			// 
-			this.posteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.posteDataGridViewTextBoxColumn.DataPropertyName = "Poste";
-			this.posteDataGridViewTextBoxColumn.HeaderText = "Poste";
-			this.posteDataGridViewTextBoxColumn.Name = "posteDataGridViewTextBoxColumn";
-			// 
-			// precisionDataGridViewTextBoxColumn
-			// 
-			this.precisionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.precisionDataGridViewTextBoxColumn.DataPropertyName = "Precision";
-			this.precisionDataGridViewTextBoxColumn.HeaderText = "Précision";
-			this.precisionDataGridViewTextBoxColumn.Name = "precisionDataGridViewTextBoxColumn";
-			// 
-			// bsTelephone
-			// 
-			this.bsTelephone.DataSource = typeof(ProjetMFTR.Entities.Telephone);
 			// 
 			// tpReferent
 			// 
@@ -478,13 +452,6 @@
 			this.gvReferent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
 			this.gvReferent.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvReferent_RowsAdded);
 			// 
-			// referentIDDataGridViewTextBoxColumn
-			// 
-			this.referentIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.referentIDDataGridViewTextBoxColumn.DataPropertyName = "Referent_ID";
-			this.referentIDDataGridViewTextBoxColumn.HeaderText = "Numéro référent";
-			this.referentIDDataGridViewTextBoxColumn.Name = "referentIDDataGridViewTextBoxColumn";
-			// 
 			// Prenom
 			// 
 			this.Prenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -496,24 +463,6 @@
 			this.Nom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.Nom.HeaderText = "Nom";
 			this.Nom.Name = "Nom";
-			// 
-			// organisationDataGridViewTextBoxColumn
-			// 
-			this.organisationDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.organisationDataGridViewTextBoxColumn.DataPropertyName = "Organisation";
-			this.organisationDataGridViewTextBoxColumn.HeaderText = "Organisation";
-			this.organisationDataGridViewTextBoxColumn.Name = "organisationDataGridViewTextBoxColumn";
-			// 
-			// typeDataGridViewTextBoxColumn1
-			// 
-			this.typeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.typeDataGridViewTextBoxColumn1.DataPropertyName = "Type";
-			this.typeDataGridViewTextBoxColumn1.HeaderText = "Type";
-			this.typeDataGridViewTextBoxColumn1.Name = "typeDataGridViewTextBoxColumn1";
-			// 
-			// bsReferent
-			// 
-			this.bsReferent.DataSource = typeof(ProjetMFTR.Entities.Referent);
 			// 
 			// pnlPicture
 			// 
@@ -552,6 +501,72 @@
 			this.rtxtRemarque.TabIndex = 36;
 			this.rtxtRemarque.Text = "";
 			// 
+			// typeDataGridViewTextBoxColumn
+			// 
+			this.typeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+			this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+			this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+			this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+			this.typeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			// 
+			// telephone1DataGridViewTextBoxColumn
+			// 
+			this.telephone1DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.telephone1DataGridViewTextBoxColumn.DataPropertyName = "Telephone1";
+			this.telephone1DataGridViewTextBoxColumn.HeaderText = "Téléphone";
+			this.telephone1DataGridViewTextBoxColumn.Name = "telephone1DataGridViewTextBoxColumn";
+			this.telephone1DataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// posteDataGridViewTextBoxColumn
+			// 
+			this.posteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.posteDataGridViewTextBoxColumn.DataPropertyName = "Poste";
+			this.posteDataGridViewTextBoxColumn.HeaderText = "Poste";
+			this.posteDataGridViewTextBoxColumn.Name = "posteDataGridViewTextBoxColumn";
+			this.posteDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// precisionDataGridViewTextBoxColumn
+			// 
+			this.precisionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.precisionDataGridViewTextBoxColumn.DataPropertyName = "Precision";
+			this.precisionDataGridViewTextBoxColumn.HeaderText = "Précision";
+			this.precisionDataGridViewTextBoxColumn.Name = "precisionDataGridViewTextBoxColumn";
+			this.precisionDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// bsTelephone
+			// 
+			this.bsTelephone.DataSource = typeof(ProjetMFTR.Entities.Telephone);
+			// 
+			// referentIDDataGridViewTextBoxColumn
+			// 
+			this.referentIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.referentIDDataGridViewTextBoxColumn.DataPropertyName = "Referent_ID";
+			this.referentIDDataGridViewTextBoxColumn.HeaderText = "Numéro référent";
+			this.referentIDDataGridViewTextBoxColumn.Name = "referentIDDataGridViewTextBoxColumn";
+			// 
+			// organisationDataGridViewTextBoxColumn
+			// 
+			this.organisationDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.organisationDataGridViewTextBoxColumn.DataPropertyName = "Organisation";
+			this.organisationDataGridViewTextBoxColumn.HeaderText = "Organisation";
+			this.organisationDataGridViewTextBoxColumn.Name = "organisationDataGridViewTextBoxColumn";
+			// 
+			// typeDataGridViewTextBoxColumn1
+			// 
+			this.typeDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.typeDataGridViewTextBoxColumn1.DataPropertyName = "Type";
+			this.typeDataGridViewTextBoxColumn1.HeaderText = "Type";
+			this.typeDataGridViewTextBoxColumn1.Name = "typeDataGridViewTextBoxColumn1";
+			// 
+			// bsReferent
+			// 
+			this.bsReferent.DataSource = typeof(ProjetMFTR.Entities.Referent);
+			// 
+			// bsAdresse
+			// 
+			this.bsAdresse.DataSource = typeof(ProjetMFTR.Entities.Adresse);
+			// 
 			// Parent
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -580,15 +595,15 @@
 			this.Text = "Parent";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).EndInit();
 			this.ParentContextMenu.ResumeLayout(false);
 			this.tc.ResumeLayout(false);
 			this.tpTelephone.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvPhone)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
 			this.tpReferent.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gvReferent)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTelephone)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsReferent)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsAdresse)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -629,10 +644,6 @@
 		private System.Windows.Forms.TabControl tc;
 		private System.Windows.Forms.TabPage tpTelephone;
 		private System.Windows.Forms.DataGridView gvPhone;
-		private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn telephone1DataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn posteDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn precisionDataGridViewTextBoxColumn;
 		private System.Windows.Forms.TabPage tpReferent;
 		private System.Windows.Forms.BindingSource bsReferent;
 		private System.Windows.Forms.DataGridView gvReferent;
@@ -645,5 +656,10 @@
 		private System.Windows.Forms.OpenFileDialog openFile;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.RichTextBox rtxtRemarque;
+		private System.Windows.Forms.ToolStripMenuItem add_phone;
+		private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn telephone1DataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn posteDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn precisionDataGridViewTextBoxColumn;
 	}
 }
