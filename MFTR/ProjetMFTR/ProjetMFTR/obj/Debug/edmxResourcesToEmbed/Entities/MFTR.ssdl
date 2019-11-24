@@ -27,6 +27,16 @@
     <Property Name="Note" Type="nvarchar(max)" />
     <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
+  <EntityType Name="AuthentificationLog">
+    <Key>
+      <PropertyRef Name="IDAuth" />
+    </Key>
+    <Property Name="IDAuth" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateAuth" Type="datetime" Nullable="false" />
+    <Property Name="UserAttempt" Type="varchar" MaxLength="120" />
+    <Property Name="PassAttempt" Type="varchar" MaxLength="120" />
+    <Property Name="SessionID" Type="varchar" MaxLength="80" />
+  </EntityType>
   <EntityType Name="Communication">
     <Key>
       <PropertyRef Name="Communication_ID" />
@@ -82,6 +92,8 @@
     <Property Name="intervenant_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nom" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="actif" Type="bit" />
+    <Property Name="Username" Type="varchar" MaxLength="255" />
+    <Property Name="Password" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="LienReferrent">
     <Key>
@@ -119,10 +131,24 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
     <Property Name="Parent_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Adulte_ID" Type="int" />
     <Property Name="Statut" Type="nchar" MaxLength="50" />
-    <Property Name="Sexe" Type="nchar" MaxLength="10" />
+    <Property Name="Sexe" Type="varchar" MaxLength="10" />
     <Property Name="Naissance" Type="date" />
     <Property Name="Photo" Type="nvarchar" MaxLength="250" />
     <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="IDPayments" />
+    </Key>
+    <Property Name="IDPayments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatePayment" Type="datetime" Nullable="false" />
+    <Property Name="Carrier" Type="nvarchar" MaxLength="120" />
+    <Property Name="Service" Type="varchar" MaxLength="50" />
+    <Property Name="IDKid" Type="int" Nullable="false" />
+    <Property Name="IDFolder" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IDParent" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="IDIntervenant" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Referent">
     <Key>
@@ -233,6 +259,54 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
       </Principal>
       <Dependent Role="Enfants">
         <PropertyRef Name="Dossier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDFold__1A34DF26">
+    <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDFolder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDInte__1B29035F">
+    <End Role="Intervenant" Type="Self.Intervenant" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intervenant">
+        <PropertyRef Name="intervenant_id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDIntervenant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDKid__1940BAED">
+    <End Role="Enfants" Type="Self.Enfants" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enfants">
+        <PropertyRef Name="Enfant_ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDKid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDPare__184C96B4">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDParent" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -385,6 +459,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
   <EntityContainer Name="MFTRModelStoreContainer">
     <EntitySet Name="Adresse" EntityType="Self.Adresse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adultes" EntityType="Self.Adultes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuthentificationLog" EntityType="Self.AuthentificationLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Communication" EntityType="Self.Communication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Dossier" EntityType="Self.Dossier" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Enfants" EntityType="Self.Enfants" Schema="dbo" store:Type="Tables" />
@@ -392,6 +467,7 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
     <EntitySet Name="LienReferrent" EntityType="Self.LienReferrent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Options" EntityType="Self.Options" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Referent" EntityType="Self.Referent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Suivi" EntityType="Self.Suivi" Schema="dbo" store:Type="Tables" />
@@ -416,6 +492,22 @@ avertissement 6002: La table/vue 'MFTR.dbo.new_table' n'a pas de clé primaire d
     <AssociationSet Name="Enfants$Dossier2Enfants" Association="Self.Enfants$Dossier2Enfants">
       <End Role="Dossier" EntitySet="Dossier" />
       <End Role="Enfants" EntitySet="Enfants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDFold__1A34DF26" Association="Self.FK__Payments__IDFold__1A34DF26">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDInte__1B29035F" Association="Self.FK__Payments__IDInte__1B29035F">
+      <End Role="Intervenant" EntitySet="Intervenant" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDKid__1940BAED" Association="Self.FK__Payments__IDKid__1940BAED">
+      <End Role="Enfants" EntitySet="Enfants" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDPare__184C96B4" Association="Self.FK__Payments__IDPare__184C96B4">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="Payments" EntitySet="Payments" />
     </AssociationSet>
     <AssociationSet Name="FK__Suivi__dossier_i__38EE7070" Association="Self.FK__Suivi__dossier_i__38EE7070">
       <End Role="Dossier" EntitySet="Dossier" />

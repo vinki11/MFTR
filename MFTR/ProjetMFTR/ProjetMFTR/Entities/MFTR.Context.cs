@@ -41,5 +41,7 @@ namespace ProjetMFTR.Entities
         public virtual DbSet<new_table> new_table { get; set; }
         public virtual DbSet<Intervenant> Intervenant { get; set; }
         public virtual DbSet<Options> Options { get; set; }
+        public virtual DbSet<Payments> Payments { get; set; }
+        public virtual DbSet<AuthentificationLog> AuthentificationLog { get; set; }
     }
 }

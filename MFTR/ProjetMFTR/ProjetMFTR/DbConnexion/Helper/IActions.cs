@@ -10,6 +10,7 @@ namespace ProjetMFTR.DbConnexion.Helper
 		//TEntity GetSinglEntity(Func<TEntity, bool> predicate);
 		void Print(TEntity entity, PrintDialog t);
 		bool Add(TEntity entity);
+		//async Task<List<TEntity>> GetAllAsync();
 		bool Update(TEntity entity);
 		void UpdateFolderIDs(string oldId, string newID);
 	}

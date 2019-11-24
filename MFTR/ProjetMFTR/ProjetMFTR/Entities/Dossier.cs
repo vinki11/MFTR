@@ -22,6 +22,7 @@ namespace ProjetMFTR.Entities
             this.Enfants = new HashSet<Enfants>();
             this.Suivi = new HashSet<Suivi>();
             this.Services = new HashSet<Services>();
+            this.Payments = new HashSet<Payments>();
         }
     
         public string Dossier_ID { get; set; }
@@ -42,5 +43,7 @@ namespace ProjetMFTR.Entities
         public virtual ICollection<Suivi> Suivi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Services> Services { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payments> Payments { get; set; }
     }
 }

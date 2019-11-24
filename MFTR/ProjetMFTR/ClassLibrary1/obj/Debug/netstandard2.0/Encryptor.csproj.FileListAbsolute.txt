@@ -1,0 +1,9 @@
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\bin\Debug\netstandard2.0\Encryptor.deps.json
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\bin\Debug\netstandard2.0\Encryptor.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\obj\Debug\netstandard2.0\Encryptor.csprojResolveAssemblyReference.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\obj\Debug\netstandard2.0\Encryptor.csproj.CoreCompileInputs.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\obj\Debug\netstandard2.0\Encryptor.AssemblyInfoInputs.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\obj\Debug\netstandard2.0\Encryptor.AssemblyInfo.cs
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\bin\Debug\netstandard2.0\Encryptor.pdb
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\obj\Debug\netstandard2.0\Encryptor.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\ClassLibrary1\obj\Debug\netstandard2.0\Encryptor.pdb

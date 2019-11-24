@@ -19,6 +19,7 @@ namespace ProjetMFTR.Entities
         {
             this.LienReferrent = new HashSet<LienReferrent>();
             this.Transporteur = new HashSet<Transporteur>();
+            this.Payments = new HashSet<Payments>();
         }
     
         public int Parent_ID { get; set; }
@@ -34,5 +35,7 @@ namespace ProjetMFTR.Entities
         public virtual ICollection<LienReferrent> LienReferrent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transporteur> Transporteur { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payments> Payments { get; set; }
     }
 }

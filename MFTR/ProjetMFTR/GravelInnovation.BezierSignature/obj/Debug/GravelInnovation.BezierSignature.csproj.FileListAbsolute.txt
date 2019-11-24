@@ -1,0 +1,10 @@
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.csprojResolveAssemblyReference.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.Properties.Resources.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.SignatureBox.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.csproj.GenerateResource.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.csproj.CoreCompileInputs.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\bin\Debug\GravelInnovation.BezierSignature.dll.config
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\bin\Debug\GravelInnovation.BezierSignature.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\bin\Debug\GravelInnovation.BezierSignature.pdb
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\GravelInnovation.BezierSignature\obj\Debug\GravelInnovation.BezierSignature.pdb

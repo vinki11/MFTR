@@ -1,0 +1,14 @@
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.Form1.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.Properties.Resources.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.csproj.GenerateResource.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.csproj.CoreCompileInputs.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\bin\Debug\TestSignature.cs.exe.config
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\bin\Debug\TestSignature.cs.exe
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\bin\Debug\TestSignature.cs.pdb
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\bin\Debug\GravelInnovation.BezierSignature.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\bin\Debug\GravelInnovation.BezierSignature.pdb
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\bin\Debug\GravelInnovation.BezierSignature.dll.config
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.csprojResolveAssemblyReference.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.csproj.CopyComplete
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.exe
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\TestSignature.cs\obj\Debug\TestSignature.cs.pdb

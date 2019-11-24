@@ -18,7 +18,7 @@ namespace ProjetMFTR.Entities.Helper
 				Interlocutor interlocutor = new Interlocutor();
 				interlocutor.FirstName = adult.Prenom;
 				interlocutor.Name = adult.Nom;
-				interlocutor.FullName = adult.FullName;
+				interlocutor.FullName = AdultWrapper.GetFullName(adult);
 				interlocutor.Adulte_ID = adult.Adulte_ID;
 
 				interlocutors.Add(interlocutor);

@@ -193,6 +193,8 @@
     <EntitySetMapping Name="Intervenant">
       <EntityTypeMapping TypeName="MFTRModel.Intervenant">
         <MappingFragment StoreEntitySet="Intervenant">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="actif" ColumnName="actif" />
           <ScalarProperty Name="nom" ColumnName="nom" />
           <ScalarProperty Name="intervenant_id" ColumnName="intervenant_id" />
@@ -206,6 +208,32 @@
           <ScalarProperty Name="ParentPrefix" ColumnName="ParentPrefix" />
           <ScalarProperty Name="Path" ColumnName="Path" />
           <ScalarProperty Name="IdOptions" ColumnName="IdOptions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="MFTRModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="IDIntervenant" ColumnName="IDIntervenant" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IDParent" ColumnName="IDParent" />
+          <ScalarProperty Name="IDFolder" ColumnName="IDFolder" />
+          <ScalarProperty Name="IDKid" ColumnName="IDKid" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="Carrier" ColumnName="Carrier" />
+          <ScalarProperty Name="DatePayment" ColumnName="DatePayment" />
+          <ScalarProperty Name="IDPayments" ColumnName="IDPayments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuthentificationLog">
+      <EntityTypeMapping TypeName="MFTRModel.AuthentificationLog">
+        <MappingFragment StoreEntitySet="AuthentificationLog">
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="PassAttempt" ColumnName="PassAttempt" />
+          <ScalarProperty Name="UserAttempt" ColumnName="UserAttempt" />
+          <ScalarProperty Name="DateAuth" ColumnName="DateAuth" />
+          <ScalarProperty Name="IDAuth" ColumnName="IDAuth" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

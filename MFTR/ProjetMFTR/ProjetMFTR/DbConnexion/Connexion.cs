@@ -8,8 +8,10 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Encryptor;
 using ProjetMFTR.DbConnexion.Helper;
 
 namespace ProjetMFTR.DataAccess
@@ -34,6 +36,12 @@ namespace ProjetMFTR.DataAccess
 		public static ConnexionActions<Entities.Communication> connexionActionsCommunication = new ConnexionActions<Entities.Communication>();
 		public static ConnexionActions<Entities.Telephone> connexionActionsTelephone = new ConnexionActions<Entities.Telephone>();
 		public static ConnexionActions<Entities.Options> connexionActionsOptions = new ConnexionActions<Entities.Options>();
+		public static ConnexionActions<Entities.Payments> connexionActionsPayments = new ConnexionActions<Entities.Payments>();
+		public static ConnexionActions<Entities.AuthentificationLog> connexionActionsAuthentificationLog = new ConnexionActions<Entities.AuthentificationLog>();
+
+		public static string SecretKey = "AKFJTIRUGJBMNQST";
+
+		public static BCEngine BCEngine => new BCEngine(Encoding.ASCII);
 
 		//Voir si on garde en singleton ou non (ne permet pas de refresh les instances et d'avoir du data à jour
 		/// <summary>
@@ -51,7 +59,10 @@ namespace ProjetMFTR.DataAccess
 				if (File.Exists(destinationFile))
 				{
 					string[] lines = File.ReadAllLines(destinationFile);
-					m_Instance.Database.Connection.ConnectionString = lines[0];
+					SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+					builder.ConnectionString = lines[0];
+					builder.MultipleActiveResultSets = true;
+					m_Instance.Database.Connection.ConnectionString = builder.ConnectionString;
 					ConnexionString = lines[0];
 					m_Instance.Configuration.LazyLoadingEnabled = true;
 				}
@@ -71,15 +82,35 @@ namespace ProjetMFTR.DataAccess
 			private PrintDocument pdoc = null;
 			private string strPrint = "";
 			private Entities.Suivi suivi;
+			private bool m_CurrentlyInAsync = false;
+
+			public Task<List<TEntity>> GetAllAsync()
+			{
+
+				TaskCompletionSource<List<TEntity>> tcs = new TaskCompletionSource<List<TEntity>>();
+
+				if (!m_CurrentlyInAsync && tcs.Task.Status == TaskStatus.WaitingForActivation)
+				{
+					m_CurrentlyInAsync = true;
+					Task.Run(() =>
+					{
+						var results = Instance().Set<TEntity>().ToList();
+						tcs.SetResult(results);
+						m_CurrentlyInAsync = false;
+					});
+				}
+
+				return tcs.Task;
+			}
 
 			public bool Add(TEntity entity)
 			{
 				try
 				{
-					Instance().Entry(entity).State = System.Data.Entity.EntityState.Modified;
+					Instance().Set<TEntity>().Attach(entity);
+					Instance().Entry(entity).State = System.Data.Entity.EntityState.Added;
 					Instance().Set<TEntity>().Add(entity);
 					Instance().SaveChanges();
-					ObjectContextUpdater();
 					return true;
 				}
 				catch (Exception e)
@@ -103,7 +134,6 @@ namespace ProjetMFTR.DataAccess
 					Instance().Entry(entity).State = System.Data.Entity.EntityState.Modified;
 					Instance().Entry(entity).OriginalValues.SetValues(entity);
 					Instance().SaveChanges();
-					ObjectContextUpdater();
 					return true;
 				}
 				catch (Exception e)
@@ -180,7 +210,7 @@ namespace ProjetMFTR.DataAccess
 					font,
 					brush, startX, startY + Offset);
 					Offset = Offset + 20;
-					graphics.DrawString("Enfant :" + Instance().Enfants.Where((x) => x.Enfant_ID.Equals(suivi.enfant_id)).FirstOrDefault().Name,
+					graphics.DrawString("Enfant :" + Entities.Helper.ChildWrapper.GetName(Instance().Enfants.Where((x) => x.Enfant_ID.Equals(suivi.enfant_id)).FirstOrDefault()),
 					font,
 					brush, startX, startY + Offset);
 					Offset = Offset + 20;

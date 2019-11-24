@@ -71,6 +71,7 @@
     <NavigationProperty Name="Enfants" Relationship="Self.Enfants_Dossier2Enfants" FromRole="Dossier" ToRole="Enfants" />
     <NavigationProperty Name="Suivi" Relationship="Self.FK__Suivi__dossier_i__25DB9BFC" FromRole="Dossier" ToRole="Suivi" />
     <NavigationProperty Name="Services" Relationship="Self.Services_Dossier2Services" FromRole="Dossier" ToRole="Services" />
+    <NavigationProperty Name="Payments" Relationship="MFTRModel.FK__Payments__IDFold__1A34DF26" FromRole="Dossier" ToRole="Payments" />
   </EntityType>
   <EntityType Name="Enfants">
     <Key>
@@ -89,6 +90,7 @@
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="Dossier" Relationship="Self.Enfants_Dossier2Enfants" FromRole="Enfants" ToRole="Dossier" />
     <NavigationProperty Name="Suivi" Relationship="Self.FK__Suivi__enfant_id__24E777C3" FromRole="Enfants" ToRole="Suivi" />
+    <NavigationProperty Name="Payments" Relationship="MFTRModel.FK__Payments__IDKid__1940BAED" FromRole="Enfants" ToRole="Payments" />
   </EntityType>
   <EntityType Name="LienReferrent">
     <Key>
@@ -109,13 +111,14 @@
     <Property Name="Parent_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Adulte_ID" Type="Int32" />
     <Property Name="Statut" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Sexe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Sexe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="Naissance" Type="DateTime" Precision="0" />
     <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="Adultes" Relationship="Self.Parent_AdultesParent" FromRole="Parent" ToRole="Adultes" />
     <NavigationProperty Name="LienReferrent" Relationship="Self.LienReferrent_ParentLienReferrent" FromRole="Parent" ToRole="LienReferrent" />
     <NavigationProperty Name="Transporteur" Relationship="Self.FK_Transporteur_Parent" FromRole="Parent" ToRole="Transporteur" />
+    <NavigationProperty Name="Payments" Relationship="MFTRModel.FK__Payments__IDPare__184C96B4" FromRole="Parent" ToRole="Payments" />
   </EntityType>
   <EntityType Name="Referent">
     <Key>
@@ -456,6 +459,24 @@
       <End Role="Communication" EntitySet="Communication" />
     </AssociationSet>
     <EntitySet Name="Options" EntityType="MFTRModel.Options" />
+    <EntitySet Name="Payments" EntityType="MFTRModel.Payments" />
+    <AssociationSet Name="FK__Payments__IDFold__1A34DF26" Association="MFTRModel.FK__Payments__IDFold__1A34DF26">
+      <End Role="Dossier" EntitySet="Dossier" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDKid__1940BAED" Association="MFTRModel.FK__Payments__IDKid__1940BAED">
+      <End Role="Enfants" EntitySet="Enfants" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDInte__1B29035F" Association="MFTRModel.FK__Payments__IDInte__1B29035F">
+      <End Role="Intervenant" EntitySet="Intervenant" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__IDPare__184C96B4" Association="MFTRModel.FK__Payments__IDPare__184C96B4">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <EntitySet Name="AuthentificationLog" EntityType="MFTRModel.AuthentificationLog" />
   </EntityContainer>
   <EntityType Name="Intervenant">
     <Key>
@@ -466,6 +487,9 @@
     <Property Name="actif" Type="Boolean" />
     <NavigationProperty Name="Suivi" Relationship="MFTRModel.FK__Suivi__intervena__370627FE" FromRole="Intervenant" ToRole="Suivi" />
     <NavigationProperty Name="Communication" Relationship="MFTRModel.FK_Communication_IdIntervenant" FromRole="Intervenant" ToRole="Communication" />
+    <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Payments" Relationship="MFTRModel.FK__Payments__IDInte__1B29035F" FromRole="Intervenant" ToRole="Payments" />
   </EntityType>
   <Association Name="FK__Suivi__intervena__370627FE">
     <End Type="MFTRModel.Intervenant" Role="Intervenant" Multiplicity="1" />
@@ -499,5 +523,81 @@
     <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="ParentPrefix" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="KidsPrefix" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="IDPayments" />
+    </Key>
+    <Property Name="IDPayments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatePayment" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Carrier" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="Service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IDKid" Type="Int32" Nullable="false" />
+    <Property Name="IDFolder" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IDParent" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="IDIntervenant" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dossier" Relationship="MFTRModel.FK__Payments__IDFold__1A34DF26" FromRole="Payments" ToRole="Dossier" />
+    <NavigationProperty Name="Enfants" Relationship="MFTRModel.FK__Payments__IDKid__1940BAED" FromRole="Payments" ToRole="Enfants" />
+    <NavigationProperty Name="Intervenant" Relationship="MFTRModel.FK__Payments__IDInte__1B29035F" FromRole="Payments" ToRole="Intervenant" />
+    <NavigationProperty Name="Parent" Relationship="MFTRModel.FK__Payments__IDPare__184C96B4" FromRole="Payments" ToRole="Parent" />
+  </EntityType>
+  <Association Name="FK__Payments__IDFold__1A34DF26">
+    <End Type="MFTRModel.Dossier" Role="Dossier" Multiplicity="1" />
+    <End Type="MFTRModel.Payments" Role="Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dossier">
+        <PropertyRef Name="Dossier_ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDFolder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDKid__1940BAED">
+    <End Type="MFTRModel.Enfants" Role="Enfants" Multiplicity="1" />
+    <End Type="MFTRModel.Payments" Role="Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enfants">
+        <PropertyRef Name="Enfant_ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDKid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDInte__1B29035F">
+    <End Type="MFTRModel.Intervenant" Role="Intervenant" Multiplicity="1" />
+    <End Type="MFTRModel.Payments" Role="Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intervenant">
+        <PropertyRef Name="intervenant_id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDIntervenant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__IDPare__184C96B4">
+    <End Type="MFTRModel.Parent" Role="Parent" Multiplicity="1" />
+    <End Type="MFTRModel.Payments" Role="Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="IDParent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AuthentificationLog">
+    <Key>
+      <PropertyRef Name="IDAuth" />
+    </Key>
+    <Property Name="IDAuth" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateAuth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserAttempt" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="PassAttempt" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="SessionID" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

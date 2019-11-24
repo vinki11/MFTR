@@ -1,0 +1,11 @@
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\bin\Debug\Signature.pdb
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\bin\Debug\Signature.xml
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.Resources.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.vbproj.GenerateResource.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.vbproj.CoreCompileInputs.cache
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.xml
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.pdb
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.PictureBox.resources
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\bin\Debug\Signature.dll.config
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\bin\Debug\Signature.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.dll

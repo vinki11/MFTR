@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProjetMFTR</RootNamespace>
     <AssemblyName>ProjetMFTR</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -17,7 +17,7 @@
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Background</UpdateMode>
+    <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
@@ -27,13 +27,14 @@
     <ProductName>Maison de la famille</ProductName>
     <PublisherName>DLA</PublisherName>
     <SuiteName>Maison de la famille</SuiteName>
-    <MinimumRequiredVersion>1.0.1.4</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.1.5</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.0.1.4</ApplicationVersion>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.1.5</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,7 +67,13 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\sda_icone.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -119,6 +126,9 @@
     <Compile Include="Entities\Adultes.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\AuthentificationLog.cs">
+      <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Communication.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
@@ -128,8 +138,11 @@
     <Compile Include="Entities\Enfants.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Helper\ChildWrapper.cs" />
+    <Compile Include="Entities\Helper\AdultWrapper.cs" />
     <Compile Include="Entities\Helper\InterlocutorServices.cs" />
     <Compile Include="Entities\Helper\Interlocutor.cs" />
+    <Compile Include="Entities\Helper\PaymentViewModel.cs" />
     <Compile Include="Entities\Intervenant.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
@@ -160,6 +173,9 @@
     <Compile Include="Entities\Parent.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Payments.cs">
+      <DependentUpon>MFTR.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Referent.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
@@ -178,149 +194,164 @@
     <Compile Include="Entities\Transporteur.cs">
       <DependentUpon>MFTR.tt</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ParentPhone.cs">
+    <Compile Include="Windows\Main\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ParentPhone.Designer.cs">
+    <Compile Include="Windows\Main\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Managing\ParentPhone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Managing\ParentPhone.Designer.cs">
       <DependentUpon>ParentPhone.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Options.cs">
+    <Compile Include="Windows\Options\Options.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Options.Designer.cs">
+    <Compile Include="Windows\Options\Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Accueil.cs">
+    <Compile Include="Windows\Main\Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Accueil.Designer.cs">
+    <Compile Include="Windows\Main\Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Referent.cs">
+    <Compile Include="Windows\Managing\Referent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Referent.Designer.cs">
+    <Compile Include="Windows\Managing\Referent.Designer.cs">
       <DependentUpon>Referent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Communication.cs">
+    <Compile Include="Windows\Communication\Communication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Communication.Designer.cs">
+    <Compile Include="Windows\Communication\Communication.Designer.cs">
       <DependentUpon>Communication.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DeleteFolder.cs">
+    <Compile Include="Windows\Managing\DeleteFolder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DeleteFolder.Designer.cs">
+    <Compile Include="Windows\Managing\DeleteFolder.Designer.cs">
       <DependentUpon>DeleteFolder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dossier.cs">
+    <Compile Include="Windows\Managing\Dossier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Dossier.Designer.cs">
+    <Compile Include="Windows\Managing\Dossier.Designer.cs">
       <DependentUpon>Dossier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DossierNouveau.cs">
+    <Compile Include="Windows\Managing\DossierNouveau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DossierNouveau.Designer.cs">
+    <Compile Include="Windows\Managing\DossierNouveau.Designer.cs">
       <DependentUpon>DossierNouveau.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmSplashScreen.cs">
+    <Compile Include="Windows\Main\frmSplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmSplashScreen.Designer.cs">
+    <Compile Include="Windows\Main\frmSplashScreen.Designer.cs">
       <DependentUpon>frmSplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Services.cs">
+    <Compile Include="Windows\Managing\Services.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Services.designer.cs">
+    <Compile Include="Windows\Managing\Services.designer.cs">
       <DependentUpon>Services.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Enfant.cs">
+    <Compile Include="Windows\Managing\Enfant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Enfant.designer.cs">
+    <Compile Include="Windows\Managing\Enfant.designer.cs">
       <DependentUpon>Enfant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ReferentList.cs">
+    <Compile Include="Windows\Managing\ReferentList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ReferentList.Designer.cs">
+    <Compile Include="Windows\Managing\ReferentList.Designer.cs">
       <DependentUpon>ReferentList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SuivisList.cs">
+    <Compile Include="Windows\Following\SuivisList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SuivisList.Designer.cs">
+    <Compile Include="Windows\Following\SuivisList.Designer.cs">
       <DependentUpon>SuivisList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Intervenant.cs">
+    <Compile Include="Windows\Employes\Intervenant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Intervenant.Designer.cs">
+    <Compile Include="Windows\Employes\Intervenant.Designer.cs">
       <DependentUpon>Intervenant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Parent.cs">
+    <Compile Include="Windows\Managing\Parent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Parent.designer.cs">
+    <Compile Include="Windows\Managing\Parent.designer.cs">
       <DependentUpon>Parent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\Suivi.cs">
+    <Compile Include="Windows\Following\Suivi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Suivi.Designer.cs">
+    <Compile Include="Windows\Following\Suivi.Designer.cs">
       <DependentUpon>Suivi.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\MessageBoxManager.cs" />
     <Compile Include="Resources\ResourcesString.cs" />
-    <EmbeddedResource Include="Forms\ParentPhone.resx">
+    <Compile Include="Windows\Payments\Payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Payments\Payment.Designer.cs">
+      <DependentUpon>Payment.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Windows\Main\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Managing\ParentPhone.resx">
       <DependentUpon>ParentPhone.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Options.resx">
+    <EmbeddedResource Include="Windows\Options\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Accueil.resx">
+    <EmbeddedResource Include="Windows\Main\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Referent.resx">
+    <EmbeddedResource Include="Windows\Managing\Referent.resx">
       <DependentUpon>Referent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Communication.resx">
+    <EmbeddedResource Include="Windows\Communication\Communication.resx">
       <DependentUpon>Communication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DeleteFolder.resx">
+    <EmbeddedResource Include="Windows\Managing\DeleteFolder.resx">
       <DependentUpon>DeleteFolder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Dossier.resx">
+    <EmbeddedResource Include="Windows\Managing\Dossier.resx">
       <DependentUpon>Dossier.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DossierNouveau.resx">
+    <EmbeddedResource Include="Windows\Managing\DossierNouveau.resx">
       <DependentUpon>DossierNouveau.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSplashScreen.resx">
+    <EmbeddedResource Include="Windows\Main\frmSplashScreen.resx">
       <DependentUpon>frmSplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Services.resx">
+    <EmbeddedResource Include="Windows\Managing\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Enfant.resx">
+    <EmbeddedResource Include="Windows\Managing\Enfant.resx">
       <DependentUpon>Enfant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReferentList.resx">
+    <EmbeddedResource Include="Windows\Managing\ReferentList.resx">
       <DependentUpon>ReferentList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SuivisList.resx">
+    <EmbeddedResource Include="Windows\Following\SuivisList.resx">
       <DependentUpon>SuivisList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Intervenant.resx">
+    <EmbeddedResource Include="Windows\Employes\Intervenant.resx">
       <DependentUpon>Intervenant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Parent.resx">
+    <EmbeddedResource Include="Windows\Managing\Parent.resx">
       <DependentUpon>Parent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -333,8 +364,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\Suivi.resx">
+    <EmbeddedResource Include="Windows\Following\Suivi.resx">
       <DependentUpon>Suivi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Payments\Payment.resx">
+      <DependentUpon>Payment.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Entities\MFTR.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -349,11 +383,13 @@
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Communication.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Dossier.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Enfants.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Helper.PaymentViewModel.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Intervenant.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.LienReferrent.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.MFTR.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.new_table.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Parent.datasource" />
+    <None Include="Properties\DataSources\ProjetMFTR.Entities.Payments.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Referent.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Services.datasource" />
     <None Include="Properties\DataSources\ProjetMFTR.Entities.Suivi.datasource" />
@@ -413,6 +449,9 @@
     <Content Include="Resources\icone_suivi_64.png" />
     <None Include="Resources\images.jpg" />
     <Content Include="Resources\sda_icone.ico" />
+    <Content Include="Sql\1.0.0.9.sql" />
+    <Content Include="Sql\1.0.0.8.sql" />
+    <Content Include="Sql\1.0.0.7.sql" />
     <Content Include="Sql\1.0.0.6.sql" />
     <Content Include="Sql\1.0.0.5.sql" />
     <Content Include="Sql\1.0.0.4.sql" />
@@ -424,6 +463,17 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Encryptor.csproj">
+      <Project>{5098ADA1-A936-4E6E-9EC4-37AD93E0DC62}</Project>
+      <Name>Encryptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Signature\Signature.vbproj">
+      <Project>{2c8c06e4-fa16-4485-8b31-778eea7a1b70}</Project>
+      <Name>Signature</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
