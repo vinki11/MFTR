@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="1986560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjetMFTR.exe" size="1987072">
       <assemblyIdentity name="ProjetMFTR" version="1.0.2.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/gTcch+Xfu+fepP4vQHGEhM0TdvUDDsugyrdVeE7dac=</dsig:DigestValue>
+        <dsig:DigestValue>fMy+zSXwf/qfD4Tu8sVzQwL2crGj/j+czqEafVTQpj0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -194,7 +194,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2Xg1wwq7k5nPthr0WQernbduXc7qbqzwk6gwcjpArg0=</dsig:DigestValue>
+        <dsig:DigestValue>sfTJC6iW1qwuKzv70dOqdijoXzStefEbNRLUY6yN71s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -408,13 +408,13 @@
       <dsig:DigestValue>49h7R+EyB3KQG/7avMkrwGMTaZRMGlINCbDahgL8qZ8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sql\1.0.0.9.sql" size="1352">
+  <file name="Sql\1.0.0.9.sql" size="1952">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>GmBpVmFkQ5kzCOjj24ZVsqydV1XeHAPdmyb+mFi6ycM=</dsig:DigestValue>
+      <dsig:DigestValue>vN/2fQGcmdxpAKPyTSxO1OWsizNhuqeNjFgoQqSfdow=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

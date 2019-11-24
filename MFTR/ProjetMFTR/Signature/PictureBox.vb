@@ -62,11 +62,12 @@
             End If
         End Using
     End Sub
-    'Private Sub cmdClearInk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdClearInk.Click
 
-    '    moRememberInk.Clear()
-    '    PictureBox.Refresh()
-    'End Sub
+    Public Sub ClearSignature()
+
+        moRememberInk.Clear()
+        Me.Refresh()
+    End Sub
 
     Private mdLastSignatureUpdate As Nullable(Of Date) = Nothing
 

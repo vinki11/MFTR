@@ -9,3 +9,4 @@ C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.Pict
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\bin\Debug\Signature.dll.config
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\bin\Debug\Signature.dll
 C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.dll
+C:\Users\lafra\Documents\MFTR\MFTR\ProjetMFTR\Signature\obj\Debug\Signature.vbprojResolveAssemblyReference.cache

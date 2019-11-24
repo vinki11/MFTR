@@ -37,5 +37,10 @@ namespace ProjetMFTR.Windows.Payments
 		{
 			//Do payment
 		}
+
+		private void btnClearSignature_Click(object sender, EventArgs e)
+		{
+			SignatureBox.ClearSignature();
+		}
 	}
 }

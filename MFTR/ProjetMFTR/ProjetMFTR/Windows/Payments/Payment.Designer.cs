@@ -56,6 +56,7 @@
 			this.SignatureBox = new Signature.PictureBox();
 			this.btnPayment = new MetroFramework.Controls.MetroButton();
 			this.btnCancel = new MetroFramework.Controls.MetroButton();
+			this.btnClearSignature = new MetroFramework.Controls.MetroButton();
 			((System.ComponentModel.ISupportInitialize)(this.SignatureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -473,11 +474,22 @@
 			this.btnCancel.UseSelectable = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
+			// btnClearSignature
+			// 
+			this.btnClearSignature.Location = new System.Drawing.Point(826, 194);
+			this.btnClearSignature.Name = "btnClearSignature";
+			this.btnClearSignature.Size = new System.Drawing.Size(148, 23);
+			this.btnClearSignature.TabIndex = 29;
+			this.btnClearSignature.Text = "Effacer signature";
+			this.btnClearSignature.UseSelectable = true;
+			this.btnClearSignature.Click += new System.EventHandler(this.btnClearSignature_Click);
+			// 
 			// Payment
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1054, 397);
+			this.Controls.Add(this.btnClearSignature);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnPayment);
 			this.Controls.Add(this.SignatureBox);
@@ -543,5 +555,6 @@
 		private Signature.PictureBox SignatureBox;
 		private MetroFramework.Controls.MetroButton btnPayment;
 		private MetroFramework.Controls.MetroButton btnCancel;
+		private MetroFramework.Controls.MetroButton btnClearSignature;
 	}
 }

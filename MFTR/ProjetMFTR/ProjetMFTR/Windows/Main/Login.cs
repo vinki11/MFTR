@@ -52,7 +52,6 @@ namespace ProjetMFTR.Forms
 				return;
 			}
 
-			AddAuthLog();
 			Close();
 		}
 
